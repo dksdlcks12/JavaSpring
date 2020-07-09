@@ -11,14 +11,14 @@ public class UserServiceImp implements UserService {
 	@Autowired
 	private UserDao userDao;
 	@Override
-	public String getPw(String id) {
-		// TODO Auto-generated method stub
-		return userDao.getPw(id);
-	}
-	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
 		return userDao.getCount();
+	}
+	@Override
+	public String getPw(String id) {
+		// TODO Auto-generated method stub
+		return userDao.getPw(id);
 	}
 	
 }
