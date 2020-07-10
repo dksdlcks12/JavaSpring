@@ -1,5 +1,6 @@
 package kr.green.spring.vo;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -41,6 +42,14 @@ public class BoardVo {
 		String to = transFormat.format(registeredDate);
 		return to;
 	}
+	public void setRegisteredDate(String registeredDate) {
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			this.registeredDate = transFormat.parse(registeredDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}	
 	public void setRegisteredDate(Date registeredDate) {
 		this.registeredDate = registeredDate;
 	}

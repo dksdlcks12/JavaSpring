@@ -20,10 +20,12 @@
 </div>
 <div class="form-group">
   <label>조회수</label>
-  <input type="text" class="form-control" name="registeredDate" value="${board.views}" readonly>
+  <input type="text" class="form-control" name="views" value="${board.views}" readonly>
 </div>
 <div class="form-group">
 		<label>내용</label>
 		<textarea class="form-control" rows="5" name="content" readonly>${board.content}</textarea>
 </div>
 <a href="<%=request.getContextPath()%>/board/list"><button>목록</button></a>
+<a href="<%=request.getContextPath()%>/board/modify?num=${board.num}"><button>수정</button></a>
+<a href="<%=request.getContextPath()%>/board/delete?num=${board.num}"><button>삭제</button></a>

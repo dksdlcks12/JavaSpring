@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.green.spring.dao.BoardDao">
   <select id="getBoardlist" resultType="kr.green.spring.vo.BoardVo">
-    select * from board
+    select * from board where isdel like "N"
   </select>
   <select id="getBoard" resultType="kr.green.spring.vo.BoardVo">
     select * from board where num = #{num}
@@ -14,7 +14,13 @@
   </update>
   <insert id="registerBoard">
   	insert into board(title, writer, content)
-  	values(#{title}, #{writer}, #{content})
+  	values(#{board.title}, #{board.writer}, #{board.content})
   </insert>
+  <update id="updateBoard">
+  	update board set title=#{board.title}, content = #{board.content} where num = #{board.num};
+  </update>
+  <update id="delBoard">
+  	update board set isdel="Y", delDate=NOW() where num = #{num};
+  </update>
   
 </mapper>
