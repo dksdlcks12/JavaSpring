@@ -1,11 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
 </head>
+<br><h1>게시판</h1><br>
 <table class="table table-bordered">
 	<thead>
     	<tr>
@@ -33,7 +32,6 @@
 				<td colspan="5">등록된 게시글이 없습니다.</td>
 			</tr>
 		</c:if>
-
 	</tbody>
 </table>
-</html>
+<a href="<%=request.getContextPath()%>/board/register"><button>글쓰기</button></a>

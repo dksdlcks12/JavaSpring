@@ -20,11 +20,34 @@ public class BoardServiceImp implements BoardService {
 
 	@Override
 	public BoardVo getBoard(Integer num) {
+		if(num==null) {
+			return null;
+		}
 		return boardDao.getBoard(num);
 	}
 
 	@Override
-	public void increaseViews(Integer num) {
-		boardDao.increaseViews(num);
+	public void setBoard(BoardVo board) {
+		boardDao.setBoard(board);		
+	}
+
+	@Override
+	public BoardVo viewBoard(Integer num) {
+		BoardVo board = getBoard(num);
+		if(num!=null) {
+			board.setViews(board.getViews()+1);
+			boardDao.updateBoard(board);
+		}
+		return board;
+	}
+
+	@Override
+	public void modifyBoard(BoardVo board) {
+		boardDao.modifyBoard(board);		
+	}
+
+	@Override
+	public void delBoard(Integer num) {
+		boardDao.delBoard(num);		
 	}
 }

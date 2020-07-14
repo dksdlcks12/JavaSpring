@@ -10,5 +10,11 @@ public interface BoardService {
 
 	BoardVo getBoard(Integer num);
 
-	void increaseViews(Integer num);
+	void setBoard(BoardVo board);
+
+	BoardVo viewBoard(Integer num);
+
+	void modifyBoard(BoardVo board);
+
+	void delBoard(Integer num);
 }

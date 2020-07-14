@@ -9,7 +9,17 @@
   <select id="getBoard" resultType="kr.green.springtest.vo.BoardVo">
   	select * from board where num = #{num}
   </select>
-  <update id="increaseViews">
-  	update board set views=views+1 where num=#{num}
+  <insert id="setBoard">
+  	insert into board(title, writer, content)
+  	value(#{board.title}, #{board.writer}, #{board.content})
+  </insert>
+  <update id="updateBoard">
+  	update board set title = #{board.title}, content = #{board.content}, isdel = #{board.isdel}, delDate = #{board.delDate}, views= #{board.views} where num=#{board.num}
+  </update>
+  <update id="modifyBoard">
+  	update board set title = #{board.title}, content = #{board.content} where num=#{board.num}
+  </update>
+  <update id="delBoard">
+  	update board set isdel = "Y", delDate = NOW() where num=#{num}
   </update>
 </mapper>

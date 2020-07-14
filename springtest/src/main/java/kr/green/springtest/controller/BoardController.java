@@ -28,15 +28,40 @@ public class BoardController {
 	@RequestMapping(value= {"/board/detail"}, method = RequestMethod.GET)
 	public ModelAndView detailGet(ModelAndView mv, Integer num){
 	    mv.setViewName("/board/detail");
-	    BoardVo board = null;
-	    if(num != null) {
-	    	board = boardService.getBoard(num);
-	    	mv.addObject("board", board);
-	    	if(board != null) {
-	    		boardService.increaseViews(num);
-	    		board.setViews(board.getViews()+1);
-	    	}
-	    }
+	    BoardVo board = boardService.viewBoard(num);
+	    mv.addObject("board", board);
 	    return mv;
+	}
+	@RequestMapping(value= {"/board/register"}, method = RequestMethod.GET)
+	public ModelAndView registerGet(ModelAndView mv) {
+		mv.setViewName("/board/register");
+		return mv;
+	}
+	@RequestMapping(value= {"/board/register"}, method = RequestMethod.POST)
+	public ModelAndView registerPost(ModelAndView mv, BoardVo board) {
+		if(board.getTitle()!="" && board.getWriter()!="" && board.getContent()!="") {
+			boardService.setBoard(board);
+		}
+		mv.setViewName("redirect:/board/list");
+		return mv;
+	}
+	@RequestMapping(value= {"/board/modify"}, method = RequestMethod.GET)
+	public ModelAndView modifyGet(ModelAndView mv, Integer num) {
+		mv.setViewName("/board/modify");
+		BoardVo board = boardService.getBoard(num);
+		mv.addObject("board", board);
+		return mv;
+	}
+	@RequestMapping(value= {"/board/modify"}, method = RequestMethod.POST)
+	public ModelAndView modifyPOST(ModelAndView mv, BoardVo board) {
+		mv.setViewName("redirect:/board/detail?num="+board.getNum());
+		boardService.modifyBoard(board);
+		return mv;
+	}
+	@RequestMapping(value= {"/board/del"}, method = RequestMethod.GET)
+	public ModelAndView delGet(ModelAndView mv, Integer num) {
+		mv.setViewName("redirect:/board/list");
+		boardService.delBoard(num);
+		return mv;
 	}
 }
