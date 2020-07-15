@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.spring.service.BoardService;
 import kr.green.spring.vo.BoardVo;
+import pagination.Criteria;
+import pagination.PageMaker;
 
 
 @Controller
@@ -21,11 +23,14 @@ public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
-	public ModelAndView boardlist(ModelAndView mv) {
+	public ModelAndView boardlist(ModelAndView mv, Criteria cri) {
 		mv.setViewName("/board/list");
+		PageMaker pm = boardService.getPageMaker(cri);
 		ArrayList<BoardVo> list;
-		list = boardService.getBoardlist();
+		list = boardService.getBoardlist(cri);
 		mv.addObject("list", list);
+		mv.addObject("pm", pm);
+		System.out.println(pm);
 		return mv;
 	}
 	@RequestMapping(value = "/board/detail", method = RequestMethod.GET)
