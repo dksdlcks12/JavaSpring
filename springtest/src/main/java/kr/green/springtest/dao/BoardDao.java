@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Param;
 
 import kr.green.springtest.vo.BoardVo;
+import pagination.Criteria;
 
 public interface BoardDao {
 
-	ArrayList<BoardVo> getList();
+	ArrayList<BoardVo> getList(@Param("cri")Criteria cri);
 
 	BoardVo getBoard(@Param("num")Integer num);
 
@@ -21,4 +22,6 @@ public interface BoardDao {
 	void modifyBoard(@Param("board")BoardVo board);
 
 	void delBoard(@Param("num")Integer num);
+
+	int getTotalCount(@Param("cri")Criteria cri);
 }

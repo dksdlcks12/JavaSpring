@@ -3,10 +3,12 @@ package kr.green.springtest.service;
 import java.util.ArrayList;
 
 import kr.green.springtest.vo.BoardVo;
+import pagination.Criteria;
+import pagination.PageMaker;
 
 public interface BoardService {
 
-	ArrayList<BoardVo> getList();
+	ArrayList<BoardVo> getList(Criteria cri);
 
 	BoardVo getBoard(Integer num);
 
@@ -17,4 +19,6 @@ public interface BoardService {
 	void modifyBoard(BoardVo board);
 
 	void delBoard(Integer num);
+
+	PageMaker getPage(Criteria cri);
 }

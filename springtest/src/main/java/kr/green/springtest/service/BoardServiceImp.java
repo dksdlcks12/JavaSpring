@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import kr.green.springtest.dao.BoardDao;
 import kr.green.springtest.vo.BoardVo;
+import pagination.Criteria;
+import pagination.PageMaker;
 
 @Service
 public class BoardServiceImp implements BoardService {
@@ -14,8 +16,8 @@ public class BoardServiceImp implements BoardService {
 	private BoardDao boardDao;
 
 	@Override
-	public ArrayList<BoardVo> getList() {
-		return boardDao.getList();
+	public ArrayList<BoardVo> getList(Criteria cri) {
+		return boardDao.getList(cri);
 	}
 
 	@Override
@@ -49,5 +51,14 @@ public class BoardServiceImp implements BoardService {
 	@Override
 	public void delBoard(Integer num) {
 		boardDao.delBoard(num);		
+	}
+
+	@Override
+	public PageMaker getPage(Criteria cri) {
+		PageMaker pm = new PageMaker();
+		int totalcount = boardDao.getTotalCount(cri);
+		pm.setCriteria(cri);
+		pm.setTotalCount(totalcount);
+		return pm;
 	}
 }

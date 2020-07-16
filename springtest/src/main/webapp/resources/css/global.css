@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
-body>.container{
+.container.body{
 	min-height: 800px;
+}
+.page-link>i{
+	line-height: 20px;
 }

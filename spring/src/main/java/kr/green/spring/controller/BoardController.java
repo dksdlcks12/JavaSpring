@@ -30,11 +30,11 @@ public class BoardController {
 		list = boardService.getBoardlist(cri);
 		mv.addObject("list", list);
 		mv.addObject("pm", pm);
-		System.out.println(pm);
+		System.out.println(cri);
 		return mv;
 	}
 	@RequestMapping(value = "/board/detail", method = RequestMethod.GET)
-	public ModelAndView boardDetail(ModelAndView mv, Integer num) {
+	public ModelAndView boardDetail(ModelAndView mv, Integer num, Criteria cri) {
 		mv.setViewName("/board/detail");
 		BoardVo board = null;
 		if(num!=null) {
@@ -45,6 +45,7 @@ public class BoardController {
 				board.setViews(board.getViews()+1);
 			}
 		}
+		mv.addObject("cri", cri);
 		return mv;
 	}
 	@RequestMapping(value = "/board/register", method = RequestMethod.GET)

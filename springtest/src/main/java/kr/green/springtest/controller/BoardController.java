@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.springtest.service.BoardService;
 import kr.green.springtest.vo.BoardVo;
+import pagination.Criteria;
+import pagination.PageMaker;
 
 
 @Controller
@@ -18,18 +20,21 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@RequestMapping(value= {"/board/list"}, method = RequestMethod.GET)
-	public ModelAndView listGet(ModelAndView mv){
+	public ModelAndView listGet(ModelAndView mv, Criteria cri){
 	    mv.setViewName("/board/list");
 	    ArrayList<BoardVo> list;
-	    list = boardService.getList();
+	    PageMaker pm=boardService.getPage(cri);
+	    list = boardService.getList(cri);
 	    mv.addObject("list",list);
+	    mv.addObject("pm",pm);
 	    return mv;
 	}
 	@RequestMapping(value= {"/board/detail"}, method = RequestMethod.GET)
-	public ModelAndView detailGet(ModelAndView mv, Integer num){
+	public ModelAndView detailGet(ModelAndView mv, Integer num, Criteria cri){
 	    mv.setViewName("/board/detail");
 	    BoardVo board = boardService.viewBoard(num);
 	    mv.addObject("board", board);
+	    mv.addObject("cri", cri);
 	    return mv;
 	}
 	@RequestMapping(value= {"/board/register"}, method = RequestMethod.GET)

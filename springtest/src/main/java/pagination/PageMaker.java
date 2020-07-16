@@ -75,7 +75,7 @@ public class PageMaker {
 	public void setCriteria(Criteria criteria) {
 		this.criteria = criteria;
 	}
-	public int lastPage() {
+	public int getLastPage() {
 		return (int)(Math.ceil(totalCount/(double)criteria.getPerPageNum()));
 	}
 	@Override

@@ -21,6 +21,6 @@ public interface BoardDao {
 
 	void delBoard(@Param("num")Integer num);
 
-	int getTotalCount();
+	int getTotalCount(@Param("cri")Criteria cri);
 	
 }
