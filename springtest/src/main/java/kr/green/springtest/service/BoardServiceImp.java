@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.green.springtest.dao.BoardDao;
+import kr.green.springtest.pagination.Criteria;
+import kr.green.springtest.pagination.PageMaker;
 import kr.green.springtest.vo.BoardVo;
-import pagination.Criteria;
-import pagination.PageMaker;
 
 @Service
 public class BoardServiceImp implements BoardService {

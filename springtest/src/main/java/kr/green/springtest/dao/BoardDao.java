@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 
+import kr.green.springtest.pagination.Criteria;
 import kr.green.springtest.vo.BoardVo;
-import pagination.Criteria;
 
 public interface BoardDao {
 

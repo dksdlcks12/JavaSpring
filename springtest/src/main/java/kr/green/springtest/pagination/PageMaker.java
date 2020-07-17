@@ -1,4 +1,4 @@
-package pagination;
+package kr.green.springtest.pagination;
 
 public class PageMaker {
 	//전체 게시글 수

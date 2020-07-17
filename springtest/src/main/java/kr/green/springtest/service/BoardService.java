@@ -2,9 +2,9 @@ package kr.green.springtest.service;
 
 import java.util.ArrayList;
 
+import kr.green.springtest.pagination.Criteria;
+import kr.green.springtest.pagination.PageMaker;
 import kr.green.springtest.vo.BoardVo;
-import pagination.Criteria;
-import pagination.PageMaker;
 
 public interface BoardService {
 

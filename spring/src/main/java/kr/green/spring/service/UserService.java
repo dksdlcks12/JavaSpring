@@ -1,10 +1,9 @@
 package kr.green.spring.service;
 
+import kr.green.spring.vo.UserVo;
+
 public interface UserService {
 
-
-	int getCount();
-
-	String getPw(String id);
+	boolean singup(UserVo user);
 
 }
