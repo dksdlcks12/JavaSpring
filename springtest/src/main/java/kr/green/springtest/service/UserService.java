@@ -8,4 +8,6 @@ public interface UserService {
 
 	UserVo isUesr(UserVo inputUser);
 
+	boolean signUp(UserVo user);
+
 }

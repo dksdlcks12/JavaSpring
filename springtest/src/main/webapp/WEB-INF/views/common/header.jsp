@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -14,12 +15,22 @@
 		      	<li class="nav-item">
 		        	<a class="nav-link" href="<%=request.getContextPath()%>/board/list">Board</a>
 		      	</li>
+				<c:if test="${user==null}">
 		      	<li class="nav-item">
-		        	<a class="nav-link" href="<%=request.getContextPath()%>/signIn">Sign In</a>
+		        	<a class="nav-link" href="<%=request.getContextPath()%>/signin">Sign In</a>
 		      	</li>
 		      	<li class="nav-item">
-		        	<a class="nav-link" href="<%=request.getContextPath()%>/signUp">Sign Up</a>
+		        	<a class="nav-link" href="<%=request.getContextPath()%>/signup">Sign Up</a>
 		      	</li>
+		      	</c:if>
+		      	<c:if test="${user!=null}">
+		      	<li class="nav-item">
+		      	<span style="line-height: 40px; color: white">'${user.id}'으로 로그인 중</span>
+		      	</li>
+		      	<li class="nav-item">
+		        	<a class="nav-link" href="<%=request.getContextPath()%>/signout">Sign Out</a>
+		      	</li>
+		      	</c:if>
 	    	</ul>
 		</div> 
 	</div> 
