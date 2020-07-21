@@ -48,7 +48,9 @@
 		</div>
 	</form>
 </div>
-<a href="<%=request.getContextPath()%>/board/register"><button>글쓰기</button></a>
+<c:if test="${user!=null}">
+	<a href="<%=request.getContextPath()%>/board/register"><button>글쓰기</button></a>
+</c:if>
 <ul class="pagination justify-content-center">
 	<c:if test="${pm.prev}">
 		<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.startPage-1}&type=${pm.criteria.type}&search=${pm.criteria.search}"><i class="fas fa-angle-double-left"></i></a></li>

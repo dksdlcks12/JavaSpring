@@ -34,8 +34,10 @@
 			<textarea class="form-control" rows="5" name="content" readonly>${board.content}</textarea>
 		</div>
 		<a href="<%=request.getContextPath()%>/board/list?page=${cri.page}&type=${cri.type}&search=${cri.search}"><button>목록</button></a>
-		<a href="<%=request.getContextPath()%>/board/modify?num=${board.num}"><button>수정</button></a>
-		<a href="<%=request.getContextPath()%>/board/del?num=${board.num}"><button>삭제</button></a>
+		<c:if test="${user.id == board.writer}">
+			<a href="<%=request.getContextPath()%>/board/modify?num=${board.num}"><button>수정</button></a>
+			<a href="<%=request.getContextPath()%>/board/del?num=${board.num}"><button>삭제</button></a>
+		</c:if>
 	</c:if>
 
 </c:if>

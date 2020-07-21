@@ -5,9 +5,9 @@ import org.apache.ibatis.annotations.Param;
 
 import kr.green.springtest.vo.UserVo;
 public interface UserDao {
-	UserVo getUser(@Param("id") String id);
+	public UserVo getUser(@Param("id") String id);
 
-	UserVo isUser(UserVo inputUser);
+	public UserVo isUser(UserVo inputUser);
 
-	void insertuser(@Param("user")UserVo user);
+	public void insertuser(@Param("user")UserVo user);
 }

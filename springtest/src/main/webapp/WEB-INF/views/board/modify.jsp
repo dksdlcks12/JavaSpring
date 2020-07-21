@@ -21,6 +21,7 @@
 				<label>제목</label>
 			    <input type="text" class="form-control" name="title" value="${board.title}">
 			</div>
+				<input type="hidden" class="form-control" name="writer" value="${board.writer}">
 			<div class="form-group">
 				<label>내용</label>
 				<textarea class="form-control" rows="5" name="content">${board.content}</textarea>

@@ -1,4 +1,4 @@
-	package kr.green.springtest.controller;
+package kr.green.springtest.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,13 +23,13 @@ public class HomeController {
 	
 	@Autowired
 	private UserService userservice;
-	@RequestMapping(value= {"/"}, method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value= {"/", "/signin"}, method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView home(ModelAndView mv, UserVo inputUser){
 	    mv.setViewName("/main/home");
 	    UserVo user = userservice.isUesr(inputUser);
 	    mv.addObject("id",inputUser.getId());
 	    mv.addObject("isLogin", "isLogin");
-	    mv.addObject("user", user);
+    	mv.addObject("user", user);
 	    if(user == null) {
 	    	mv.addObject("isLogin", false);
 	    }

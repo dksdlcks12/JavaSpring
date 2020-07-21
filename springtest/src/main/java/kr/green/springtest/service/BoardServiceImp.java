@@ -2,6 +2,9 @@ package kr.green.springtest.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,11 +12,14 @@ import kr.green.springtest.dao.BoardDao;
 import kr.green.springtest.pagination.Criteria;
 import kr.green.springtest.pagination.PageMaker;
 import kr.green.springtest.vo.BoardVo;
+import kr.green.springtest.vo.UserVo;
 
 @Service
 public class BoardServiceImp implements BoardService {
 	@Autowired
 	private BoardDao boardDao;
+	@Autowired
+	private UserService userservice;
 
 	@Override
 	public ArrayList<BoardVo> getList(Criteria cri) {
@@ -29,14 +35,22 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public void setBoard(BoardVo board) {
-		boardDao.setBoard(board);		
+	public void setBoard(BoardVo board, HttpServletRequest request) {
+		UserVo user = userservice.getUser(request);
+		if(user == null) {
+			return;
+		}
+		boardDao.setBoard(board);
 	}
 
 	@Override
-	public BoardVo viewBoard(Integer num) {
+	public BoardVo viewBoard(Integer num, HttpServletRequest request) {
 		BoardVo board = getBoard(num);
-		if(num!=null) {
+		UserVo user = null;
+		if(request!=null) {
+			user = userservice.getUser(request);
+		}
+		if(num!=null && (user==null || !board.getWriter().equals(user.getId()))) {
 			board.setViews(board.getViews()+1);
 			boardDao.updateBoard(board);
 		}
@@ -44,8 +58,9 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public void modifyBoard(BoardVo board) {
-		boardDao.modifyBoard(board);		
+	public void modifyBoard(BoardVo board, UserVo user) {
+		board.setWriter(user.getId());
+		boardDao.modifyBoard(board);
 	}
 
 	@Override

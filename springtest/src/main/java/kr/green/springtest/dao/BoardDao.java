@@ -9,19 +9,19 @@ import kr.green.springtest.vo.BoardVo;
 
 public interface BoardDao {
 
-	ArrayList<BoardVo> getList(@Param("cri")Criteria cri);
+	public ArrayList<BoardVo> getList(@Param("cri")Criteria cri);
 
-	BoardVo getBoard(@Param("num")Integer num);
+	public BoardVo getBoard(@Param("num")Integer num);
 
-	void increaseViews(@Param("num")Integer num);
+	public void increaseViews(@Param("num")Integer num);
 
-	void setBoard(@Param("board")BoardVo board);
+	public void setBoard(@Param("board")BoardVo board);
 
-	void updateBoard(@Param("board")BoardVo board);
+	public void updateBoard(@Param("board")BoardVo board);
 
-	void modifyBoard(@Param("board")BoardVo board);
+	public void modifyBoard(@Param("board")BoardVo board);
 
-	void delBoard(@Param("num")Integer num);
+	public void delBoard(@Param("num")Integer num);
 
-	int getTotalCount(@Param("cri")Criteria cri);
+	public int getTotalCount(@Param("cri")Criteria cri);
 }

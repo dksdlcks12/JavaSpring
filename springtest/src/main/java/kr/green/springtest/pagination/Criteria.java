@@ -7,7 +7,7 @@ public class Criteria {
 	private int type;
 	public Criteria() {
 		page = 1;
-		perPageNum = 3;
+		perPageNum = 5;
 		search ="";
 		type = 0;
 	}

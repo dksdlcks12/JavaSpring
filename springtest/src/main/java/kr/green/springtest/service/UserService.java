@@ -1,13 +1,15 @@
 package kr.green.springtest.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.green.springtest.vo.UserVo;
 
 public interface UserService {
 
-	UserVo getUser(String string);
+	UserVo getUser(HttpServletRequest request);
 
 	UserVo isUesr(UserVo inputUser);
 
 	boolean signUp(UserVo user);
-
+	
 }
