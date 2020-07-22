@@ -18,12 +18,11 @@ import pagination.PageMaker;
 public class BoardServiceImp implements BoardService {
 	@Autowired
 	private BoardDao boardDao;
-
+	
 	@Override
 	public ArrayList<BoardVo> getBoardlist(Criteria cri) {
 		return boardDao.getBoardlist(cri);
 	}
-
 	@Override
 	public BoardVo getBoard(Integer num) {
 		return boardDao.getBoard(num);
@@ -73,4 +72,17 @@ public class BoardServiceImp implements BoardService {
 		return pm;
 	}
 
+	@Override
+	public int updateLike(Integer num, String id) {
+		int boNum = num;
+		if(boardDao.isLike(boNum, id) == 0){
+			boardDao.insertLike(boNum, id);
+		}else {
+			return -1;
+		}
+		BoardVo board = boardDao.getBoard(num);
+		boardDao.updateLike(board);
+		board = boardDao.getBoard(num);
+		return board.getLike();
+	}
 }

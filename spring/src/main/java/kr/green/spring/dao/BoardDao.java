@@ -22,5 +22,11 @@ public interface BoardDao {
 	void delBoard(@Param("num")Integer num);
 
 	int getTotalCount(@Param("cri")Criteria cri);
+
+	void insertLike(@Param("boNum")int boNum, @Param("id")String id);
+
+	void updateLike(@Param("board")BoardVo board);
+
+	int isLike(@Param("boNum")int boNum, @Param("id")String id);
 	
 }

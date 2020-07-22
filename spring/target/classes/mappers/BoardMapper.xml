@@ -28,11 +28,11 @@
     update board set views = views+1 where num = #{num}
   </update>
   <insert id="registerBoard">
-  	insert into board(title, writer, content)
-  	values(#{board.title}, #{board.writer}, #{board.content})
+  	insert into board(title, writer, content, file)
+  	values(#{board.title}, #{board.writer}, #{board.content}, #{board.file})
   </insert>
   <update id="updateBoard">
-  	update board set title=#{board.title}, content = #{board.content} where num = #{board.num};
+  	update board set title=#{board.title}, content = #{board.content}, file = #{board.file} where num = #{board.num}
   </update>
   <update id="delBoard">
   	update board set isdel="Y", delDate=NOW() where num = #{num};
@@ -54,5 +54,13 @@
     	and writer like concat('%',#{cri.search},'%')
     </if>
   </select>
-
+  <update id="updateLike">
+  	update board set board.like = (select count(*) from spring.like where boNum = #{board.num}) where num = #{board.num}
+  </update>
+  <insert id='insertLike'>
+  	insert into spring.like(id, boNum) values(#{id}, #{boNum})
+  </insert>
+  <select id='isLike' resultType="int">
+  	select count(*) from spring.like where id = #{id} and boNum = #{boNum}
+  </select>
 </mapper>

@@ -23,4 +23,5 @@
 	    <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
 	</bean>
 	<mybatis-spring:scan base-package="kr.green.spring.dao"/>
+	
 </beans>

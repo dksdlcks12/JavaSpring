@@ -22,6 +22,9 @@
 		      	</c:if>
 		      	<c:if test="${user!=null}">
 			      	<li class="nav-item">
+			      		<span class="nav-link" style="color: white">'${user.id}'로 로그인 중입니다.</span>
+			      	</li>
+			      	<li class="nav-item">
 			        	<a class="nav-link" href="<%=request.getContextPath()%>/signout">로그아웃</a>
 			      	</li>
 		      	</c:if>

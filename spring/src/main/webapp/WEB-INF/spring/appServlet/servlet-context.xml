@@ -11,7 +11,7 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
-
+	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
@@ -35,7 +35,7 @@
 	    </beans:property>
 	</beans:bean>
 	<beans:bean id="loginInterceptor" class="kr.green.spring.interceptor.LoginInterceptor"></beans:bean>
-		<beans:bean id="authInterceptor" class="kr.green.spring.interceptor.AuthInterceptor"></beans:bean>
+	<beans:bean id="authInterceptor" class="kr.green.spring.interceptor.AuthInterceptor"></beans:bean>
 	<interceptors>
 		<interceptor>
 			<mapping path="/"/>
@@ -49,4 +49,15 @@
 	        <beans:ref bean="authInterceptor"/>
 	    </interceptor>
 	</interceptors>
+	<!-- 파일업로드 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <!-- 업로드 최대 크기 10Mb -->
+	    <beans:property name="maxUploadSize" value="10485760"></beans:property>
+	</beans:bean>
+	<!-- 파일경로 -->
+	<beans:bean id="uploadPath" class="java.lang.String">
+	    <!--<beans:constructor-arg value="서버에 저장할 경로"></beans:constructor-arg>-->
+	    <beans:constructor-arg value="D:\\uploadfiles"></beans:constructor-arg>
+	</beans:bean>
+	
 </beans:beans>
