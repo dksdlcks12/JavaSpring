@@ -139,3 +139,11 @@
 	font-size: 24px;
 	border: none;
 }
+.dup-id, .none-dup-id{
+	color: red;
+	line-height: 16px;
+	margin-bottom: 10px;
+}
+.none-dup-id{
+	color: green;
+}

@@ -24,4 +24,6 @@ public interface BoardService {
 	void delBoard(Integer num);
 
 	PageMaker getPage(Criteria cri);
+
+	int updateLike(Integer num, String id);
 }

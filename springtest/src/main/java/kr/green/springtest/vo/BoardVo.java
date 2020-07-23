@@ -13,6 +13,7 @@ public class BoardVo {
 	private char isdel;
 	private int views;
 	private Date delDate;
+	private int like;
 	public int getNum() {
 		return num;
 	}
@@ -70,11 +71,17 @@ public class BoardVo {
 	}
 	public void setDelDate(Date delDate) {
 		this.delDate = delDate;
+	}	
+	public int getLike() {
+		return like;
+	}
+	public void setLike(int like) {
+		this.like = like;
 	}
 	@Override
 	public String toString() {
 		return "BoardVo [num=" + num + ", writer=" + writer + ", title=" + title + ", content=" + content
-				+ ", registedDate=" + registeredDate + ", isdel=" + isdel + ", views=" + views + ", delDate=" + delDate
-				+ "]";
+				+ ", registeredDate=" + registeredDate + ", isdel=" + isdel + ", views=" + views + ", delDate="
+				+ delDate + ", like=" + like + "]";
 	}
 }

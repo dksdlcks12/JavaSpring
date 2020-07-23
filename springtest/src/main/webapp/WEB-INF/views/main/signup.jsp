@@ -9,6 +9,7 @@
 				<input type="text" name="id" id="id">
 			</div>
 		</div>
+		<div class="msg-id"></div>
 		<div class="container-pw">
 			<div class="text-pw">비밀번호</div>
 			<div class="box-pw">
@@ -34,3 +35,29 @@
 		<button class="btn-submit">가입하기</button>
 	</div>
 </form>
+<script>
+	$(function(){
+		$('#id').change(function(){
+			var id = $(this).val();
+			  $.ajax({
+				    //동기화, 비동기화 결정
+			        async:true,
+			        //전송방식(GET, POST)
+			        type:'POST',
+			        data:id,
+			        url:"<%=request.getContextPath()%>/idcheck",
+			        dataType:"json",
+			        contentType:"application/json; charset=UTF-8",
+			        success : function(data){
+				        var str;
+				        if(data['dup']){
+					        str = '<p class = "dup-id"> 중복된 아이디 입니다.</p>'
+					    }else{
+					    	str = '<p class = "none-dup-id"> 사용 가능한 아이디 입니다.</p>'
+					    }
+					    $('.msg-id').html(str);
+			        }
+			    });
+		})
+	})
+</script>

@@ -1,13 +1,17 @@
 package kr.green.springtest.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.springtest.pagination.Criteria;
@@ -82,5 +86,19 @@ public class BoardController {
 		mv.setViewName("redirect:/board/list");
 		boardService.delBoard(num);
 		return mv;
+	}
+	@RequestMapping(value ="/like")
+	@ResponseBody
+	public Map<Object, Object> like(@RequestBody Integer num, HttpServletRequest request){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    UserVo user = userservice.getUser(request);
+	    if(user==null) {
+	    	map.put("isUser", false);
+	    }else {
+	    	map.put("isUser", true);
+	    	int like = boardService.updateLike(num, user.getId());
+	    	map.put("like",like);
+	    }
+	    return map;
 	}
 }

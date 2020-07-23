@@ -54,4 +54,13 @@
     	and writer like concat('%',#{cri.search},'%')
     </if>
   </select>
+  <select id="isLike" resultType="int">
+  	select count(*) from spring.like where boNum = #{boNum} and id = #{id}
+  </select>
+  <insert id="userLike">
+	insert into spring.like(id, boNum) value(#{id}, #{boNum})
+  </insert>
+  <update id="likeUp">
+  	update board set board.like = (select count(*) from spring.like where boNum = #{boNum}) where num=#{boNum}
+  </update>
 </mapper>

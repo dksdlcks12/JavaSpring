@@ -71,12 +71,39 @@ public class HomeController {
 	@RequestMapping(value ="/idCheck")
 	@ResponseBody
 	public Map<Object, Object> idcheck(@RequestBody String id){
-
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 	    UserVo user = userService.getUser(id);
 	    boolean check = user == null ? true : false;
 	    map.put("id", id);
 	    map.put("check", check);
 	    return map;
+	}
+	
+	@RequestMapping(value ="/test")
+	@ResponseBody
+	public Map<Object, Object> test(@RequestBody TestVo test){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    map.put("res", test);
+	    return map;
+	}
+}
+class TestVo{
+	private String id;
+	private int pw;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public int getPw() {
+		return pw;
+	}
+	public void setPw(int pw) {
+		this.pw = pw;
+	}
+	@Override
+	public String toString() {
+		return "TestVo [id=" + id + ", pw=" + pw + "]";
 	}
 }

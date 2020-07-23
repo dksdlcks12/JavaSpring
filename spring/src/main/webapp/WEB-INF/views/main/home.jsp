@@ -11,8 +11,6 @@
 	</div>
 </c:if>
 <button id="ajax">ajax</button><br>
-<input type="text" id="id" placeholder="아이디"><br>
-<input type="text" id="pw" placeholder="비밀번호"><br>
 <script>
 	$(function(){
 		$('#ajax').click(function(){
@@ -22,14 +20,12 @@
 		        async:true,
 		        //전송방식(GET, POST)
 		        type:'POST',
-		        data:id,
-		        url:"test",
+		        data:JSON.stringify({"id":"asd", "pw":"123"}),
+		        url:"<%=request.getContextPath()%>/test",
 		        dataType:"json",
 		        contentType:"application/json; charset=UTF-8",
 		        success : function(data){
-		            console.log(data);
-		            $('#id').val(data['id'])
-		            $('#pw').val(data['pw'])
+		            console.log(data['res']);
 		        }
 		    });
 		})

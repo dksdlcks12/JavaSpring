@@ -1,13 +1,18 @@
 package kr.green.springtest.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.springtest.service.UserService;
@@ -45,7 +50,7 @@ public class HomeController {
 		if(userservice.signUp(user)) {
 			mv.setViewName("redirect:/");
 		}else {
-			mv.setViewName("redirect:/main/signup");
+			mv.setViewName("redirect:/signup");
 		}
 	    return mv;
 	}
@@ -54,5 +59,14 @@ public class HomeController {
 	    mv.setViewName("redirect:/");
 	    request.getSession().removeAttribute("user");
 	    return mv;
+	}
+	@RequestMapping(value ="/idcheck")
+	@ResponseBody
+	public Map<Object, Object> idcheck(@RequestBody String id){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    UserVo user = userservice.getUser(id);
+	    boolean dup = user == null ? false : true;
+	    map.put("dup", dup);
+	    return map;
 	}
 }

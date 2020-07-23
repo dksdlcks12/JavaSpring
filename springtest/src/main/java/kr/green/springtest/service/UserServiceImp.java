@@ -48,4 +48,9 @@ public class UserServiceImp implements UserService {
 		userdao.insertuser(user);
 		return true;
 	}
+
+	@Override
+	public UserVo getUser(String id) {
+		return userdao.getUser(id);
+	}
 }
