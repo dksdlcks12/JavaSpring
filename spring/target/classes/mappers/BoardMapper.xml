@@ -28,11 +28,10 @@
     update board set views = views+1 where num = #{num}
   </update>
   <insert id="registerBoard">
-  	insert into board(title, writer, content, file)
-  	values(#{board.title}, #{board.writer}, #{board.content}, #{board.file})
+  	insert into board(title, writer, content, file) values(#{board.title}, #{board.writer}, #{board.content}, #{board.file})
   </insert>
   <update id="updateBoard">
-  	update board set title=#{board.title}, content = #{board.content}, file = #{board.file} where num = #{board.num}
+  	update board set title = #{board.title}, content = #{board.content}, file = #{board.file} where num=#{board.num}
   </update>
   <update id="delBoard">
   	update board set isdel="Y", delDate=NOW() where num = #{num};

@@ -25,8 +25,7 @@
   	select * from board where num = #{num}
   </select>
   <insert id="setBoard">
-  	insert into board(title, writer, content)
-  	value(#{board.title}, #{board.writer}, #{board.content})
+  	insert into board(title, writer, content, file) value(#{board.title}, #{board.writer}, #{board.content}, #{board.file})
   </insert>
   <update id="updateBoard">
   	update board set title = #{board.title}, content = #{board.content}, isdel = #{board.isdel}, delDate = #{board.delDate}, views= #{board.views} where num=#{board.num}

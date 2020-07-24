@@ -14,6 +14,7 @@ public class BoardVo {
 	private int views;
 	private Date delDate;
 	private int like;
+	private String file;
 	public int getNum() {
 		return num;
 	}
@@ -78,10 +79,20 @@ public class BoardVo {
 	public void setLike(int like) {
 		this.like = like;
 	}
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
+	}
 	@Override
 	public String toString() {
 		return "BoardVo [num=" + num + ", writer=" + writer + ", title=" + title + ", content=" + content
 				+ ", registeredDate=" + registeredDate + ", isdel=" + isdel + ", views=" + views + ", delDate="
-				+ delDate + ", like=" + like + "]";
+				+ delDate + ", like=" + like + ", file=" + file + "]";
+	}
+	public String getOriFile() {
+		int index = file.indexOf("_");
+		return file.substring(index+1);
 	}
 }

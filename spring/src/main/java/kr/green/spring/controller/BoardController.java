@@ -85,27 +85,31 @@ public class BoardController {
 		}
 		return mv;
 	}
-	@RequestMapping(value = "/board/modify", method = RequestMethod.GET)
-	public ModelAndView boardModifyGet(ModelAndView mv, Integer num, HttpServletRequest request) {
+	@RequestMapping(value= {"/board/modify"}, method = RequestMethod.GET)
+	public ModelAndView modifyGet(ModelAndView mv, Integer num, HttpServletRequest request) {
 		mv.setViewName("/board/modify");
-		BoardVo board = null;
-		UserVo user =  userService.getUser(request);
-		if(num!=null) {
-			board = boardService.getBoard(num);
-			if(user==null || !board.getWriter().equals(user.getId()))
-				mv.setViewName("redirect:/board/list");
+		BoardVo board = boardService.getBoard(num);
+		UserVo user = userService.getUser(request);
+		if(num!=null && board.getWriter().equals(user.getId())) {
 			mv.addObject("board", board);
+		}else {
+			mv.setViewName("redirect:/board/list");
 		}
 		return mv;
 	}
-	@RequestMapping(value = "/board/modify", method = RequestMethod.POST)
-	public ModelAndView boardModifyPost(ModelAndView mv, BoardVo board, HttpServletRequest request) {
+	@RequestMapping(value= {"/board/modify"}, method = RequestMethod.POST)
+	public ModelAndView modifyPOST(ModelAndView mv, BoardVo board, HttpServletRequest request, MultipartFile files) throws IOException, Exception {
 		mv.setViewName("redirect:/board/detail?num="+board.getNum());
 		UserVo user = userService.getUser(request);
-		if(user!=null && board.getWriter().equals(user.getId())) {
+		if(user!=null) {
+			if(files.getOriginalFilename().length() != 0) {
+				String fileName = UploadFileUtils.uploadFile(uploadPath, 
+						files.getOriginalFilename(),files.getBytes());
+				board.setFile(fileName);
+			}else if(board.getFile().length() == 0){
+				board.setFile(null);
+			}
 			boardService.updateBoard(board, user);
-		}else {
-			mv.setViewName("redirect:/board/list");
 		}
 		return mv;
 	}
