@@ -10,4 +10,6 @@ public interface UserDao {
 
 	public void insertUser(@Param("user")UserVo user);
 
+	public void updatePw(@Param("user")UserVo user);
+
 }

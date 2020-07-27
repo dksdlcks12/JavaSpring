@@ -98,7 +98,7 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value= {"/board/modify"}, method = RequestMethod.POST)
-	public ModelAndView modifyPOST(ModelAndView mv, BoardVo board, HttpServletRequest request, MultipartFile files) throws IOException, Exception {
+	public ModelAndView modifyPOST(ModelAndView mv, BoardVo board, HttpServletRequest request, MultipartFile files, MultipartFile file) throws IOException, Exception {
 		mv.setViewName("redirect:/board/detail?num="+board.getNum());
 		UserVo user = userService.getUser(request);
 		if(user!=null) {

@@ -88,10 +88,16 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value= {"/board/modify"}, method = RequestMethod.POST)
-	public ModelAndView modifyPOST(ModelAndView mv, BoardVo board, HttpServletRequest request) {
+	public ModelAndView modifyPOST(ModelAndView mv, BoardVo board, HttpServletRequest request, MultipartFile files)throws IOException, Exception {
 		mv.setViewName("redirect:/board/detail?num="+board.getNum());
 		UserVo user = userservice.getUser(request);
 		if(user!=null) {
+			if(files.getOriginalFilename().length()!=0) {
+				String fileName = UploadFileUtils.uploadFile(uploadPath, files.getOriginalFilename(), files.getBytes());
+				board.setFile(fileName);
+			}else {
+				board.setFile(null);
+			}
 			boardService.modifyBoard(board, user);
 		}
 		return mv;

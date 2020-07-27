@@ -31,7 +31,7 @@
   	update board set title = #{board.title}, content = #{board.content}, isdel = #{board.isdel}, delDate = #{board.delDate}, views= #{board.views} where num=#{board.num}
   </update>
   <update id="modifyBoard">
-  	update board set title = #{board.title}, content = #{board.content} where num=#{board.num}
+  	update board set title = #{board.title}, content = #{board.content}, file = #{board.file} where num=#{board.num}
   </update>
   <update id="delBoard">
   	update board set isdel = "Y", delDate = NOW() where num=#{num}

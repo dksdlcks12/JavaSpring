@@ -3,11 +3,14 @@ package kr.green.spring.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +32,8 @@ public class HomeController {
 	
 	@Autowired
 	private UserService userService;
-	
+	@Autowired
+	private JavaMailSender mailSender;
 	@RequestMapping(value= {"/"}, method = RequestMethod.GET)
 	public ModelAndView homeGet(ModelAndView mv) {
 	    mv.setViewName("/main/home");
@@ -85,6 +89,51 @@ public class HomeController {
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 	    map.put("res", test);
 	    return map;
+	}
+	@RequestMapping(value = "/mail/mailSending")
+	public String mailSending(HttpServletRequest request) {
+
+	    String setfrom = "stajun@naver.com";         
+	    String tomail  = request.getParameter("tomail");     // 받는 사람 이메일
+	    String title   = request.getParameter("title");      // 제목
+	    String id = request.getParameter("content");    // 내용
+	    
+	    int len = 13;
+	    String newPw = "";
+	    for(int i = 0; i< len; i++) {
+	    	int r = (int)(Math.random()*62);
+	    	char ch;
+	    	if(r<=9) {
+	    		ch=(char)('0'+r);
+	    	}else if(r<=35) {
+	    		ch=(char)('a'+(r-10));
+	    	}else {
+	    		ch=(char)('A'+(r-36));
+	    	}
+	    	newPw += ch;
+	    }
+	    userService.newPw(id, newPw);
+	    try {
+	        MimeMessage message = mailSender.createMimeMessage();
+	        MimeMessageHelper messageHelper 
+	            = new MimeMessageHelper(message, true, "UTF-8");
+
+	        messageHelper.setFrom(setfrom);  // 보내는사람 생략하거나 하면 정상작동을 안함
+	        messageHelper.setTo(tomail);     // 받는사람 이메일
+	        messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+	        messageHelper.setText(newPw);  // 메일 내용
+
+	        mailSender.send(message);
+	    } catch(Exception e){
+	        System.out.println(e);
+	    }
+
+	    return "redirect:/";
+	}
+	@RequestMapping(value = "/mail", method = RequestMethod.GET)
+	public ModelAndView mailGet(ModelAndView mv) {
+		mv.setViewName("/main/mail");
+		return mv;
 	}
 }
 class TestVo{
