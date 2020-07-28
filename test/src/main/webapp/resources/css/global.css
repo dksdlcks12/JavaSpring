@@ -1,0 +1,7 @@
+@charset "UTF-8";
+.container.body{
+	min-height: 800px;
+}
+.page-link .fas{
+	height: 20px;
+}
