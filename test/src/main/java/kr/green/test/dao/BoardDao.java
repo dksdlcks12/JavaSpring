@@ -13,4 +13,7 @@ public interface BoardDao {
 
 	int getTotalCount(@Param("cri")Criteria cri);
 
+	void insertBoard(@Param("board")BoardVo board);
+
+	BoardVo viewBoard(@Param("num")Integer num);
 }

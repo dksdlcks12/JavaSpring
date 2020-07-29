@@ -15,7 +15,7 @@
 			<c:forEach var="board" items="${list}">
 		  		<tr>
 		  			<td>${board.num}</td>
-		  			<td><a href="#">${board.title}</a></td>
+		  			<td><a href="<%=request.getContextPath()%>/board/view?num=${board.num}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}">${board.title}</a></td>
 		  			<td>${board.writer}</td>
 		  			<td>${board.registeredDate}</td>
 		  			<td>${board.views}</td>

@@ -76,12 +76,14 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value = "/board/register", method = RequestMethod.POST)
-	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVo board, HttpServletRequest request, MultipartFile files) throws IOException, Exception {
-		mv.setViewName("redirect:/board/list");
+	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVo board, HttpServletRequest request, MultipartFile files) throws IOException, Exception {	
 		if(board.getWriter()!="" && board.getTitle()!="" && board.getContent()!="") {
 			String fileName = UploadFileUtils.uploadFile(uploadPath, files.getOriginalFilename(),files.getBytes());
 			board.setFile(fileName);
 			boardService.registerBoard(board, request);
+			mv.setViewName("redirect:/board/list");
+		}else {
+			mv.setViewName("redirect:/board/register");
 		}
 		return mv;
 	}

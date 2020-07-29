@@ -11,7 +11,7 @@
 		      	<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/board/list">게시판</a></li>
 		      	<c:if test="${user==null}">
 			      	<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/login">로그인</a></li>
-			      	<li class="nav-item"><a class="nav-link" href="#">회원가입</a></li>    
+			      	<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/signup">회원가입</a></li>    
 		      	</c:if>
 		      	<c:if test="${user!=null}">
 		      		<li class="nav-item"><span class="nav-link" style="color: white">'${user.id}'로 로그인 중입니다.</span></li>

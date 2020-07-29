@@ -36,4 +36,10 @@
 			and writer like concat('%',#{cri.search},'%')
 		</if>
 	</select>
+	<insert id="insertBoard">
+		insert into board(writer, title, content, file) values(#{board.writer}, #{board.title}, #{board.content}, #{board.file})
+	</insert>
+	<select id="viewBoard" resultType="kr.green.test.vo.BoardVo">
+		select * from board where num=#{num}
+	</select>
 </mapper>

@@ -28,4 +28,15 @@ public class BoardServiceImp implements BoardService {
 	    pm.setTotalCount(totalCount);
 		return pm;
 	}
+
+	@Override
+	public void insertBoard(BoardVo board) {
+		boardDao.insertBoard(board);
+		
+	}
+
+	@Override
+	public BoardVo viewBoard(Integer num) {
+		return boardDao.viewBoard(num);
+	}
 }
