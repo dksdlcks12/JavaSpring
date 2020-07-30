@@ -1,9 +1,11 @@
 package kr.green.test.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,19 +35,22 @@ public class HomeController {
 		return mv;
 	}
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView loginGet(ModelAndView mv) {
+	public ModelAndView loginGet(ModelAndView mv, HttpServletRequest request) {
 		mv.setViewName("/main/login");
 		return mv;
 	}
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView loginPost(ModelAndView mv, UserVo user) {
+	public ModelAndView loginPost(ModelAndView mv, UserVo user, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		mv.setViewName("/main/login");
 		boolean isLogin = userService.isLogin(user);
 		mv.addObject("isLogin", isLogin);
 		if(isLogin) {
 			mv.addObject("user", user);
-			mv.setViewName("redirect:/");
+			String uri = (String) request.getSession().getAttribute("requestUrl");
+			mv.setViewName("redirect:"+uri);
+			request.getSession().removeAttribute("requestUrl");
 		}
+	
 		return mv;
 	}
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)

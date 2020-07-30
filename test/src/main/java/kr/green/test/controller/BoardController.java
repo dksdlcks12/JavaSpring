@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -71,13 +74,36 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value = "/board/view", method = RequestMethod.GET)
-	public ModelAndView boardViewGet(ModelAndView mv, Integer num, Criteria cri) {
+	public ModelAndView boardViewGet(ModelAndView mv, Integer num, Criteria cri, HttpServletRequest request) {
 		mv.setViewName("/board/view");
+		UserVo user = userService.getUser(request);
 		BoardVo board = boardService.viewBoard(num);
+		if(user==null || !board.getWriter().equals(user.getId())) {
+			boardService.increaseView(num);
+			board.setViews(board.getViews()+1);
+		}
 		mv.addObject("board", board);
 		mv.addObject("cri", cri);
 		return mv;
 	}
+	@RequestMapping(value="/board/likeup")
+	@ResponseBody
+	public Map<Object, Object> likeUp(@RequestBody Integer num, HttpServletRequest request){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    UserVo user = userService.getUser(request);
+	    BoardVo board = boardService.viewBoard((int)num);
+	    boolean isMember = user!=null ? true : false;
+	    map.put("isMember", isMember);
+	    if(isMember) {
+		    boolean notWriter = !board.getWriter().equals(user.getId()) ? true : false;
+		    map.put("notWriter", notWriter);
+		    if(notWriter) {
+		    	int like = boardService.updateLike(num, user);
+		    	map.put("like", like);
+		    }
+	    }
+	    return map;
+	}	
 	@ResponseBody
 	@RequestMapping("/board/download")
 	public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
@@ -106,13 +132,11 @@ public class BoardController {
 		mv.setViewName("/board/modify");
 		BoardVo board = boardService.viewBoard(num);
 		mv.addObject("board", board);
-		System.out.println(cri);
 		mv.addObject("cri", cri);
 		return mv;
 	}
 	@RequestMapping(value = "/board/modify", method = RequestMethod.POST)
 	public ModelAndView boardModPost(ModelAndView mv, BoardVo board, HttpServletRequest request, MultipartFile files, Criteria cri) throws IOException, Exception {
-		System.out.println(cri);
 		UserVo user = userService.getUser(request);
 		if(user!=null && user.getId().equals(board.getWriter())) {
 			if(board.getWriter().length()!=0 && board.getTitle().length()!=0 && board.getContent().length()!=0) {
@@ -122,12 +146,19 @@ public class BoardController {
 				}else if(board.getFile()==null || board.getFile().length()==0){
 					board.setFile(null);
 				}
-				System.out.println("¼º°ø");
+				boardService.updateBoard(board);
 				mv.setViewName("redirect:/board/view?num="+board.getNum()+"&page="+cri.getPage()+"&type="+cri.getType()+"&search="+cri.getSearch());
 			}
 		}else {
-			mv.setViewName("redirect:/board/list");
+			mv.setViewName("redirect:/board/list?page="+cri.getPage()+"&type="+cri.getType()+"&search="+cri.getSearch());
 		}
+		return mv;
+	}
+	@RequestMapping(value = "/board/delete", method = RequestMethod.GET)
+	public ModelAndView boardDelGet(ModelAndView mv, Integer num, Criteria cri) {
+		int boardNum = num;
+		boardService.deleteBoard(boardNum);
+		mv.setViewName("redirect:/board/list?page="+cri.getPage()+"&type="+cri.getType()+"&search="+cri.getSearch());
 		return mv;
 	}
 }

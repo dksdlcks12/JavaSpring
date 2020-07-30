@@ -9,6 +9,7 @@ import kr.green.test.dao.BoardDao;
 import kr.green.test.pagination.Criteria;
 import kr.green.test.pagination.PageMaker;
 import kr.green.test.vo.BoardVo;
+import kr.green.test.vo.UserVo;
 
 @Service
 public class BoardServiceImp implements BoardService {
@@ -38,5 +39,34 @@ public class BoardServiceImp implements BoardService {
 	@Override
 	public BoardVo viewBoard(Integer num) {
 		return boardDao.viewBoard(num);
+	}
+
+	@Override
+	public void updateBoard(BoardVo board) {
+		boardDao.updateBoard(board);
+		
+	}
+
+	@Override
+	public void deleteBoard(int boardNum) {
+		boardDao.deleteBoard(boardNum);
+		
+	}
+
+	@Override
+	public void increaseView(Integer num) {
+		boardDao.increaseView((int)num);
+	}
+
+	@Override
+	public int updateLike(Integer num, UserVo user) {
+		if(boardDao.isLike((int)num, user)!=0) {
+			return -1;
+		}else {
+			boardDao.insertLike((int)num, user);
+		}
+		boardDao.updateLike((int)num);
+		BoardVo board = viewBoard((int)num);
+		return board.getLike();
 	}
 }

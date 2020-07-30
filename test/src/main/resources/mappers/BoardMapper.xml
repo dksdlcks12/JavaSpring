@@ -42,4 +42,22 @@
 	<select id="viewBoard" resultType="kr.green.test.vo.BoardVo">
 		select * from board where num=#{num}
 	</select>
+	<update id="updateBoard">
+		update board set title=#{board.title}, content=#{board.content}, file=#{board.file} where num=#{board.num}
+	</update>
+	<update id="deleteBoard">
+		update board set isdel="Y", delDate=NOW() where num=#{boardNum}
+	</update>
+	<update id="increaseView">
+		update board set views=views+1 where num=#{num}
+	</update>
+	<select id="isLike" resultType="int">
+		select count(*) from spring.like where bonum=#{num} and id=#{user.id}
+	</select>
+	<insert id="insertLike">
+		insert into spring.like(id, boNum) values(#{user.id}, #{num})
+	</insert>
+	<update id="updateLike">
+		update board set board.like = (select count(*) from spring.like where bonum=#{num}) where num=#{num}
+	</update>
 </mapper>

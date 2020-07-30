@@ -43,10 +43,38 @@
 				<a href="<%=request.getContextPath()%>/board/download?fileName=${board.file}">${board.oriFile}</a>
 			</div>
 		</c:if>
-		<a href="<%=request.getContextPath()%>/board/list?num=${board.num}&page=${cri.page}&type=${cri.type}&search=${cri.search}"><button>목록</button></a>
+		<a href="<%=request.getContextPath()%>/board/list?&page=${cri.page}&type=${cri.type}&search=${cri.search}"><button>목록</button></a>
 		<c:if test="${user.id==board.writer}">
 			<a href="<%=request.getContextPath()%>/board/modify?num=${board.num}&page=${cri.page}&type=${cri.type}&search=${cri.search}"><button>수정</button></a>
-			<a href="#"><button>삭제</button></a>
+			<a href="<%=request.getContextPath()%>/board/delete?num=${board.num}&page=${cri.page}&type=${cri.type}&search=${cri.search}"><button>삭제</button></a>
 		</c:if>
 	</c:if>
 </c:if>
+<script>
+	$(function(){
+		$('#like').click(function(){
+			var num = $('input[name=num]').val()
+			$.ajax({
+				async:true,
+				type:'POST',
+				data:num,
+				url:"<%=request.getContextPath()%>/board/likeup",
+				dataType:"json",
+				contentType:"application/json; charset=UTF-8",
+				success : function(data){
+					if(!data['isMember']){
+						alert("로그인 후 추천 가능합니다.")
+					}else if(!data["notWriter"]){
+						alert("작성자는 추천할 수 없습니다.")
+					}else{
+						if(data['like']<0){
+							alert("추천은 한번만 할 수 있습니다.")
+						}else{
+							$('input[name=like]').val(data['like'])
+						}
+					}
+				}
+			});
+		})
+	})
+</script>

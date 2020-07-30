@@ -23,8 +23,8 @@
 					<div class="form-group file-box">
 						<label>${board.oriFile}</label><button type="button" class="bt-file-del"><i class="fas fa-times"></i></button>
 					</div>
-					<input type="hidden" name="file" value="${board.file}">
 				</c:if>
+				<input type="hidden" name="file" value="${board.file}">
 				<div class="form-group"><input type="file" name="files"></div>
 				<input type="hidden" name="num" value="${board.num}">
 				<input type="hidden" name="page" value="${cri.page}">
