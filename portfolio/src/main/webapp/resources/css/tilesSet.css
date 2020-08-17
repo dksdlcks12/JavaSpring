@@ -1,0 +1,239 @@
+@charset "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	color: black;
+}
+body{
+	width: 100%;
+	height: 100vh;
+}
+li{
+	list-style: none;
+}
+a, a:hover{
+	text-decoration: none;
+	color: black;
+}
+a:hover{
+	color: white;
+}
+.user-set-center{
+	height: auto;
+	position: relative;
+	margin: 0 auto;
+	width: 1400px;
+	background-color: aqua;
+}
+.user-set-header{
+	position: fixed;
+	width: 1400px;
+	height: 150px;
+	background-color: blue;
+	z-index: 5;
+}
+.user-set-header-logo{
+	height: 100%;
+	width: 200px;
+	background-color: burlywood;
+	float: left;
+}
+.user-set-header-menuBox{
+	height: 100%;
+	width: 1200px;
+	background-color: chartreuse;
+	float: left;
+}
+.user-set-topMenuBox, .admin-set-topMenuBox{
+	margin: 0;
+	height: 50px;
+	width: 100%;
+	padding: 10px;
+	background-color: cornflowerblue;
+	box-sizing: border-box;
+}
+.user-set-topMenuBox > *{
+	height: 30px;
+	width: 120px;
+	font-size: 20px;
+	margin:0 10px;
+	background-color: cornsilk;
+	text-align: center;
+	float: left;
+}
+.user-set-logInButton, .user-set-signUpButton{
+	float: right;
+}
+.user-set-bottomMenuBox{
+	height: 100px;
+	width: 100%;
+	padding: 20px 60px;
+	background-color: darkgreen;
+	box-sizing: border-box;
+}
+.user-set-bottomMenuBox > *{
+	height: 60px;
+	width:200px;
+	background-color: darkkhaki;
+	font-size: 35px;
+	line-height: 60px;
+	text-align: center;
+	float: left;
+	margin-right: 60px;
+	box-sizing: border-box;
+}
+.user-set-listEarRing{
+	cursor: pointer;
+}
+.user-set-listEarRing > *{
+	display: none;
+	height: 60px;
+	width:200px;
+	background-color: darkkhaki;
+	font-size: 35px;
+	line-height: 60px;
+	text-align: center;
+	box-sizing: border-box;
+	border-top: black 1px solid;
+}
+.user-set-searchBox{
+	width: 300px;
+	margin: 0;
+}
+.user-set-search{
+	width: 240px;
+	height: 60px;
+	font-size: 20px;
+	box-sizing: border-box;
+	float: left;
+	padding-left: 10px;
+}
+.user-set-searchButton{
+	width: 60px;
+	height: 60px;
+	box-sizing: border-box;
+	position: relative;
+	float: left;
+}
+.user-set-searchButton>i{
+	font-size: 20px;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+.user-set-banner{
+	position: relative;
+	top: 150px;
+          width: 100%;
+          height: 150px;
+          background-color: blueviolet
+      }
+.user-set-right, .admin-set-right{
+	height: 800px;
+	width: 200px;
+	padding: 20px;
+	position: fixed;
+	top: 50px;
+	right: 30px;
+	background-color: blue;
+	box-sizing: border-box;
+	z-index: 10;
+}
+.user-set-orderCheck, .user-set-deliveryCheck,  .user-set-csTel{
+	height: 40px;
+	background-color: aqua;
+	margin-bottom: 10px;
+	font-size: 25px;
+	text-align: center;
+	line-height: 40px;
+}
+.user-set-csTel{
+	height: 80px;
+}
+.user-set-latelyViewGoodsList{
+	height: 390px;
+	background-color: aqua;
+	padding: 10px;
+	box-sizing: border-box;
+	margin-bottom: 20px;
+	position: relative;
+}
+.user-set-goods{
+	position: relative;
+	margin-bottom: 15px;
+}
+.user-set-goodsImg{
+	width: 140px;
+	height: 90px;
+}
+.user-set-goodsClose{
+	height: 30px;
+	width: 30px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	cursor: pointer;
+}
+.user-set-goodsCloseImg{
+	font-size: 30px;
+}
+.user-set-goodsList-pageBox{
+	height: 40px;
+	background-color: blueviolet;
+	position: absolute;
+	top: 330px;
+	left: 13px;
+}
+.user-set-goodsList-pageBox>*{
+	font-size: 30px;
+	margin: 0 10px;
+	float: left;
+}
+.user-set-goodsList-page{
+	cursor: default;
+}
+.user-set-goodsList-pageButton{
+	cursor: pointer;
+}
+.user-set-goTop{
+	height: 60px;
+	font-size: 40px;
+	text-align: center;
+	background-color: brown;
+	cursor: pointer;
+}
+.user-set-footer{
+	height: 100px;
+	width: 1400px;
+	margin: 0 auto;
+	background-color: mediumorchid;
+}
+.user-set-header::after, .user-set-topMenuBox::after, .user-set-searchBox::after, .user-set-searchBox::after, .user-set-goodsList-pageBox::after{
+	clear: both;
+	content: '';
+	display: block;
+}
+.admin-set-topMenuBox > *{
+	height: 30px;
+	width: 120px;
+	font-size: 20px;
+	margin:0 15px;
+	background-color: cornsilk;
+	text-align: center;
+	float: left;
+}
+.admin-set-loginInfo{
+	width: 250px;
+}
+.admin-set-rightInfo{
+	padding-top: 5px;
+	height: 150px;
+	background-color: aqua;
+	margin-bottom: 20px;
+	font-size: 30px;
+	text-align: center;
+}
+.admin-set-rightInfo span{
+	font-size: 30px;
+}
