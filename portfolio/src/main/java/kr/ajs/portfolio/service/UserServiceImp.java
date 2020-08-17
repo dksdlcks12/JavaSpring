@@ -3,12 +3,12 @@ package kr.ajs.portfolio.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.ajs.portfolio.dao.userDao;
+import kr.ajs.portfolio.dao.UserDao;
 
 @Service
-public class userServiceImp implements userService {
+public class UserServiceImp implements UserService {
 	@Autowired
-	userDao userDao;
+	UserDao userDao;
 	@Override
 	public String getUser(String id) {
 		// TODO Auto-generated method stub

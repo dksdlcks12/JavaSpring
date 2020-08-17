@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.ajs.portfolio.service.userService;
+import kr.ajs.portfolio.service.UserService;
 
 /**
  * Handles requests for the application home page.
@@ -14,7 +14,7 @@ import kr.ajs.portfolio.service.userService;
 public class HomeController {
 
 	@Autowired
-	userService userService;
+	UserService userService;
 	
 	@RequestMapping(value= {"/"})
 	public ModelAndView openTilesView(ModelAndView mv) throws Exception{
