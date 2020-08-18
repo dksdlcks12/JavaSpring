@@ -3,7 +3,10 @@ package kr.ajs.portfolio.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +25,7 @@ public class HomeController {
 
 	@Autowired
 	UserService userService;
+
 	
 	@RequestMapping(value= {"/"}, method = RequestMethod.GET)
 	public ModelAndView openTilesView(ModelAndView mv) throws Exception{
@@ -47,5 +51,18 @@ public class HomeController {
 	    boolean idCheck = user != null ? true : false;
 	    map.put("idCheck", idCheck);
 	    return map;
+	}
+	@RequestMapping(value= {"/login"}, method = RequestMethod.GET)
+	public ModelAndView logInGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+	    mv.setViewName("/user/userLogIn");
+	    return mv;
+	}
+	@RequestMapping(value= {"/login"}, method = RequestMethod.POST)
+	public ModelAndView logInPost(ModelAndView mv, HttpServletRequest request) throws Exception{
+		String id = request.getParameter("userId");
+	    String pw = request.getParameter("userPw");
+	    System.out.println(id + ' ' +pw);
+	    mv.setViewName("redirect:/");
+	    return mv;
 	}
 }

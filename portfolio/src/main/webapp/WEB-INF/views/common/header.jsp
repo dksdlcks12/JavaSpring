@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="user-set-center">
    	<div class="user-set-header">
-		<a href="#"><img src="<%=request.getContextPath()%>/resources/image/로고대용.jpg" alt="" class="user-set-header-logo"></a>
+		<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/resources/image/로고대용.jpg" alt="" class="user-set-header-logo"></a>
        	<div class="user-set-header-menuBox">
            	<ul class="user-set-topMenuBox">
 				<a href="#" class="user-set-notice">공지사항</a>
@@ -11,7 +11,7 @@
 				<a href="#" class="user-set-cart">장바구니</a>
 				<a href="#" class="user-set-myPage">마이페이지</a>
 				<a href="<%=request.getContextPath()%>/signup" class="user-set-signUpButton">회원가입</a>
-				<a href="#" class="user-set-logInButton">로그인</a>
+				<a href="<%=request.getContextPath()%>/login" class="user-set-logInButton">로그인</a>
 			</ul>
 			<ul class="admin-set-topMenuBox" style="display: none;">
 				<a href="#" class="admin-set-notice">공지사항</a>

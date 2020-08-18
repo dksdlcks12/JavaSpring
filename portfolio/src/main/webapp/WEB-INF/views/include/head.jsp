@@ -12,3 +12,4 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/tilesSet.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/userMain.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/userSignUp.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/userLogIn.css">

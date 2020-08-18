@@ -42,6 +42,7 @@
 	var check = false;
 	$(".user-signup-id").on("keyup",function(){
 		check = false;
+		$(this).val( $(this).val().replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi,''));
 		if($(this).siblings('.user-signup-inputInfo').val()!=''){
 			var id = $("#userId").val();//id가 id인 input 태그에 입력된 id 가져오기
 			var idReg = /^[A-Za-z]/;
@@ -99,7 +100,7 @@
 				return false;
 			}
 		}else{
-			alert("아이디 중복확인을 하십시오.");
+			alert("중복된 아이디 입니다.");
 			return false;
 		}
 	})

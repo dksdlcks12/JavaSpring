@@ -1,0 +1,55 @@
+@charset "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+.common-login-box{
+	width: 1400px;
+	height: 620px;
+	padding: 100px 0 50px 0;
+	margin: 0 auto;
+	margin-top: 100px;
+	background-color: palegoldenrod;
+	box-sizing: border-box;
+}
+.common-login-loginBox{
+	width: 800px;
+	margin: 0 auto;
+	padding-top: 30px;
+	background-color: paleturquoise;
+	box-sizing: border-box;
+}
+.common-login-title{
+	height: 50px;
+	width: 150px;
+	background-color: papayawhip;
+	text-align: center;
+	font-size: 40px;
+	margin-left: calc(50% - 75px);
+	margin-bottom: 30px;
+	}
+.common-login-inputInfo{
+	height: 30px;
+	width: 300px;
+	margin-left: calc(50% - 150px);
+	margin-bottom: 20px;
+}
+.common-login-loginButton{
+	height: 50px;
+	width: 300px;
+	margin-left: calc(50% - 150px);
+	font-size: 30px;
+	margin-bottom: 20px;
+}
+.common-login-findBox{
+	height: 50px;
+	width: 300px;
+	margin-left: calc(50% - 150px);    
+}
+.common-login-idFind{
+	margin-right: 10px;
+}

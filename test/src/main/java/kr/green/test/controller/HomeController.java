@@ -47,8 +47,12 @@ public class HomeController {
 		if(isLogin) {
 			mv.addObject("user", user);
 			String uri = (String) request.getSession().getAttribute("requestUrl");
-			mv.setViewName("redirect:"+uri);
-			request.getSession().removeAttribute("requestUrl");
+			if(uri==null) {
+				mv.setViewName("redirect:/");
+			}else {
+				mv.setViewName("redirect:"+uri);
+				request.getSession().removeAttribute("requestUrl");
+			}
 		}
 	
 		return mv;
