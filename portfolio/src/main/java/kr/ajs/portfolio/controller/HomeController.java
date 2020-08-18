@@ -21,7 +21,6 @@ public class HomeController {
 	@RequestMapping(value= {"/"}, method = RequestMethod.GET)
 	public ModelAndView openTilesView(ModelAndView mv) throws Exception{
 	    mv.setViewName("/main/home");
-	    System.out.println(userService.getUser("qwe"));
 	    return mv;
 	}
 	@RequestMapping(value= {"/signup"}, method = RequestMethod.GET)
