@@ -14,7 +14,7 @@ public class UserServiceImp implements UserService {
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 	@Override
-	public String getUser(String id) {
+	public UserVo getUser(String id) {
 		// TODO Auto-generated method stub
 		return userDao.getUser(id);
 	}

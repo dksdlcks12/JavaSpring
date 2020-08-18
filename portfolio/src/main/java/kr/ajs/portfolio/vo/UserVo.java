@@ -1,13 +1,14 @@
 package kr.ajs.portfolio.vo;
 
+import java.util.Date;
+
 public class UserVo {
 	private String id;
 	private String pw;
 	private String email;
 	private String gender;
 	private String auth;
-	private String isDel;
-	
+	private String iddel;
 	public String getId() {
 		return id;
 	}
@@ -38,15 +39,16 @@ public class UserVo {
 	public void setAuth(String auth) {
 		this.auth = auth;
 	}
-	public String getIsDel() {
-		return isDel;
+	public String getIddel() {
+		return iddel;
 	}
-	public void setIsDel(String isDel) {
-		this.isDel = isDel;
+	public void setIddel(String iddel) {
+		this.iddel = iddel;
 	}
 	@Override
 	public String toString() {
 		return "UserVo [id=" + id + ", pw=" + pw + ", email=" + email + ", gender=" + gender + ", auth=" + auth
-				+ ", isDel=" + isDel + "]";
+				+ ", iddel=" + iddel + "]";
 	}
+	
 }

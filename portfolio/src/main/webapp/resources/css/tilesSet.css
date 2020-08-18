@@ -192,9 +192,11 @@ a:hover{
 }
 .user-set-goodsList-page{
 	cursor: default;
+	line-height: 36px;
 }
 .user-set-goodsList-pageButton{
 	cursor: pointer;
+	margin-top: 5px;
 }
 .user-set-goTop{
 	height: 60px;

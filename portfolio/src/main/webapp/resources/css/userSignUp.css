@@ -38,11 +38,16 @@
 	background-color: ivory;
 	padding-left: 10px;
 	box-sizing: border-box;
+	position: relative;
 }
 .user-signup-inputInfo{
 	width: 200px;
 	height: 20px;
 	font-size: 15px;
+}
+.user-signup-idcheck{
+    line-height: 22px;
+	width: 100px;
 }
 .user-signup-lawBox, .user-signup-personalInfoConsent{
 	width: 900px;
@@ -72,4 +77,7 @@
 	height: 50px;
 	font-size: 30px;
 	margin-left: calc(50% - 100px);
+}
+#id-error{
+	margin: 0;
 }
