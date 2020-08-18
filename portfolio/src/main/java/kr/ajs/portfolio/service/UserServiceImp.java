@@ -21,7 +21,7 @@ public class UserServiceImp implements UserService {
 	@Override
 	public void signUp(UserVo user) {
 		// TODO Auto-generated method stub
-		user.setPw(passwordEncoder.encode(user.getPw()));
+		user.setUserPw(passwordEncoder.encode(user.getUserPw()));
 		userDao.signUp(user);
 	}
 }

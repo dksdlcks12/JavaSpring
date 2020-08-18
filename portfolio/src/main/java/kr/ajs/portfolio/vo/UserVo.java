@@ -3,52 +3,58 @@ package kr.ajs.portfolio.vo;
 import java.util.Date;
 
 public class UserVo {
-	private String id;
-	private String pw;
-	private String email;
-	private String gender;
-	private String auth;
-	private String iddel;
-	public String getId() {
-		return id;
+	private String userId;
+	private String userPw;
+	private String userMail;
+	private String userAuth;
+	private String userIsOut;
+	private Date userOutDate;
+	private int userPoint;
+	public String getUserId() {
+		return userId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getPw() {
-		return pw;
+	public String getUserPw() {
+		return userPw;
 	}
-	public void setPw(String pw) {
-		this.pw = pw;
+	public void setUserPw(String userPw) {
+		this.userPw = userPw;
 	}
-	public String getEmail() {
-		return email;
+	public String getUserMail() {
+		return userMail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserMail(String userMail) {
+		this.userMail = userMail;
 	}
-	public String getGender() {
-		return gender;
+	public String getUserAuth() {
+		return userAuth;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setUserAuth(String userAuth) {
+		this.userAuth = userAuth;
 	}
-	public String getAuth() {
-		return auth;
+	public String getUserIsOut() {
+		return userIsOut;
 	}
-	public void setAuth(String auth) {
-		this.auth = auth;
+	public void setUserIsOut(String userIsOut) {
+		this.userIsOut = userIsOut;
 	}
-	public String getIddel() {
-		return iddel;
+	public Date getUserOutDate() {
+		return userOutDate;
 	}
-	public void setIddel(String iddel) {
-		this.iddel = iddel;
+	public void setUserOutDate(Date userOutDate) {
+		this.userOutDate = userOutDate;
+	}
+	public int getUserPoint() {
+		return userPoint;
+	}
+	public void setUserPoint(int userPoint) {
+		this.userPoint = userPoint;
 	}
 	@Override
 	public String toString() {
-		return "UserVo [id=" + id + ", pw=" + pw + ", email=" + email + ", gender=" + gender + ", auth=" + auth
-				+ ", iddel=" + iddel + "]";
+		return "UserVo [userId=" + userId + ", userPw=" + userPw + ", userMail=" + userMail + ", userAuth=" + userAuth
+				+ ", userIsOut=" + userIsOut + ", userOutDate=" + userOutDate + ", userPoint=" + userPoint + "]";
 	}
-	
 }
