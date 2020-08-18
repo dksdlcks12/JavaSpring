@@ -6,4 +6,7 @@
   <select id="getUser" resultType="String">
     select email from user where id = #{id}
   </select>
+  <insert id="signUp">
+  	insert into user (id, pw, email) values(#{user.id}, #{user.pw}, #{user.email})
+  </insert>
 </mapper>

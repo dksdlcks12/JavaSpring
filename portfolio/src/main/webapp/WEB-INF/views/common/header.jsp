@@ -10,7 +10,7 @@
 				<a href="#" class="user-set-review">리뷰</a>
 				<a href="#" class="user-set-cart">장바구니</a>
 				<a href="#" class="user-set-myPage">마이페이지</a>
-				<a href="<%=request.getContextPath()%>/signUp" class="user-set-signUpButton">회원가입</a>
+				<a href="<%=request.getContextPath()%>/signup" class="user-set-signUpButton">회원가입</a>
 				<a href="#" class="user-set-logInButton">로그인</a>
 			</ul>
 			<ul class="admin-set-topMenuBox" style="display: none;">

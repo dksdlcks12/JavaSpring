@@ -1,6 +1,6 @@
 package kr.ajs.portfolio.vo;
 
-public class userVo {
+public class UserVo {
 	private String id;
 	private String pw;
 	private String email;
