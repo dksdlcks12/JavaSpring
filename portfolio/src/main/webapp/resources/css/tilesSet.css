@@ -64,6 +64,9 @@ a:hover{
 .user-set-logInButton, .user-set-signUpButton{
 	float: right;
 }
+.user-set-signUpButton{
+	cursor: pointer;
+}
 .user-set-logInInfo{
 	float: right;
 	width: 300px;
@@ -242,4 +245,7 @@ a:hover{
 }
 .admin-set-rightInfo span{
 	font-size: 30px;
+}
+.admin-set-logout{
+	cursor: pointer;
 }

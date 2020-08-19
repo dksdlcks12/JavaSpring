@@ -16,8 +16,22 @@
 						<a href="<%=request.getContextPath()%>/login" class="user-set-logInButton">로그인</a>
 					</c:if>
 					<c:if test="${user!=null}">
-						<a href="<%=request.getContextPath()%>/logout" class="user-set-signUpButton">로그아웃</a>
+						<div href="<%=request.getContextPath()%>/logout" class="user-set-signUpButton">로그아웃</div>
 						<div class="user-set-logInInfo">${user.userId}님 환영합니다.</div>
+						<script>
+							$(".user-set-signUpButton").on("click",function(){
+								$.ajax({
+									async:false,
+									type:'POST',
+									url:"<%=request.getContextPath()%>/logout",
+									dataType:"json",
+									contentType:"application/json; charset=UTF-8",
+									success : function(data){
+										location.reload();
+									}
+								});
+							})
+						</script>
 					</c:if>
 				</ul>
 			</c:if>
@@ -29,7 +43,21 @@
 					<a href="#" class="admin-set-goodsManage">상품등록</a>
 					<a href="#" class="admin-set-myPage">마이페이지</a>
 					<div class="admin-set-loginInfo">관리자님 환영합니다.</div>
-					<a href="<%=request.getContextPath()%>/logout" class="admin-set-logout">로그아웃</a>
+					<div class="admin-set-logout">로그아웃</div>
+					<script>
+							$(".admin-set-logout").on("click",function(){
+								$.ajax({
+									async:false,
+									type:'POST',
+									url:"<%=request.getContextPath()%>/logout",
+									dataType:"json",
+									contentType:"application/json; charset=UTF-8",
+									success : function(data){
+										location.reload();
+									}
+								});
+							})
+					</script>
 				</ul>
 			</c:if>
 			<ul class="user-set-bottomMenuBox" >

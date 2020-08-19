@@ -74,10 +74,11 @@ public class HomeController {
 		}
 	    return mv;
 	}
-	@RequestMapping(value= {"/logout"}, method = RequestMethod.GET)
-	public ModelAndView logOutGet(ModelAndView mv, HttpServletRequest request) {
+	@RequestMapping("/logout")
+	@ResponseBody
+	public Map<Object, Object> logout(HttpServletRequest request){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
 		request.getSession().removeAttribute("user");
-		mv.setViewName("redirect:/login");
-		return mv;
+	    return map;
 	}
 }
