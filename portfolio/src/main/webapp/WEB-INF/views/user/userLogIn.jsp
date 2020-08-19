@@ -5,7 +5,7 @@
 		<div class="common-login-title">로 그 인</div>
 		<form action="<%=request.getContextPath()%>/login" method="POST">
 			<input type="text" class="common-login-inputInfo" name="userId" id="userId" placeholder="아이디를 입력하세요">
-			<input type="text" class="common-login-inputInfo" name="userPw" id="userPw" placeholder="비밀번호를 입력하세요">
+			<input type="password" class="common-login-inputInfo" name="userPw" id="userPw" placeholder="비밀번호를 입력하세요">
 			<button class="common-login-loginButton">로그인</button><br>
 		</form>
 		<div class="common-login-findBox">
@@ -14,3 +14,10 @@
 		</div>
 	</div>
 </div>
+<script>
+	$(function(){
+		if(${isLogin==false}){
+			alert("존재하지 않는 ID 또는 잘못된 비밀번호 입니다.")
+		}
+	})
+</script>

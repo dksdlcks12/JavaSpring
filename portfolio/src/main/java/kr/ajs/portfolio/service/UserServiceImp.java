@@ -24,4 +24,15 @@ public class UserServiceImp implements UserService {
 		user.setUserPw(passwordEncoder.encode(user.getUserPw()));
 		userDao.signUp(user);
 	}
+	@Override
+	public boolean isLogin(UserVo user) {
+		// TODO Auto-generated method stub
+		UserVo dbUser = userDao.getUser(user.getUserId());
+		if(dbUser!=null && passwordEncoder.matches(user.getUserPw(), dbUser.getUserPw())){
+			user.setUserAuth(dbUser.getUserAuth());
+			return true;
+		}else {
+			return false;
+		}
+	}
 }

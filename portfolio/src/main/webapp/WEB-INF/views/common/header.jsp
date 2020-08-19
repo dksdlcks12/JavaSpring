@@ -4,24 +4,34 @@
    	<div class="user-set-header">
 		<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/resources/image/로고대용.jpg" alt="" class="user-set-header-logo"></a>
        	<div class="user-set-header-menuBox">
-           	<ul class="user-set-topMenuBox">
-				<a href="#" class="user-set-notice">공지사항</a>
-				<a href="#" class="user-set-QA">Q&A</a>
-				<a href="#" class="user-set-review">리뷰</a>
-				<a href="#" class="user-set-cart">장바구니</a>
-				<a href="#" class="user-set-myPage">마이페이지</a>
-				<a href="<%=request.getContextPath()%>/signup" class="user-set-signUpButton">회원가입</a>
-				<a href="<%=request.getContextPath()%>/login" class="user-set-logInButton">로그인</a>
-			</ul>
-			<ul class="admin-set-topMenuBox" style="display: none;">
-				<a href="#" class="admin-set-notice">공지사항</a>
-				<a href="#" class="admin-set-QA">Q&A</a>
-				<a href="#" class="admin-set-review">리뷰</a>
-				<a href="#" class="admin-set-goodsManage">상품등록</a>
-				<a href="#" class="admin-set-myPage">마이페이지</a>
-				<div class="admin-set-loginInfo">관리자님 환영합니다.</div>
-				<a href="#" class="admin-set-logout">로그아웃</a>
-			</ul>
+       		<c:if test="${user.userAuth ne 'admin'}">
+	           	<ul class="user-set-topMenuBox">
+					<a href="#" class="user-set-notice">공지사항</a>
+					<a href="#" class="user-set-QA">Q&A</a>
+					<a href="#" class="user-set-review">리뷰</a>
+					<a href="#" class="user-set-cart">장바구니</a>
+					<a href="#" class="user-set-myPage">마이페이지</a>
+					<c:if test="${user==null}">
+						<a href="<%=request.getContextPath()%>/signup" class="user-set-signUpButton">회원가입</a>
+						<a href="<%=request.getContextPath()%>/login" class="user-set-logInButton">로그인</a>
+					</c:if>
+					<c:if test="${user!=null}">
+						<a href="<%=request.getContextPath()%>/logout" class="user-set-signUpButton">로그아웃</a>
+						<div class="user-set-logInInfo">${user.userId}님 환영합니다.</div>
+					</c:if>
+				</ul>
+			</c:if>
+			<c:if test="${user.userAuth eq 'admin'}">
+				<ul class="admin-set-topMenuBox">
+					<a href="#" class="admin-set-notice">공지사항</a>
+					<a href="#" class="admin-set-QA">Q&A</a>
+					<a href="#" class="admin-set-review">리뷰</a>
+					<a href="#" class="admin-set-goodsManage">상품등록</a>
+					<a href="#" class="admin-set-myPage">마이페이지</a>
+					<div class="admin-set-loginInfo">관리자님 환영합니다.</div>
+					<a href="<%=request.getContextPath()%>/logout" class="admin-set-logout">로그아웃</a>
+				</ul>
+			</c:if>
 			<ul class="user-set-bottomMenuBox" >
 				<a href="#" class="user-set-goNecklace">목걸이</a>
 				<a href="#" class="user-set-goRing">반 지</a>
@@ -38,33 +48,37 @@
 	</div>
 	<div class="user-set-banner" ></div>
 </div>
-<div class="user-set-right">
-	<a href="#"><div class="user-set-orderCheck">주문 조회</div></a>
-	<a href="#"><div class="user-set-orderCheck">반품 조회</div></a>
-	<a href="#"><div class="user-set-orderCheck">A/S 조회</div></a>
-	<a href="#"><div class="user-set-deliveryCheck">배송 조회</div></a>
-	<div class="user-set-csTel">C/S 관련<br>xxx)xxx-xxxx</div>
-	<div class="user-set-latelyViewGoodsList">
-		<div class="user-set-goods"><a href="" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>
-		<div class="user-set-goods"><a href="" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>
-		<div class="user-set-goods"><a href="" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>
-		<script>
-			$('.user-set-goodsClose').click(function(){
-					$(this).parent().remove();
-			})
-		</script>
-		<div class="user-set-goodsList-pageBox">
-			<div class="user-set-goodsList-pageButton"><i class="user-set-goodsList-pageLeft fas fa-angle-left"></i></div>
-			<span class="user-set-goodsList-page">1/2</span>
-			<div class="user-set-goodsList-pageButton"><i class="user-set-goodsList-pageRight fas fa-angle-right"></i></div>
+<c:if test="${user.userAuth ne 'admin'}">
+	<div class="user-set-right">
+		<a href="#"><div class="user-set-orderCheck">주문 조회</div></a>
+		<a href="#"><div class="user-set-orderCheck">반품 조회</div></a>
+		<a href="#"><div class="user-set-orderCheck">A/S 조회</div></a>
+		<a href="#"><div class="user-set-deliveryCheck">배송 조회</div></a>
+		<div class="user-set-csTel">C/S 관련<br>xxx)xxx-xxxx</div>
+		<div class="user-set-latelyViewGoodsList">
+			<div class="user-set-goods"><a href="" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>
+			<div class="user-set-goods"><a href="" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>
+			<div class="user-set-goods"><a href="" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>
+			<script>
+				$('.user-set-goodsClose').click(function(){
+						$(this).parent().remove();
+				})
+			</script>
+			<div class="user-set-goodsList-pageBox">
+				<div class="user-set-goodsList-pageButton"><i class="user-set-goodsList-pageLeft fas fa-angle-left"></i></div>
+				<span class="user-set-goodsList-page">1/2</span>
+				<div class="user-set-goodsList-pageButton"><i class="user-set-goodsList-pageRight fas fa-angle-right"></i></div>
+			</div>
 		</div>
+		<div class="user-set-goTop">T O P</div>
 	</div>
-	<div class="user-set-goTop">T O P</div>
-</div>
-<div class="admin-set-right" style="display: none;">
-	<a href="#"><div class="admin-set-rightInfo">미확인<br>주문 개수<br></div></a>
-	<a href="#"><div class="admin-set-rightInfo">미확인<br>반품 개수</div></a>
-	<a href="#"><div class="admin-set-rightInfo">미확인<br>A/S 개수</div></a>
-	<a href="#"><div class="admin-set-rightInfo">미확인<br>Q<span>&</span>A 개수</div></a>
-	<div class="user-set-goTop">T O P</div>
-</div>
+</c:if>
+<c:if test="${user.userAuth eq 'admin'}">
+	<div class="admin-set-right">
+		<a href="#"><div class="admin-set-rightInfo">미확인<br>주문 개수<br></div></a>
+		<a href="#"><div class="admin-set-rightInfo">미확인<br>반품 개수</div></a>
+		<a href="#"><div class="admin-set-rightInfo">미확인<br>A/S 개수</div></a>
+		<a href="#"><div class="admin-set-rightInfo">미확인<br>Q<span>&</span>A 개수</div></a>
+		<div class="user-set-goTop">T O P</div>
+	</div>
+</c:if>

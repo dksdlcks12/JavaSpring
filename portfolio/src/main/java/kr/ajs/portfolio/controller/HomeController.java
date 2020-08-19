@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -28,8 +29,13 @@ public class HomeController {
 
 	
 	@RequestMapping(value= {"/"}, method = RequestMethod.GET)
-	public ModelAndView openTilesView(ModelAndView mv) throws Exception{
-	    mv.setViewName("/main/home");
+	public ModelAndView openTilesView(ModelAndView mv, HttpServletRequest request) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		if(user!=null && user.getUserAuth().equals("admin")) {
+			mv.setViewName("/main/adminMain");
+		}else {
+			mv.setViewName("/main/userMain");		
+		}
 	    return mv;
 	}
 	@RequestMapping(value= {"/signup"}, method = RequestMethod.GET)
@@ -58,11 +64,20 @@ public class HomeController {
 	    return mv;
 	}
 	@RequestMapping(value= {"/login"}, method = RequestMethod.POST)
-	public ModelAndView logInPost(ModelAndView mv, HttpServletRequest request) throws Exception{
-		String id = request.getParameter("userId");
-	    String pw = request.getParameter("userPw");
-	    System.out.println(id + ' ' +pw);
-	    mv.setViewName("redirect:/");
+	public ModelAndView logInPost(ModelAndView mv, UserVo user, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		mv.setViewName("/user/userLogIn");
+		boolean isLogin = userService.isLogin(user);
+		mv.addObject("isLogin", isLogin);
+		if(isLogin) {
+			mv.addObject("user", user);
+		    mv.setViewName("redirect:/");
+		}
 	    return mv;
+	}
+	@RequestMapping(value= {"/logout"}, method = RequestMethod.GET)
+	public ModelAndView logOutGet(ModelAndView mv, HttpServletRequest request) {
+		request.getSession().removeAttribute("user");
+		mv.setViewName("redirect:/login");
+		return mv;
 	}
 }

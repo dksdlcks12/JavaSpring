@@ -64,6 +64,10 @@ a:hover{
 .user-set-logInButton, .user-set-signUpButton{
 	float: right;
 }
+.user-set-logInInfo{
+	float: right;
+	width: 300px;
+}
 .user-set-bottomMenuBox{
 	height: 100px;
 	width: 100%;

@@ -38,7 +38,7 @@
 	<beans:bean id="loginInterceptor" class="kr.ajs.portfolio.interceptor.LoginInterceptor"></beans:bean>
 	<interceptors>
 		<interceptor>
-			<mapping path="/"/>
+			<mapping path="/login"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>

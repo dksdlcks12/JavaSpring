@@ -53,8 +53,7 @@ public class HomeController {
 				mv.setViewName("redirect:"+uri);
 				request.getSession().removeAttribute("requestUrl");
 			}
-		}
-	
+		}	
 		return mv;
 	}
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)

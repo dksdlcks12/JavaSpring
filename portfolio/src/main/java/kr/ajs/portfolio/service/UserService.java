@@ -6,4 +6,6 @@ public interface UserService {
 	 public UserVo getUser(String id);
 
 	public void signUp(UserVo user);
+
+	public boolean isLogin(UserVo user);
 }
