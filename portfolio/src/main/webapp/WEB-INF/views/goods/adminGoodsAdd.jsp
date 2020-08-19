@@ -2,13 +2,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="admin-goodsAdd-box">
 		<div class="admin-goodsAdd-goodsAddBox">
-			<form action="#">
+			<form action="<%=request.getContextPath()%>/admin/goodsadd" method="POST" enctype="multipart/form-data">
 				<div class="admin-goodsAdd-leftBox">
 					<h2>제품 이미지</h2>
-					<input type="file" class="admin-goodsAdd-goodsImgAdd" accept=".jpg,.jpeg,.png,.gif" onchange="LoadImg(this);"><br>
+					<input type="file" class="admin-goodsAdd-goodsImgAdd" name="goodsImg" accept=".jpg,.jpeg,.png,.gif" onchange="LoadImg(this);"><br>
 					<img src="" alt="" class="admin-goodsAdd-goodsImg">
 					<h2>제품 설명 이미지</h2>
-					<input type="file" class="admin-goodsAdd-goodsExplainImgAdd" accept=".jpg,.jpeg,.png,.gif" onchange="LoadExplainImg(this);"><br>
+					<input type="file" class="admin-goodsAdd-goodsExplainImgAdd" name="goodsExplainImg" accept=".jpg,.jpeg,.png,.gif" onchange="LoadExplainImg(this);"><br>
 					<img src="" alt="" class="admin-goodsAdd-goodsExplainImg">
 					<!-- 미리보기 -->
 					<script>
