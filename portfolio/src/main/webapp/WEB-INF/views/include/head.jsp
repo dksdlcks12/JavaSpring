@@ -14,3 +14,6 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/userSignUp.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/userLogIn.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminMain.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminGoodsAdd.css">
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/adminGoodsAdd.js"></script>
+

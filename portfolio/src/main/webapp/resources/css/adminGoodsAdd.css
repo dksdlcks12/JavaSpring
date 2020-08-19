@@ -1,0 +1,120 @@
+@charset "UTF-8";
+*{
+            margin: 0;
+            padding: 0;
+		}
+		input[type="number"]::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+		button{
+			cursor: pointer;
+		}
+		.admin-goodsAdd-box{
+            width: 1400px;
+			padding: 100px 0 50px 0;
+            margin: 0 auto;
+            margin-top: 100px;
+			background-color: palegoldenrod;
+			box-sizing: border-box;
+		}
+        .admin-goodsAdd-goodsAddBox{
+            width: 1200px;
+            margin-left: 100px;
+            background-color: aquamarine;
+            padding: 20px 0 20px 100px;
+            box-sizing: border-box;
+            position: relative;
+        }
+		.admin-goodsAdd-leftBox{
+			float: left;
+		}
+		.admin-goodsAdd-rightBox{
+			margin-left: 500px;
+		}
+		.admin-goodsAdd-goodsAddBox::after{
+			display: block;
+			content: '';
+			clear: both;
+		}
+		.admin-goodsAdd-goodsImg, .admin-goodsAdd-goodsExplainImg{
+			margin-bottom: 10px;
+			width: 400px;
+			height: 400px;
+			border: 1px solid black;
+			box-sizing: border-box;
+			font-size: 20px;
+			background-color: whitesmoke;
+			text-align: center;
+			line-height: 400px;
+			display: none;
+		}
+		.admin-goodsAdd-goodsImgAdd, .admin-goodsAdd-goodsExplainImgAdd{
+			margin-top: 10px;
+			margin-bottom: 10px;
+			font-size: 20px;	
+		}
+		.admin-goodsAdd-goodsNameBox, .admin-goodsAdd-goodsPriceBox, .admin-goodsAdd-goodsTypeBox, .admin-goodsAdd-goodsOptionAddBox, .admin-goodsAdd-goodsOptionBox{
+			margin-top: 10px;
+			margin-bottom: 10px;
+			width: 500px;
+			height: 50px;
+			position: relative;
+		}
+		.admin-goodsAdd-goodsNameTitle, .admin-goodsAdd-goodsPriceTitle, .admin-goodsAdd-goodsPayPointTitle, .admin-goodsAdd-goodsTypeTitle, .admin-goodsAdd-goodsColorTitle, .admin-goodsAdd-goodsStockTitle{
+			position: absolute;
+			width: 101px;
+			height: 50px;
+			background-color: antiquewhite;
+			border: 1px solid black;
+			box-sizing: border-box;
+			font-size: 25px;
+			line-height: 45px;
+			text-align: center;			
+			font-weight: normal;
+		}
+        .admin-goodsAdd-goodsName, .admin-goodsAdd-goodsType{
+			position: absolute;
+			left: 100px;
+            width: 400px;
+            height: 50px;
+            font-size: 20px;
+            padding-left: 10px;
+            line-height: 50px;
+			box-sizing: border-box;
+			border: 1px solid black;
+        }
+		.admin-goodsAdd-goodsPrice, .admin-goodsAdd-goodsPayPoint, .admin-goodsAdd-goodsColor, .admin-goodsAdd-goodsStock{
+			position: absolute;
+			width: 100px;
+			height: 50px;
+			font-size: 20px;
+			text-align: left;
+			padding-left: 10px;
+			box-sizing: border-box;
+			left: 100px;
+			border: 1px solid black;
+			background-color: white;
+			font-weight: normal;
+			line-height: 48px;
+		}
+		.admin-goodsAdd-goodsPayPointTitle, .admin-goodsAdd-goodsStockTitle{
+			left: 225px;
+		}
+		.admin-goodsAdd-goodsPayPoint, .admin-goodsAdd-goodsStock{
+			left: 325px;
+		}
+		.admin-goodsAdd-goodsOptionButton{
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			font-size: 30px;
+			line-height: 50px;
+			text-align: center;
+			left: 450px;
+		}
+		.admin-goodsAdd-button{
+			width: 100px;
+			height: 50px;
+			font-size: 20px;
+		}

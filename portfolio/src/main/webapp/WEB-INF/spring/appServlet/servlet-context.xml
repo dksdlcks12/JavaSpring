@@ -36,10 +36,15 @@
 	    </beans:property>
 	</beans:bean>
 	<beans:bean id="loginInterceptor" class="kr.ajs.portfolio.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="memberInterceptor" class="kr.ajs.portfolio.interceptor.MemberInterceptor"></beans:bean>
 	<interceptors>
 		<interceptor>
 			<mapping path="/login"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
+		<interceptor> 
+       		<mapping path="/admin/*"/>
+        	<beans:ref bean="memberInterceptor"/>
+    	</interceptor>
 	</interceptors>
 </beans:beans>

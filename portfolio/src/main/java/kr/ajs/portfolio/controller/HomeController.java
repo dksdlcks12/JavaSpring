@@ -26,10 +26,8 @@ public class HomeController {
 
 	@Autowired
 	UserService userService;
-
-	
 	@RequestMapping(value= {"/"}, method = RequestMethod.GET)
-	public ModelAndView openTilesView(ModelAndView mv, HttpServletRequest request) throws Exception{
+	public ModelAndView mainGet(ModelAndView mv, HttpServletRequest request) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null && user.getUserAuth().equals("admin")) {
 			mv.setViewName("/main/adminMain");

@@ -19,14 +19,17 @@
 						<div href="<%=request.getContextPath()%>/logout" class="user-set-signUpButton">로그아웃</div>
 						<div class="user-set-logInInfo">${user.userId}님 환영합니다.</div>
 						<script>
+							var logout = false;
 							$(".user-set-signUpButton").on("click",function(){
 								$.ajax({
 									async:false,
 									type:'POST',
+									data: logout,
 									url:"<%=request.getContextPath()%>/logout",
 									dataType:"json",
 									contentType:"application/json; charset=UTF-8",
 									success : function(data){
+										
 										location.reload();
 									}
 								});
@@ -40,7 +43,7 @@
 					<a href="#" class="admin-set-notice">공지사항</a>
 					<a href="#" class="admin-set-QA">Q&A</a>
 					<a href="#" class="admin-set-review">리뷰</a>
-					<a href="#" class="admin-set-goodsManage">상품등록</a>
+					<a href="<%=request.getContextPath()%>/admin/goodsadd" class="admin-set-goodsManage">상품등록</a>
 					<a href="#" class="admin-set-myPage">마이페이지</a>
 					<div class="admin-set-loginInfo">관리자님 환영합니다.</div>
 					<div class="admin-set-logout">로그아웃</div>
@@ -53,7 +56,7 @@
 									dataType:"json",
 									contentType:"application/json; charset=UTF-8",
 									success : function(data){
-										location.reload();
+										location.href="<%=request.getContextPath()%>/login";
 									}
 								});
 							})
