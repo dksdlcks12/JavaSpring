@@ -33,8 +33,12 @@ public class UserController {
 		if(user!=null && user.getUserAuth().equals("admin")) {
 			mv.setViewName("/main/adminMain");
 		}else {
+			ArrayList<GoodsVo> list;
+			list = userService.getGoods(0);
+			mv.addObject("list", list);
+			mv.setViewName("/goods/goodsList");
 			mv.setViewName("/main/userMain");		
-		}
+		}	
 	    return mv;
 	}
 	@RequestMapping(value= {"/signup"}, method = RequestMethod.GET)

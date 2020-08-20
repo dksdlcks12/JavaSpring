@@ -9,7 +9,7 @@
 					<img src="<%=request.getContextPath()%>/resources/image/goodsImg${goods.goodsImg}" class="common-goodsList-goods">
 					<div class="common-goodsList-goodsInfo">
 						<div class="common-goodsList-goodsName">제품명 : ${goods.goodsName}</div>
-						<div class="common-goodsList-goodsPrice">가격 : ${goods.goodsPrice}</div>
+						<div class="common-goodsList-goodsPrice">가격 : ${goods.goodsPrice}원</div>
 					</div>
 				</div>
 			</c:forEach>

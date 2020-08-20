@@ -59,89 +59,16 @@
 	</div>
 	<h2 class="user-main-newGoodsTitle">최신 제품</h2>
 	<div class="user-main-newGoodsList">
-		<div class="user-main-newGoodsBox">
-			<a href="#"><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" class="user-main-newGoods"></a>
-			<div class="user-main-newGoodsInfo">
-				<div class="user-main-newGoodsName">제품명</div>
-				<div class="user-main-newGoodsPrice">제품 가격</div>
-			</div>
-		</div>
-		<div class="user-main-newGoodsBox">
-			<a href="#"><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" class="user-main-newGoods"></a>
-			<div class="user-main-newGoodsInfo">
-				<div class="user-main-newGoodsName">제품명</div>
-				<div class="user-main-newGoodsPrice">제품 가격</div>
-			</div>
-		</div>
-		<div class="user-main-newGoodsBox">
-			<a href="#"><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" class="user-main-newGoods"></a>
-			<div class="user-main-newGoodsInfo">
-				<div class="user-main-newGoodsName">제품명</div>
-				<div class="user-main-newGoodsPrice">제품 가격</div>
-			</div>
-		</div>
-		<div class="user-main-newGoodsBox">
-			<a href="#"><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" class="user-main-newGoods"></a>
-			<div class="user-main-newGoodsInfo">
-				<div class="user-main-newGoodsName">제품명</div>
-				<div class="user-main-newGoodsPrice">제품 가격</div>
-			</div>
-		</div>
-		<div class="user-main-newGoodsBox">
-			<a href="#"><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" class="user-main-newGoods"></a>
-			<div class="user-main-newGoodsInfo">
-				<div class="user-main-newGoodsName">제품명</div>
-				<div class="user-main-newGoodsPrice">제품 가격</div>
-			</div>
-		</div>
-		<div class="user-main-newGoodsBox">
-			<a href="#"><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" class="user-main-newGoods"></a>
-			<div class="user-main-newGoodsInfo">
-				<div class="user-main-newGoodsName">제품명</div>
-				<div class="user-main-newGoodsPrice">제품 가격</div>
-			</div>
-		</div>
-		<div class="user-main-newGoodsBox">
-			<a href="#"><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" class="user-main-newGoods"></a>
-			<div class="user-main-newGoodsInfo">
-				<div class="user-main-newGoodsName">제품명</div>
-				<div class="user-main-newGoodsPrice">제품 가격</div>
-			</div>
-		</div>
-		<div class="user-main-newGoodsBox">
-			<a href="#"><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" class="user-main-newGoods"></a>
-			<div class="user-main-newGoodsInfo">
-				<div class="user-main-newGoodsName">제품명</div>
-				<div class="user-main-newGoodsPrice">제품 가격</div>
-			</div>
-		</div>
-		<div class="user-main-newGoodsBox">
-			<a href="#"><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" class="user-main-newGoods"></a>
-			<div class="user-main-newGoodsInfo">
-				<div class="user-main-newGoodsName">제품명</div>
-				<div class="user-main-newGoodsPrice">제품 가격</div>
-			</div>
-		</div>
-		<div class="user-main-newGoodsBox">
-			<a href="#"><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" class="user-main-newGoods"></a>
-			<div class="user-main-newGoodsInfo">
-				<div class="user-main-newGoodsName">제품명</div>
-				<div class="user-main-newGoodsPrice">제품 가격</div>
-			</div>
-		</div>
-		<div class="user-main-newGoodsBox">
-			<a href="#"><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" class="user-main-newGoods"></a>
-			<div class="user-main-newGoodsInfo">
-				<div class="user-main-newGoodsName">제품명</div>
-				<div class="user-main-newGoodsPrice">제품 가격</div>
-			</div>
-		</div>
-		<div class="user-main-newGoodsBox">
-			<a href="#"><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" class="user-main-newGoods"></a>
-			<div class="user-main-newGoodsInfo">
-				<div class="user-main-newGoodsName">제품명</div>
-				<div class="user-main-newGoodsPrice">제품 가격</div>
-			</div>
-		</div>
+		<c:if test = "${list.size()!=0}">
+			<c:forEach var="goods" items="${list}">
+				<div class="user-main-newGoodsBox">
+					<a href="#"><img src="<%=request.getContextPath()%>/resources/image/goodsImg${goods.goodsImg}" class="user-main-newGoods"></a>
+					<div class="user-main-newGoodsInfo">
+						<div class="user-main-newGoodsName">제품명 : ${goods.goodsName}</div>
+						<div class="user-main-newGoodsPrice">가격 : ${goods.goodsPrice}원</div>
+					</div>
+				</div>
+			</c:forEach>
+		</c:if>
 	</div>
 </div>
