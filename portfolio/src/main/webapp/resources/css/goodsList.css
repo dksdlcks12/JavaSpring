@@ -1,0 +1,71 @@
+@charset "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+a:hover{
+	text-decoration: none;
+	color: black;
+}
+.common-goodsList-box{
+	width: 1400px;
+	padding: 100px 0 50px 0;
+	margin: 0 auto;
+	margin-top: 100px;
+	background-color: palegoldenrod;
+	box-sizing: border-box;
+}
+.common-goodsList-goodsTitle{
+	margin-left: 50px;
+	margin-bottom: 30px;
+}
+.common-goodsList-goodsListBox{
+	margin: 0 auto;
+	width: 1320px;
+	height: auto;
+	background-color: cadetblue;
+}
+.common-goodsList-goodsBox{
+	width: 300px;
+	height: 380px;
+	background-color: chartreuse;
+	float: left;
+	margin: 15px;
+}
+.common-goodsList-goods{
+	width: 100%;
+	height: 300px;
+	background-color: cyan;
+}
+.common-goodsList-goodsInfo{
+	width: 100%;
+	height: 80px;
+	background-color: darkgray;
+}
+.common-goodsList-goodsName{
+	width: 100%;
+	height: 50px;
+	background-color: cornsilk;
+}
+.common-goodsList-goodsPrice{
+	width: 100%;
+	height: 30px;
+	background-color: lightpink;
+}
+.common-goodsList-pagination>*{
+	width: 50px;
+	font-size: 30px;
+	text-align: center;
+}
+.common-goodsList-goodsListBox::after{
+	clear: both;
+	content: '';
+	display: block;
+}
+.page-link{
+	height: 55px;
+}

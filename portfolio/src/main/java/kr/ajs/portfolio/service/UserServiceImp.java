@@ -1,10 +1,13 @@
 package kr.ajs.portfolio.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.ajs.portfolio.dao.UserDao;
+import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.UserVo;
 
 @Service
@@ -34,5 +37,10 @@ public class UserServiceImp implements UserService {
 		}else {
 			return false;
 		}
+	}
+	@Override
+	public ArrayList<GoodsVo> getGoods(int type) {
+		// TODO Auto-generated method stub
+		return userDao.getGoods(type);
 	}
 }

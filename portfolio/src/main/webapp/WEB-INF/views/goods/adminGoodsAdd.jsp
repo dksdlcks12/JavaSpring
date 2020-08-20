@@ -76,8 +76,8 @@
 							<option value="" selected>----제품 타입----</option>
 							<option value="1">목 걸 이</option>
 							<option value="2">반 지</option>
-							<option value="3">귀 걸 이</option>
-							<option value="4">귀 찌</option>
+							<option value="3">귀 찌</option>
+							<option value="4">귀 걸 이</option>
 						</select>
 					</div>
 					<h2>옵션 추가</h2>

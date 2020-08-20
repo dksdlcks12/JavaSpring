@@ -3,6 +3,7 @@ package kr.ajs.portfolio.controller;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.ajs.portfolio.service.AdminService;
 import kr.ajs.portfolio.utils.UploadFileUtils;
+import kr.ajs.portfolio.vo.GoodsVo;
+import kr.ajs.portfolio.vo.OptionVo;
+import kr.ajs.portfolio.vo.PostVo;
+import kr.ajs.portfolio.vo.UserVo;
 
 @Controller
 public class AdminController {
@@ -25,12 +30,18 @@ public class AdminController {
 	    return mv;
 	}
 	@RequestMapping(value= {"/admin/goodsadd"}, method = RequestMethod.POST)
-	public ModelAndView adminGoodsAddPost(ModelAndView mv, HttpServletRequest request, MultipartFile goodsImgAdd, MultipartFile goodsExplainImgAdd, String[] color, int[] stock) throws IOException, Exception{
+	public ModelAndView adminGoodsAddPost(ModelAndView mv, HttpServletRequest request, MultipartFile goodsImgAdd, MultipartFile goodsExplainImgAdd, PostVo post, GoodsVo goods, OptionVo option,String[] color, int[] stock) throws IOException, Exception{
 		String uploadPath = "D:\\AJS\\JavaSpring\\portfolio\\src\\main\\webapp\\resources\\image\\goodsImg";
-		UploadFileUtils.uploadFile(uploadPath, goodsImgAdd.getOriginalFilename(),goodsImgAdd.getBytes());
-		UploadFileUtils.uploadFile(uploadPath, goodsExplainImgAdd.getOriginalFilename(),goodsExplainImgAdd.getBytes());
-		for (int i=0 ; i<color.length ; i++) {
-			System.out.println("색상: "+color[i]+", 재고량: "+stock[i]);
+		String goodsImg = UploadFileUtils.uploadFile(uploadPath, goodsImgAdd.getOriginalFilename(),goodsImgAdd.getBytes());
+		String postImg = UploadFileUtils.uploadFile(uploadPath, goodsExplainImgAdd.getOriginalFilename(),goodsExplainImgAdd.getBytes());
+		HttpSession session = request.getSession();
+		UserVo user = (UserVo) session.getAttribute("user");
+		goods.setGoodsImg(goodsImg);
+		post.setPostImg(postImg);
+		post.setPost_userId(user.getUserId());
+		adminService.goodsAdd(goods, post);
+		for (int i=0 ; i<color.length ; ++i) {
+			adminService.optionAdd(color[i], stock[i], goods);
 		}
 		mv.setViewName("redirect:/");
 	    return mv;

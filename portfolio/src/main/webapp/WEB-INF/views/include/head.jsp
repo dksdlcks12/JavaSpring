@@ -16,4 +16,6 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminMain.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminGoodsAdd.css">
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/adminGoodsAdd.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/goodsList.css">
+
 

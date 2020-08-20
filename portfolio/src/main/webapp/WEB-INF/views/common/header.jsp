@@ -64,11 +64,11 @@
 				</ul>
 			</c:if>
 			<ul class="user-set-bottomMenuBox" >
-				<a href="#" class="user-set-goNecklace">목걸이</a>
-				<a href="#" class="user-set-goRing">반 지</a>
+				<a href="<%=request.getContextPath()%>/goodsList?type=1" class="user-set-goNecklace">목걸이</a>
+				<a href="<%=request.getContextPath()%>/goodsList?type=2" class="user-set-goRing">반  지</a>
 				<ul class="user-set-listEarRing">귀걸이종류
-					<li><a href="#" class="user-set-goEarClip">귀찌</a></li>
-					<li><a href="#" class="user-set-goEarRing">귀걸이</a></li>
+					<li><a href="<%=request.getContextPath()%>/goodsList?type=3" class="user-set-goEarClip">귀  찌</a></li>
+					<li><a href="<%=request.getContextPath()%>/goodsList?type=4" class="user-set-goEarRing">귀걸이</a></li>
 				</ul>
 				<div class="user-set-searchBox">
 					<input type="text" class="user-set-search" placeholder="Search">

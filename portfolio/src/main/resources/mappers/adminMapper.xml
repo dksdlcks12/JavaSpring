@@ -3,7 +3,13 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.ajs.portfolio.dao.AdminDao">
-	<insert id="signUp">
-		insert into user (userId, userPw, userMail) values(#{user.userId}, #{user.userPw}, #{user.userMail})
+	<insert id="goodsAdd">
+		insert into goods (goodsName, goodsPrice, goodsPoint, goodsType, goodsImg) values(#{goods.goodsName}, #{goods.goodsPrice}, #{goods.goodsPoint}, #{goods.goodsType}, #{goods.goodsImg});
+	</insert>
+	<insert id="postAdd">
+		insert into post (post_userId, post_goodsNum, postDiscount, postImg) values(#{post.post_userId}, (select goodsNum from goods where goodsName=#{goods.goodsName}), #{post.postDiscount}, #{post.postImg});
+	</insert>
+	<insert id="optionAdd">
+		insert into portfolio.option (option_goodsNum, optionColor, optionStock) values((select goodsNum from goods where goodsName=#{goods.goodsName}), #{color}, #{stock});
 	</insert>
 </mapper>

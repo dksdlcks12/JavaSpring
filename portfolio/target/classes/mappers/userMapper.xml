@@ -9,4 +9,19 @@
 	<insert id="signUp">
 		insert into user (userId, userPw, userMail) values(#{user.userId}, #{user.userPw}, #{user.userMail})
 	</insert>
+	<select id="getGoods" resultType="kr.ajs.portfolio.vo.GoodsVo">
+		SELECT * FROM goods join post on goodsNum=postnum where postIsDel = 'N'
+		<if test="type==1">
+			and goodsType = '1'
+		</if>
+		<if test="type==2">
+			and goodsType = '2'
+		</if>
+		<if test="type==3">
+			and goodsType = '3'
+		</if>
+		<if test="type==4">
+			and goodsType = '4'
+		</if>
+	</select>
 </mapper>
