@@ -60,4 +60,5 @@ public class PostVo {
 				+ ", postDiscount=" + postDiscount + ", postImg=" + postImg + ", postIsDel=" + postIsDel
 				+ ", postDelDate=" + postDelDate + "]";
 	}
+	
 }

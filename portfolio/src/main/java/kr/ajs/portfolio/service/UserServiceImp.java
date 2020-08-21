@@ -7,7 +7,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.ajs.portfolio.dao.UserDao;
+import kr.ajs.portfolio.pagination.Criteria;
+import kr.ajs.portfolio.pagination.PageMaker;
 import kr.ajs.portfolio.vo.GoodsVo;
+import kr.ajs.portfolio.vo.OptionVo;
+import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
 
 @Service
@@ -39,8 +43,32 @@ public class UserServiceImp implements UserService {
 		}
 	}
 	@Override
-	public ArrayList<GoodsVo> getGoods(int type) {
+	public ArrayList<GoodsVo> getGoodsList(int type, Criteria cri) {
 		// TODO Auto-generated method stub
-		return userDao.getGoods(type);
+		return userDao.getGoodsList(type, cri);
+	}
+	@Override
+	public PageMaker getPageMaker(Criteria cri, int type) {
+		// TODO Auto-generated method stub
+		PageMaker pm = new PageMaker();
+	    int totalCount = userDao.getTotalCount(type);
+	    pm.setCriteria(cri);
+	    pm.setTotalCount(totalCount);
+		return pm;
+	}
+	@Override
+	public GoodsVo getGoods(int num) {
+		// TODO Auto-generated method stub
+		return userDao.getGoods(num);
+	}
+	@Override
+	public PostVo getPost(int num) {
+		// TODO Auto-generated method stub
+		return userDao.getPost(num);
+	}
+	@Override
+	public ArrayList<OptionVo> getOptionList(int num) {
+		// TODO Auto-generated method stub
+		return userDao.getOptionList(num);
 	}
 }

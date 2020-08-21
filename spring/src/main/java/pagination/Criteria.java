@@ -5,6 +5,7 @@ public class Criteria {
 	private int perPageNum;
 	private String search;
 	private int type;
+	
 	public Criteria() {
 		page = 1;
 		perPageNum = 3;
@@ -25,8 +26,8 @@ public class Criteria {
 		return perPageNum;
 	}
 	public void setPerPageNum(int perPageNum) {
-		/* ÇÑ ÆäÀÌÁö¿¡ ÄÁÅÙÃ÷ ¼ö¸¦ 0ÀÌ»ó 100ÀÌÇÏ·Î ¼³Á¤
-		°³¹ßÀÚ ¼³Á¤¿¡ µû¶ó 100ºÎºÐÀ» ¼öÁ¤ÇÒ ¼ö ÀÖÀ½ */
+		/* ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 0ï¿½Ì»ï¿½ 100ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 100ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 		if(perPageNum <1) {
 			this.perPageNum = 10;
 		}else {
@@ -54,6 +55,8 @@ public class Criteria {
 	}
 	@Override
 	public String toString() {
-		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", search=" + search + ", type=" + type + "]";
+		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", search=" + search + ", type=" + type
+				+ ", maxpage=" + "]";
 	}
+	
 }

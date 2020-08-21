@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.ajs.portfolio.pagination.Criteria;
+import kr.ajs.portfolio.pagination.PageMaker;
 import kr.ajs.portfolio.service.UserService;
 import kr.ajs.portfolio.vo.GoodsVo;
+import kr.ajs.portfolio.vo.OptionVo;
+import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
 
 /**
@@ -28,13 +32,14 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	@RequestMapping(value= {"/"}, method = RequestMethod.GET)
-	public ModelAndView mainGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+	public ModelAndView mainGet(ModelAndView mv, HttpServletRequest request, Criteria cri) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null && user.getUserAuth().equals("admin")) {
 			mv.setViewName("/main/adminMain");
 		}else {
+			int type = 0;
 			ArrayList<GoodsVo> list;
-			list = userService.getGoods(0);
+			list = userService.getGoodsList(type, cri);
 			mv.addObject("list", list);
 			mv.setViewName("/goods/goodsList");
 			mv.setViewName("/main/userMain");		
@@ -85,11 +90,27 @@ public class UserController {
 	    return map;
 	}
 	@RequestMapping(value= {"/goodsList"}, method = RequestMethod.GET)
-	public ModelAndView goodsListGet(ModelAndView mv, int type) throws Exception{
+	public ModelAndView goodsListGet(ModelAndView mv, int type, Criteria cri) throws Exception{
+		PageMaker pm = userService.getPageMaker(cri, type);
 		ArrayList<GoodsVo> list;
-		list = userService.getGoods(type);
+		list = userService.getGoodsList(type, cri);
+		mv.addObject("pm", pm);
 		mv.addObject("list", list);
+		mv.addObject("type", type);
 		mv.setViewName("/goods/goodsList");
+	    return mv;
+	}
+	@RequestMapping(value= {"/goodsview"}, method = RequestMethod.GET)
+	public ModelAndView goodsView(ModelAndView mv, HttpServletRequest request, int num, int type, int page) throws Exception{
+		GoodsVo goods = userService.getGoods(num);
+		PostVo post = userService.getPost(num);
+		ArrayList<OptionVo> list = userService.getOptionList(num);
+		int disCountPrice = goods.getGoodsPrice()/100*(100-post.getPostDiscount());
+		mv.addObject("goods", goods);
+		mv.addObject("post", post);
+		mv.addObject("disCountPrice", disCountPrice);
+		mv.addObject("list", list);
+	    mv.setViewName("/goods/goodsView");
 	    return mv;
 	}
 }

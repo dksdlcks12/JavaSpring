@@ -43,7 +43,7 @@ public class AdminController {
 		for (int i=0 ; i<color.length ; ++i) {
 			adminService.optionAdd(color[i], stock[i], goods);
 		}
-		mv.setViewName("redirect:/");
+		mv.setViewName("redirect:/admin/goodsadd");
 	    return mv;
 	}
 }

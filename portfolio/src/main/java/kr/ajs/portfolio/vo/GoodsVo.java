@@ -1,5 +1,7 @@
 package kr.ajs.portfolio.vo;
 
+import java.util.Date;
+
 public class GoodsVo {
 	private int goodsNum;
 	private String goodsName;
@@ -44,7 +46,7 @@ public class GoodsVo {
 	public void setGoodsImg(String goodsImg) {
 		this.goodsImg = goodsImg;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "GoodsVo [goodsNum=" + goodsNum + ", goodsName=" + goodsName + ", goodsPrice=" + goodsPrice

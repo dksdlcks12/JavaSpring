@@ -62,7 +62,7 @@
 		<c:if test = "${list.size()!=0}">
 			<c:forEach var="goods" items="${list}">
 				<div class="user-main-newGoodsBox">
-					<a href="#"><img src="<%=request.getContextPath()%>/resources/image/goodsImg${goods.goodsImg}" class="user-main-newGoods"></a>
+					<a href="<%=request.getContextPath()%>/goodsview?num=${goods.goodsNum}&type=0&page=1"><img src="<%=request.getContextPath()%>/resources/image/goodsImg${goods.goodsImg}" class="user-main-newGoods"></a>
 					<div class="user-main-newGoodsInfo">
 						<div class="user-main-newGoodsName">제품명 : ${goods.goodsName}</div>
 						<div class="user-main-newGoodsPrice">가격 : ${goods.goodsPrice}원</div>

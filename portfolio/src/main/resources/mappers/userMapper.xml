@@ -9,8 +9,8 @@
 	<insert id="signUp">
 		insert into user (userId, userPw, userMail) values(#{user.userId}, #{user.userPw}, #{user.userMail})
 	</insert>
-	<select id="getGoods" resultType="kr.ajs.portfolio.vo.GoodsVo">
-		SELECT * FROM goods join post on goodsNum=postnum where postIsDel = 'N'
+	<select id="getGoodsList" resultType="kr.ajs.portfolio.vo.GoodsVo">
+		select * from goods join post on goodsNum=postnum where postIsDel = 'N'
 		<if test="type==1">
 			and goodsType = '1'
 		</if>
@@ -23,5 +23,30 @@
 		<if test="type==4">
 			and goodsType = '4'
 		</if>
+		order by goodsNum desc limit #{cri.pageStart}, #{cri.perPageNum};
+	</select>
+	<select id="getTotalCount" resultType="int">
+		select count(*) from goods join post on goodsNum=postnum where postIsDel = 'N'
+		<if test="type==1">
+			and goodsType = '1'
+		</if>
+		<if test="type==2">
+			and goodsType = '2'
+		</if>
+		<if test="type==3">
+			and goodsType = '3'
+		</if>
+		<if test="type==4">
+			and goodsType = '4'
+		</if>
+	</select>
+	<select id="getGoods" resultType="kr.ajs.portfolio.vo.GoodsVo">
+		select * from goods where goodsNum = ${num}
+	</select>
+	<select id="getPost" resultType="kr.ajs.portfolio.vo.PostVo">
+		select * from post where post_goodsNum = ${num}
+	</select>
+	<select id="getOptionList" resultType="kr.ajs.portfolio.vo.OptionVo">
+		select * from portfolio.option where option_goodsNum = ${num}
 	</select>
 </mapper>
