@@ -49,4 +49,10 @@
 	<select id="getOptionList" resultType="kr.ajs.portfolio.vo.OptionVo">
 		select * from portfolio.option where option_goodsNum = ${num}
 	</select>
+	<insert id="setWishList">
+		insert into wishlist (wishList_postNum, wishList_userId, wishListCount, wishList_optionNum)
+		values (
+		(select postNum from post join goods on goodsNum=postNum where goodsName = #{goods.goodsName}), #{user.userId}, #{count}, 
+		(select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{goods.goodsName} and optionColor = #{color}))
+	</insert>
 </mapper>

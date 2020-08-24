@@ -25,4 +25,6 @@ public interface UserService {
 	public PostVo getPost(int num);
 
 	public ArrayList<OptionVo> getOptionList(int num);
+
+	public void setWishList(String color, int count, GoodsVo goods, UserVo user);
 }

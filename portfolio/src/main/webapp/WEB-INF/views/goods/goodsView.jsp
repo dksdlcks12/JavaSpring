@@ -11,6 +11,7 @@
 				<div class="common-goodsView-goodsNameBox">
 					<div class="common-goodsView-goodsNameTitle">제품명</div>
 					<div class="common-goodsView-goodsName">${goods.goodsName}</div>
+					<input name="goodsName" type=hidden value="${goods.goodsName}">
 				</div>
 				<div class="common-goodsView-goodsPriceBox">
 					<div class="common-goodsView-goodsPriceTitle">가 격</div>
@@ -225,5 +226,39 @@
 				}
 			}	
 		})
+		$('.common-goodsView-goCart').click(function(){
+			/* var color = new Array($('.common-goodsView-selectOptionBox').length);
+			var count = new Array($('.common-goodsView-selectOptionBox').length);
+			var i = Number(0);
+			$('.common-goodsView-optionName').each(function(){
+				color[i] = $(this).text();
+				count[i] = $(this).siblings('.common-goodsView-optionCount').val();
+				i++;
+			}) */
+			var arr = [] ;
+			
+			var i = Number(0);
+			$('.common-goodsView-optionName').each(function(){
+				var color = $(this).text();
+				var count = $(this).siblings('.common-goodsView-optionCount').val();
+				arr.push({'color':color,'count':count});
+				i++;
+			})
+			console.log(arr)
+			$.ajax({
+				async:false,
+				type:'GET',
+				data: JSon
+				url:"<%=request.getContextPath()%>/test",
+				dataType:"json",
+				contentType:"application/json; charset=UTF-8",
+				success : function(data){
+					if(i){
+						alert('뇽?!')
+					}
+				}
+			});
+		})
+
 	})
 </script>

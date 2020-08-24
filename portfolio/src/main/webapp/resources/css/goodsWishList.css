@@ -27,15 +27,19 @@
 }
 .user-cart-goodsImgTitle{
 	width: 10%;
+	text-align: center;
 }
 .user-cart-goodsInfoTitle{
 	width: 50%;
+	text-align: center;
 }
 .user-cart-goodsPriceTitle{
 	width: 20%;
+	text-align: center;
 }
 .user-cart-goodsCountTitle{
 	width: 15%;
+	text-align: center;
 }
 .user-cart-goodsImg>img{
 	margin: 5px;

@@ -24,4 +24,6 @@ public interface UserDao {
 	public PostVo getPost(@Param("num")int num);
 
 	public ArrayList<OptionVo> getOptionList(@Param("num")int num);
+
+	public void setWishList(@Param("color")String color, @Param("count")int count, @Param("goods")GoodsVo goods, @Param("user")UserVo user);
 }

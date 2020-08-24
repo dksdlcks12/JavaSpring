@@ -71,4 +71,10 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		return userDao.getOptionList(num);
 	}
+	@Override
+	public void setWishList(String color, int count, GoodsVo goods, UserVo user) {
+		// TODO Auto-generated method stub
+		userDao.setWishList(color, count, goods, user);
+		
+	}
 }

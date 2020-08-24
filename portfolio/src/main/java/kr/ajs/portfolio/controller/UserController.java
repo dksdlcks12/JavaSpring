@@ -119,11 +119,28 @@ public class UserController {
 	    return mv;
 	}
 	@RequestMapping(value= {"/wishlist"}, method = RequestMethod.POST)
-	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count) throws Exception{
-		mv.setViewName("redirect:/wishlist");
+	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count, GoodsVo goods, HttpServletRequest request) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		System.out.println(goods);
+		System.out.println(user);
 		for(int i=0; i<color.length; i++) {
 			System.out.println(color[i] + ':' + count[i]);
-		}
+		}	
+		for(int i=0; i<color.length; i++) {
+			userService.setWishList(color[i], count[i], goods, user);
+		}	
+		mv.setViewName("redirect:/wishlist");
 		return mv;
 	}
+/*	@RequestMapping("/test")
+	@ResponseBody
+	public Map<Object, Object> test(@RequestBody ArrayList<XXXVO> arr){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    for(xxxVo tmp : arr) {
+	    	System.out.println(tmp);
+	    }
+	    boolean i=true;
+	    map.put("i", i);
+	    return map;
+	}*/
 }
