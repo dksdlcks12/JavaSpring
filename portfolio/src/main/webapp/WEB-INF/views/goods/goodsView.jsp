@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <div class="common-goodsView-box">
 	<div class="common-goodsView-goodsAddBox">
 			<div class="common-goodsView-leftBox">
@@ -179,6 +180,7 @@
 					</div>
 				</c:if>
 			</div>
+			<input id=user type=hidden value="${user.userId}">
 		</form>
 		<div id="common-goodsView-goodsExplainMenuBox"></div>
 		<div class="common-goodsView-goodsExplainMenuBox">
@@ -194,6 +196,7 @@
 		<img src="#" alt="" class="common-goodsView-deliveryExplainImg">
 	</div>
 </div>
+
 <script>
 	$(function(){
 		$('.common-goodsView-goodsExplain').click(function(){
@@ -202,22 +205,25 @@
 		$('.common-goodsView-deliveryExplain').click(function(){
 			location.replace('#common-goodsView-deliveryExplainMenuBox')
 		})
-		$('.common-goodsView-buttonBox>*').click(function(){
-			if($('.common-goodsView-selectOptionBox').length==0){
-				alert('옵션을 선택하여 주십시오.')
-				$("form").on("submit",function(){
-					return false;
-				});
-			}
-		})
 		$('.common-goodsView-goodsWishList').click(function(){
 			$("form").attr("action", "<%=request.getContextPath()%>/wishlist");
-			if($('.common-goodsView-selectOptionBox').length!=0){
-				alert('상품을 찜하셨습니다.')
-				$("form").on("submit",function(){
-					return true;
-				});
-			}
+		})
+		$('form').submit(function(){
+			var action = $("form").attr("action");
+			if(action == "<%=request.getContextPath()%>/wishlist"){
+				if($('#user').val().length!=0){
+					if($('.common-goodsView-selectOptionBox').length!=0){
+						alert('상품을 찜하셨습니다.')
+							return true;
+					}else{
+						alert('옵션을 선택하여 주십시오.')
+							return false;
+					}
+				}else{
+					alert('회원만 사용 가능합니다.')
+						return false;
+				}
+			}	
 		})
 	})
 </script>

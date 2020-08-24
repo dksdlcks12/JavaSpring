@@ -120,7 +120,7 @@ public class UserController {
 	}
 	@RequestMapping(value= {"/wishlist"}, method = RequestMethod.POST)
 	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count) throws Exception{
-		mv.setViewName("redirect:/");
+		mv.setViewName("redirect:/wishlist");
 		for(int i=0; i<color.length; i++) {
 			System.out.println(color[i] + ':' + count[i]);
 		}
