@@ -10,6 +10,7 @@
 					<a href="#" class="user-set-QA">Q&A</a>
 					<a href="#" class="user-set-review">리뷰</a>
 					<a href="#" class="user-set-cart">장바구니</a>
+					<a href="<%=request.getContextPath()%>/wishlist" class="user-set-wishList">위시리스트</a>
 					<a href="#" class="user-set-myPage">마이페이지</a>
 					<c:if test="${user==null}">
 						<a href="<%=request.getContextPath()%>/signup" class="user-set-signUpButton">회원가입</a>
@@ -86,9 +87,9 @@
 		<a href="#"><div class="user-set-deliveryCheck">배송 조회</div></a>
 		<div class="user-set-csTel">C/S 관련<br>xxx)xxx-xxxx</div>
 		<div class="user-set-latelyViewGoodsList">
-			<div class="user-set-goods"><a href="" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>
-			<div class="user-set-goods"><a href="" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>
-			<div class="user-set-goods"><a href="" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>
+			<div class="user-set-goods"><a href="#" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>
+			<div class="user-set-goods"><a href="#" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>
+			<div class="user-set-goods"><a href="#" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>
 			<script>
 				$('.user-set-goodsClose').click(function(){
 						$(this).parent().remove();

@@ -113,4 +113,17 @@ public class UserController {
 	    mv.setViewName("/goods/goodsView");
 	    return mv;
 	}
+	@RequestMapping(value= {"/wishlist"}, method = RequestMethod.GET)
+	public ModelAndView wishListGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+	    mv.setViewName("/goods/goodsWishList");
+	    return mv;
+	}
+	@RequestMapping(value= {"/wishlist"}, method = RequestMethod.POST)
+	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count) throws Exception{
+		mv.setViewName("redirect:/");
+		for(int i=0; i<color.length; i++) {
+			System.out.println(color[i] + ':' + count[i]);
+		}
+		return mv;
+	}
 }

@@ -4,7 +4,7 @@
 	<h2 class="common-goodsList-goodsTitle"><c:if test="${type==1}">목걸이</c:if><c:if test="${type==2}">반 지</c:if><c:if test="${type==3}">귀 찌</c:if><c:if test="${type==4}">귀걸이</c:if></h2>
 	<c:if test="${list.size()!=0}">
 		<c:if test="${pm.criteria.page<=pm.endPage&&pm.criteria.page>=1}">
-			<div class="common-goodsList-goodsListBox">>
+			<div class="common-goodsList-goodsListBox">
 				<c:forEach var="goods" items="${list}">
 					<div class="common-goodsList-goodsBox">
 						<a href="<%=request.getContextPath()%>/goodsview?num=${goods.goodsNum}&type=${type}&page=${pm.criteria.page}"><img src="<%=request.getContextPath()%>/resources/image/goodsImg${goods.goodsImg}" class="common-goodsList-goods"></a>

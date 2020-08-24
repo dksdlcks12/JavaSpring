@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -19,4 +18,6 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/goodsList.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/goodsView.css">
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/goodsView.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/goodsWishList.css">
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/goodsWishList.js"></script>
 
