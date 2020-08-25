@@ -173,8 +173,8 @@
 									<span class="common-goodsView-totalPrice"></span><span>0원</span></div>
 								<div class="common-goodsView-buttonBox">
 									<div class="common-goodsView-goCart">장바구니</div>
-									<button class="common-goodsView-goodsWishList">위시리스트</button>
-									<div class="common-goodsView-goBuy">구매하기</div>
+									<div class="common-goodsView-goodsWishList">위시리스트</div>
+									<button class="common-goodsView-goBuy">구매하기</button>
 								</div>
 							</div>
 						</div>
@@ -206,8 +206,8 @@
 		$('.common-goodsView-deliveryExplain').click(function(){
 			location.replace('#common-goodsView-deliveryExplainMenuBox')
 		})
-		$('.common-goodsView-goodsWishList').click(function(){
-			$("form").attr("action", "<%=request.getContextPath()%>/wishlist");
+		$('.common-goodsView-goBuy').click(function(){
+			$("form").attr("action", "<%=request.getContextPath()%>/#");
 		})
 		$('form').submit(function(){
 			var action = $("form").attr("action");
@@ -226,39 +226,38 @@
 				}
 			}	
 		})
-		$('.common-goodsView-goCart').click(function(){
-			/* var color = new Array($('.common-goodsView-selectOptionBox').length);
-			var count = new Array($('.common-goodsView-selectOptionBox').length);
-			var i = Number(0);
-			$('.common-goodsView-optionName').each(function(){
-				color[i] = $(this).text();
-				count[i] = $(this).siblings('.common-goodsView-optionCount').val();
-				i++;
-			}) */
-			var arr = [] ;
-			
-			var i = Number(0);
-			$('.common-goodsView-optionName').each(function(){
-				var color = $(this).text();
-				var count = $(this).siblings('.common-goodsView-optionCount').val();
-				arr.push({'color':color,'count':count});
-				i++;
-			})
-			console.log(arr)
-			$.ajax({
-				async:false,
-				type:'GET',
-				data: JSon
-				url:"<%=request.getContextPath()%>/test",
-				dataType:"json",
-				contentType:"application/json; charset=UTF-8",
-				success : function(data){
-					if(i){
-						alert('뇽?!')
-					}
+		$('.common-goodsView-goodsWishList').click(function(){
+			var arr = [] ;	
+			if($('#user').val().length!=0){
+				if($('.common-goodsView-selectOptionBox').length!=0){
+					$('.common-goodsView-optionName').each(function(){
+						var color = $(this).text();
+						var count = $(this).siblings('.common-goodsView-optionCount').val();
+						var goods = $('.common-goodsView-goodsName').text();
+						arr.push({'color':color,'count':count,'goods':goods});
+					})
+					console.log(arr)
+					$.ajax({
+						async:false,
+						type:'POST',
+						data: JSON.stringify(arr),
+						url:"<%=request.getContextPath()%>/wishlist",
+						dataType:"json",
+						contentType:"application/json; charset=UTF-8",
+						success : function(data){
+							if(data.wishListCheck){
+								alert('해당 항목이 위시리스트에 있습니다.')
+							}else{
+								alert('위시리스트에 추가하였습니다.')
+							}
+						}
+					});
+				}else{
+					alert('옵션을 선택하여 주십시오.')
 				}
-			});
+			}else{
+				alert('회원만 사용 가능합니다.')
+			}
 		})
-
 	})
 </script>

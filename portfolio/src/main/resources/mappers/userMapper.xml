@@ -25,7 +25,7 @@
 		</if>
 		order by goodsNum desc limit #{cri.pageStart}, #{cri.perPageNum};
 	</select>
-	<select id="getTotalCount" resultType="int">
+	<select id="getGoodsTotalCount" resultType="int">
 		select count(*) from goods join post on goodsNum=postnum where postIsDel = 'N'
 		<if test="type==1">
 			and goodsType = '1'
@@ -49,10 +49,30 @@
 	<select id="getOptionList" resultType="kr.ajs.portfolio.vo.OptionVo">
 		select * from portfolio.option where option_goodsNum = ${num}
 	</select>
+	<select id="getWishList" resultType="kr.ajs.portfolio.vo.WishListVo">
+		select * from wishlist where wishList_postNum = (select postNum from post join goods on goodsNum=postNum where goodsName = #{option.goods})
+		and wishList_userId = #{user.userId}
+		and wishList_optionNum = (select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{option.goods} and optionColor = #{option.color})
+	</select>
 	<insert id="setWishList">
 		insert into wishlist (wishList_postNum, wishList_userId, wishListCount, wishList_optionNum)
 		values (
-		(select postNum from post join goods on goodsNum=postNum where goodsName = #{goods.goodsName}), #{user.userId}, #{count}, 
-		(select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{goods.goodsName} and optionColor = #{color}))
+		(select postNum from post join goods on goodsNum=postNum where goodsName = #{option.goods}), #{user.userId}, #{option.count}, 
+		(select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{option.goods} and optionColor = #{option.color}))
 	</insert>
+	<update id="overwriteWishList">
+		update wishlist set wishListCount = #{option.count} where wishList_postNum = (select postNum from post join goods on goodsNum=postNum where goodsName = #{option.goods})
+		and wishList_userId = #{user.userId}
+		and wishList_optionNum = (select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{option.goods} and optionColor = #{option.color})
+	</update>
+	<select id="getWishListTotalCount" resultType="int">
+		select count(*) from wishlist where wishList_userId = #{user.userId}
+	</select>
+	<select id="getBoardWishList" resultType="kr.ajs.portfolio.vo.BoardWishListVo">
+		SELECT wishListNum, wishListCount, goodsName, goodsImg, goodsPrice, optionColor from wishlist
+		join portfolio.option on wishList_optionNum = optionNum 
+		join goods on option_goodsNum = goodsNum 
+		where wishList_userId = 'qwer1234' 
+		order by wishListNum desc limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
 </mapper>

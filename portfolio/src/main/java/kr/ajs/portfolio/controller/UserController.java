@@ -18,7 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.ajs.portfolio.pagination.Criteria;
 import kr.ajs.portfolio.pagination.PageMaker;
 import kr.ajs.portfolio.service.UserService;
+import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.GoodsVo;
+import kr.ajs.portfolio.vo.InputOptionVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
@@ -113,13 +115,42 @@ public class UserController {
 	    mv.setViewName("/goods/goodsView");
 	    return mv;
 	}
+	@RequestMapping("/wishlist")
+	@ResponseBody
+	public Map<Object, Object> test(@RequestBody ArrayList<InputOptionVo> optionList, HttpServletRequest request){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		boolean wishListCheck=false;
+	    for(InputOptionVo option : optionList) {
+	    	if(userService.getWishList(option, user)) {
+	    		wishListCheck=true;
+	    		userService.overwriteWishList(option, user);
+	    	}else {;
+		    	userService.setWishList(option, user);
+	    	}
+	    }
+	    map.put("wishListCheck", wishListCheck);
+	    return map;
+	}
 	@RequestMapping(value= {"/wishlist"}, method = RequestMethod.GET)
-	public ModelAndView wishListGet(ModelAndView mv, HttpServletRequest request) throws Exception{
-	    mv.setViewName("/goods/goodsWishList");
+	public ModelAndView wishListGet(ModelAndView mv, Criteria cri, HttpServletRequest request) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		PageMaker pm = userService.getPageMaker(cri, user);
+		ArrayList<BoardWishListVo> list;
+		list = userService.getBoardWishList(cri, user);
+		for(BoardWishListVo tmp : list) {
+			System.out.println(tmp);
+		}
+		mv.addObject("pm", pm);
+		mv.addObject("list", list);
+		mv.setViewName("/goods/goodsWishList");
 	    return mv;
 	}
-	@RequestMapping(value= {"/wishlist"}, method = RequestMethod.POST)
+	
+	
+	/*@RequestMapping(value= {"/gocart"}, method = RequestMethod.POST)
 	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count, GoodsVo goods, HttpServletRequest request) throws Exception{
+		mv.setViewName("redirect:/wishlist");
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		System.out.println(goods);
 		System.out.println(user);
@@ -127,20 +158,7 @@ public class UserController {
 			System.out.println(color[i] + ':' + count[i]);
 		}	
 		for(int i=0; i<color.length; i++) {
-			userService.setWishList(color[i], count[i], goods, user);
 		}	
-		mv.setViewName("redirect:/wishlist");
 		return mv;
-	}
-/*	@RequestMapping("/test")
-	@ResponseBody
-	public Map<Object, Object> test(@RequestBody ArrayList<XXXVO> arr){
-	    Map<Object, Object> map = new HashMap<Object, Object>();
-	    for(xxxVo tmp : arr) {
-	    	System.out.println(tmp);
-	    }
-	    boolean i=true;
-	    map.put("i", i);
-	    return map;
 	}*/
 }

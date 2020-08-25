@@ -9,10 +9,13 @@ import org.springframework.stereotype.Service;
 import kr.ajs.portfolio.dao.UserDao;
 import kr.ajs.portfolio.pagination.Criteria;
 import kr.ajs.portfolio.pagination.PageMaker;
+import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
+import kr.ajs.portfolio.vo.WishListVo;
+import kr.ajs.portfolio.vo.InputOptionVo;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -45,13 +48,14 @@ public class UserServiceImp implements UserService {
 	@Override
 	public ArrayList<GoodsVo> getGoodsList(int type, Criteria cri) {
 		// TODO Auto-generated method stub
+	    cri.setPerPageNum(12);
 		return userDao.getGoodsList(type, cri);
 	}
 	@Override
 	public PageMaker getPageMaker(Criteria cri, int type) {
 		// TODO Auto-generated method stub
 		PageMaker pm = new PageMaker();
-	    int totalCount = userDao.getTotalCount(type);
+	    int totalCount = userDao.getGoodsTotalCount(type);
 	    pm.setCriteria(cri);
 	    pm.setTotalCount(totalCount);
 		return pm;
@@ -72,9 +76,38 @@ public class UserServiceImp implements UserService {
 		return userDao.getOptionList(num);
 	}
 	@Override
-	public void setWishList(String color, int count, GoodsVo goods, UserVo user) {
+	public void setWishList(InputOptionVo option, UserVo user) {
 		// TODO Auto-generated method stub
-		userDao.setWishList(color, count, goods, user);
-		
+		userDao.setWishList(option, user);
+	}
+	@Override
+	public boolean getWishList(InputOptionVo option, UserVo user) {
+		// TODO Auto-generated method stub
+		WishListVo wishListCheck = userDao.getWishList(option, user);
+		if(wishListCheck!=null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	@Override
+	public void overwriteWishList(InputOptionVo option, UserVo user) {
+		// TODO Auto-generated method stub
+		userDao.overwriteWishList(option, user);
+	}
+	@Override
+	public PageMaker getPageMaker(Criteria cri, UserVo user) {
+		// TODO Auto-generated method stub
+		PageMaker pm = new PageMaker();
+		int totalCount = userDao.getWishListTotalCount(user);
+	    pm.setCriteria(cri);
+	    pm.setTotalCount(totalCount);
+		return pm;
+	}
+	@Override
+	public ArrayList<BoardWishListVo> getBoardWishList(Criteria cri, UserVo user) {
+		// TODO Auto-generated method stub
+		cri.setPerPageNum(6);
+		return userDao.getBoardWishList(cri, user);
 	}
 }
