@@ -112,4 +112,9 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		userDao.deleteWishList(wishList, user);
 	}
+	@Override
+	public void addWishListCart(InputOptionVo wishList, UserVo user) {
+		// TODO Auto-generated method stub
+		userDao.addWishListCart(wishList, user);
+	}
 }

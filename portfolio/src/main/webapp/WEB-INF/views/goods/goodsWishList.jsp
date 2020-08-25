@@ -17,7 +17,7 @@
 						<td class="user-wishList-goodsImg"><img src="<%=request.getContextPath()%>/resources/image/goodsImg${wishList.goodsImg}" alt="" ></td>
 						<td class="user-wishList-goodsInfo">제품명 : <span class="user-wishList-goodsName">${wishList.goodsName}</span> / 색상 : <span class="user-wishList-optionColor">${wishList.optionColor}</span></td>
 						<td class="user-wishList-goodsPrice">${wishList.goodsPrice} 원</td>
-						<td class="user-wishList-goodsCount">${wishList.wishListCount} 개</td>
+						<td class="user-wishList-goodsCount"><span class="user-wishList-wishListCount">${wishList.wishListCount}</span> 개</td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -55,19 +55,20 @@
 			if($(this).is(':checked')){
 				var color = $(this).parent().siblings('.user-wishList-goodsInfo').children('.user-wishList-optionColor').text();
 				var goods = $(this).parent().siblings('.user-wishList-goodsInfo').children('.user-wishList-goodsName').text();
-				arr.push({'color':color, 'goods':goods});
+				var count = $(this).parent().siblings('.user-wishList-goodsCount').children('.user-wishList-wishListCount').text();
+				arr.push({'color':color, 'goods':goods, 'count':count});
 			}
 		})
 		$.ajax({
 			async:false,
 			type:'POST',
 			data: JSON.stringify(arr),
-			url:"<%=request.getContextPath()%>/gocart",
+			url:"<%=request.getContextPath()%>/wishListCart",
 			dataType:"json",
 			contentType:"application/json; charset=UTF-8",
 			success : function(data){
-				if(data){
-				}
+				alert('장바구니로 이동합니다.')
+				location.href = "<%=request.getContextPath()%>/cart"
 			}
 		});
 		$('.user-wishList-goodsCheckAll').prop('checked', false);

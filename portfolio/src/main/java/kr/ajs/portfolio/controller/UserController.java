@@ -146,14 +146,16 @@ public class UserController {
 		}
 	    return mv;
 	}
-	@RequestMapping("/gocart")
+	@RequestMapping("/wishListCart")
 	@ResponseBody
-	public Map<Object, Object> test(@RequestBody ArrayList<InputOptionVo> optionList, HttpServletRequest request){
+	public Map<Object, Object> test(@RequestBody ArrayList<InputOptionVo> wishList, HttpServletRequest request){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		System.out.println(user);
-	    for(InputOptionVo option : optionList) {
-	    	System.out.println(option);
+	    for(InputOptionVo wishListItem : wishList) {
+	    	System.out.println(wishListItem);
+	    	userService.addWishListCart(wishListItem, user);
+	    	userService.deleteWishList(wishListItem, user);
 	    }
 	    return map;
 	}

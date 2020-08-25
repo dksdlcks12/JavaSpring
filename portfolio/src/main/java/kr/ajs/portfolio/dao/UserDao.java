@@ -37,4 +37,6 @@ public interface UserDao {
 	public ArrayList<BoardWishListVo> getBoardWishList(@Param("cri")Criteria cri, @Param("user")UserVo user);
 
 	public void deleteWishList(@Param("wishList")InputOptionVo wishList, @Param("user")UserVo user);
+
+	public void addWishListCart(@Param("wishList")InputOptionVo wishList, @Param("user")UserVo user);
 }

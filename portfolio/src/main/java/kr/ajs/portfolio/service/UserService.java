@@ -38,4 +38,6 @@ public interface UserService {
 	public ArrayList<BoardWishListVo> getBoardWishList(Criteria cri, UserVo user);
 
 	public void deleteWishList(InputOptionVo wishListItem, UserVo user);
+
+	public void addWishListCart(InputOptionVo wishListItem, UserVo user);
 }

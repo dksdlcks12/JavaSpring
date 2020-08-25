@@ -75,4 +75,10 @@
 		and wishList_userId = #{user.userId}
 		and wishList_optionNum = (select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{wishList.goods} and optionColor = #{wishList.color})
 	</delete>
+	<insert id="addWishListCart">
+		insert into cart (cart_postNum, cart_userId, cartCount, cart_optionNum)
+		values (
+		(select postNum from post join goods on goodsNum=postNum where goodsName = #{wishList.goods}), #{user.userId}, #{wishList.count}, 
+		(select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{wishList.goods} and optionColor = #{wishList.color}))
+	</insert>
 </mapper>
