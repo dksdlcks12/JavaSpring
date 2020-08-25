@@ -54,6 +54,7 @@ public class UserServiceImp implements UserService {
 	@Override
 	public PageMaker getPageMaker(Criteria cri, int type) {
 		// TODO Auto-generated method stub
+		cri.setPerPageNum(12);
 		PageMaker pm = new PageMaker();
 	    int totalCount = userDao.getGoodsTotalCount(type);
 	    pm.setCriteria(cri);
@@ -91,13 +92,9 @@ public class UserServiceImp implements UserService {
 		}
 	}
 	@Override
-	public void overwriteWishList(InputOptionVo option, UserVo user) {
-		// TODO Auto-generated method stub
-		userDao.overwriteWishList(option, user);
-	}
-	@Override
 	public PageMaker getPageMaker(Criteria cri, UserVo user) {
 		// TODO Auto-generated method stub
+		cri.setPerPageNum(6);
 		PageMaker pm = new PageMaker();
 		int totalCount = userDao.getWishListTotalCount(user);
 	    pm.setCriteria(cri);

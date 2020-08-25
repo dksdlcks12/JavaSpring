@@ -32,8 +32,6 @@ public interface UserDao {
 
 	public WishListVo getWishList(@Param("option")InputOptionVo option, @Param("user")UserVo user);
 
-	public void overwriteWishList(@Param("option")InputOptionVo option, @Param("user")UserVo user);
-
 	public int getWishListTotalCount(@Param("user")UserVo user);
 
 	public ArrayList<BoardWishListVo> getBoardWishList(@Param("cri")Criteria cri, @Param("user")UserVo user);

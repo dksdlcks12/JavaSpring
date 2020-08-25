@@ -33,8 +33,6 @@ public interface UserService {
 
 	public boolean getWishList(InputOptionVo option, UserVo user);
 
-	public void overwriteWishList(InputOptionVo option, UserVo user);
-
 	public PageMaker getPageMaker(Criteria cri, UserVo user);
 
 	public ArrayList<BoardWishListVo> getBoardWishList(Criteria cri, UserVo user);

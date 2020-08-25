@@ -55,11 +55,9 @@
 	font-size: 20px;
 	padding-right: 10px;
 }
-.user-wishList-goodsCount>input{
+.user-wishList-goodsCount{
 	font-size: 20px;
-	width: 60px;
-	margin-left: 45px;
-	text-align: right;
+	text-align: center;
 }
 .user-wishList-buttonBox{
 	height: 50px;

@@ -60,11 +60,6 @@
 		(select postNum from post join goods on goodsNum=postNum where goodsName = #{option.goods}), #{user.userId}, #{option.count}, 
 		(select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{option.goods} and optionColor = #{option.color}))
 	</insert>
-	<update id="overwriteWishList">
-		update wishlist set wishListCount = #{option.count} where wishList_postNum = (select postNum from post join goods on goodsNum=postNum where goodsName = #{option.goods})
-		and wishList_userId = #{user.userId}
-		and wishList_optionNum = (select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{option.goods} and optionColor = #{option.color})
-	</update>
 	<select id="getWishListTotalCount" resultType="int">
 		select count(*) from wishlist where wishList_userId = #{user.userId}
 	</select>

@@ -14,9 +14,9 @@
 				<tr>
 					<td><input type="checkbox" class="user-wishList-goodsCheck"></td>
 					<td class="user-wishList-goodsImg"><img src="<%=request.getContextPath()%>/resources/image/goodsImg${wishList.goodsImg}" alt="" ></td>
-					<td class="user-wishList-goodsInfo">제품명 : ${wishList.goodsName} / 색상 : ${wishList.optionColor}</td>
-					<td class="user-wishList-goodsPrice">${wishList.goodsPrice}</td>
-					<td class="user-wishList-goodsCount"><input type="number" value="${wishList.wishListCount}"></td>
+					<td class="user-wishList-goodsInfo">제품명 : <span class="user-wishList-goodsName">${wishList.goodsName}</span> / 색상 : <span class="user-wishList-optionColor">${wishList.optionColor}</span></td>
+					<td class="user-wishList-goodsPrice">${wishList.goodsPrice} 원</td>
+					<td class="user-wishList-goodsCount">${wishList.wishListCount} 개</td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -27,17 +27,47 @@
 		<c:if test="${pm.endPage!=1}">
 			<ul class="common-goodsList-pagination pagination justify-content-center">
 				<c:if test="${pm.criteria.page!=1}">
-				<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/goodsList?type=${type}&page=${pm.criteria.page-1}"><i class="fas fa-angle-left"></i></a></li>
+				<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/wishlist?page=${pm.criteria.page-1}"><i class="fas fa-angle-left"></i></a></li>
 				</c:if>
 			    <c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="index">
 			        <li class="page-item <c:if test="${index==pm.criteria.page}">active</c:if>">
-			            <a class="page-link" href="<%=request.getContextPath()%>/goodsList?type=${type}&page=${index}">${index}</a>
+			            <a class="page-link" href="<%=request.getContextPath()%>/wishlist?page=${index}">${index}</a>
 			        </li>
 			    </c:forEach>
 			    <c:if test="${pm.criteria.page!=pm.endPage}">
-				<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/goodsList?type=${type}&page=${pm.criteria.page+1}"><i class="fas fa-angle-right"></i></a></li>
+				<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/wishlist?page=${pm.criteria.page+1}"><i class="fas fa-angle-right"></i></a></li>
 				</c:if>
 			</ul>
 		</c:if>
+		<c:if test="${pm.criteria.page>pm.endPage}">
+			<script>
+				location.href = "<%=request.getContextPath()%>/wishlist?page=${pm.endPage}"
+			</script>
+		</c:if>
 	</div>
 </div>
+<script>
+	$('.user-wishList-goodsGoCart').click(function(){
+		var arr = [];
+		$('.user-wishList-goodsCheck').each(function(){
+			if($(this).is(':checked')){
+				var color = $(this).parent().siblings('.user-wishList-goodsInfo').children('.user-wishList-optionColor').text();
+				var goods = $(this).parent().siblings('.user-wishList-goodsInfo').children('.user-wishList-goodsName').text();
+				arr.push({'color':color, 'goods':goods});
+			}
+		})
+		$.ajax({
+			async:false,
+			type:'POST',
+			data: JSON.stringify(arr),
+			url:"<%=request.getContextPath()%>/gocart",
+			dataType:"json",
+			contentType:"application/json; charset=UTF-8",
+			success : function(data){
+				if(data){
+				}
+			}
+		});
+		$('.user-wishList-goodsCheckAll').prop('checked', false);
+	})
+</script>
