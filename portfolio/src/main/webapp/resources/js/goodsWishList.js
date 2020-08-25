@@ -6,12 +6,4 @@ $(function(){
 			$('.user-wishList-goodsCheck').prop('checked', false);
 		}
 	})
-	$('.user-wishList-goodsDelete').click(function(){
-		$('.user-wishList-goodsCheck').each(function(){
-			if($(this).is(':checked')){
-				$(this).parent().parent().remove();
-			}
-		})
-		$('.user-wishList-goodsCheckAll').prop('checked', false);
-	})
 })

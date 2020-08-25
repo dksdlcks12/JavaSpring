@@ -107,4 +107,9 @@ public class UserServiceImp implements UserService {
 		cri.setPerPageNum(6);
 		return userDao.getBoardWishList(cri, user);
 	}
+	@Override
+	public void deleteWishList(InputOptionVo wishList, UserVo user) {
+		// TODO Auto-generated method stub
+		userDao.deleteWishList(wishList, user);
+	}
 }

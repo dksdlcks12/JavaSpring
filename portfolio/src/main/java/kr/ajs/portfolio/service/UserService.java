@@ -36,4 +36,6 @@ public interface UserService {
 	public PageMaker getPageMaker(Criteria cri, UserVo user);
 
 	public ArrayList<BoardWishListVo> getBoardWishList(Criteria cri, UserVo user);
+
+	public void deleteWishList(InputOptionVo wishListItem, UserVo user);
 }

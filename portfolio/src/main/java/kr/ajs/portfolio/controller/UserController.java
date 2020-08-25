@@ -157,6 +157,18 @@ public class UserController {
 	    }
 	    return map;
 	}
+	@RequestMapping("/wishlistdel")
+	@ResponseBody
+	public Map<Object, Object> test2(@RequestBody ArrayList<InputOptionVo> wishList, HttpServletRequest request){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		System.out.println(user);
+	    for(InputOptionVo wishListItem : wishList) {
+	    	System.out.println(wishListItem);
+	    	userService.deleteWishList(wishListItem, user);
+	    }
+	    return map;
+	}
 	/*@RequestMapping(value= {"/gocart"}, method = RequestMethod.POST)
 	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count, GoodsVo goods, HttpServletRequest request) throws Exception{
 		mv.setViewName("redirect:/wishlist");
