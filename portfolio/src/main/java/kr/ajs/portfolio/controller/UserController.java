@@ -169,6 +169,11 @@ public class UserController {
 	    }
 	    return map;
 	}
+	@RequestMapping(value= {"/cart"}, method = RequestMethod.GET)
+	public ModelAndView cartGet(ModelAndView mv) throws Exception{
+	    mv.setViewName("/goods/goodsCart");
+	    return mv;
+	}
 	/*@RequestMapping(value= {"/gocart"}, method = RequestMethod.POST)
 	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count, GoodsVo goods, HttpServletRequest request) throws Exception{
 		mv.setViewName("redirect:/wishlist");

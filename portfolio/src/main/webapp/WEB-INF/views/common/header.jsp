@@ -9,7 +9,7 @@
 					<a href="#" class="user-set-notice">공지사항</a>
 					<a href="#" class="user-set-QA">Q&A</a>
 					<a href="#" class="user-set-review">리뷰</a>
-					<a href="#" class="user-set-cart">장바구니</a>
+					<a href="<%=request.getContextPath()%>/cart" class="user-set-cart">장바구니</a>
 					<a href="<%=request.getContextPath()%>/wishlist" class="user-set-wishList">위시리스트</a>
 					<a href="#" class="user-set-myPage">마이페이지</a>
 					<c:if test="${user==null}">
