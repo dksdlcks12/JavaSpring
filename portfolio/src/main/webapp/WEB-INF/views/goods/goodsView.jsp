@@ -4,7 +4,7 @@
 <div class="common-goodsView-box">
 	<div class="common-goodsView-goodsAddBox">
 			<div class="common-goodsView-leftBox">
-				<img src="<%=request.getContextPath()%>/resources/image/goodsImg${goods.goodsImg}" alt="" class="common-goodsView-goodsImg">
+				<img src="<%=request.getContextPath()%>/resources/image/goodsImg/${goods.goodsImg}" alt="" class="common-goodsView-goodsImg">
 			</div>
 		<form action="#" method="POST">
 			<div class="common-goodsView-rightBox">
@@ -188,7 +188,7 @@
 			<div class="common-goodsView-goodsExplain">제품설명</div>
 			<div class="common-goodsView-deliveryExplain">배송/반품정보</div>
 		</div>
-		<img src="<%=request.getContextPath()%>/resources/image/goodsImg${post.postImg}" alt="" class="common-goodsView-goodsExplainImg">
+		<img src="<%=request.getContextPath()%>/resources/image/goodsImg/${post.postImg}" alt="" class="common-goodsView-goodsExplainImg">
 		<div id="common-goodsView-deliveryExplainMenuBox"></div>
 		<div class="common-goodsView-deliveryExplainMenuBox">
 			<div class="common-goodsView-goodsExplain">제품설명</div>

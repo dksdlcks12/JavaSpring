@@ -67,7 +67,7 @@
 						<input type="text" class="admin-goodsAdd-goodsPrice number"  name="goodsPrice">
 						<div class="admin-goodsAdd-goodsPayPointTitle">적립금</div>
 						<input type="text" class="admin-goodsAdd-goodsPayPoint number" name="goodsPoint">
-						<div class="admin-goodsAdd-goodsDiscountTitle">할인율</div>
+						<div class="admin-goodsAdd-goodsDiscountTitle">할인율(%)</div>
 						<input type="text" class="admin-goodsAdd-goodsDiscount number" name="postDiscount">
 					</div>
 					<div class="admin-goodsAdd-goodsTypeBox">

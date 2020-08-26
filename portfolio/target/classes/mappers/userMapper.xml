@@ -41,13 +41,13 @@
 		</if>
 	</select>
 	<select id="getGoods" resultType="kr.ajs.portfolio.vo.GoodsVo">
-		select * from goods where goodsNum = ${num}
+		select * from goods where goodsNum = #{num}
 	</select>
 	<select id="getPost" resultType="kr.ajs.portfolio.vo.PostVo">
-		select * from post where post_goodsNum = ${num}
+		select * from post where post_goodsNum = #{num}
 	</select>
 	<select id="getOptionList" resultType="kr.ajs.portfolio.vo.OptionVo">
-		select * from portfolio.option where option_goodsNum = ${num}
+		select * from portfolio.option where option_goodsNum = #{num}
 	</select>
 	<select id="getWishList" resultType="kr.ajs.portfolio.vo.WishListVo">
 		select * from wishlist where wishList_postNum = (select postNum from post join goods on goodsNum=postNum where goodsName = #{option.goods})
@@ -64,10 +64,12 @@
 		select count(*) from wishlist where wishList_userId = #{user.userId}
 	</select>
 	<select id="getBoardWishList" resultType="kr.ajs.portfolio.vo.BoardWishListVo">
-		SELECT wishListNum, wishListCount, goodsName, goodsImg, goodsPrice, optionColor from wishlist
+		select wishListNum, wishListCount, goodsName, goodsImg, goodsPrice, optionColor from wishlist
+		join post on wishList_postNum = postNum
 		join portfolio.option on wishList_optionNum = optionNum 
-		join goods on option_goodsNum = goodsNum 
-		where wishList_userId = 'qwer1234' 
+		join goods on option_goodsNum = goodsNum
+		where wishList_userId = #{user.userId}
+		and postIsDel = 'N'
 		order by wishListNum desc limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<delete id="deleteWishList">
@@ -81,4 +83,16 @@
 		(select postNum from post join goods on goodsNum=postNum where goodsName = #{wishList.goods}), #{user.userId}, #{wishList.count}, 
 		(select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{wishList.goods} and optionColor = #{wishList.color}))
 	</insert>
+	<select id="getCart" resultType="kr.ajs.portfolio.vo.CartVo">
+		select * from cart where cart_userId=#{user.userId}
+	</select>
+	<select id="getBoardCart" resultType="kr.ajs.portfolio.vo.BoardCartVo">
+		select cartNum, cartCount, goodsName, goodsImg, postDiscount, goodsPrice, goodsPoint, optionColor from cart
+		join post on cart_postNum = postNum
+		join portfolio.option on cart_optionNum = optionNum 
+		join goods on option_goodsNum = goodsNum
+		where cart_userId = #{user.userId}
+		and postIsDel = 'N'
+		order by cartNum desc
+	</select>
 </mapper>

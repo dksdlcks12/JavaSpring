@@ -9,13 +9,15 @@ import org.springframework.stereotype.Service;
 import kr.ajs.portfolio.dao.UserDao;
 import kr.ajs.portfolio.pagination.Criteria;
 import kr.ajs.portfolio.pagination.PageMaker;
+import kr.ajs.portfolio.vo.BoardCartVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
+import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
+import kr.ajs.portfolio.vo.InputOptionVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
 import kr.ajs.portfolio.vo.WishListVo;
-import kr.ajs.portfolio.vo.InputOptionVo;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -116,5 +118,15 @@ public class UserServiceImp implements UserService {
 	public void addWishListCart(InputOptionVo wishList, UserVo user) {
 		// TODO Auto-generated method stub
 		userDao.addWishListCart(wishList, user);
+	}
+	@Override
+	public ArrayList<CartVo> getCart(UserVo user) {
+		// TODO Auto-generated method stub
+		return userDao.getCart(user);
+	}
+	@Override
+	public ArrayList<BoardCartVo> getBoardCart(UserVo user) {
+		// TODO Auto-generated method stub
+		return userDao.getBoardCart(user);
 	}
 }

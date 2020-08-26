@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import kr.ajs.portfolio.pagination.Criteria;
 import kr.ajs.portfolio.pagination.PageMaker;
+import kr.ajs.portfolio.vo.BoardCartVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
+import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.PostVo;
@@ -40,4 +42,8 @@ public interface UserService {
 	public void deleteWishList(InputOptionVo wishListItem, UserVo user);
 
 	public void addWishListCart(InputOptionVo wishListItem, UserVo user);
+
+	public ArrayList<CartVo> getCart(UserVo user);
+
+	public ArrayList<BoardCartVo> getBoardCart(UserVo user);
 }

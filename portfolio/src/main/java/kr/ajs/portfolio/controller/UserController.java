@@ -18,7 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.ajs.portfolio.pagination.Criteria;
 import kr.ajs.portfolio.pagination.PageMaker;
 import kr.ajs.portfolio.service.UserService;
+import kr.ajs.portfolio.vo.BoardCartVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
+import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.InputOptionVo;
 import kr.ajs.portfolio.vo.OptionVo;
@@ -153,7 +155,6 @@ public class UserController {
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		System.out.println(user);
 	    for(InputOptionVo wishListItem : wishList) {
-	    	System.out.println(wishListItem);
 	    	userService.addWishListCart(wishListItem, user);
 	    	userService.deleteWishList(wishListItem, user);
 	    }
@@ -164,16 +165,21 @@ public class UserController {
 	public Map<Object, Object> test2(@RequestBody ArrayList<InputOptionVo> wishList, HttpServletRequest request){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		System.out.println(user);
 	    for(InputOptionVo wishListItem : wishList) {
-	    	System.out.println(wishListItem);
 	    	userService.deleteWishList(wishListItem, user);
 	    }
 	    return map;
 	}
 	@RequestMapping(value= {"/cart"}, method = RequestMethod.GET)
-	public ModelAndView cartGet(ModelAndView mv) throws Exception{
-	    mv.setViewName("/goods/goodsCart");
+	public ModelAndView cartGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		if(user!=null) {
+			ArrayList<BoardCartVo> list = userService.getBoardCart(user);
+			mv.addObject("list", list);
+		    mv.setViewName("/goods/goodsCart");
+		}else {
+			mv.setViewName("redirect:/login");
+		}
 	    return mv;
 	}
 	/*@RequestMapping(value= {"/gocart"}, method = RequestMethod.POST)

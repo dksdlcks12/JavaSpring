@@ -5,13 +5,15 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Param;
 
 import kr.ajs.portfolio.pagination.Criteria;
+import kr.ajs.portfolio.vo.BoardCartVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
+import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
+import kr.ajs.portfolio.vo.InputOptionVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
 import kr.ajs.portfolio.vo.WishListVo;
-import kr.ajs.portfolio.vo.InputOptionVo;
 
 public interface UserDao {
     public UserVo getUser(@Param("id")String id);
@@ -39,4 +41,8 @@ public interface UserDao {
 	public void deleteWishList(@Param("wishList")InputOptionVo wishList, @Param("user")UserVo user);
 
 	public void addWishListCart(@Param("wishList")InputOptionVo wishList, @Param("user")UserVo user);
+
+	public ArrayList<CartVo> getCart(@Param("user")UserVo user);
+
+	public ArrayList<BoardCartVo> getBoardCart(@Param("user")UserVo user);
 }

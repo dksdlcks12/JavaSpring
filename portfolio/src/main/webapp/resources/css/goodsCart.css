@@ -33,23 +33,23 @@ td{
 	text-align: center;
 }
 .user-cart-goodsInfoTitle{
-	width: 30%;
+	width: 40%;
 	text-align: center;
 }
 .user-cart-goodsPriceTitle{
-	width: 15%;
+	width: 12%;
 	text-align: center;
 }
 .user-cart-goodsCountTitle{
 	width: 10%;
 	text-align: center;
 }
-.user-cart-goodsUsePointTitle{
-	width: 15%;
+.user-cart-goodsPointTitle{
+	width: 11%;
 	text-align: center;
 }
 .user-cart-goodsGoodsAllPriceTitle{
-	width: 15%;
+	width: 12%;
 	text-align: center;
 }
 .user-cart-goodsImg>img{
@@ -59,25 +59,21 @@ td{
 }
 .user-cart-goodsInfo{
 	padding-left: 10px;
-	font-size: 20px;
+	font-size: 18px;
 }
 .user-cart-goodsPrice, .user-cart-goodsGoodsAllPrice{
 	text-align: right;
-	font-size: 20px;
+	font-size: 18px;
 	padding-right: 10px;
 }
-.user-cart-goodsCount>input, .user-cart-goodsUsePoint>input{
-	font-size: 20px;
+.user-cart-goodsCount>input, .user-cart-goodsPoint{
+	font-size: 18px;
 	width: 60px;
-	margin-left: 17px;
+	margin-left: 18px;
 	text-align: center;
 }
-.user-cart-goodsUsePoint>input{
-	text-align: right;
-	padding-right: 10px;
-}
-.user-cart-goodsUsePoint>input{
-	margin-left: 20px;
+.user-cart-goodsPoint{
+	margin-left: 0;
 	width: 100px;
 }
 .user-cart-goodsDelete{
