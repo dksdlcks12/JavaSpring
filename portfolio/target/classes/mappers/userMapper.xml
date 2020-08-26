@@ -54,7 +54,7 @@
 		and wishList_userId = #{user.userId}
 		and wishList_optionNum = (select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{option.goods} and optionColor = #{option.color})
 	</select>
-	<insert id="setWishList">
+	<insert id="addWishList">
 		insert into wishlist (wishList_postNum, wishList_userId, wishListCount, wishList_optionNum)
 		values (
 		(select postNum from post join goods on goodsNum=postNum where goodsName = #{option.goods}), #{user.userId}, #{option.count}, 
@@ -83,9 +83,6 @@
 		(select postNum from post join goods on goodsNum=postNum where goodsName = #{wishList.goods}), #{user.userId}, #{wishList.count}, 
 		(select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{wishList.goods} and optionColor = #{wishList.color}))
 	</insert>
-	<select id="getCart" resultType="kr.ajs.portfolio.vo.CartVo">
-		select * from cart where cart_userId=#{user.userId}
-	</select>
 	<select id="getBoardCart" resultType="kr.ajs.portfolio.vo.BoardCartVo">
 		select cartNum, cartCount, goodsName, goodsImg, postDiscount, goodsPrice, goodsPoint, optionColor from cart
 		join post on cart_postNum = postNum
@@ -100,4 +97,15 @@
 		and cart_userId = #{user.userId}
 		and cart_optionNum = (select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{cartList.goods} and optionColor = #{cartList.color})
 	</delete>
+	<select id="getCart" resultType="kr.ajs.portfolio.vo.CartVo">
+		select * from cart where cart_postNum = (select postNum from post join goods on goodsNum=postNum where goodsName = #{option.goods})
+		and cart_userId=#{user.userId}
+		and cart_optionNum = (select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{option.goods} and optionColor = #{option.color})
+	</select>
+		<insert id="addGoodsViewCart">
+		insert into cart (cart_postNum, cart_userId, cartCount, cart_optionNum)
+		values (
+		(select postNum from post join goods on goodsNum=postNum where goodsName = #{option.goods}), #{user.userId}, #{option.count}, 
+		(select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{option.goods} and optionColor = #{option.color}))
+	</insert>
 </mapper>

@@ -79,9 +79,9 @@ public class UserServiceImp implements UserService {
 		return userDao.getOptionList(num);
 	}
 	@Override
-	public void setWishList(OptionListVo option, UserVo user) {
+	public void addWishList(OptionListVo option, UserVo user) {
 		// TODO Auto-generated method stub
-		userDao.setWishList(option, user);
+		userDao.addWishList(option, user);
 	}
 	@Override
 	public boolean getWishList(OptionListVo option, UserVo user) {
@@ -120,11 +120,6 @@ public class UserServiceImp implements UserService {
 		userDao.addWishListCart(wishList, user);
 	}
 	@Override
-	public ArrayList<CartVo> getCart(UserVo user) {
-		// TODO Auto-generated method stub
-		return userDao.getCart(user);
-	}
-	@Override
 	public ArrayList<BoardCartVo> getBoardCart(UserVo user) {
 		// TODO Auto-generated method stub
 		return userDao.getBoardCart(user);
@@ -133,5 +128,21 @@ public class UserServiceImp implements UserService {
 	public void deleteCartList(OptionListVo cartList, UserVo user) {
 		// TODO Auto-generated method stub
 		userDao.deleteCartList(cartList, user);
+	}
+	@Override
+	public boolean getcart(OptionListVo option, UserVo user) {
+		// TODO Auto-generated method stub
+		CartVo cartCheck = userDao.getCart(option, user);
+		System.out.println(cartCheck);
+		if(cartCheck!=null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	@Override
+	public void addGoodsViewCart(OptionListVo option, UserVo user) {
+		// TODO Auto-generated method stub
+		userDao.addGoodsViewCart(option, user);
 	}
 }

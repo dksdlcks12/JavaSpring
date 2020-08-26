@@ -31,7 +31,7 @@ public interface UserService {
 
 	public ArrayList<OptionVo> getOptionList(int num);
 	
-	public void setWishList(OptionListVo option, UserVo user);
+	public void addWishList(OptionListVo option, UserVo user);
 
 	public boolean getWishList(OptionListVo option, UserVo user);
 
@@ -43,9 +43,11 @@ public interface UserService {
 
 	public void addWishListCart(OptionListVo wishListItem, UserVo user);
 
-	public ArrayList<CartVo> getCart(UserVo user);
-
 	public ArrayList<BoardCartVo> getBoardCart(UserVo user);
 
 	public void deleteCartList(OptionListVo cartListItem, UserVo user);
+	
+	public boolean getcart(OptionListVo option, UserVo user);
+
+	public void addGoodsViewCart(OptionListVo option, UserVo user);
 }

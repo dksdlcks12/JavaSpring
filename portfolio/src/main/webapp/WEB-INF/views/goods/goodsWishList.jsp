@@ -63,11 +63,15 @@
 			async:false,
 			type:'POST',
 			data: JSON.stringify(arr),
-			url:"<%=request.getContextPath()%>/wishListCart",
+			url:"<%=request.getContextPath()%>/wishlistcart",
 			dataType:"json",
 			contentType:"application/json; charset=UTF-8",
 			success : function(data){
-				alert('장바구니로 이동합니다.')
+				if(data.cartCheck){
+					alert('장바구니에 있는 항목은 제외하고 이동합니다.')
+				}else{
+					alert('장바구니로 이동합니다.')
+				}
 				location.href = "<%=request.getContextPath()%>/cart"
 			}
 		});
@@ -92,7 +96,7 @@
 			dataType:"json",
 			contentType:"application/json; charset=UTF-8",
 			success : function(data){
-				alert('삭제 완료')
+				alert('선택한 항목을 삭제하였습니다.')
 				location.reload();
 			}
 		});

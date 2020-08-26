@@ -127,7 +127,7 @@ public class UserController {
 	    	if(userService.getWishList(option, user)) {
 	    		wishListCheck=true;
 	    	}else {
-		    	userService.setWishList(option, user);
+		    	userService.addWishList(option, user);
 	    	}
 	    }
 	    map.put("wishListCheck", wishListCheck);
@@ -148,16 +148,21 @@ public class UserController {
 		}
 	    return mv;
 	}
-	@RequestMapping("/wishListCart")
+	@RequestMapping("/wishlistcart")
 	@ResponseBody
-	public Map<Object, Object> test(@RequestBody ArrayList<OptionListVo> wishList, HttpServletRequest request){
+	public Map<Object, Object> wishListCart(@RequestBody ArrayList<OptionListVo> wishList, HttpServletRequest request){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		System.out.println(user);
+	    boolean cartCheck=false;
 	    for(OptionListVo wishListItem : wishList) {
-	    	userService.addWishListCart(wishListItem, user);
-	    	userService.deleteWishList(wishListItem, user);
+	    	if(userService.getcart(wishListItem, user)) {
+	    		cartCheck=true;
+	    	}else {
+		    	userService.addWishListCart(wishListItem, user);
+		    	userService.deleteWishList(wishListItem, user);
+	    	}
 	    }
+	    map.put("cartCheck", cartCheck);
 	    return map;
 	}
 	@RequestMapping("/wishlistdel")
@@ -190,6 +195,22 @@ public class UserController {
 	    for(OptionListVo cartListItem : cartList) {
 	    	userService.deleteCartList(cartListItem, user);
 	    }
+	    return map;
+	}
+	@RequestMapping("/goodsviewcart")
+	@ResponseBody
+	public Map<Object, Object> goodsViewCart(@RequestBody ArrayList<OptionListVo> optionList, HttpServletRequest request){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+	    boolean cartCheck=false;
+	    for(OptionListVo option : optionList) {
+	    	if(userService.getcart(option, user)) {
+	    		cartCheck=true;
+	    	}else {
+	    		userService.addGoodsViewCart(option, user);
+	    	}
+	    }
+	    map.put("cartCheck", cartCheck);
 	    return map;
 	}
 	/*@RequestMapping(value= {"/gocart"}, method = RequestMethod.POST)

@@ -48,6 +48,10 @@
 	height: 30px;
 	background-color: lightpink;
 }
+.common-goodsList-pagination{
+	margin-top: 20px;
+	margin-bottom: 0px;
+}
 .common-goodsList-pagination>*{
 	width: 50px;
 	font-size: 30px;

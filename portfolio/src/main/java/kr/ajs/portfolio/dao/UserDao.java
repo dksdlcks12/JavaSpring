@@ -30,7 +30,7 @@ public interface UserDao {
 
 	public ArrayList<OptionVo> getOptionList(@Param("num")int num);
 
-	public void setWishList(@Param("option")OptionListVo option, @Param("user")UserVo user);
+	public void addWishList(@Param("option")OptionListVo option, @Param("user")UserVo user);
 
 	public WishListVo getWishList(@Param("option")OptionListVo option, @Param("user")UserVo user);
 
@@ -42,9 +42,12 @@ public interface UserDao {
 
 	public void addWishListCart(@Param("wishList")OptionListVo wishList, @Param("user")UserVo user);
 
-	public ArrayList<CartVo> getCart(@Param("user")UserVo user);
-
 	public ArrayList<BoardCartVo> getBoardCart(@Param("user")UserVo user);
 
 	public void deleteCartList(@Param("cartList")OptionListVo cartList, @Param("user")UserVo user);
+	
+	public CartVo getCart(@Param("option")OptionListVo option, @Param("user")UserVo user);
+
+	public void addGoodsViewCart(@Param("option")OptionListVo option, @Param("user")UserVo user);
+
 }
