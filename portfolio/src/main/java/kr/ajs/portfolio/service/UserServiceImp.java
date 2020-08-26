@@ -145,4 +145,9 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		userDao.addGoodsViewCart(option, user);
 	}
+	@Override
+	public ArrayList<BoardCartVo> getBoardOrder(UserVo user, OptionListVo cart) {
+		// TODO Auto-generated method stub
+		return userDao.getBoardOrder(user, cart);
+	}
 }

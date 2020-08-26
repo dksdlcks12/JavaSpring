@@ -20,7 +20,6 @@ import kr.ajs.portfolio.pagination.PageMaker;
 import kr.ajs.portfolio.service.UserService;
 import kr.ajs.portfolio.vo.BoardCartVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
-import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
@@ -189,7 +188,7 @@ public class UserController {
 	}
 	@RequestMapping("/cartdel")
 	@ResponseBody
-	public Map<Object, Object> cartdel(@RequestBody ArrayList<OptionListVo> cartList, HttpServletRequest request){
+	public Map<Object, Object> cartDel(@RequestBody ArrayList<OptionListVo> cartList, HttpServletRequest request){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 	    for(OptionListVo cartListItem : cartList) {
@@ -211,6 +210,22 @@ public class UserController {
 	    	}
 	    }
 	    map.put("cartCheck", cartCheck);
+	    return map;
+	}
+	@RequestMapping(value= {"/order"}, method = RequestMethod.GET)
+	public ModelAndView goodsOrderGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+	    mv.setViewName("/goods/goodsOrder");
+	    return mv;
+	}
+	@RequestMapping("/cartorder")
+	@ResponseBody
+	public Map<Object, Object> cartOrder(@RequestBody ArrayList<OptionListVo> cartList, HttpServletRequest request){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		ArrayList<BoardCartVo> list = new ArrayList<BoardCartVo>();
+	    for(OptionListVo cartListItem : cartList) {
+	    	list.addAll(userService.getBoardOrder(user, cartListItem));
+	    }
 	    return map;
 	}
 	/*@RequestMapping(value= {"/gocart"}, method = RequestMethod.POST)

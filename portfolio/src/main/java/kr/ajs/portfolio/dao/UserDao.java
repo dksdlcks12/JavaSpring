@@ -50,4 +50,6 @@ public interface UserDao {
 
 	public void addGoodsViewCart(@Param("option")OptionListVo option, @Param("user")UserVo user);
 
+	public ArrayList<BoardCartVo> getBoardOrder(@Param("user")UserVo user, @Param("cart")OptionListVo cart);
+
 }

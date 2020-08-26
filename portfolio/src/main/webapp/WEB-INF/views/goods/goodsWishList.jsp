@@ -15,7 +15,7 @@
 					<tr>
 						<td><input type="checkbox" class="user-wishList-goodsCheck"></td>
 						<td class="user-wishList-goodsImg"><img src="<%=request.getContextPath()%>/resources/image/goodsImg/${wishList.goodsImg}" alt="" ></td>
-						<td class="user-wishList-goodsInfo">제품명 : <span class="user-wishList-goodsName">${wishList.goodsName}</span> / 색상 : <span class="user-wishList-optionColor">${wishList.optionColor}</span></td>
+						<td class="user-wishList-goodsInfo">제품명 : <span class="user-wishList-goodsName">${wishList.goodsName}</span><br>색상 : <span class="user-wishList-optionColor">${wishList.optionColor}</span></td>
 						<td class="user-wishList-goodsPrice">${wishList.goodsPrice} 원</td>
 						<td class="user-wishList-goodsCount"><span class="user-wishList-wishListCount">${wishList.wishListCount}</span> 개</td>
 					</tr>

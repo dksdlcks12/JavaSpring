@@ -17,7 +17,7 @@
 					<tr>
 						<td><input type="checkbox" class="user-cart-goodsCheck"></td>
 						<td class="user-cart-goodsImg"><img src="<%=request.getContextPath()%>/resources/image/goodsImg/${cart.goodsImg}" alt="" ></td>
-						<td class="user-cart-goodsInfo">제품명 : <span class="user-cart-goodsName">${cart.goodsName}</span> / 색상 : <span class="user-cart-optionColor">${cart.optionColor}</span></td>
+						<td class="user-cart-goodsInfo">제품명 : <span class="user-cart-goodsName">${cart.goodsName}</span><br>색상 : <span class="user-cart-optionColor">${cart.optionColor}</span></td>
 						<td class="user-cart-goodsPrice"><span class="user-cart-goodsPriceNumber">${cart.goodsDiscountPrice}</span>원</td>
 						<td class="user-cart-goodsCount"><input type="text" class="number" value="${cart.cartCount}"></td>
 						<td class="user-cart-goodsPoint">${cart.goodsPoint}</td>
@@ -26,7 +26,11 @@
 				</c:forEach>		
 			</table>
 			<button class="user-cart-goodsDelete">선택 삭제</button>
+			<form>
+			<input>
+			<input>
 			<button class="user-cart-goBuy">구매하기</button>
+			</form>
 			<div class="user-cart-totalPrice"></div>
 		</c:if>
 	</div>
@@ -35,14 +39,14 @@
 	var price = 0;
 	var count = 0; 
 	var totalPrice = 0;
+	var defaultDeliveryPrice = 2500;
+	var freeDeliveryLimit = 16000;
 	function totalPriceCalculation(){
 		totalPrice = 0;
-		var defaultDeliveryPrice = 2500;
-		var freeDeliveryLimit = 16000;
 		if($('.user-cart-goodsCheck').length!=0){
 			$('.user-cart-goodsGoodsAllPrice').each(function(){
 				totalPrice = totalPrice + Number($(this).children('.user-cart-goodsGoodsAllPriceNumber').text());
-				if(totalPrice<16000){
+				if(totalPrice<freeDeliveryLimit){
 					$('.user-cart-totalPrice').text('배송비 '+defaultDeliveryPrice+'원 + '+totalPrice+'원 = '+Number(totalPrice+defaultDeliveryPrice)+'원');
 				}else{
 					$('.user-cart-totalPrice').text('배송비 0원 + '+totalPrice+'원 = '+totalPrice+'원');
@@ -72,10 +76,10 @@
 		var arr = [];
 		$('.user-cart-goodsCheck').each(function(){
 			if($(this).is(':checked')){
-				$(this).parent().parent().remove();
 				var color = $(this).parent().siblings('.user-cart-goodsInfo').children('.user-cart-optionColor').text();
 				var goods = $(this).parent().siblings('.user-cart-goodsInfo').children('.user-cart-goodsName').text();
 				arr.push({'color':color, 'goods':goods});
+				$(this).parent().parent().remove();
 			}
 		})
 		$.ajax({
@@ -92,6 +96,26 @@
 		});
 		$('.user-cart-goodsCheckAll').prop('checked', false);
 		totalPriceCalculation();
+	})
+	$('.user-cart-goBuy').click(function(){
+		var arr = [];
+		$('.user-cart-goodsCheck').each(function(){
+			if($(this).is(':checked')){
+				var color = $(this).parent().siblings('.user-cart-goodsInfo').children('.user-cart-optionColor').text();
+				var goods = $(this).parent().siblings('.user-cart-goodsInfo').children('.user-cart-goodsName').text();
+				arr.push({'color':color, 'goods':goods});
+			}
+		})
+		$.ajax({
+			async:false,
+			type:'POST',
+			data: JSON.stringify(arr),
+			url:"<%=request.getContextPath()%>/cartorder",
+			dataType:"json",
+			contentType:"application/json; charset=UTF-8",
+			success : function(data){
+			}
+		});
 	})
 	totalPriceCalculation();
 </script>

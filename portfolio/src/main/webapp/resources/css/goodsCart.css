@@ -33,11 +33,11 @@ td{
 	text-align: center;
 }
 .user-cart-goodsInfoTitle{
-	width: 40%;
+	width: 37%;
 	text-align: center;
 }
 .user-cart-goodsPriceTitle{
-	width: 12%;
+	width: 15%;
 	text-align: center;
 }
 .user-cart-goodsCountTitle{
@@ -45,11 +45,11 @@ td{
 	text-align: center;
 }
 .user-cart-goodsPointTitle{
-	width: 11%;
+	width: 10%;
 	text-align: center;
 }
 .user-cart-goodsGoodsAllPriceTitle{
-	width: 12%;
+	width: 18%;
 	text-align: center;
 }
 .user-cart-goodsImg>img{

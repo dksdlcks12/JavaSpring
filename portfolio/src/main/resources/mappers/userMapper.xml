@@ -108,4 +108,15 @@
 		(select postNum from post join goods on goodsNum=postNum where goodsName = #{option.goods}), #{user.userId}, #{option.count}, 
 		(select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{option.goods} and optionColor = #{option.color}))
 	</insert>
+	<select id="getBoardOrder" resultType="kr.ajs.portfolio.vo.BoardCartVo">
+		select cartNum, cartCount, goodsName, goodsImg, postDiscount, goodsPrice, goodsPoint, optionColor from cart
+		join post on cart_postNum = postNum
+		join portfolio.option on cart_optionNum = optionNum 
+		join goods on option_goodsNum = goodsNum
+		where cart_userId = #{user.userId}
+		and optionColor = #{cart.color}
+		and goodsName = #{cart.goods}
+		and postIsDel = 'N'
+		order by cartNum desc
+	</select>
 </mapper>

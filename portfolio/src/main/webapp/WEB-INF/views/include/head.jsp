@@ -9,6 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/additional-methods.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/tilesSet.css">
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/tilesSet.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/pageDefault.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/userMain.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/userSignUp.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/userLogIn.css">
@@ -22,4 +23,5 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/goodsWishList.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/goodsCart.css">
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/goodsCart.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/pageDefaultSize.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/goodsOrder.css">
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/goodsOrder.js"></script>
