@@ -1,6 +1,6 @@
 package kr.ajs.portfolio.vo;
 
-public class InputOptionVo {
+public class OptionListVo {
 	private String color;
 	private int count;
 	private String goods;

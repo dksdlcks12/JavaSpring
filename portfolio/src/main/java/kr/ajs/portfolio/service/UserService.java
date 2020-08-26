@@ -12,7 +12,7 @@ import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
 import kr.ajs.portfolio.vo.WishListVo;
-import kr.ajs.portfolio.vo.InputOptionVo;
+import kr.ajs.portfolio.vo.OptionListVo;
 
 public interface UserService {
 	 public UserVo getUser(String id);
@@ -31,19 +31,21 @@ public interface UserService {
 
 	public ArrayList<OptionVo> getOptionList(int num);
 	
-	public void setWishList(InputOptionVo option, UserVo user);
+	public void setWishList(OptionListVo option, UserVo user);
 
-	public boolean getWishList(InputOptionVo option, UserVo user);
+	public boolean getWishList(OptionListVo option, UserVo user);
 
 	public PageMaker getPageMaker(Criteria cri, UserVo user);
 
 	public ArrayList<BoardWishListVo> getBoardWishList(Criteria cri, UserVo user);
 
-	public void deleteWishList(InputOptionVo wishListItem, UserVo user);
+	public void deleteWishList(OptionListVo wishListItem, UserVo user);
 
-	public void addWishListCart(InputOptionVo wishListItem, UserVo user);
+	public void addWishListCart(OptionListVo wishListItem, UserVo user);
 
 	public ArrayList<CartVo> getCart(UserVo user);
 
 	public ArrayList<BoardCartVo> getBoardCart(UserVo user);
+
+	public void deleteCartList(OptionListVo cartListItem, UserVo user);
 }

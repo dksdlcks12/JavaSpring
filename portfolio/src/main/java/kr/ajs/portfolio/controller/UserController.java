@@ -22,7 +22,7 @@ import kr.ajs.portfolio.vo.BoardCartVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
-import kr.ajs.portfolio.vo.InputOptionVo;
+import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
@@ -119,11 +119,11 @@ public class UserController {
 	}
 	@RequestMapping("/wishlist")
 	@ResponseBody
-	public Map<Object, Object> addWishListItem(@RequestBody ArrayList<InputOptionVo> optionList, HttpServletRequest request){
+	public Map<Object, Object> addWishListItem(@RequestBody ArrayList<OptionListVo> optionList, HttpServletRequest request){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		boolean wishListCheck=false;
-	    for(InputOptionVo option : optionList) {
+	    for(OptionListVo option : optionList) {
 	    	if(userService.getWishList(option, user)) {
 	    		wishListCheck=true;
 	    	}else {
@@ -150,11 +150,11 @@ public class UserController {
 	}
 	@RequestMapping("/wishListCart")
 	@ResponseBody
-	public Map<Object, Object> test(@RequestBody ArrayList<InputOptionVo> wishList, HttpServletRequest request){
+	public Map<Object, Object> test(@RequestBody ArrayList<OptionListVo> wishList, HttpServletRequest request){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		System.out.println(user);
-	    for(InputOptionVo wishListItem : wishList) {
+	    for(OptionListVo wishListItem : wishList) {
 	    	userService.addWishListCart(wishListItem, user);
 	    	userService.deleteWishList(wishListItem, user);
 	    }
@@ -162,10 +162,10 @@ public class UserController {
 	}
 	@RequestMapping("/wishlistdel")
 	@ResponseBody
-	public Map<Object, Object> test2(@RequestBody ArrayList<InputOptionVo> wishList, HttpServletRequest request){
+	public Map<Object, Object> wishListDel(@RequestBody ArrayList<OptionListVo> wishList, HttpServletRequest request){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
-	    for(InputOptionVo wishListItem : wishList) {
+	    for(OptionListVo wishListItem : wishList) {
 	    	userService.deleteWishList(wishListItem, user);
 	    }
 	    return map;
@@ -181,6 +181,16 @@ public class UserController {
 			mv.setViewName("redirect:/login");
 		}
 	    return mv;
+	}
+	@RequestMapping("/cartdel")
+	@ResponseBody
+	public Map<Object, Object> cartdel(@RequestBody ArrayList<OptionListVo> cartList, HttpServletRequest request){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+	    for(OptionListVo cartListItem : cartList) {
+	    	userService.deleteCartList(cartListItem, user);
+	    }
+	    return map;
 	}
 	/*@RequestMapping(value= {"/gocart"}, method = RequestMethod.POST)
 	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count, GoodsVo goods, HttpServletRequest request) throws Exception{

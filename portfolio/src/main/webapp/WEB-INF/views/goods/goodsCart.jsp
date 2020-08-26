@@ -78,7 +78,18 @@
 				arr.push({'color':color, 'goods':goods});
 			}
 		})
-		console.log(arr);
+		$.ajax({
+			async:false,
+			type:'POST',
+			data: JSON.stringify(arr),
+			url:"<%=request.getContextPath()%>/cartdel",
+			dataType:"json",
+			contentType:"application/json; charset=UTF-8",
+			success : function(data){
+				alert('삭제 완료')
+				location.reload();
+			}
+		});
 		$('.user-cart-goodsCheckAll').prop('checked', false);
 		totalPriceCalculation();
 	})

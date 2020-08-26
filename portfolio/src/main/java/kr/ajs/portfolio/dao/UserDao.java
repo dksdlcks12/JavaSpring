@@ -9,7 +9,7 @@ import kr.ajs.portfolio.vo.BoardCartVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
-import kr.ajs.portfolio.vo.InputOptionVo;
+import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
@@ -30,19 +30,21 @@ public interface UserDao {
 
 	public ArrayList<OptionVo> getOptionList(@Param("num")int num);
 
-	public void setWishList(@Param("option")InputOptionVo option, @Param("user")UserVo user);
+	public void setWishList(@Param("option")OptionListVo option, @Param("user")UserVo user);
 
-	public WishListVo getWishList(@Param("option")InputOptionVo option, @Param("user")UserVo user);
+	public WishListVo getWishList(@Param("option")OptionListVo option, @Param("user")UserVo user);
 
 	public int getWishListTotalCount(@Param("user")UserVo user);
 
 	public ArrayList<BoardWishListVo> getBoardWishList(@Param("cri")Criteria cri, @Param("user")UserVo user);
 
-	public void deleteWishList(@Param("wishList")InputOptionVo wishList, @Param("user")UserVo user);
+	public void deleteWishList(@Param("wishList")OptionListVo wishList, @Param("user")UserVo user);
 
-	public void addWishListCart(@Param("wishList")InputOptionVo wishList, @Param("user")UserVo user);
+	public void addWishListCart(@Param("wishList")OptionListVo wishList, @Param("user")UserVo user);
 
 	public ArrayList<CartVo> getCart(@Param("user")UserVo user);
 
 	public ArrayList<BoardCartVo> getBoardCart(@Param("user")UserVo user);
+
+	public void deleteCartList(@Param("cartList")OptionListVo cartList, @Param("user")UserVo user);
 }

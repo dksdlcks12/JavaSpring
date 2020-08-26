@@ -13,7 +13,7 @@ import kr.ajs.portfolio.vo.BoardCartVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
-import kr.ajs.portfolio.vo.InputOptionVo;
+import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
@@ -79,12 +79,12 @@ public class UserServiceImp implements UserService {
 		return userDao.getOptionList(num);
 	}
 	@Override
-	public void setWishList(InputOptionVo option, UserVo user) {
+	public void setWishList(OptionListVo option, UserVo user) {
 		// TODO Auto-generated method stub
 		userDao.setWishList(option, user);
 	}
 	@Override
-	public boolean getWishList(InputOptionVo option, UserVo user) {
+	public boolean getWishList(OptionListVo option, UserVo user) {
 		// TODO Auto-generated method stub
 		WishListVo wishListCheck = userDao.getWishList(option, user);
 		if(wishListCheck!=null) {
@@ -110,12 +110,12 @@ public class UserServiceImp implements UserService {
 		return userDao.getBoardWishList(cri, user);
 	}
 	@Override
-	public void deleteWishList(InputOptionVo wishList, UserVo user) {
+	public void deleteWishList(OptionListVo wishList, UserVo user) {
 		// TODO Auto-generated method stub
 		userDao.deleteWishList(wishList, user);
 	}
 	@Override
-	public void addWishListCart(InputOptionVo wishList, UserVo user) {
+	public void addWishListCart(OptionListVo wishList, UserVo user) {
 		// TODO Auto-generated method stub
 		userDao.addWishListCart(wishList, user);
 	}
@@ -128,5 +128,10 @@ public class UserServiceImp implements UserService {
 	public ArrayList<BoardCartVo> getBoardCart(UserVo user) {
 		// TODO Auto-generated method stub
 		return userDao.getBoardCart(user);
+	}
+	@Override
+	public void deleteCartList(OptionListVo cartList, UserVo user) {
+		// TODO Auto-generated method stub
+		userDao.deleteCartList(cartList, user);
 	}
 }
