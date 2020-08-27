@@ -252,8 +252,6 @@ public class UserController {
 		for(OrderVo order : list) {
 	    	System.out.println(order);
 	    }
-		
-	    
 	    return map;
 	}
 	
