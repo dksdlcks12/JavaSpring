@@ -101,14 +101,16 @@
 						<td>주문한 사람 전화번호 (필수)</td>
 						<td id="sendTel"><input type="tel" class="user-order-tel tel1">-<input type="tel" class="user-order-tel tel2">-<input type="tel" class="user-order-tel tel3"></td>
 					</tr>
-					<tr>
-						<td>비회원 비밀번호 (필수)</td>
-						<td><input type="password" class="user-order-password noneMemberPassword">(숫자 1~8자)</td>
-					</tr>
-					<tr>
-						<td>비회원 비밀번호 확인 (필수)</td>
-						<td><input type="password" class="user-order-password"></td>
-					</tr>
+					<c:if test="${user==null}">
+						<tr>
+							<td>비회원 비밀번호 (필수)</td>
+							<td><input type="password" class="user-order-password noneMemberPassword">(숫자 4~8자)</td>
+						</tr>
+						<tr>
+							<td>비회원 비밀번호 확인 (필수)</td>
+							<td><input type="password" class="user-order-password noneMemberPasswordCheck"></td>
+						</tr>
+					</c:if>
 				</table>
 				<p>배송정보</p>
 				<table class="user-order-Info" border="1">
@@ -247,6 +249,9 @@
 			var orderNum = $(this).val();
 			orderList.push({'orderNum':orderNum});
 		})
+		if(senderName!="" && sendPostcode!="" && sendAddress!="" && sendDetailAddress!="" && sendExtraAddress!="" && $('#sendTel').children('.tel1').val()!="" && $('#sendTel').children('.tel2').val()!="" && $('#sendTel').children('.tel3').val()!="" && noneMemberPassword!="" && receiverName!="" && receivePostcode!="" && receiveAddress!="" && receiveDetailAddress!="" && receiveExtraAddress!="" && $('#receiveTel').children('.tel1').val()!="" && $('#receiveTel').children('.tel2').val()!="" && $('#receiveTel').children('.tel3').val()!=""){
+			console.log('오류');
+		}
 		arr.push({'orderList':orderList, 'totalPrice':totalPrice,'senderName':senderName,  'sendPostcode':sendPostcode, 'sendAddress':sendAddress, 'sendDetailAddress':sendDetailAddress, 'sendExtraAddress':sendExtraAddress, 'sendtel':sendtel, 'noneMemberPassword':noneMemberPassword, 'receiverName':receiverName, 'receivePostcode':receivePostcode, 'receiveAddress':receiveAddress, 'receiveDetailAddress':receiveDetailAddress, 'receiveExtraAddress':receiveExtraAddress, 'receiveTel':receiveTel});
 		console.log(arr);
 		$.ajax({
