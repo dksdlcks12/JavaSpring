@@ -133,7 +133,6 @@ public class UserServiceImp implements UserService {
 	public boolean getcart(OptionListVo option, UserVo user) {
 		// TODO Auto-generated method stub
 		CartVo cartCheck = userDao.getCart(option, user);
-		System.out.println(cartCheck);
 		if(cartCheck!=null) {
 			return true;
 		}else {
@@ -146,8 +145,14 @@ public class UserServiceImp implements UserService {
 		userDao.addGoodsViewCart(option, user);
 	}
 	@Override
-	public ArrayList<BoardCartVo> getBoardOrder(UserVo user, OptionListVo cart) {
+	public void updateCartCount(CartVo cart) {
 		// TODO Auto-generated method stub
-		return userDao.getBoardOrder(user, cart);
+		userDao.updateCartCount(cart);
+	}
+	@Override
+	public ArrayList<BoardCartVo> getBoardOrder(UserVo user, Integer cartOrder) {
+		// TODO Auto-generated method stub
+		int order = cartOrder;
+		return userDao.getBoardOrder(user, order);
 	}
 }

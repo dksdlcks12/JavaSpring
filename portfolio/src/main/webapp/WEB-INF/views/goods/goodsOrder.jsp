@@ -1,8 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="user-order-box">
-	<form action="#">
-		<div class="user-order-orderBox">
+	<div class="user-order-orderBox">
+		<c:if test="${list ne null}">
 			<table class="user-order-goodsBox" border="1">
 				<tr>
 					<th><input type="checkbox" class="user-order-goodsCheckAll"></th>
@@ -14,45 +14,27 @@
 					<th class="user-order-goodsUsePointTitle">사용할 포인트</th>
 					<th class="user-order-allGoodsPriceTitle">합산금액</th>
 				</tr>
-				<tr>
-					<td><input type="checkbox" class="user-order-goodsCheck"></td>
-					<td class="user-order-goodsImg"><img src="상품대용.gif" alt="" ></td>
-					<td class="user-order-goodsInfo"></td>
-					<td class="user-order-goodsPrice"><span class="user-order-goodsPriceNumber">2000</span>원</td>
-					<td class="user-order-goodsCount">1</td>
-					<td class="user-order-goodsGoodsPoint">1111</td>
-					<td class="user-order-goodsUsePoint"><input type="text" class="number" value="0"></td>
-					<td class="user-order-allGoodsPrice"><span class="user-order-allGoodsPriceNumber"></span></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" class="user-order-goodsCheck"></td>
-					<td class="user-order-goodsImg"><img src="상품대용.gif" alt="" ></td>
-					<td class="user-order-goodsInfo"></td>
-					<td class="user-order-goodsPrice"><span class="user-order-goodsPriceNumber">3000</span>원</td>
-					<td class="user-order-goodsCount">2</td>
-					<td class="user-order-goodsGoodsPoint"></td>
-					<td class="user-order-goodsUsePoint"><input type="text" class="number" value="400"></td>
-					<td class="user-order-allGoodsPrice"><span class="user-order-allGoodsPriceNumber"></span></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" class="user-order-goodsCheck"></td>
-					<td class="user-order-goodsImg"><img src="상품대용.gif" alt="" ></td>
-					<td class="user-order-goodsInfo"></td>
-					<td class="user-order-goodsPrice"><span class="user-order-goodsPriceNumber">4000</span>원</td>
-					<td class="user-order-goodsCount">3</td>
-					<td class="user-order-goodsGoodsPoint"></td>
-					<td class="user-order-goodsUsePoint"><input type="text" class="number" value="400"></td>
-					<td class="user-order-allGoodsPrice"><span class="user-order-allGoodsPriceNumber"></span></td>
-				</tr>
+				<c:forEach var="order" items="${list}">
+					<tr>
+						<td><input type="checkbox" class="user-order-goodsCheck" name="orderList" value="${order.cartNum}"></td>
+						<td class="user-order-goodsImg"><img src="<%=request.getContextPath()%>/resources/image/goodsImg/${order.goodsImg}" alt="" ></td>
+						<td class="user-order-goodsInfo">제품명 : ${order.goodsName}<br>색상 : ${order.optionColor}</td>
+						<td class="user-order-goodsPrice"><span class="user-order-goodsPriceNumber">${order.goodsDiscountPrice}</span>원</td>
+						<td class="user-order-goodsCount">${order.cartCount}</td>
+						<td class="user-order-goodsGoodsPoint">${order.totalpoint}</td>
+						<td class="user-order-goodsUsePoint"><input type="text" class="number" value="0"></td>
+						<td class="user-order-allGoodsPrice"><span class="user-order-allGoodsPriceNumber">${order.goodsAllPrice}</span>원</td>
+					</tr>
+				</c:forEach>
 			</table>
-			<button class="user-order-goodsDelete">선택 삭제</button>
+			<button type="button" class="user-order-goodsDelete">선택 삭제</button>
 			<div class="user-order-totalPrice"></div>
 			<div class="user-order-peopleInfo">
 				<p>주문정보</p>
 				<table class="user-order-Info" border="1">
 					<tr>
 						<td>주문한 사람 (필수)</td>
-						<td><input type="text" class="user-order-name"></td>
+						<td><input type="text" class="user-order-name" id="senderName"></td>
 					</tr>
 					<tr>
 						<td>주소 (필수)</td>
@@ -117,22 +99,24 @@
 					</tr>
 					<tr>
 						<td>주문한 사람 전화번호 (필수)</td>
-						<td><input type="tel" class="user-order-tel">-<input type="tel" class="user-order-tel">-<input type="tel" class="user-order-tel"></td>
+						<td id="sendTel"><input type="tel" class="user-order-tel tel1">-<input type="tel" class="user-order-tel tel2">-<input type="tel" class="user-order-tel tel3"></td>
 					</tr>
-					<tr>
-						<td>비회원 비밀번호 (필수)</td>
-						<td><input type="password" class="user-order-password">(영문자 또는 숫자로 이루어진 4~8자)</td>
-					</tr>
-					<tr>
-						<td>비회원 비밀번호 확인 (필수)</td>
-						<td><input type="password" class="user-order-password"></td>
-					</tr>
+					<c:if test="${user==null}">
+						<tr>
+							<td>비회원 비밀번호 (필수)</td>
+							<td><input type="password" class="user-order-password">(영문자 또는 숫자로 이루어진 4~8자)</td>
+						</tr>
+						<tr>
+							<td>비회원 비밀번호 확인 (필수)</td>
+							<td><input type="password" class="user-order-password"></td>
+						</tr>
+					</c:if>
 				</table>
 				<p>배송정보</p>
 				<table class="user-order-Info" border="1">
 					<tr>
 						<td>받는 사람 (필수)</td>
-						<td><input type="text" class="user-order-name"></td>
+						<td><input type="text" class="user-order-name" id="receiverName"></td>
 					</tr>
 					<tr>
 						<td>주소 (필수)</td>
@@ -195,12 +179,72 @@
 					</tr>
 					<tr>
 						<td>받는 사람 전화번호 (필수)</td>
-						<td><input type="tel" class="user-order-tel">-<input type="tel" class="user-order-tel">-<input type="tel" class="user-order-tel"></td>
+						<td id="receiveTel"><input type="tel" class="user-order-tel tel1">-<input type="tel" class="user-order-tel tel2">-<input type="tel" class="user-order-tel tel3"></td>
 					</tr>
 				</table>
 				<p>결제</p>
-				<div class="user-order-pay"></div>
+				<div class="user-order-pay">
+					<button class="user-order-button">결제하기</button>
+				</div>
 			</div>
-		</div>
-	</form>
+		</c:if>
+	</div>
 </div>
+<script>
+	var allGoodsPrice=0;
+	var totalPrice=0;
+	var price=0;
+	var point=0;
+	var count=0;
+	var defaultDeliveryPrice = 2500;
+	var freeDeliveryLimit = 16000;
+	function totalPriceCalculation(){
+		totalPrice = 0;
+		$('.user-order-allGoodsPrice').each(function(){
+			totalPrice = totalPrice + Number($(this).children('.user-order-allGoodsPriceNumber').text());
+			if(totalPrice<freeDeliveryLimit){
+				$('.user-order-totalPrice').text('배송비 '+defaultDeliveryPrice+'원 + '+totalPrice+'원 = '+Number(totalPrice+defaultDeliveryPrice)+'원');
+			}else{
+				$('.user-order-totalPrice').text('배송비 0원 + '+totalPrice+'원 = '+totalPrice+'원');
+			} 
+		})
+	}
+	if($('.user-order-goodsCheck').length==0){
+		location.href='<%=request.getContextPath()%>/cart' 
+	}
+	$('.user-order-goodsDelete').click(function(){
+		$('.user-order-goodsCheck').each(function(){
+			if($(this).is(':checked')){
+				$(this).parent().parent().remove();
+			}
+		})
+		$('.user-order-goodsCheck').prop('checked', false);
+		if($('.user-order-goodsCheck').length==0){
+			location.href='<%=request.getContextPath()%>/cart' 
+		}else{
+			totalPriceCalculation()
+		}
+	})
+	$('.user-order-button').click(function(){
+		var arr = [];
+		var orderList = [];
+		var senderName = $('#senderName').val();
+		var sendPostcode = $('#sendPostcode').val();
+		$('.user-order-goodsCheck').each(function(){
+			var orderNum = $(this).val();
+			orderList.push({'orderNum':orderNum});
+		})
+		arr.push({'orderList':orderList});
+		console.log(arr);
+		$.ajax({
+			async:false,
+			type:'POST',
+			data: JSON.stringify(arr),
+			url:"<%=request.getContextPath()%>/addorder",
+			dataType:"json",
+			contentType:"application/json; charset=UTF-8",
+			success : function(data){
+			}
+		});
+	})
+</script>

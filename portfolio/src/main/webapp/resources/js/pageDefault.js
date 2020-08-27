@@ -16,7 +16,6 @@ $(function(){
 	})
 	$('.number').keyup(function(){
 		$(this).val( $(this).val().replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi,''));
-		console.log($(this).val().substring(1,2))
 		if($(this).val().substring(0,1)==0){
 			if($(this).val().substring(1,2)==''){
 				$(this).val(0);
@@ -26,5 +25,31 @@ $(function(){
 				$(this).val( $(this).val().replace(/(^0+)/, ""))
 			}
 		}
+	})
+	$('input[type=tel]').keydown(function(event){
+		var limit; 
+		if($(this).attr('class') == 'user-order-tel tel1'){
+			limit = 3;
+		}else{
+			limit = 4;
+		}
+		if($(this).val().length<limit){
+			if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) { 
+				return true;
+			}else if(event.keyCode==8 || event.keyCode==9 || event.keyCode==13 || event.keyCode==37 || event.keyCode==39 || event.keyCode==46){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			if(event.keyCode==8 || event.keyCode==9 || event.keyCode==13 || event.keyCode==37 || event.keyCode==39 || event.keyCode==46){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	})
+	$('input[type=tel]').keyup(function(){
+		$(this).val( $(this).val().replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi,''));
 	})
 })

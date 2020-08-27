@@ -20,9 +20,11 @@ import kr.ajs.portfolio.pagination.PageMaker;
 import kr.ajs.portfolio.service.UserService;
 import kr.ajs.portfolio.vo.BoardCartVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
+import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
+import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
 
@@ -212,22 +214,49 @@ public class UserController {
 	    map.put("cartCheck", cartCheck);
 	    return map;
 	}
-	@RequestMapping(value= {"/order"}, method = RequestMethod.GET)
-	public ModelAndView goodsOrderGet(ModelAndView mv, HttpServletRequest request) throws Exception{
-	    mv.setViewName("/goods/goodsOrder");
-	    return mv;
-	}
-	@RequestMapping("/cartorder")
+	@RequestMapping("/cartcountchange")
 	@ResponseBody
-	public Map<Object, Object> cartOrder(@RequestBody ArrayList<OptionListVo> cartList, HttpServletRequest request){
+	public Map<Object, Object> cartCountChange(@RequestBody ArrayList<CartVo> cartList, HttpServletRequest request){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		ArrayList<BoardCartVo> list = new ArrayList<BoardCartVo>();
-	    for(OptionListVo cartListItem : cartList) {
-	    	list.addAll(userService.getBoardOrder(user, cartListItem));
-	    }
+		for(CartVo cart : cartList) {
+			userService.updateCartCount(cart);
+		}
+	    
 	    return map;
 	}
+	@RequestMapping(value= {"/order"}, method = RequestMethod.POST)
+	public ModelAndView cartOrderGet(ModelAndView mv, HttpServletRequest request, Integer[] orderList) throws Exception{
+	    mv.setViewName("/goods/goodsOrder");
+	    UserVo user = (UserVo) request.getSession().getAttribute("user");
+	    mv.addObject("user", user);
+	    if(user!= null) {
+		    if(orderList!=null) {
+			    ArrayList<BoardCartVo> list = new ArrayList<BoardCartVo>();
+			    for(Integer order : orderList) {
+			    	list.addAll(userService.getBoardOrder(user, order));
+			    }
+			    mv.addObject("list", list);
+		    }
+		}else {
+			mv.setViewName("redirect:/login");
+		}
+	    return mv;
+	}
+	@RequestMapping("/addorder")
+	@ResponseBody
+	public Map<Object, Object> addOrder(@RequestBody ArrayList<OrderVo> orderList, HttpServletRequest request){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		ArrayList<OrderVo> list = orderList.get(0).getOrderList();
+		for(OrderVo order : list) {
+	    	System.out.println(order);
+	    }
+		
+	    
+	    return map;
+	}
+	
 	/*@RequestMapping(value= {"/gocart"}, method = RequestMethod.POST)
 	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count, GoodsVo goods, HttpServletRequest request) throws Exception{
 		mv.setViewName("redirect:/wishlist");

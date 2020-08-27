@@ -11,6 +11,8 @@ public class BoardCartVo {
 	private String optionColor;
 	private int goodsDiscountPrice;
 	private int goodsAllPrice;
+	private int totalpoint;
+	
 	public int getCartNum() {
 		return cartNum;
 	}
@@ -54,6 +56,7 @@ public class BoardCartVo {
 	}
 	public void setGoodsPoint(int goodsPoint) {
 		this.goodsPoint = goodsPoint;
+		totalpoint = (int)(cartCount*goodsPoint);
 	}
 	public String getOptionColor() {
 		return optionColor;
@@ -73,12 +76,18 @@ public class BoardCartVo {
 	public void setGoodsAllPrice(int goodsAllPrice) {
 		this.goodsAllPrice = goodsAllPrice;
 	}
-	
+	public int getTotalpoint() {
+		return totalpoint;
+	}
+	public void setTotalpoint(int totalpoint) {
+		this.totalpoint = totalpoint;
+	}
 	@Override
 	public String toString() {
 		return "BoardCartVo [cartNum=" + cartNum + ", cartCount=" + cartCount + ", goodsName=" + goodsName
 				+ ", goodsImg=" + goodsImg + ", postDiscount=" + postDiscount + ", goodsPrice=" + goodsPrice
 				+ ", goodsPoint=" + goodsPoint + ", optionColor=" + optionColor + ", goodsDiscountPrice="
-				+ goodsDiscountPrice + ", goodsAllPrice=" + goodsAllPrice + "]";
+				+ goodsDiscountPrice + ", goodsAllPrice=" + goodsAllPrice + ", totalpoint=" + totalpoint + "]";
 	}
+	
 }

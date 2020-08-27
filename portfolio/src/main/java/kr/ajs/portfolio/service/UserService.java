@@ -50,6 +50,8 @@ public interface UserService {
 	public boolean getcart(OptionListVo option, UserVo user);
 
 	public void addGoodsViewCart(OptionListVo option, UserVo user);
+	
+	public void updateCartCount(CartVo cart);
 
-	public ArrayList<BoardCartVo> getBoardOrder(UserVo user, OptionListVo cartListItem);
+	public ArrayList<BoardCartVo> getBoardOrder(UserVo user, Integer cartOrder);
 }

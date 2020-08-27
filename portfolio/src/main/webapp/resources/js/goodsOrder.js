@@ -24,22 +24,10 @@ $(function(){
 			$('.user-order-goodsCheck').prop('checked', false);
 		}
 	})
-	$('.user-order-goodsDelete').click(function(){
-		$('.user-order-goodsCheck').each(function(){
-			if($(this).is(':checked')){
-				$(this).parent().parent().remove();
-			}
-		})
-		$('.user-order-goodsCheck').prop('checked', false);
-		totalPriceCalculation()
-	})
 	$('.user-order-allGoodsPrice').each(function(){
 		price = Number($(this).siblings('.user-order-goodsPrice').children('.user-order-goodsPriceNumber').text());
 		count = Number($(this).siblings('.user-order-goodsCount').text());
 		point = Number($(this).siblings('.user-order-goodsUsePoint').children('input').val());
-		console.log(price)
-		console.log(count)
-		console.log(point)
 		if(isNaN(point)){
 		point = 0;
 		}
@@ -47,7 +35,6 @@ $(function(){
 			$(this).siblings('.user-order-goodsUsePoint').children('input').val((price*count)/10);
 			point = Number($(this).siblings('.user-order-goodsUsePoint').children('input').val());
 		}
-		console.log(point%10)
 		if(point%10!=0){
 			point = point-(point%10);
 		}
@@ -62,7 +49,6 @@ $(function(){
 		if($(this).val()>(price*count)/10){
 			$(this).val((price*count)/10);
 		}
-		console.log(point%10)
 		if($(this).val()%10!=0){
 			$(this).val($(this).val()-($(this).val()%10));
 		}

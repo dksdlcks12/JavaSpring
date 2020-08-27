@@ -34,15 +34,15 @@
 	text-align: center;
 }
 .user-order-goodsPriceTitle{
-	width: 15%;
+	width: 10%;
 	text-align: center;
 }
 .user-order-goodsCountTitle{
-	width: 10%;
+	width: 7%;
 	text-align: center;
 }
 .user-order-goodsGoodsPointTitle{
-	width: 10%;
+	width: 13%;
 	text-align: center;
 }
 .user-order-goodsUsePointTitle{
@@ -50,7 +50,7 @@
 	text-align: center;
 }
 .user-order-allGoodsPriceTitle{
-	width: 15%;
+	width: 18%;
 	text-align: center;
 }
 .user-order-goodsImg>img{
@@ -130,6 +130,11 @@
 	margin: 5px;
 	padding-left: 10px;
 }
+.user-order-tel{
+	width: 110px;
+	padding: 0;
+	text-align: center;
+}
 .user-order-Info td{
 	background-color: lightgoldenrodyellow;
 	height: 30px;
@@ -166,4 +171,13 @@
 	width:1000px;
 	height: 200px;
 	background-color: cadetblue;
+	position: relative;
+}
+.user-order-button{
+	width: 100px;
+	height: 200px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
 }
