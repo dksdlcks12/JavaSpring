@@ -15,6 +15,7 @@ import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
+import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
@@ -170,5 +171,10 @@ public class UserServiceImp implements UserService {
 	public void addOrder(AddOrderVo order) {
 		// TODO Auto-generated method stub
 		userDao.addOrder(order);
+	}
+	@Override
+	public ArrayList<OrderVo> getTest() {
+		// TODO Auto-generated method stub
+		return userDao.test();
 	}
 }

@@ -24,6 +24,7 @@ import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
+import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
@@ -265,7 +266,17 @@ public class UserController {
 		}
 	    return map;
 	}
-	
+	@RequestMapping(value= {"/test"}, method = RequestMethod.GET)
+	public ModelAndView testGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		ArrayList<OrderVo> list = userService.getTest();
+	    for(OrderVo test : list) {
+	    	System.out.println(test);
+	    	System.out.println(test.getOrderDate());
+	    }
+		mv.setViewName("redirect:/");
+	    return mv;
+	}
 	/*@RequestMapping(value= {"/gocart"}, method = RequestMethod.POST)
 	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count, GoodsVo goods, HttpServletRequest request) throws Exception{
 		mv.setViewName("redirect:/wishlist");

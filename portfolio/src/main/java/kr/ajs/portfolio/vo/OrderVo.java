@@ -1,9 +1,11 @@
 package kr.ajs.portfolio.vo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class OrderVo {
-	private String orderNum;
+	private int orderNum;
 	private String orderSender;
 	private String orderPw;
 	private String orderSenderPostCode;
@@ -21,10 +23,10 @@ public class OrderVo {
 	private Date orderDate;
 	private int orderState;
 	
-	public String getOrderNum() {
+	public int getOrderNum() {
 		return orderNum;
 	}
-	public void setOrderNum(String orderNum) {
+	public void setOrderNum(int orderNum) {
 		this.orderNum = orderNum;
 	}
 	public String getOrderSender() {
@@ -111,11 +113,18 @@ public class OrderVo {
 	public void setOrderTotalPrice(int orderTotalPrice) {
 		this.orderTotalPrice = orderTotalPrice;
 	}
-	public Date getOrderDate() {
-		return orderDate;
+	public String getOrderDate() {
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String to = transFormat.format(orderDate);
+		return to;
 	}
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
+	public void setOrderDate(String orderDate) {
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			this.orderDate = transFormat.parse(orderDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 	public int getOrderState() {
 		return orderState;

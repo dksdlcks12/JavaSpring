@@ -131,4 +131,7 @@
 		insert into portfolio.order (orderSender, orderPw, orderSenderPostCode, orderSenderAddress, orderSenderDetailAddress, orderSenderExtraAddress, orderSenderTel, orderReceiver, orderReceiverPostCode, orderReceiverAddress, orderReceiverDetailAddress, orderReceiverExtraAddress, orderReceiverTel, orderTotalPrice)
 		values(#{order.senderName}, #{order.noneMemberPassword}, #{order.sendPostcode}, #{order.sendAddress}, #{order.sendDetailAddress}, #{order.sendExtraAddress}, #{order.sendTel}, #{order.receiverName}, #{order.receivePostcode}, #{order.receiveAddress}, #{order.receiveDetailAddress}, #{order.receiveExtraAddress}, #{order.receiveTel}, #{order.totalPrice})
 	</insert>
+	<select id="test" resultType="kr.ajs.portfolio.vo.OrderVo">
+		select * from portfolio.order
+	</select>
 </mapper>

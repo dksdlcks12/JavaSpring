@@ -6,7 +6,7 @@
        	<div class="user-set-header-menuBox">
        		<c:if test="${user.userAuth ne 'admin'}">
 	           	<ul class="user-set-topMenuBox">
-					<a href="#" class="user-set-notice">공지사항</a>
+					<a href="<%=request.getContextPath()%>/test" class="user-set-notice">공지사항</a>
 					<a href="#" class="user-set-QA">Q&A</a>
 					<a href="#" class="user-set-review">리뷰</a>
 					<a href="<%=request.getContextPath()%>/cart" class="user-set-cart">장바구니</a>
