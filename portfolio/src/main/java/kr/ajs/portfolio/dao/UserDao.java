@@ -11,6 +11,7 @@ import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
+import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
 import kr.ajs.portfolio.vo.WishListVo;
@@ -53,4 +54,6 @@ public interface UserDao {
 	public void updateCartCount(@Param("cart")CartVo cart);
 
 	public ArrayList<BoardCartVo> getBoardOrder(@Param("user")UserVo user, @Param("order")int order);
+
+	public int getStock(@Param("order")OrderVo order, @Param("user")UserVo user);
 }

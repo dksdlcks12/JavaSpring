@@ -6,6 +6,7 @@ public class OrderVo {
 	private ArrayList<OrderVo> goodsList;
 	private ArrayList<OrderVo> orderList;
 	private int orderNum;
+	private int orderCount;
 	private String totalPrice;
 	private String senderName;
 	private String sendPostcode;
@@ -37,6 +38,12 @@ public class OrderVo {
 	}
 	public void setOrderNum(int orderNum) {
 		this.orderNum = orderNum;
+	}
+	public int getOrderCount() {
+		return orderCount;
+	}
+	public void setOrderCount(int orderCount) {
+		this.orderCount = orderCount;
 	}
 	public String getTotalPrice() {
 		return totalPrice;
@@ -125,13 +132,13 @@ public class OrderVo {
 	@Override
 	public String toString() {
 		return "OrderVo [goodsList=" + goodsList + ", orderList=" + orderList + ", orderNum=" + orderNum
-				+ ", totalPrice=" + totalPrice + ", senderName=" + senderName + ", sendPostcode=" + sendPostcode
-				+ ", sendAddress=" + sendAddress + ", sendDetailAddress=" + sendDetailAddress + ", sendExtraAddress="
-				+ sendExtraAddress + ", sendtel=" + sendtel + ", noneMemberPassword=" + noneMemberPassword
-				+ ", receiverName=" + receiverName + ", receivePostcode=" + receivePostcode + ", receiveAddress="
-				+ receiveAddress + ", receiveDetailAddress=" + receiveDetailAddress + ", receiveExtraAddress="
-				+ receiveExtraAddress + ", receiveTel=" + receiveTel + "]";
+				+ ", orderCount=" + orderCount + ", totalPrice=" + totalPrice + ", senderName=" + senderName
+				+ ", sendPostcode=" + sendPostcode + ", sendAddress=" + sendAddress + ", sendDetailAddress="
+				+ sendDetailAddress + ", sendExtraAddress=" + sendExtraAddress + ", sendtel=" + sendtel
+				+ ", noneMemberPassword=" + noneMemberPassword + ", receiverName=" + receiverName + ", receivePostcode="
+				+ receivePostcode + ", receiveAddress=" + receiveAddress + ", receiveDetailAddress="
+				+ receiveDetailAddress + ", receiveExtraAddress=" + receiveExtraAddress + ", receiveTel=" + receiveTel
+				+ "]";
 	}
-	
 	
 }

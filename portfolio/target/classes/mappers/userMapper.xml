@@ -123,4 +123,7 @@
 		and postIsDel = 'N'
 		order by cartNum desc
 	</select>
+	<select id="getStock" resultType="int">
+		select optionStock from cart join portfolio.option on cart_optionNum = optionNum where cartNum=#{order.orderNum}
+	</select>
 </mapper>

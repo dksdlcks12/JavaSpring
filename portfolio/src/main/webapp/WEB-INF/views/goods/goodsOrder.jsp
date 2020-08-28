@@ -249,11 +249,11 @@
 		if(senderName!="" && sendPostcode!="" && sendAddress!="" && sendDetailAddress!="" && sendExtraAddress!="" && $('#sendTel').children('.tel1').val()!="" && $('#sendTel').children('.tel2').val()!="" && $('#sendTel').children('.tel3').val()!="" && noneMemberPassword!="" && receiverName!="" && receivePostcode!="" && receiveAddress!="" && receiveDetailAddress!="" && receiveExtraAddress!="" && $('#receiveTel').children('.tel1').val()!="" && $('#receiveTel').children('.tel2').val()!="" && $('#receiveTel').children('.tel3').val()!=""){
 			$('.user-order-goodsCheck').each(function(){
 				var orderNum = $(this).val();
-				goodsList.push({'orderNum':orderNum});
+				var orderCount = $(this).parent().siblings('.user-order-goodsCount').text();
+				goodsList.push({'orderNum':orderNum, 'orderCount':orderCount});
 			})
 			orderList.push({'totalPrice':totalPrice,'senderName':senderName,  'sendPostcode':sendPostcode, 'sendAddress':sendAddress, 'sendDetailAddress':sendDetailAddress, 'sendExtraAddress':sendExtraAddress, 'sendtel':sendtel, 'noneMemberPassword':noneMemberPassword, 'receiverName':receiverName, 'receivePostcode':receivePostcode, 'receiveAddress':receiveAddress, 'receiveDetailAddress':receiveDetailAddress, 'receiveExtraAddress':receiveExtraAddress, 'receiveTel':receiveTel})
 			arr.push({'goodsList':goodsList, 'orderList':orderList});
-			console.log(arr);
 			$.ajax({
 				async:false,
 				type:'POST',

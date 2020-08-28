@@ -249,14 +249,20 @@ public class UserController {
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		ArrayList<OrderVo> list = orderList.get(0).getGoodsList();
+		boolean stock = true;
 		for(OrderVo order : list) {
 	    	System.out.println(order);
-
+	    	stock = userService.getStock(order, user);
+	    	if (stock==false) {
+	    		break;
+	    	}
 	    }
-		list = orderList.get(0).getOrderList();
-		for(OrderVo order : list) {
-	    	System.out.println(order);
-	    }
+		if(stock==true) {
+			list = orderList.get(0).getOrderList();
+			for(OrderVo order : list) {
+		    	System.out.println(order);
+		    }
+		}
 	    return map;
 	}
 	
