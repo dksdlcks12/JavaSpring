@@ -238,7 +238,7 @@
 		var sendAddress = $('#sendAddress').val();
 		var sendDetailAddress = $('#sendDetailAddress').val();
 		var sendExtraAddress = $('#sendExtraAddress').val();
-		var sendtel = $('#sendTel').children('.tel1').val()+$('#sendTel').children('.tel2').val()+$('#sendTel').children('.tel3').val();
+		var sendTel = $('#sendTel').children('.tel1').val()+$('#sendTel').children('.tel2').val()+$('#sendTel').children('.tel3').val();
 		var noneMemberPassword = $('.noneMemberPassword').val();
 		var receiverName = $('#receiverName').val();
 		var receivePostcode = $('#receivePostcode').val();
@@ -252,7 +252,7 @@
 				var orderCount = $(this).parent().siblings('.user-order-goodsCount').text();
 				goodsList.push({'orderNum':orderNum, 'orderCount':orderCount});
 			})
-			orderList.push({'totalPrice':totalPrice,'senderName':senderName,  'sendPostcode':sendPostcode, 'sendAddress':sendAddress, 'sendDetailAddress':sendDetailAddress, 'sendExtraAddress':sendExtraAddress, 'sendtel':sendtel, 'noneMemberPassword':noneMemberPassword, 'receiverName':receiverName, 'receivePostcode':receivePostcode, 'receiveAddress':receiveAddress, 'receiveDetailAddress':receiveDetailAddress, 'receiveExtraAddress':receiveExtraAddress, 'receiveTel':receiveTel})
+			orderList.push({'totalPrice':totalPrice,'senderName':senderName,  'sendPostcode':sendPostcode, 'sendAddress':sendAddress, 'sendDetailAddress':sendDetailAddress, 'sendExtraAddress':sendExtraAddress, 'sendTel':sendTel, 'noneMemberPassword':noneMemberPassword, 'receiverName':receiverName, 'receivePostcode':receivePostcode, 'receiveAddress':receiveAddress, 'receiveDetailAddress':receiveDetailAddress, 'receiveExtraAddress':receiveExtraAddress, 'receiveTel':receiveTel})
 			arr.push({'goodsList':goodsList, 'orderList':orderList});
 			$.ajax({
 				async:false,

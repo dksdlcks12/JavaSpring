@@ -1,144 +1,138 @@
 package kr.ajs.portfolio.vo;
 
-import java.util.ArrayList;
+import java.util.Date;
 
 public class OrderVo {
-	private ArrayList<OrderVo> goodsList;
-	private ArrayList<OrderVo> orderList;
-	private int orderNum;
-	private int orderCount;
-	private String totalPrice;
-	private String senderName;
-	private String sendPostcode;
-	private String sendAddress;
-	private String sendDetailAddress;
-	private String sendExtraAddress;
-	private String sendtel;
-	private String noneMemberPassword;
-	private String receiverName;
-	private String receivePostcode;
-	private String receiveAddress;
-	private String receiveDetailAddress;
-	private String receiveExtraAddress;
-	private String receiveTel;
-	public ArrayList<OrderVo> getGoodsList() {
-		return goodsList;
-	}
-	public void setGoodsList(ArrayList<OrderVo> goodsList) {
-		this.goodsList = goodsList;
-	}
-	public ArrayList<OrderVo> getOrderList() {
-		return orderList;
-	}
-	public void setOrderList(ArrayList<OrderVo> orderList) {
-		this.orderList = orderList;
-	}
-	public int getOrderNum() {
+	private String orderNum;
+	private String orderSender;
+	private String orderPw;
+	private String orderSenderPostCode;
+	private String orderSenderAddress;
+	private String orderSenderDetailAddress;
+	private String orderSenderExtraAddress;
+	private String orderSenderTel;
+	private String orderReceiver;
+	private String orderReceiverPostCode;
+	private String orderReceiverAddress;
+	private String orderReceiverDetailAddress;
+	private String orderReceiverExtraAddress;
+	private String orderReceiverTel;
+	private int orderTotalPrice;
+	private Date orderDate;
+	private int orderState;
+	
+	public String getOrderNum() {
 		return orderNum;
 	}
-	public void setOrderNum(int orderNum) {
+	public void setOrderNum(String orderNum) {
 		this.orderNum = orderNum;
 	}
-	public int getOrderCount() {
-		return orderCount;
+	public String getOrderSender() {
+		return orderSender;
 	}
-	public void setOrderCount(int orderCount) {
-		this.orderCount = orderCount;
+	public void setOrderSender(String orderSender) {
+		this.orderSender = orderSender;
 	}
-	public String getTotalPrice() {
-		return totalPrice;
+	public String getOrderPw() {
+		return orderPw;
 	}
-	public void setTotalPrice(String totalPrice) {
-		this.totalPrice = totalPrice;
+	public void setOrderPw(String orderPw) {
+		this.orderPw = orderPw;
 	}
-	public String getSenderName() {
-		return senderName;
+	public String getOrderSenderPostCode() {
+		return orderSenderPostCode;
 	}
-	public void setSenderName(String senderName) {
-		this.senderName = senderName;
+	public void setOrderSenderPostCode(String orderSenderPostCode) {
+		this.orderSenderPostCode = orderSenderPostCode;
 	}
-	public String getSendPostcode() {
-		return sendPostcode;
+	public String getOrderSenderAddress() {
+		return orderSenderAddress;
 	}
-	public void setSendPostcode(String sendPostcode) {
-		this.sendPostcode = sendPostcode;
+	public void setOrderSenderAddress(String orderSenderAddress) {
+		this.orderSenderAddress = orderSenderAddress;
 	}
-	public String getSendAddress() {
-		return sendAddress;
+	public String getOrderSenderDetailAddress() {
+		return orderSenderDetailAddress;
 	}
-	public void setSendAddress(String sendAddress) {
-		this.sendAddress = sendAddress;
+	public void setOrderSenderDetailAddress(String orderSenderDetailAddress) {
+		this.orderSenderDetailAddress = orderSenderDetailAddress;
 	}
-	public String getSendDetailAddress() {
-		return sendDetailAddress;
+	public String getOrderSenderExtraAddress() {
+		return orderSenderExtraAddress;
 	}
-	public void setSendDetailAddress(String sendDetailAddress) {
-		this.sendDetailAddress = sendDetailAddress;
+	public void setOrderSenderExtraAddress(String orderSenderExtraAddress) {
+		this.orderSenderExtraAddress = orderSenderExtraAddress;
 	}
-	public String getSendExtraAddress() {
-		return sendExtraAddress;
+	public String getOrderSenderTel() {
+		return orderSenderTel;
 	}
-	public void setSendExtraAddress(String sendExtraAddress) {
-		this.sendExtraAddress = sendExtraAddress;
+	public void setOrderSenderTel(String orderSenderTel) {
+		this.orderSenderTel = orderSenderTel;
 	}
-	public String getSendtel() {
-		return sendtel;
+	public String getOrderReceiver() {
+		return orderReceiver;
 	}
-	public void setSendtel(String sendtel) {
-		this.sendtel = sendtel;
+	public void setOrderReceiver(String orderReceiver) {
+		this.orderReceiver = orderReceiver;
 	}
-	public String getNoneMemberPassword() {
-		return noneMemberPassword;
+	public String getOrderReceiverPostCode() {
+		return orderReceiverPostCode;
 	}
-	public void setNoneMemberPassword(String noneMemberPassword) {
-		this.noneMemberPassword = noneMemberPassword;
+	public void setOrderReceiverPostCode(String orderReceiverPostCode) {
+		this.orderReceiverPostCode = orderReceiverPostCode;
 	}
-	public String getReceiverName() {
-		return receiverName;
+	public String getOrderReceiverAddress() {
+		return orderReceiverAddress;
 	}
-	public void setReceiverName(String receiverName) {
-		this.receiverName = receiverName;
+	public void setOrderReceiverAddress(String orderReceiverAddress) {
+		this.orderReceiverAddress = orderReceiverAddress;
 	}
-	public String getReceivePostcode() {
-		return receivePostcode;
+	public String getOrderReceiverDetailAddress() {
+		return orderReceiverDetailAddress;
 	}
-	public void setReceivePostcode(String receivePostcode) {
-		this.receivePostcode = receivePostcode;
+	public void setOrderReceiverDetailAddress(String orderReceiverDetailAddress) {
+		this.orderReceiverDetailAddress = orderReceiverDetailAddress;
 	}
-	public String getReceiveAddress() {
-		return receiveAddress;
+	public String getOrderReceiverExtraAddress() {
+		return orderReceiverExtraAddress;
 	}
-	public void setReceiveAddress(String receiveAddress) {
-		this.receiveAddress = receiveAddress;
+	public void setOrderReceiverExtraAddress(String orderReceiverExtraAddress) {
+		this.orderReceiverExtraAddress = orderReceiverExtraAddress;
 	}
-	public String getReceiveDetailAddress() {
-		return receiveDetailAddress;
+	public String getOrderReceiverTel() {
+		return orderReceiverTel;
 	}
-	public void setReceiveDetailAddress(String receiveDetailAddress) {
-		this.receiveDetailAddress = receiveDetailAddress;
+	public void setOrderReceiverTel(String orderReceiverTel) {
+		this.orderReceiverTel = orderReceiverTel;
 	}
-	public String getReceiveExtraAddress() {
-		return receiveExtraAddress;
+	public int getOrderTotalPrice() {
+		return orderTotalPrice;
 	}
-	public void setReceiveExtraAddress(String receiveExtraAddress) {
-		this.receiveExtraAddress = receiveExtraAddress;
+	public void setOrderTotalPrice(int orderTotalPrice) {
+		this.orderTotalPrice = orderTotalPrice;
 	}
-	public String getReceiveTel() {
-		return receiveTel;
+	public Date getOrderDate() {
+		return orderDate;
 	}
-	public void setReceiveTel(String receiveTel) {
-		this.receiveTel = receiveTel;
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
 	}
-	@Override
-	public String toString() {
-		return "OrderVo [goodsList=" + goodsList + ", orderList=" + orderList + ", orderNum=" + orderNum
-				+ ", orderCount=" + orderCount + ", totalPrice=" + totalPrice + ", senderName=" + senderName
-				+ ", sendPostcode=" + sendPostcode + ", sendAddress=" + sendAddress + ", sendDetailAddress="
-				+ sendDetailAddress + ", sendExtraAddress=" + sendExtraAddress + ", sendtel=" + sendtel
-				+ ", noneMemberPassword=" + noneMemberPassword + ", receiverName=" + receiverName + ", receivePostcode="
-				+ receivePostcode + ", receiveAddress=" + receiveAddress + ", receiveDetailAddress="
-				+ receiveDetailAddress + ", receiveExtraAddress=" + receiveExtraAddress + ", receiveTel=" + receiveTel
-				+ "]";
+	public int getOrderState() {
+		return orderState;
+	}
+	public void setOrderState(int orderState) {
+		this.orderState = orderState;
 	}
 	
+	@Override
+	public String toString() {
+		return "OrderVo [orderNum=" + orderNum + ", orderSender=" + orderSender + ", orderPw=" + orderPw
+				+ ", orderSenderPostCode=" + orderSenderPostCode + ", orderSenderAddress=" + orderSenderAddress
+				+ ", orderSenderDetailAddress=" + orderSenderDetailAddress + ", orderSenderExtraAddress="
+				+ orderSenderExtraAddress + ", orderSenderTel=" + orderSenderTel + ", orderReceiver=" + orderReceiver
+				+ ", orderReceiverPostCode=" + orderReceiverPostCode + ", orderReceiverAddress=" + orderReceiverAddress
+				+ ", orderReceiverDetailAddress=" + orderReceiverDetailAddress + ", orderReceiverExtraAddress="
+				+ orderReceiverExtraAddress + ", orderReceiverTel=" + orderReceiverTel + ", orderTotalPrice="
+				+ orderTotalPrice + ", orderDate=" + orderDate + ", orderState=" + orderState + "]";
+	}
 }

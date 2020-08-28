@@ -24,7 +24,7 @@ import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
-import kr.ajs.portfolio.vo.OrderVo;
+import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
 
@@ -245,13 +245,12 @@ public class UserController {
 	}
 	@RequestMapping("/addorder")
 	@ResponseBody
-	public Map<Object, Object> addOrder(@RequestBody ArrayList<OrderVo> orderList, HttpServletRequest request){
+	public Map<Object, Object> addOrder(@RequestBody ArrayList<AddOrderVo> orderList, HttpServletRequest request){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		ArrayList<OrderVo> list = orderList.get(0).getGoodsList();
+		ArrayList<AddOrderVo> list = orderList.get(0).getGoodsList();
 		boolean stock = true;
-		for(OrderVo order : list) {
-	    	System.out.println(order);
+		for(AddOrderVo order : list) {
 	    	stock = userService.getStock(order, user);
 	    	if (stock==false) {
 	    		break;
@@ -259,9 +258,10 @@ public class UserController {
 	    }
 		if(stock==true) {
 			list = orderList.get(0).getOrderList();
-			for(OrderVo order : list) {
-		    	System.out.println(order);
-		    }
+			if(list!=null) {
+				System.out.println(list.get(0));
+		    	userService.addOrder(list.get(0));
+			}
 		}
 	    return map;
 	}

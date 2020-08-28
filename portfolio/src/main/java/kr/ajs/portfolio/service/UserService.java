@@ -9,7 +9,7 @@ import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionVo;
-import kr.ajs.portfolio.vo.OrderVo;
+import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
 import kr.ajs.portfolio.vo.WishListVo;
@@ -56,6 +56,8 @@ public interface UserService {
 
 	public ArrayList<BoardCartVo> getBoardOrder(UserVo user, Integer cartOrder);
 
-	public boolean getStock(OrderVo order, UserVo user);
+	public boolean getStock(AddOrderVo order, UserVo user);
+
+	public void addOrder(AddOrderVo orderVo);
 
 }

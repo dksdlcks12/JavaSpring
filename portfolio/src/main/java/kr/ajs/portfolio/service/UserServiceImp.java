@@ -15,7 +15,7 @@ import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
-import kr.ajs.portfolio.vo.OrderVo;
+import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
 import kr.ajs.portfolio.vo.WishListVo;
@@ -157,7 +157,7 @@ public class UserServiceImp implements UserService {
 		return userDao.getBoardOrder(user, order);
 	}
 	@Override
-	public boolean getStock(OrderVo order, UserVo user) {
+	public boolean getStock(AddOrderVo order, UserVo user) {
 		int count = order.getOrderCount();
 		int stock = userDao.getStock(order, user);
 		if(count<stock) {
@@ -165,5 +165,10 @@ public class UserServiceImp implements UserService {
 		}else {
 			return false;
 		}
+	}
+	@Override
+	public void addOrder(AddOrderVo order) {
+		// TODO Auto-generated method stub
+		userDao.addOrder(order);
 	}
 }
