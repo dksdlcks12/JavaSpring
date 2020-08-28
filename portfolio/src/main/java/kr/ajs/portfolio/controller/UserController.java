@@ -268,7 +268,13 @@ public class UserController {
 		    	userService.addOrderList(order, index);
 		    }
 		}
+		map.put("stock", stock);
 	    return map;
+	}
+	@RequestMapping(value= {"/orderViewList"}, method = RequestMethod.GET)
+	public ModelAndView orderViewListGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+	    mv.setViewName("/afterOrder/orderViewList");
+	    return mv;
 	}
 	/*@RequestMapping(value= {"/gocart"}, method = RequestMethod.POST)
 	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count, GoodsVo goods, HttpServletRequest request) throws Exception{

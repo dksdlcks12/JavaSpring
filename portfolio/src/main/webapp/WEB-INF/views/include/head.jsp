@@ -25,3 +25,4 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/goodsCart.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/goodsOrder.css">
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/goodsOrder.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/orderViewList.css">

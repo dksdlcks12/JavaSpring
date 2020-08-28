@@ -1,0 +1,95 @@
+@charset "UTF-8";
+.admin-orderList-box{
+	width: 1400px;
+	height: 769px;
+	padding: 100px 0 50px 0;
+	margin: 0 auto;
+	margin-top: 100px;
+	background-color: palegoldenrod;
+	box-sizing: border-box;
+}
+.admin-orderList-orderListBox{
+	width: 1200px;
+	padding: 20px 0 20px 0;
+	margin-left: 100px;
+	background-color: whitesmoke;
+	box-sizing: border-box;
+}
+.admin-orderList-orderListBox>h2{
+	margin-left: calc(50% - 50px);
+	margin-bottom: 20px;
+}
+.admin-orderList-orderTitleBox, .admin-orderList-orderBox{
+	width: 1000px;
+	height: 51px;
+	margin-left: 100px;
+	background-color: wheat;
+	position: relative;
+	border: 1px solid black;
+	border-right: none;
+}
+.admin-orderList-orderBox{
+	border-	top: none;
+}
+.admin-orderList-orderTitleNumber, .admin-orderList-orderTitleInfo, .admin-orderList-orderTitleDate, .admin-orderList-orderTitleState, .admin-orderList-orderNumber, .admin-orderList-orderInfo, .admin-orderList-orderDate, .admin-orderList-orderState{
+	position: absolute;
+	width: 100px;
+	height: 49px;
+	background-color: lemonchiffon;
+	font-size: 20px;
+	line-height: 50px;
+	text-align: right;
+	padding-right: 10px;
+	border-right: 1px solid black;
+	box-sizing: border-box;
+}
+.admin-orderList-orderNumber{
+	text-align: center;
+}
+.admin-orderList-orderTitleInfo, .admin-orderList-orderInfo{
+	width: 600px;
+	left: 100px;
+	text-align: left;
+	padding: 0;
+	padding-left: 10px;
+}
+.admin-orderList-orderTitleDate, .admin-orderList-orderDate{
+	left: 700px;
+	width: 150px;
+	padding: 0;
+	text-align: center;
+}
+.admin-orderList-orderTitleState, .admin-orderList-orderState{
+	left: 850px;
+	width: 150px;
+	padding: 0;
+	text-align: center;
+}
+.admin-orderList-orderTitleBox>*{
+	text-align: center;
+	font-weight: bold;
+	padding: 0;
+}
+.admin-orderList-searchBox{
+	margin-top: 20px;
+	margin-left: 100px;
+	width: 400px;
+	height: 50px;
+	background-color: azure;
+}
+.admin-orderList-searchType, .admin-orderList-searchContent{
+	width: 150px;
+	height: 50px;
+	float: left;
+	padding-left: 10px;
+}
+.admin-orderList-searchContent{
+	width: 200px;
+}
+.admin-orderList-searchButton{
+	width: 50px;
+	height: 50px;
+}
+.admin-orderList-pagination{
+	margin-top: 20px;
+}
