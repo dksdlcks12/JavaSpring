@@ -248,11 +248,13 @@ public class UserController {
 	public Map<Object, Object> addOrder(@RequestBody ArrayList<OrderVo> orderList, HttpServletRequest request){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		ArrayList<OrderVo> list = orderList.get(0).getOrderList();
+		ArrayList<OrderVo> list = orderList.get(0).getGoodsList();
 		for(OrderVo order : list) {
 	    	System.out.println(order);
+
 	    }
-		for(OrderVo order : orderList) {
+		list = orderList.get(0).getOrderList();
+		for(OrderVo order : list) {
 	    	System.out.println(order);
 	    }
 	    return map;

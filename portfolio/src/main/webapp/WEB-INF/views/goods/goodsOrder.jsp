@@ -231,6 +231,7 @@
 			totalPrice = Number(totalPrice+defaultDeliveryPrice);
 		}
 		var arr = [];
+		var goodsList = [];
 		var orderList = [];
 		var senderName = $('#senderName').val();
 		var sendPostcode = $('#sendPostcode').val();
@@ -245,24 +246,26 @@
 		var receiveDetailAddress = $('#receiveDetailAddress').val();
 		var receiveExtraAddress = $('#receiveExtraAddress').val();
 		var receiveTel = $('#receiveTel').children('.tel1').val()+$('#receiveTel').children('.tel2').val()+$('#receiveTel').children('.tel3').val();
-		$('.user-order-goodsCheck').each(function(){
-			var orderNum = $(this).val();
-			orderList.push({'orderNum':orderNum});
-		})
 		if(senderName!="" && sendPostcode!="" && sendAddress!="" && sendDetailAddress!="" && sendExtraAddress!="" && $('#sendTel').children('.tel1').val()!="" && $('#sendTel').children('.tel2').val()!="" && $('#sendTel').children('.tel3').val()!="" && noneMemberPassword!="" && receiverName!="" && receivePostcode!="" && receiveAddress!="" && receiveDetailAddress!="" && receiveExtraAddress!="" && $('#receiveTel').children('.tel1').val()!="" && $('#receiveTel').children('.tel2').val()!="" && $('#receiveTel').children('.tel3').val()!=""){
-			console.log('오류');
+			$('.user-order-goodsCheck').each(function(){
+				var orderNum = $(this).val();
+				goodsList.push({'orderNum':orderNum});
+			})
+			orderList.push({'totalPrice':totalPrice,'senderName':senderName,  'sendPostcode':sendPostcode, 'sendAddress':sendAddress, 'sendDetailAddress':sendDetailAddress, 'sendExtraAddress':sendExtraAddress, 'sendtel':sendtel, 'noneMemberPassword':noneMemberPassword, 'receiverName':receiverName, 'receivePostcode':receivePostcode, 'receiveAddress':receiveAddress, 'receiveDetailAddress':receiveDetailAddress, 'receiveExtraAddress':receiveExtraAddress, 'receiveTel':receiveTel})
+			arr.push({'goodsList':goodsList, 'orderList':orderList});
+			console.log(arr);
+			$.ajax({
+				async:false,
+				type:'POST',
+				data: JSON.stringify(arr),
+				url:"<%=request.getContextPath()%>/addorder",
+				dataType:"json",
+				contentType:"application/json; charset=UTF-8",
+				success : function(data){
+				}
+			});
+		}else{
+			alert('주문정보를 모두 입력하여 주십시오.')
 		}
-		arr.push({'orderList':orderList, 'totalPrice':totalPrice,'senderName':senderName,  'sendPostcode':sendPostcode, 'sendAddress':sendAddress, 'sendDetailAddress':sendDetailAddress, 'sendExtraAddress':sendExtraAddress, 'sendtel':sendtel, 'noneMemberPassword':noneMemberPassword, 'receiverName':receiverName, 'receivePostcode':receivePostcode, 'receiveAddress':receiveAddress, 'receiveDetailAddress':receiveDetailAddress, 'receiveExtraAddress':receiveExtraAddress, 'receiveTel':receiveTel});
-		console.log(arr);
-		$.ajax({
-			async:false,
-			type:'POST',
-			data: JSON.stringify(arr),
-			url:"<%=request.getContextPath()%>/addorder",
-			dataType:"json",
-			contentType:"application/json; charset=UTF-8",
-			success : function(data){
-			}
-		});
 	})
 </script>
