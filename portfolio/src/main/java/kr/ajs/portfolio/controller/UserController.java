@@ -249,33 +249,26 @@ public class UserController {
 	public Map<Object, Object> addOrder(@RequestBody ArrayList<AddOrderVo> orderList, HttpServletRequest request){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		ArrayList<AddOrderVo> list = orderList.get(0).getGoodsList();
+		ArrayList<AddOrderVo> goodsList = orderList.get(0).getGoodsList();
+		ArrayList<AddOrderVo> orderInfoList = orderList.get(0).getOrderList();
+		int index=0;
 		boolean stock = true;
-		for(AddOrderVo order : list) {
-	    	stock = userService.getStock(order, user);
+		for(AddOrderVo order : goodsList) {
+	    	stock = userService.getStock(order);
 	    	if (stock==false) {
 	    		break;
 	    	}
 	    }
 		if(stock==true) {
-			list = orderList.get(0).getOrderList();
-			if(list!=null) {
-				System.out.println(list.get(0));
-		    	userService.addOrder(list.get(0));
+			if(orderInfoList!=null) {
+				System.out.println(orderInfoList.get(0));
+		    	index = userService.addOrder(orderInfoList.get(0), user);
 			}
+			for(AddOrderVo order : goodsList) {
+		    	userService.addOrderList(order, index);
+		    }
 		}
 	    return map;
-	}
-	@RequestMapping(value= {"/test"}, method = RequestMethod.GET)
-	public ModelAndView testGet(ModelAndView mv, HttpServletRequest request) throws Exception{
-		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		ArrayList<OrderVo> list = userService.getTest();
-	    for(OrderVo test : list) {
-	    	System.out.println(test);
-	    	System.out.println(test.getOrderDate());
-	    }
-		mv.setViewName("redirect:/");
-	    return mv;
 	}
 	/*@RequestMapping(value= {"/gocart"}, method = RequestMethod.POST)
 	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count, GoodsVo goods, HttpServletRequest request) throws Exception{

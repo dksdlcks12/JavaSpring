@@ -57,10 +57,10 @@ public interface UserService {
 
 	public ArrayList<BoardCartVo> getBoardOrder(UserVo user, Integer cartOrder);
 
-	public boolean getStock(AddOrderVo order, UserVo user);
+	public boolean getStock(AddOrderVo order);
 
-	public void addOrder(AddOrderVo orderVo);
+	public int addOrder(AddOrderVo orderVo, UserVo user);
 
-	public ArrayList<OrderVo> getTest();
+	public void addOrderList(AddOrderVo order, int index);
 
 }

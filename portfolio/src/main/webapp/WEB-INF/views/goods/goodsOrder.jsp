@@ -250,7 +250,9 @@
 			$('.user-order-goodsCheck').each(function(){
 				var orderNum = $(this).val();
 				var orderCount = $(this).parent().siblings('.user-order-goodsCount').text();
-				goodsList.push({'orderNum':orderNum, 'orderCount':orderCount});
+				var orderPrice = $(this).parent().siblings('.user-order-goodsPrice').children('.user-order-goodsPriceNumber').text();
+				var orderUsePoint = $(this).parent().siblings('.user-order-goodsUsePoint').children('.number').val();
+				goodsList.push({'orderNum':orderNum, 'orderCount':orderCount, 'orderPrice':orderPrice, 'orderUsePoint':orderUsePoint});
 			})
 			orderList.push({'totalPrice':totalPrice,'senderName':senderName,  'sendPostcode':sendPostcode, 'sendAddress':sendAddress, 'sendDetailAddress':sendDetailAddress, 'sendExtraAddress':sendExtraAddress, 'sendTel':sendTel, 'noneMemberPassword':noneMemberPassword, 'receiverName':receiverName, 'receivePostcode':receivePostcode, 'receiveAddress':receiveAddress, 'receiveDetailAddress':receiveDetailAddress, 'receiveExtraAddress':receiveExtraAddress, 'receiveTel':receiveTel})
 			arr.push({'goodsList':goodsList, 'orderList':orderList});

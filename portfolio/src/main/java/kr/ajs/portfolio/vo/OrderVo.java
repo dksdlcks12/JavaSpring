@@ -22,6 +22,7 @@ public class OrderVo {
 	private int orderTotalPrice;
 	private Date orderDate;
 	private int orderState;
+	private String orderUserId;
 	
 	public int getOrderNum() {
 		return orderNum;
@@ -133,6 +134,13 @@ public class OrderVo {
 		this.orderState = orderState;
 	}
 	
+	public String getOrderUserId() {
+		return orderUserId;
+	}
+	public void setOrderUserId(String orderUserId) {
+		this.orderUserId = orderUserId;
+	}
+	
 	@Override
 	public String toString() {
 		return "OrderVo [orderNum=" + orderNum + ", orderSender=" + orderSender + ", orderPw=" + orderPw
@@ -142,6 +150,7 @@ public class OrderVo {
 				+ ", orderReceiverPostCode=" + orderReceiverPostCode + ", orderReceiverAddress=" + orderReceiverAddress
 				+ ", orderReceiverDetailAddress=" + orderReceiverDetailAddress + ", orderReceiverExtraAddress="
 				+ orderReceiverExtraAddress + ", orderReceiverTel=" + orderReceiverTel + ", orderTotalPrice="
-				+ orderTotalPrice + ", orderDate=" + orderDate + ", orderState=" + orderState + "]";
+				+ orderTotalPrice + ", orderDate=" + orderDate + ", orderState=" + orderState + ", orderUserId="
+				+ orderUserId + "]";
 	}
 }

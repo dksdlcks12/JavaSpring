@@ -56,9 +56,11 @@ public interface UserDao {
 
 	public ArrayList<BoardCartVo> getBoardOrder(@Param("user")UserVo user, @Param("order")int order);
 
-	public int getStock(@Param("order")AddOrderVo order, @Param("user")UserVo user);
+	public int getStock(@Param("order")AddOrderVo order);
 
-	public void addOrder(@Param("order")AddOrderVo order);
+	public void addOrder(@Param("order")AddOrderVo order, @Param("user")UserVo user, @Param("orderInfo")OrderVo orderInfo);
 
-	public ArrayList<OrderVo> test();
+	public void updateStock(@Param("order") AddOrderVo order, @Param("stock")int stock);
+
+	public void addOrderList(@Param("order")AddOrderVo order, @Param("index")int index);
 }

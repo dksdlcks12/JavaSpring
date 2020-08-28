@@ -158,9 +158,9 @@ public class UserServiceImp implements UserService {
 		return userDao.getBoardOrder(user, order);
 	}
 	@Override
-	public boolean getStock(AddOrderVo order, UserVo user) {
+	public boolean getStock(AddOrderVo order) {
 		int count = order.getOrderCount();
-		int stock = userDao.getStock(order, user);
+		int stock = userDao.getStock(order);
 		if(count<stock) {
 			return true;
 		}else {
@@ -168,13 +168,19 @@ public class UserServiceImp implements UserService {
 		}
 	}
 	@Override
-	public void addOrder(AddOrderVo order) {
+	public int addOrder(AddOrderVo order, UserVo user) {
 		// TODO Auto-generated method stub
-		userDao.addOrder(order);
+		OrderVo orderInfo = new OrderVo();
+		userDao.addOrder(order, user, orderInfo);
+		return orderInfo.getOrderNum();
 	}
 	@Override
-	public ArrayList<OrderVo> getTest() {
+	public void addOrderList(AddOrderVo order, int index) {
 		// TODO Auto-generated method stub
-		return userDao.test();
+		int count = order.getOrderCount();
+		int stock = userDao.getStock(order);
+		stock = stock-count;
+		userDao.updateStock(order, stock);
+		userDao.addOrderList(order, index);
 	}
 }

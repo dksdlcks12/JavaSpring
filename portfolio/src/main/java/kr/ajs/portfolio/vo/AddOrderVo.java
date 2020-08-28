@@ -21,6 +21,8 @@ public class AddOrderVo {
 	private String receiveDetailAddress;
 	private String receiveExtraAddress;
 	private String receiveTel;
+	private int orderPrice;
+	private int orderUsePoint;
 	public ArrayList<AddOrderVo> getGoodsList() {
 		return goodsList;
 	}
@@ -129,16 +131,28 @@ public class AddOrderVo {
 	public void setReceiveTel(String receiveTel) {
 		this.receiveTel = receiveTel;
 	}
+	public int getOrderPrice() {
+		return orderPrice;
+	}
+	public void setOrderPrice(int orderPrice) {
+		this.orderPrice = orderPrice;
+	}
+	public int getOrderUsePoint() {
+		return orderUsePoint;
+	}
+	public void setOrderUsePoint(int orderUsePoint) {
+		this.orderUsePoint = orderUsePoint;
+	}
+	
 	@Override
 	public String toString() {
-		return "OrderVo [goodsList=" + goodsList + ", orderList=" + orderList + ", orderNum=" + orderNum
+		return "AddOrderVo [goodsList=" + goodsList + ", orderList=" + orderList + ", orderNum=" + orderNum
 				+ ", orderCount=" + orderCount + ", totalPrice=" + totalPrice + ", senderName=" + senderName
 				+ ", sendPostcode=" + sendPostcode + ", sendAddress=" + sendAddress + ", sendDetailAddress="
 				+ sendDetailAddress + ", sendExtraAddress=" + sendExtraAddress + ", sendTel=" + sendTel
 				+ ", noneMemberPassword=" + noneMemberPassword + ", receiverName=" + receiverName + ", receivePostcode="
 				+ receivePostcode + ", receiveAddress=" + receiveAddress + ", receiveDetailAddress="
 				+ receiveDetailAddress + ", receiveExtraAddress=" + receiveExtraAddress + ", receiveTel=" + receiveTel
-				+ "]";
+				+ ", orderPrice=" + orderPrice + ", orderUsePoint=" + orderUsePoint + "]";
 	}
-	
 }
