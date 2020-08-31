@@ -65,4 +65,14 @@ public interface UserDao {
 	public void addOrderList(@Param("order")AddOrderVo order, @Param("index")int index);
 
 	public void addGoodsViewOrderCart(@Param("option")OptionListVo option, @Param("user")UserVo user, @Param("cart")CartVo cart);
+
+	public void deleteCart(@Param("order")AddOrderVo order);
+
+	public ArrayList<OrderVo> getOrderList(@Param("user")UserVo user);
+
+	public int getOrderGoodsCount(@Param("order")OrderVo order);
+
+	public String getOrderGoodsName(@Param("order")OrderVo order);
+
+	public String getOrderGoodsColor(@Param("order")OrderVo order);
 }

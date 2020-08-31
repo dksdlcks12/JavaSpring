@@ -183,6 +183,7 @@ public class UserServiceImp implements UserService {
 		stock = stock-count;
 		userDao.updateStock(order, stock);
 		userDao.addOrderList(order, index);
+		userDao.deleteCart(order);
 	}
 	@Override
 	public int addGoodsViewOrderCart(OptionListVo option, UserVo user) {
@@ -191,5 +192,16 @@ public class UserServiceImp implements UserService {
 		userDao.addGoodsViewOrderCart(option, user, cart);
 		System.out.println(cart.getCartNum());
 		return cart.getCartNum();
+	}
+	@Override
+	public ArrayList<OrderVo> getOrderList(UserVo user) {
+		return userDao.getOrderList(user);
+	}
+	@Override
+	public void getOrderGoods(OrderVo order) {
+		order.setOrderGoodsCount(userDao.getOrderGoodsCount(order));
+		order.setOrderGoodsName(userDao.getOrderGoodsName(order));
+		order.setOrderGoodsColor(userDao.getOrderGoodsColor(order));
+		
 	}
 }

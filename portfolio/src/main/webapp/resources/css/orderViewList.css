@@ -47,15 +47,15 @@
 	text-align: center;
 }
 .admin-orderList-orderTitleInfo, .admin-orderList-orderInfo{
-	width: 600px;
+	width: 500px;
 	left: 100px;
 	text-align: left;
 	padding: 0;
 	padding-left: 10px;
 }
 .admin-orderList-orderTitleDate, .admin-orderList-orderDate{
-	left: 700px;
-	width: 150px;
+	left: 600px;
+	width: 250px;
 	padding: 0;
 	text-align: center;
 }

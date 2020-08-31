@@ -23,6 +23,9 @@ public class OrderVo {
 	private Date orderDate;
 	private int orderState;
 	private String orderUserId;
+	private int orderGoodsCount;
+	private String orderGoodsName;
+	private String orderGoodsColor;
 	
 	public int getOrderNum() {
 		return orderNum;
@@ -140,6 +143,24 @@ public class OrderVo {
 	public void setOrderUserId(String orderUserId) {
 		this.orderUserId = orderUserId;
 	}
+	public int getOrderGoodsCount() {
+		return orderGoodsCount;
+	}
+	public void setOrderGoodsCount(int orderGoodsCount) {
+		this.orderGoodsCount = orderGoodsCount;
+	}
+	public String getOrderGoodsName() {
+		return orderGoodsName;
+	}
+	public void setOrderGoodsName(String orderGoodsName) {
+		this.orderGoodsName = orderGoodsName;
+	}
+	public String getOrderGoodsColor() {
+		return orderGoodsColor;
+	}
+	public void setOrderGoodsColor(String orderGoodsColor) {
+		this.orderGoodsColor = orderGoodsColor;
+	}
 	
 	@Override
 	public String toString() {
@@ -151,6 +172,7 @@ public class OrderVo {
 				+ ", orderReceiverDetailAddress=" + orderReceiverDetailAddress + ", orderReceiverExtraAddress="
 				+ orderReceiverExtraAddress + ", orderReceiverTel=" + orderReceiverTel + ", orderTotalPrice="
 				+ orderTotalPrice + ", orderDate=" + orderDate + ", orderState=" + orderState + ", orderUserId="
-				+ orderUserId + "]";
+				+ orderUserId + ", orderGoodsCount=" + orderGoodsCount + ", orderGoodsName=" + orderGoodsName
+				+ ", orderGoodsColor=" + orderGoodsColor + "]";
 	}
 }

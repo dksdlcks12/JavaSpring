@@ -95,7 +95,7 @@ public class UserController {
 		request.getSession().removeAttribute("user");
 	    return map;
 	}
-	@RequestMapping(value= {"/goodsList"}, method = RequestMethod.GET)
+	@RequestMapping(value= {"/goodslist"}, method = RequestMethod.GET)
 	public ModelAndView goodsListGet(ModelAndView mv, int type, Criteria cri) throws Exception{
 		PageMaker pm = userService.getPageMaker(cri, type);
 		ArrayList<GoodsVo> list;
@@ -224,6 +224,37 @@ public class UserController {
 		}
 	    return map;
 	}
+	@RequestMapping(value= {"/goodsvieworder"}, method = RequestMethod.GET)
+	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count, GoodsVo goods, HttpServletRequest request) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		ArrayList<Integer> cartNumList = new ArrayList<Integer>();
+		String address="";
+		if(user!=null) {
+			String goodsName = goods.getGoodsName();
+			for(int i=0; i<color.length; i++) {
+				OptionListVo option = new OptionListVo();
+				option.setGoods(goodsName);
+				option.setColor(color[i]);
+				option.setCount(count[i]);
+				if(userService.getcart(option, user)) {
+		    	}else {
+		    		int cartNum = userService.addGoodsViewOrderCart(option, user);
+		    		cartNumList.add(cartNum);
+		    	}
+			}
+			for(int i=0; i<cartNumList.size(); i++) {
+				if(i==0) {
+					address = address + "?orderList=" + cartNumList.get(i);
+				}else {
+					address = address + "&orderList=" + cartNumList.get(i);
+				}
+			}
+			mv.setViewName("redirect:/order"+address);
+		}else {
+			mv.setViewName("redirect:/login");
+		}
+		return mv;
+	}
 	@RequestMapping(value= {"/order"}, method = RequestMethod.GET)
 	public ModelAndView cartOrderGet(ModelAndView mv, HttpServletRequest request, Integer[] orderList) throws Exception{
 	    mv.setViewName("/goods/goodsOrder");
@@ -259,7 +290,6 @@ public class UserController {
 	    }
 		if(stock==true) {
 			if(orderInfoList!=null) {
-				System.out.println(orderInfoList.get(0));
 		    	index = userService.addOrder(orderInfoList.get(0), user);
 			}
 			for(AddOrderVo order : goodsList) {
@@ -269,47 +299,26 @@ public class UserController {
 		map.put("stock", stock);
 	    return map;
 	}
-	@RequestMapping(value= {"/orderViewList"}, method = RequestMethod.GET)
+	@RequestMapping(value= {"/orderviewlist"}, method = RequestMethod.GET)
 	public ModelAndView orderViewListGet(ModelAndView mv, HttpServletRequest request) throws Exception{
-	    mv.setViewName("/afterOrder/orderViewList");
-	    return mv;
-	}
-	@RequestMapping(value= {"/goodsvieworder"}, method = RequestMethod.GET)
-	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count, GoodsVo goods, HttpServletRequest request) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		ArrayList<Integer> cartNumList = new ArrayList<Integer>();
-		String address="";
 		if(user!=null) {
-			System.out.println(goods);
-			String goodsName = goods.getGoodsName();
-			System.out.println(user);
-			for(int i=0; i<color.length; i++) {
-				System.out.println(color[i] + ':' + count[i]);
-				OptionListVo option = new OptionListVo();
-				option.setGoods(goodsName);
-				option.setColor(color[i]);
-				option.setCount(count[i]);
-				if(userService.getcart(option, user)) {
-		    	}else {
-		    		int cartNum = userService.addGoodsViewOrderCart(option, user);
-		    		cartNumList.add(cartNum);
-		    		System.out.println(cartNumList);
-		    		System.out.println(cartNumList.size());
-		    	}
+			ArrayList<OrderVo> list;
+			list = userService.getOrderList(user);
+			for(OrderVo order : list) {
+				userService.getOrderGoods(order);
 			}
-			for(int i=0; i<cartNumList.size(); i++) {
-				if(i==0) {
-					address = address + "?orderList=" + cartNumList.get(i);
-				}else {
-					address = address + "&orderList=" + cartNumList.get(i);
-				}
-			}
-			System.out.println(address);
-			mv.setViewName("redirect:/order"+address);
+			mv.addObject("user", user);
+			mv.addObject("list", list);
+		    mv.setViewName("/afterOrder/orderViewList");
 		}else {
 			mv.setViewName("redirect:/login");
 		}
-		return mv;
+	    return mv;
 	}
-
+	@RequestMapping(value= {"/orderview"}, method = RequestMethod.GET)
+	public ModelAndView Get(ModelAndView mv, HttpServletRequest request) throws Exception{
+	    mv.setViewName("/afterOrder/orderView");
+	    return mv;
+	}
 }

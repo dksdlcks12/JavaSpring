@@ -64,8 +64,8 @@
 				</ul>
 			</c:if>
 			<ul class="user-set-bottomMenuBox" >
-				<a href="<%=request.getContextPath()%>/goodsList?type=1&page=1" class="user-set-goNecklace">목걸이</a>
-				<a href="<%=request.getContextPath()%>/goodsList?type=2&page=1" class="user-set-goRing">반  지</a>
+				<a href="<%=request.getContextPath()%>/goodslist?type=1&page=1" class="user-set-goNecklace">목걸이</a>
+				<a href="<%=request.getContextPath()%>/goodslist?type=2&page=1" class="user-set-goRing">반  지</a>
 				<ul class="user-set-listEarRing">귀걸이종류
 					<li><a href="<%=request.getContextPath()%>/goodsList?type=3&page=1" class="user-set-goEarClip">귀  찌</a></li>
 					<li><a href="<%=request.getContextPath()%>/goodsList?type=4&page=1" class="user-set-goEarRing">귀걸이</a></li>
@@ -81,7 +81,7 @@
 </div>
 <c:if test="${user.userAuth ne 'admin'}">
 	<div class="user-set-right">
-		<a href="#"><div class="user-set-orderCheck">주문 조회</div></a>
+		<a href="<%=request.getContextPath()%>/orderviewlist"><div class="user-set-orderCheck">주문 조회</div></a>
 		<a href="#"><div class="user-set-orderCheck">반품 조회</div></a>
 		<a href="#"><div class="user-set-orderCheck">A/S 조회</div></a>
 		<a href="#"><div class="user-set-deliveryCheck">배송 조회</div></a>

@@ -1,0 +1,202 @@
+@charset "UTF-8";
+.user-orderView-box{
+	width: 1400px;
+	padding: 100px 0 50px 0;
+	margin: 0 auto;
+	margin-top: 100px;
+	background-color: palegoldenrod;
+	box-sizing: border-box;
+}
+.user-orderView-orderViewBox{
+	width: 1200px;
+	margin-left: 100px;
+	padding: 20px 0 20px 0;
+	background-color: blanchedalmond;
+	box-sizing: border-box;
+}
+.user-orderView-orderViewBox>h2{
+	margin-left: calc(50% - 50px);
+	margin-bottom: 20px;
+}
+.user-orderView-orderNumberBox, .user-orderView-orderGoodsTitleBox, .user-orderView-orderGoodsBox, .user-orderView-orderStateBox{
+	position: relative;
+	width: 400px;
+	height: 50px;
+	margin-left: 100px;
+	background-color: cornsilk;
+	border: 1px solid black;
+	border-right: none;
+	margin-bottom: 20px;
+}
+.user-orderView-orderNumberBox>*, .user-orderView-orderGoodsTitleBox>*, .user-orderView-orderGoodsBox>*, .user-orderView-orderStateBox>*{
+	position: absolute;
+	width: 200px;
+	height: 48px;
+	background-color: honeydew;
+	font-size: 25px;
+	line-height: 50px;
+	text-align: center;
+	border-right: 1px solid black;
+	box-sizing: border-box;
+}
+.user-orderView-orderGoodsTitleImg{
+	width: 100px;
+}
+.user-orderView-orderNumber{
+	left: 200px;
+}
+.user-orderView-orderGoodsTitleBox, .user-orderView-orderGoodsBox{
+	width: 1000px;
+	margin-bottom: 0;
+}
+.user-orderView-orderGoodsBox{
+	border-top: none;
+	height: 100px;
+}
+.user-orderView-orderGoodsBox>*{
+	height: 98px;
+	line-height: 100px;
+}
+.user-orderView-orderGoodsImg{
+	width: 100px;
+}
+.user-orderView-orderGoodsName{
+	line-height: 50px;
+}
+.user-orderView-orderGoodsTitleName, .user-orderView-orderGoodsName{
+	width: 300px;
+	left: 100px;
+}
+.user-orderView-orderGoodsTitleDisCountPrice, .user-orderView-orderGoodsDisCountPrice{
+	width: 150px;
+	left: 400px;
+}
+.user-orderView-orderGoodsTitleCount, .user-orderView-orderGoodsCount{
+	width: 150px;
+	left: 550px;
+}
+.user-orderView-orderGoodsTitleUsePoint, .user-orderView-orderGoodsUsePoint{
+	width: 150px;
+	left: 700px;
+}
+.user-orderView-orderGoodsTitlePayPrice, .user-orderView-orderGoodsPayPrice{
+	left: 850px;
+	width: 150px;
+}
+
+.user-orderView-orderGoodsName{
+	text-align: left;
+	padding-left: 10px;
+}
+.user-orderView-peopleInfo{
+	width: 1000px;
+	margin-left: 100px;
+	margin-top: 20px;
+	padding: 10px 0 10px 0;
+}
+.user-orderView-peopleInfo>p{
+	margin-left: 10px;
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+.user-orderView-Info{
+	width: 1000px;
+	border-color: black;
+	border-collapse: collapse;
+	margin-bottom: 30px;
+}
+.user-orderView-name, .user-orderView-tel{
+	width: 100px;
+	height: 30px;
+	margin: 5px;
+	padding-left: 10px;
+}
+.user-orderView-Info td{
+	background-color: whitesmoke;
+	height: 30px;
+}
+.user-orderView-Info td:nth-child(odd){
+	background-color: cornsilk;
+	padding-left: 10px;
+	width: 25%;
+}
+.user-orderView-addressLine>div{
+	margin: 5px;
+	height: 30px;
+	border: 1px solid black;
+	background-color: white;
+	position: relative;
+}
+.user-orderView-postcodeBox{
+	width: 200px;
+}
+.user-orderView-addressBox{
+	width: 520px;
+}
+.user-orderView-detailAddressBox, .user-orderView-extraAddressBox{
+	width: 300px;
+}
+.user-orderView-tel{
+	width: 50px;
+}
+.user-orderView-addressLineTitle{
+	position: absolute;
+	width: 100px;
+	height: 30px;
+	text-align: center;
+	font-size: 20px;
+	line-height: 30px;
+	border-right: 1px solid black;
+	background-color: antiquewhite;
+	box-sizing: border-box;
+}
+.user-orderView-postcode, .user-orderView-detailAddress, .user-orderView-extraAddress, .user-orderView-address{
+	width: 100px;
+	position: absolute;
+	left: 100px;
+	line-height: 30px;
+	text-align: center;
+	box-sizing: border-box;
+}
+.user-orderView-address{
+	width: 420px;
+	text-align: left;
+	padding-left: 10px;
+}
+.user-orderView-detailAddress, .user-orderView-extraAddress{
+	width: 200px;
+	text-align: left;
+	padding-left: 10px;
+}
+.user-orderView-orderState{
+	left: 200px;
+	padding-left: 10px;
+}
+.user-orderView-orderStateButton{
+	width: 200px;
+	height: 50px;
+	font-size: 25px;
+	margin-left: calc(50% - 100px);
+}
+.user-orderView-orderGoodsImg>img{
+	width: 98px;
+	height: 98px;
+}
+.user-orderView-totalPriceBox{
+	margin-left: 100px;
+	margin-top: 20px;
+	width: 1000px;
+	height: 100px;
+	position: relative;
+}
+.user-orderView-totalPrice{
+	width: 300px;
+	height: 100px;
+	border: 1px solid black;
+	right: 0;
+	position: absolute;
+	font-size: 20px;
+	line-height: 50px;
+	text-align: right;
+	padding-right: 20px;
+}

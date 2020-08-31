@@ -266,7 +266,7 @@
 				success : function(data){
 					if(data.stock){
 						alert('주문이 완료되었습니다.')
-						location.replace('<%=request.getContextPath()%>/orderViewList')
+						location.replace('<%=request.getContextPath()%>/orderviewlist')
 					}else{
 						alert('재고가 부족합니다.')
 					}

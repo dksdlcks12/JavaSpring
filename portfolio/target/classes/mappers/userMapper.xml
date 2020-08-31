@@ -134,7 +134,7 @@
 		update portfolio.option set optionStock = #{stock} where optionNum = (select cart_optionNum from cart where cartNum = #{order.orderNum})
 	</update>
 	<insert id="addOrderList"> 
-		insert into orderList (orderList_postNum, orderList_orderNum, orderList_optioNum, orderListCount, orderListPrice, orderListUsePoint)
+		insert into orderList (orderList_postNum, orderList_orderNum, orderList_optionNum, orderListCount, orderListPrice, orderListUsePoint)
 		values((select cart_postNum from cart where cartNum = #{order.orderNum}), #{index}, (select cart_optionNum from cart where cartNum = #{order.orderNum}), #{order.orderCount}, #{order.orderPrice}, #{order.orderUsePoint})
 	</insert>
 		<insert id="addGoodsViewOrderCart" parameterType="kr.ajs.portfolio.vo.CartVo" useGeneratedKeys="true" keyProperty="cart.cartNum">
@@ -142,4 +142,20 @@
 		values ((select postNum from post join goods on goodsNum=postNum where goodsName = #{option.goods}), #{user.userId}, #{option.count}, 
 		(select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{option.goods} and optionColor = #{option.color}))
 	</insert>
+	<delete id="deleteCart">
+		delete from cart where cartNum = #{order.orderNum}
+	</delete>
+	<select id="getOrderList" resultType="kr.ajs.portfolio.vo.OrderVo">
+		select orderNum, orderDate, orderState from portfolio.order
+		where orderUserId = #{user.userId}
+	</select>
+	<select id="getOrderGoodsCount" resultType="int">
+		select count(*) from orderList where orderList_orderNum = #{order.orderNum}
+	</select>
+	<select id="getOrderGoodsName" resultType="String">
+		select goodsName from orderList join portfolio.option on orderList_optionNum = optionNum join goods on goodsNum = option_goodsNum where orderList_orderNum = #{order.orderNum} limit 0,1
+	</select>
+	<select id="getOrderGoodsColor" resultType="String">
+		select optionColor from orderList join portfolio.option on orderList_optionNum = optionNum where orderList_orderNum = #{order.orderNum} limit 0,1
+	</select>
 </mapper>
