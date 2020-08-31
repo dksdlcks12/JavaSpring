@@ -191,7 +191,6 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		CartVo cart = new CartVo();
 		userDao.addGoodsViewOrderCart(option, user, cart);
-		System.out.println(cart.getCartNum());
 		return cart.getCartNum();
 	}
 	@Override
