@@ -63,4 +63,6 @@ public interface UserDao {
 	public void updateStock(@Param("order") AddOrderVo order, @Param("stock")int stock);
 
 	public void addOrderList(@Param("order")AddOrderVo order, @Param("index")int index);
+
+	public void addGoodsViewOrderCart(@Param("option")OptionListVo option, @Param("user")UserVo user, @Param("cart")CartVo cart);
 }

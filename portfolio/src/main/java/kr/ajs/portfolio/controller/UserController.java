@@ -219,14 +219,12 @@ public class UserController {
 	@ResponseBody
 	public Map<Object, Object> cartCountChange(@RequestBody ArrayList<CartVo> cartList, HttpServletRequest request){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
-		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		for(CartVo cart : cartList) {
 			userService.updateCartCount(cart);
 		}
-	    
 	    return map;
 	}
-	@RequestMapping(value= {"/order"}, method = RequestMethod.POST)
+	@RequestMapping(value= {"/order"}, method = RequestMethod.GET)
 	public ModelAndView cartOrderGet(ModelAndView mv, HttpServletRequest request, Integer[] orderList) throws Exception{
 	    mv.setViewName("/goods/goodsOrder");
 	    UserVo user = (UserVo) request.getSession().getAttribute("user");
@@ -276,17 +274,42 @@ public class UserController {
 	    mv.setViewName("/afterOrder/orderViewList");
 	    return mv;
 	}
-	/*@RequestMapping(value= {"/gocart"}, method = RequestMethod.POST)
+	@RequestMapping(value= {"/goodsvieworder"}, method = RequestMethod.GET)
 	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count, GoodsVo goods, HttpServletRequest request) throws Exception{
-		mv.setViewName("redirect:/wishlist");
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		System.out.println(goods);
-		System.out.println(user);
-		for(int i=0; i<color.length; i++) {
-			System.out.println(color[i] + ':' + count[i]);
-		}	
-		for(int i=0; i<color.length; i++) {
-		}	
+		ArrayList<Integer> cartNumList = new ArrayList<Integer>();
+		String address="";
+		if(user!=null) {
+			System.out.println(goods);
+			String goodsName = goods.getGoodsName();
+			System.out.println(user);
+			for(int i=0; i<color.length; i++) {
+				System.out.println(color[i] + ':' + count[i]);
+				OptionListVo option = new OptionListVo();
+				option.setGoods(goodsName);
+				option.setColor(color[i]);
+				option.setCount(count[i]);
+				if(userService.getcart(option, user)) {
+		    	}else {
+		    		int cartNum = userService.addGoodsViewOrderCart(option, user);
+		    		cartNumList.add(cartNum);
+		    		System.out.println(cartNumList);
+		    		System.out.println(cartNumList.size());
+		    	}
+			}
+			for(int i=0; i<cartNumList.size(); i++) {
+				if(i==0) {
+					address = address + "?orderList=" + cartNumList.get(i);
+				}else {
+					address = address + "&orderList=" + cartNumList.get(i);
+				}
+			}
+			System.out.println(address);
+			mv.setViewName("redirect:/order"+address);
+		}else {
+			mv.setViewName("redirect:/login");
+		}
 		return mv;
-	}*/
+	}
+
 }

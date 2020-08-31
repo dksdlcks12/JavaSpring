@@ -6,7 +6,7 @@
 			<div class="common-goodsView-leftBox">
 				<img src="<%=request.getContextPath()%>/resources/image/goodsImg/${goods.goodsImg}" alt="" class="common-goodsView-goodsImg">
 			</div>
-		<form action="#" method="POST">
+		<form action="<%=request.getContextPath()%>/goodsvieworder" method="GET">
 			<div class="common-goodsView-rightBox">
 				<div class="common-goodsView-goodsNameBox">
 					<div class="common-goodsView-goodsNameTitle">제품명</div>
@@ -80,7 +80,7 @@
 									}
 								}
 								function optionSelect(){
-									$('.common-goodsView-selectBox').append('<div class="common-goodsView-selectOptionBox" id="common-goodsView-selectOptionBox"><div class="common-goodsView-optionName">'+value+'</div><input type="text" class="common-goodsView-optionCount" value="1" name="count"><div class="common-goodsView-optionCountButtonBox"><div class="common-goodsView-optionCountButton"><i class="fas fa-plus"></i></div><div class="common-goodsView-optionCountButton"><i class="fas fa-minus"></i></div></div><div class="common-goodsView-optionPrice"><span class="common-goodsView-optionPriceNumber">'+${disCountPrice}+'</span>원</div><div class="common-goodsView-optionCancel"><div class="common-goodsView-optionCancelButton"><i class="fas fa-times"></i></div></div></div><input name=color value="'+value+'" hidden>')
+									$('.common-goodsView-selectBox').append('<div class="common-goodsView-selectOptionBox" id="common-goodsView-selectOptionBox"><div class="common-goodsView-optionName">'+value+'</div><input type="text" class="common-goodsView-optionCount" value="1" name="count"><div class="common-goodsView-optionCountButtonBox"><div class="common-goodsView-optionCountButton"><i class="fas fa-plus"></i></div><div class="common-goodsView-optionCountButton"><i class="fas fa-minus"></i></div></div><div class="common-goodsView-optionPrice"><span class="common-goodsView-optionPriceNumber">'+${disCountPrice}+'</span>원</div><div class="common-goodsView-optionCancel"><div class="common-goodsView-optionCancelButton"><i class="fas fa-times"></i></div></div></div><input name="color" value="'+value+'" hidden>')
 									count = Number($('.common-goodsView-optionName:contains('+value+')').next().val());
 									++totalCount;
 									priceCalculation();
@@ -270,6 +270,20 @@
 				}
 			}else{
 				alert('회원만 사용 가능합니다.')
+			}
+		})
+		$('form').on("submit", function(){
+			if($('.common-goodsView-selectOptionBox').length!=0){
+				var index = 0;	
+				$('common-goodsView-selectOptionBox').each(function(){
+					$(this).children('input[name=count]').attr('name','count['+index+']');
+					
+					$(this).children('input[name=color]').attr('name','color['+index+']');
+					index=index+1;
+				})
+			}else{
+				alert('옵션을 선택하여 주십시오.');
+				return false;
 			}
 		})
 	})

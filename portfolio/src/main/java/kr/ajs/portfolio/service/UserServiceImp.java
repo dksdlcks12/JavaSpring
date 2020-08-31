@@ -1,5 +1,6 @@
 package kr.ajs.portfolio.service;
 
+import java.security.DrbgParameters.NextBytes;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -182,5 +183,13 @@ public class UserServiceImp implements UserService {
 		stock = stock-count;
 		userDao.updateStock(order, stock);
 		userDao.addOrderList(order, index);
+	}
+	@Override
+	public int addGoodsViewOrderCart(OptionListVo option, UserVo user) {
+		// TODO Auto-generated method stub
+		CartVo cart = new CartVo();
+		userDao.addGoodsViewOrderCart(option, user, cart);
+		System.out.println(cart.getCartNum());
+		return cart.getCartNum();
 	}
 }

@@ -63,4 +63,6 @@ public interface UserService {
 
 	public void addOrderList(AddOrderVo order, int index);
 
+	public int addGoodsViewOrderCart(OptionListVo option, UserVo user);
+
 }

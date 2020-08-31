@@ -3,7 +3,7 @@
 <div class="user-cart-box">
 	<div class="user-cart-cartBox">
 		<c:if test="${list.size()!=0}">
-			<form action="<%=request.getContextPath()%>/order" method="POST">
+			<form action="<%=request.getContextPath()%>/order" method="GET">
 				<table class="user-cart-goodsBox" border="1">
 					<tr>
 						<th><input type="checkbox" class="user-cart-goodsCheckAll"></th>

@@ -104,8 +104,7 @@
 	</select>
 	<insert id="addGoodsViewCart">
 		insert into cart (cart_postNum, cart_userId, cartCount, cart_optionNum)
-		values (
-		(select postNum from post join goods on goodsNum=postNum where goodsName = #{option.goods}), #{user.userId}, #{option.count}, 
+		values ((select postNum from post join goods on goodsNum=postNum where goodsName = #{option.goods}), #{user.userId}, #{option.count}, 
 		(select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{option.goods} and optionColor = #{option.color}))
 	</insert>
 	<update id="updateCartCount">
@@ -137,5 +136,10 @@
 	<insert id="addOrderList"> 
 		insert into orderList (orderList_postNum, orderList_orderNum, orderList_optioNum, orderListCount, orderListPrice, orderListUsePoint)
 		values((select cart_postNum from cart where cartNum = #{order.orderNum}), #{index}, (select cart_optionNum from cart where cartNum = #{order.orderNum}), #{order.orderCount}, #{order.orderPrice}, #{order.orderUsePoint})
+	</insert>
+		<insert id="addGoodsViewOrderCart" parameterType="kr.ajs.portfolio.vo.CartVo" useGeneratedKeys="true" keyProperty="cart.cartNum">
+		insert into cart (cart_postNum, cart_userId, cartCount, cart_optionNum)
+		values ((select postNum from post join goods on goodsNum=postNum where goodsName = #{option.goods}), #{user.userId}, #{option.count}, 
+		(select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{option.goods} and optionColor = #{option.color}))
 	</insert>
 </mapper>
