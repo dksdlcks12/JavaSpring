@@ -195,8 +195,9 @@ public class UserServiceImp implements UserService {
 		return cart.getCartNum();
 	}
 	@Override
-	public ArrayList<OrderVo> getOrderList(UserVo user) {
-		return userDao.getOrderList(user);
+	public ArrayList<OrderVo> getOrderList(UserVo user, Criteria cri) {
+		cri.setPerPageNum(6);
+		return userDao.getOrderList(user, cri);
 	}
 	@Override
 	public void getOrderGoods(OrderVo order) {
@@ -214,5 +215,14 @@ public class UserServiceImp implements UserService {
 	public OrderVo getOrder(int orderNum, UserVo user) {
 		// TODO Auto-generated method stub
 		return userDao.getOrder(orderNum, user);
+	}
+	@Override
+	public PageMaker getPageMakerOrderView(Criteria cri, UserVo user) {
+		cri.setPerPageNum(6);
+		PageMaker pm = new PageMaker();
+		int totalCount = userDao.getOrderViewListTotalCount(user);
+	    pm.setCriteria(cri);
+	    pm.setTotalCount(totalCount);
+		return pm;
 	}
 }

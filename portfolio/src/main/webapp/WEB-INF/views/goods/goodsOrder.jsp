@@ -246,7 +246,7 @@
 		var receiveDetailAddress = $('#receiveDetailAddress').val();
 		var receiveExtraAddress = $('#receiveExtraAddress').val();
 		var receiveTel = $('#receiveTel').children('.tel1').val()+$('#receiveTel').children('.tel2').val()+$('#receiveTel').children('.tel3').val();
-		if(senderName!="" && sendPostcode!="" && sendAddress!="" && sendDetailAddress!="" && sendExtraAddress!="" && $('#sendTel').children('.tel1').val()!="" && $('#sendTel').children('.tel2').val()!="" && $('#sendTel').children('.tel3').val()!="" && noneMemberPassword!="" && receiverName!="" && receivePostcode!="" && receiveAddress!="" && receiveDetailAddress!="" && receiveExtraAddress!="" && $('#receiveTel').children('.tel1').val()!="" && $('#receiveTel').children('.tel2').val()!="" && $('#receiveTel').children('.tel3').val()!=""){
+		if(senderName!="" && sendPostcode!="" && sendAddress!="" && sendDetailAddress!="" && $('#sendTel').children('.tel1').val()!="" && $('#sendTel').children('.tel2').val()!="" && $('#sendTel').children('.tel3').val()!="" && noneMemberPassword!="" && receiverName!="" && receivePostcode!="" && receiveAddress!="" && receiveDetailAddress!="" && $('#receiveTel').children('.tel1').val()!="" && $('#receiveTel').children('.tel2').val()!="" && $('#receiveTel').children('.tel3').val()!=""){
 			$('.user-order-goodsCheck').each(function(){
 				var orderNum = $(this).val();
 				var orderCount = $(this).parent().siblings('.user-order-goodsCount').text();

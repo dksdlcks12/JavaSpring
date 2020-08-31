@@ -301,14 +301,16 @@ public class UserController {
 	    return map;
 	}
 	@RequestMapping(value= {"/orderviewlist"}, method = RequestMethod.GET)
-	public ModelAndView orderViewListGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+	public ModelAndView orderViewListGet(ModelAndView mv, HttpServletRequest request, Criteria cri) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null) {
+			PageMaker pm = userService.getPageMakerOrderView(cri, user);
 			ArrayList<OrderVo> list;
-			list = userService.getOrderList(user);
+			list = userService.getOrderList(user,cri);
 			for(OrderVo order : list) {
 				userService.getOrderGoods(order);
 			}
+			mv.addObject("pm", pm);
 			mv.addObject("user", user);
 			mv.addObject("list", list);
 		    mv.setViewName("/afterOrder/orderViewList");

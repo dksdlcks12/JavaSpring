@@ -66,12 +66,14 @@ public interface UserService {
 
 	public int addGoodsViewOrderCart(OptionListVo option, UserVo user);
 
-	public ArrayList<OrderVo> getOrderList(UserVo user);
+	public ArrayList<OrderVo> getOrderList(UserVo user, Criteria cri);
 
 	public void getOrderGoods(OrderVo order);
 
 	public ArrayList<OrderListVo> getOrderGoodsList(int orderNum, UserVo user);
 
 	public OrderVo getOrder(int orderNum, UserVo user);
+
+	public PageMaker getPageMakerOrderView(Criteria cri, UserVo user);
 
 }

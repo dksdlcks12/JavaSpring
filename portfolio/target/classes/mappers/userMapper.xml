@@ -148,7 +148,7 @@
 	<select id="getOrderList" resultType="kr.ajs.portfolio.vo.OrderVo">
 		select orderNum, orderDate, orderState from portfolio.order
 		where orderUserId = #{user.userId}
-		order by orderNum desc
+		order by orderNum desc limit #{cri.pageStart}, #{cri.perPageNum};
 	</select>
 	<select id="getOrderGoodsCount" resultType="int">
 		select count(*) from orderList where orderList_orderNum = #{order.orderNum}
@@ -166,5 +166,8 @@
 	</select>
 	<select id="getOrder" resultType="kr.ajs.portfolio.vo.OrderVo">
 		select * from portfolio.order where orderNum = #{orderNum} and orderUserId = #{user.userId}
+	</select>
+	<select id="getOrderViewListTotalCount" resultType="int">
+		select count(*) from portfolio.order where orderUserId = #{user.userId}
 	</select>
 </mapper>

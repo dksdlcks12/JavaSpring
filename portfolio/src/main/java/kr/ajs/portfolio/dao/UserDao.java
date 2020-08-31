@@ -69,7 +69,7 @@ public interface UserDao {
 
 	public void deleteCart(@Param("order")AddOrderVo order);
 
-	public ArrayList<OrderVo> getOrderList(@Param("user")UserVo user);
+	public ArrayList<OrderVo> getOrderList(@Param("user")UserVo user, @Param("cri")Criteria cri);
 
 	public int getOrderGoodsCount(@Param("order")OrderVo order);
 
@@ -80,4 +80,6 @@ public interface UserDao {
 	public ArrayList<OrderListVo> getOrderGoodsList(@Param("orderNum")int orderNum, @Param("user")UserVo user);
 
 	public OrderVo getOrder(@Param("orderNum")int orderNum, @Param("user")UserVo user);
+
+	public int getOrderViewListTotalCount(@Param("user")UserVo user);
 }

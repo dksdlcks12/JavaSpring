@@ -34,13 +34,28 @@
 					</div>
 				</form>
 			</c:if>
-			<ul class="admin-orderList-pagination pagination justify-content-center">
-				<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item active"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
-			</ul>
+			<c:if test="${list.size()!=0}">
+				<c:if test="${pm.endPage!=1}">
+					<ul class="common-goodsList-pagination pagination justify-content-center">
+						<c:if test="${pm.criteria.page!=1}">
+						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/orderviewlist?page=${pm.criteria.page-1}"><i class="fas fa-angle-left"></i></a></li>
+						</c:if>
+					    <c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="index">
+					        <li class="page-item <c:if test="${index==pm.criteria.page}">active</c:if>">
+					            <a class="page-link" href="<%=request.getContextPath()%>/orderviewlist?page=${index}">${index}</a>
+					        </li>
+					    </c:forEach>
+					    <c:if test="${pm.criteria.page!=pm.endPage}">
+							<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/orderviewlist?page=${pm.criteria.page+1}"><i class="fas fa-angle-right"></i></a></li>
+						</c:if>
+					</ul>
+				</c:if>
+				<c:if test="${pm.criteria.page>pm.endPage}">
+					<script>
+						location.href = "<%=request.getContextPath()%>/orderviewlist?page=${pm.endPage}"
+					</script>
+				</c:if>
+			</c:if>
 		</c:if>
 	</div>
 </div>
