@@ -11,6 +11,7 @@ import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
+import kr.ajs.portfolio.vo.OrderListVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.PostVo;
@@ -75,4 +76,8 @@ public interface UserDao {
 	public String getOrderGoodsName(@Param("order")OrderVo order);
 
 	public String getOrderGoodsColor(@Param("order")OrderVo order);
+
+	public ArrayList<OrderListVo> getOrderGoodsList(@Param("orderNum")int orderNum, @Param("user")UserVo user);
+
+	public OrderVo getOrder(@Param("orderNum")int orderNum, @Param("user")UserVo user);
 }

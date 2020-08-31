@@ -16,6 +16,7 @@ import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
+import kr.ajs.portfolio.vo.OrderListVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.PostVo;
@@ -203,5 +204,15 @@ public class UserServiceImp implements UserService {
 		order.setOrderGoodsName(userDao.getOrderGoodsName(order));
 		order.setOrderGoodsColor(userDao.getOrderGoodsColor(order));
 		
+	}
+	@Override
+	public ArrayList<OrderListVo> getOrderGoodsList(int orderNum, UserVo user) {
+		// TODO Auto-generated method stub
+		return userDao.getOrderGoodsList(orderNum, user);
+	}
+	@Override
+	public OrderVo getOrder(int orderNum, UserVo user) {
+		// TODO Auto-generated method stub
+		return userDao.getOrder(orderNum, user);
 	}
 }

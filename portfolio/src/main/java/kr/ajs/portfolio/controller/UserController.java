@@ -18,14 +18,15 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.ajs.portfolio.pagination.Criteria;
 import kr.ajs.portfolio.pagination.PageMaker;
 import kr.ajs.portfolio.service.UserService;
+import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.BoardCartVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
+import kr.ajs.portfolio.vo.OrderListVo;
 import kr.ajs.portfolio.vo.OrderVo;
-import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
 
@@ -317,8 +318,19 @@ public class UserController {
 	    return mv;
 	}
 	@RequestMapping(value= {"/orderview"}, method = RequestMethod.GET)
-	public ModelAndView Get(ModelAndView mv, HttpServletRequest request) throws Exception{
-	    mv.setViewName("/afterOrder/orderView");
-	    return mv;
+	public ModelAndView Get(ModelAndView mv, int orderNum, HttpServletRequest request) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		if(user!=null) {
+			ArrayList<OrderListVo> list;
+			list = userService.getOrderGoodsList(orderNum, user);
+			OrderVo order = userService.getOrder(orderNum, user);
+			mv.addObject("orderNum", orderNum);
+			mv.addObject("order", order);
+			mv.addObject("list", list);
+			mv.setViewName("/afterOrder/orderView");
+		}else {
+			mv.setViewName("redirect:/login");
+		}
+		return mv;
 	}
 }
