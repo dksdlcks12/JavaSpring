@@ -46,4 +46,7 @@
 	<update id="optionModify">
 		update portfolio.option set optionStock = #{stock}, optionIsDel = 'N' where option_goodsNum = #{goods.goodsNum} and optionColor = #{color}
 	</update>
+	<update id="postDelete">
+		update post set postIsDel = 'Y', postDelDate = now() where postNum = #{postNum}
+	</update>
 </mapper>

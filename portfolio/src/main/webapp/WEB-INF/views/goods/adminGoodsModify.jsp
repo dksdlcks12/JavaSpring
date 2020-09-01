@@ -163,6 +163,7 @@
 				<input name="postNum" value="${post.postNum}" hidden>
 				<input name="goodsNum" value="${goods.goodsNum}" hidden>
 				<input name="goodsName" value="${goods.goodsName}" hidden>
+				<input name="goodsType" value="${goods.goodsType}" hidden>
 				<button class="admin-goodsModify-button">수정완료</button>
 			</div>
 		</form>

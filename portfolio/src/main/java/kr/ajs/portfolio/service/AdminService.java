@@ -25,4 +25,6 @@ public interface AdminService {
 
 	void optionModify(String color, int stock, GoodsVo goods);
 
+	void postDelete(int postNum);
+
 }

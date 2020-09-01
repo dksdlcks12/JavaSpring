@@ -33,4 +33,6 @@ public interface AdminDao {
 
 	void optionModify(@Param("color")String color, @Param("stock")int stock, @Param("goods")GoodsVo goods);
 
+	void postDelete(@Param("postNum")int postNum);
+
 }

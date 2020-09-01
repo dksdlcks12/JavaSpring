@@ -39,4 +39,9 @@
 			</script>
 		</c:if>
 	</c:if>
+	<c:if test="${list.size()==0 && pm.criteria.page>1}">
+		<script>
+			location.replace('<%=request.getContextPath()%>/goodslist?type=${type}&page=${pm.endPage}');
+		</script>
+	</c:if>
 </div>

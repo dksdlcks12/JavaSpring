@@ -33,7 +33,7 @@
 								</div>
 							</c:forEach>
 						</div>
-						<a href="#"><div class="common-goodsView-modifyButton">삭제하기</div></a>
+						<div class="common-goodsView-modifyButton">삭제하기</div>
 						<a href="<%=request.getContextPath()%>/admin/goodsmodify?postNum=${post.postNum}&page=${page}"><div class="common-goodsView-modifyButton">수정하기</div></a>
 					</div>
 				</c:if>
@@ -240,7 +240,7 @@
 			}
 		})
 		$('.common-goodsView-goCart').click(function(){
-			var arr = [] ;	
+			var arr = [] ;
 			if($('#user').val().length!=0){
 				if($('.common-goodsView-selectOptionBox').length!=0){
 					$('.common-goodsView-optionName').each(function(){
@@ -285,6 +285,24 @@
 				alert('옵션을 선택하여 주십시오.');
 				return false;
 			}
+		})
+		$('.common-goodsView-modifyButton').click(function(){	
+			var arr = [] ;
+			var postNum = ${post.postNum}
+			var page = ${page}
+			var type = ${type}
+			arr.push({'postNum':postNum,'page':page,'type':type})
+			$.ajax({
+				async:false,
+				type:'POST',
+				data: JSON.stringify(arr),
+				url:"<%=request.getContextPath()%>/admin/postdelete",
+				dataType:"json",
+				contentType:"application/json; charset=UTF-8",
+				success : function(data){
+					location.replace('<%=request.getContextPath()%>/goodslist?type='+data.type+'&page='+data.page);
+				}
+			});
 		})
 	})
 </script>

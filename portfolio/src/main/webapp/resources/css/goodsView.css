@@ -341,6 +341,7 @@
 	box-sizing: border-box;
 	border: 1px solid black;
 	line-height: 58px;
+	cursor: pointer;
 }
 .common-goodsView-modifyButton + .common-goodsView-modifyButton{
 	border-right: none;

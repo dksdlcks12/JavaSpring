@@ -72,4 +72,10 @@ public class AdminServiceImp implements AdminService {
 		}
 	}
 
+	@Override
+	public void postDelete(int postNum) {
+		// TODO Auto-generated method stub
+		adminDao.postDelete(postNum);
+	}
+
 }
