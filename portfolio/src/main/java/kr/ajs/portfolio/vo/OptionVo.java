@@ -5,6 +5,7 @@ public class OptionVo {
 	private int option_goodsNum;
 	private String optionColor;
 	private int optionStock;
+	private String optionIsDel;
 	
 	public int getOptionNum() {
 		return optionNum;
@@ -31,9 +32,16 @@ public class OptionVo {
 		this.optionStock = optionStock;
 	}
 	
+	public String getOptionIsDel() {
+		return optionIsDel;
+	}
+	public void setOptionIsDel(String optionIsDel) {
+		this.optionIsDel = optionIsDel;
+	}
 	@Override
 	public String toString() {
 		return "OptionVo [optionNum=" + optionNum + ", option_goodsNum=" + option_goodsNum + ", optionColor="
-				+ optionColor + ", optionStock=" + optionStock + "]";
+				+ optionColor + ", optionStock=" + optionStock + ", optionIsDel=" + optionIsDel + "]";
 	}
+	
 }

@@ -47,7 +47,7 @@
 		select * from post where post_goodsNum = #{num}
 	</select>
 	<select id="getOptionList" resultType="kr.ajs.portfolio.vo.OptionVo">
-		select * from portfolio.option where option_goodsNum = #{num}
+		select * from portfolio.option where option_goodsNum = #{num} and optionIsDel = 'N'
 	</select>
 	<select id="getWishList" resultType="kr.ajs.portfolio.vo.WishListVo">
 		select * from wishlist where wishList_postNum = (select postNum from post join goods on goodsNum=postNum where goodsName = #{option.goods})
@@ -69,6 +69,7 @@
 		join portfolio.option on wishList_optionNum = optionNum 
 		join goods on option_goodsNum = goodsNum
 		where wishList_userId = #{user.userId}
+		and optionIdDel = 'N'
 		and postIsDel = 'N'
 		order by wishListNum desc limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
@@ -89,6 +90,7 @@
 		join portfolio.option on cart_optionNum = optionNum 
 		join goods on option_goodsNum = goodsNum
 		where cart_userId = #{user.userId}
+		and optionIdDel = 'N'
 		and postIsDel = 'N'
 		order by cartNum desc
 	</select>

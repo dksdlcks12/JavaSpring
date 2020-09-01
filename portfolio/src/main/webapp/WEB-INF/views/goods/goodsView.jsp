@@ -33,8 +33,8 @@
 								</div>
 							</c:forEach>
 						</div>
-						<div class="common-goodsView-modifyButton">삭제하기</div>
-						<div class="common-goodsView-modifyButton">수정하기</div>
+						<a href="#"><div class="common-goodsView-modifyButton">삭제하기</div></a>
+						<a href="<%=request.getContextPath()%>/admin/goodsmodify?postNum=${post.postNum}&page=${page}"><div class="common-goodsView-modifyButton">수정하기</div></a>
 					</div>
 				</c:if>
 				<c:if test="${user.userAuth ne 'admin'}">

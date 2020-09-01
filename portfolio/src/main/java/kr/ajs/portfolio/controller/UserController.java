@@ -117,6 +117,8 @@ public class UserController {
 		mv.addObject("post", post);
 		mv.addObject("disCountPrice", disCountPrice);
 		mv.addObject("list", list);
+		mv.addObject("type", type);
+		mv.addObject("page", page);
 	    mv.setViewName("/goods/goodsView");
 	    return mv;
 	}

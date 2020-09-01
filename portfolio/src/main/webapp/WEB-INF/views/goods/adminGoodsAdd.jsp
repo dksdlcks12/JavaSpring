@@ -90,20 +90,52 @@
 					</div>
 					<script>
 						$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsOptionButton').click(function(){
-							if($('.admin-goodsAdd-goodsStock').val()!='' && $('.admin-goodsAdd-goodsColor')!=''){
-								if($('.admin-goodsAdd-goodsOptionBox').length==0){
-									$('.admin-goodsAdd-goodsOptionView').append('<h2>옵션</h2>')
+							var check = false;
+							$('.admin-goodsAdd-goodsOptionBox').each(function(){
+								if($(this).children('.admin-goodsAdd-goodsColor').text()==$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsColor').val()){
+									check = true;
 								}
-								$('.admin-goodsAdd-goodsOptionView').append('<div class="admin-goodsAdd-goodsOptionBox"><div class="admin-goodsAdd-goodsColorTitle">색 상</div><div class="admin-goodsAdd-goodsColor">'+$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsColor').val()+'</div><div class="admin-goodsAdd-goodsStockTitle">재고량</div><div class="admin-goodsAdd-goodsStock">'+$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsStock').val()+'</div><button class="admin-goodsAdd-goodsOptionButton"><i class="fas fa-minus"></i></button></div><input name="color" value="'+$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsColor').val()+'" hidden><input name="stock" value="'+$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsStock').val()+'" hidden>')
-								$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsColor, .admin-goodsAdd-goodsStock').val('');
-								$('.admin-goodsAdd-goodsOptionBox').children('.admin-goodsAdd-goodsOptionButton').click(function(){
-									if($('.admin-goodsAdd-goodsOptionBox').length==1){
-										$(this).parent().prev().remove();
+							})
+							if(check==false){
+								if($('.admin-goodsAdd-goodsStock').val()!='' && $('.admin-goodsAdd-goodsColor')!=''){
+									if($('.admin-goodsAdd-goodsOptionBox').length==0){
+										$('.admin-goodsAdd-goodsOptionView').append('<h2>옵션</h2>')
 									}
-									$(this).parent().remove();
-								})
+									$('.admin-goodsAdd-goodsOptionView').append('<div class="admin-goodsAdd-goodsOptionBox"><div class="admin-goodsAdd-goodsColorTitle">색 상</div><div class="admin-goodsAdd-goodsColor">'+$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsColor').val()+'</div><div class="admin-goodsAdd-goodsStockTitle">재고량</div><input class="admin-goodsAdd-goodsStock number" name="stock" value="'+$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsStock').val()+'"><button class="admin-goodsAdd-goodsOptionButton"><i class="fas fa-minus"></i></button></div><input name="color" value="'+$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsColor').val()+'" hidden>')
+									$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsColor, .admin-goodsAdd-goodsStock').val('');
+									$('.admin-goodsAdd-goodsOptionBox').children('.admin-goodsAdd-goodsOptionButton').click(function(){
+										if($('.admin-goodsAdd-goodsOptionBox').length==1){
+											$(this).parent().prev().remove();
+										}
+										$(this).parent().remove();
+									})
+									$('.number').keydown(function(event){
+										if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) { 
+											return true;
+										}else if(event.keyCode==8 || event.keyCode==9 || event.keyCode==13 || event.keyCode==37 || event.keyCode==39 || event.keyCode==46){
+											return true;
+										}else{
+											return false;
+										}
+									})
+									$('.number').keyup(function(){
+										$(this).val( $(this).val().replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi,''));
+										if($(this).val().substring(0,1)==0){
+											if($(this).val().substring(1,2)==''){
+												$(this).val(0);
+											}else if($(this).val().substring(1,2)==0){
+												$(this).val(0);
+											}else{
+												$(this).val( $(this).val().replace(/(^0+)/, ""))
+											}
+										}
+									})
+								}else{
+									alert("색상과 재고량을 입력하여 주십시오.")
+								}
 							}else{
-								alert("색상과 재고량을 입력하여 주십시오.")
+								alert("동일한 색상이 있습니다.")
+								$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsColor, .admin-goodsAdd-goodsStock').val('');
 							}
 						})
 					</script>
