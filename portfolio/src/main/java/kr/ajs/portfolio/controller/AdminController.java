@@ -75,6 +75,7 @@ public class AdminController {
 		goods.setGoodsImg(goodsImg);
 		post.setPostImg(postImg);
 		adminService.goodsModify(goods, post);
+		adminService.optionAllDel(goods);
 		for (int i=0 ; i<color.length ; ++i) {
 			adminService.optionModify(color[i], stock[i], goods);
 		}

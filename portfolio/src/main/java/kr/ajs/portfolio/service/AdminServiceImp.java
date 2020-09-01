@@ -55,8 +55,21 @@ public class AdminServiceImp implements AdminService {
 	}
 
 	@Override
+	public void optionAllDel(GoodsVo goods) {
+		// TODO Auto-generated method stub
+		adminDao.optionAllDel(goods);
+	}
+	
+	@Override
 	public void optionModify(String color, int stock, GoodsVo goods) {
 		// TODO Auto-generated method stub
 		
+		OptionVo check = adminDao.checkOption(color, goods);
+		if(check!=null) {
+			adminDao.optionModify(color, stock, goods);
+		}else {
+			adminDao.optionAdd(color, stock, goods);
+		}
 	}
+
 }

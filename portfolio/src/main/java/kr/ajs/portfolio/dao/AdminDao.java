@@ -27,4 +27,10 @@ public interface AdminDao {
 
 	void postModify(@Param("post")PostVo post);
 
+	void optionAllDel(@Param("goods")GoodsVo goods);
+
+	OptionVo checkOption(@Param("color")String color, @Param("goods")GoodsVo goods);
+
+	void optionModify(@Param("color")String color, @Param("stock")int stock, @Param("goods")GoodsVo goods);
+
 }

@@ -20,6 +20,8 @@ public interface AdminService {
 	ArrayList<OptionVo> getOptionList(int goodsNum);
 
 	void goodsModify(GoodsVo goods, PostVo post);
+	
+	void optionAllDel(GoodsVo goods);
 
 	void optionModify(String color, int stock, GoodsVo goods);
 

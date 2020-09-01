@@ -95,7 +95,7 @@
 								if($('.admin-goodsAdd-goodsOptionBox').length==0){
 									$('.admin-goodsAdd-goodsOptionView').append('<h2>옵션</h2>')
 								}
-								$('.admin-goodsAdd-goodsOptionView').append('<div class="admin-goodsAdd-goodsOptionBox"><div class="admin-goodsAdd-goodsColorTitle">색 상</div><div class="admin-goodsAdd-goodsColor">'+$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsColor').val()+'</div><div class="admin-goodsAdd-goodsStockTitle">재고량</div><input class="admin-goodsAdd-goodsStock number" name="stock" value="'+$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsStock').val()+'"><button class="admin-goodsAdd-goodsOptionButton"><i class="fas fa-minus"></i></button></div><input name="color" value="'+$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsColor').val()+'" hidden>')
+								$('.admin-goodsAdd-goodsOptionView').append('<div class="admin-goodsAdd-goodsOptionBox"><div class="admin-goodsAdd-goodsColorTitle">색 상</div><div class="admin-goodsAdd-goodsColor">'+$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsColor').val()+'</div><div class="admin-goodsAdd-goodsStockTitle">재고량</div><input class="admin-goodsAdd-goodsStock number" name="stock" value="'+$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsStock').val()+'"><button type="button" class="admin-goodsAdd-goodsOptionButton"><i class="fas fa-minus"></i></button><input name="color" value="'+$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsColor').val()+'" hidden></div>')
 								$('.admin-goodsAdd-goodsOptionAddBox').children('.admin-goodsAdd-goodsColor, .admin-goodsAdd-goodsStock').val('');
 								$('.admin-goodsAdd-goodsOptionBox').children('.admin-goodsAdd-goodsOptionButton').click(function(){
 									if($('.admin-goodsAdd-goodsOptionBox').length==1){
@@ -146,14 +146,23 @@
 							<div class="admin-goodsAdd-goodsColorTitle">색 상</div>
 							<div class="admin-goodsAdd-goodsColor">${option.optionColor}</div>
 							<div class="admin-goodsAdd-goodsStockTitle">재고량</div><input class="admin-goodsAdd-goodsStock number" name="stock" value="${option.optionStock}">
-							<button class="admin-goodsAdd-goodsOptionButton delOptionButton"><i class="fas fa-minus"></i></button>
-						</div>
-						<input name="color" value="${option.optionColor}" hidden>
+							<button type="button" class="admin-goodsAdd-goodsOptionButton delOptionButton"><i class="fas fa-minus"></i></button>
+							<input name="color" value="${option.optionColor}" hidden>
+						</div>			
 					</c:forEach>
 				</div>
+				<script>
+					$('.admin-goodsAdd-goodsOptionBox').children('.admin-goodsAdd-goodsOptionButton').click(function(){
+						if($('.admin-goodsAdd-goodsOptionBox').length==1){
+							$(this).parent().prev().remove();
+						}
+						$(this).parent().remove();
+					})
+				</script>
 				<input name="page" value="${page}" hidden>
 				<input name="postNum" value="${post.postNum}" hidden>
 				<input name="goodsNum" value="${goods.goodsNum}" hidden>
+				<input name="goodsName" value="${goods.goodsName}" hidden>
 				<button class="admin-goodsModify-button">수정완료</button>
 			</div>
 		</form>

@@ -35,7 +35,15 @@
 			postDiscount=#{post.postDiscount},
 			<if test="post.postImg!=null">postImg=#{post.postImg},</if>
 		</trim>	
-		 where postNum=#{post.postNum}
+		where postNum=#{post.postNum}
 	</update>
-	
+	<update id="optionAllDel">
+		update portfolio.option set optionIsDel = 'Y' where option_goodsNum = #{goods.goodsNum}
+	</update>
+	<select id="checkOption" resultType="kr.ajs.portfolio.vo.OptionVo">
+		select * from portfolio.option where option_goodsNum = #{goods.goodsNum} and optionColor = #{color}
+	</select>
+	<update id="optionModify">
+		update portfolio.option set optionStock = #{stock}, optionIsDel = 'N' where option_goodsNum = #{goods.goodsNum} and optionColor = #{color}
+	</update>
 </mapper>
