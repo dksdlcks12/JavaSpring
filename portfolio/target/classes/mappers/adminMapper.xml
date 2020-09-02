@@ -50,7 +50,7 @@
 		update post set postIsDel = 'Y', postDelDate = now() where postNum = #{postNum}
 	</update>
 	<select id="countUncheckOrder" resultType="int">
-		select count(*) from portfolio.order where orderState = 0
+		select count(*) from portfolio.order where orderState = "미확인"
 	</select>
 	<update id="orderStateModify">
 		update portfolio.order set orderState = #{orderState} where orderNum = #{orderNum}

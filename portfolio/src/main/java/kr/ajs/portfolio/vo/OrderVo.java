@@ -21,7 +21,7 @@ public class OrderVo {
 	private String orderReceiverTel;
 	private int orderTotalPrice;
 	private Date orderDate;
-	private int orderState;
+	private String orderState;
 	private String orderUserId;
 	private int orderGoodsCount;
 	private String orderGoodsName;
@@ -130,10 +130,10 @@ public class OrderVo {
 			e.printStackTrace();
 		}
 	}
-	public int getOrderState() {
+	public String getOrderState() {
 		return orderState;
 	}
-	public void setOrderState(int orderState) {
+	public void setOrderState(String orderState) {
 		this.orderState = orderState;
 	}
 	

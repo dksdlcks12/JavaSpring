@@ -20,21 +20,19 @@
 					</c:if>
 					<div class="admin-orderList-orderInfo">[제품명 : ${order.orderGoodsName} / 색상 : ${order.orderGoodsColor}]<c:if test="${order.orderGoodsCount>1}"> 외 ${order.orderGoodsCount-1} 종</c:if></div>
 					<div class="admin-orderList-orderDate">${order.orderDate}</div>
-					<div class="admin-orderList-orderState"><c:if test="${order.orderState==0}">미확인</c:if><c:if test="${order.orderState==1}">배송준비중</c:if><c:if test="${order.orderState==2}">배송중</c:if><c:if test="${order.orderState==3}">배송완료</c:if></div></a>
+					<div class="admin-orderList-orderState">${order.orderState}</div></a>
 				</div>
 			</c:forEach>
 			<c:if test="${user.userAuth eq 'admin'}">
-				<form action="#">
+				<form action="<%=request.getContextPath()%>/orderview">
 					<div class="admin-orderList-searchBox">
-						<select name="" id="" class="admin-orderList-searchType">
-							<option value="0" selected>전체</option>
+						<select name="type" class="admin-orderList-searchType">
+							<option value="0">전체</option>
 							<option value="1">주문번호</option>
-							<option value="2">주문한 사람</option>
-							<option value="3">받는 사람</option>
-							<option value="4">주문날짜</option>
-							<option value="5">주문상태</option>
+							<option value="2">주문아이디</option>
+							<option value="3">주문상태</option>
 						</select>
-						<input type="text" class="admin-orderList-searchContent">
+						<input type="text" class="admin-orderList-searchContent" name="search">
 						<button class="admin-orderList-searchButton"><i class="fas fa-search"></i></button>
 					</div>
 				</form>

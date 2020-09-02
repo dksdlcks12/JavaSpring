@@ -37,5 +37,5 @@ public interface AdminDao {
 
 	public int countUncheckOrder();
 
-	void orderStateModify(@Param("orderNum")int orderNum, @Param("orderState")int orderState);
+	void orderStateModify(@Param("orderNum")int orderNum, @Param("orderState")String orderState);
 }

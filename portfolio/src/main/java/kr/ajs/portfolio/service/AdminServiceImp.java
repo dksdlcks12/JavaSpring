@@ -94,7 +94,7 @@ public class AdminServiceImp implements AdminService {
 	}
 
 	@Override
-	public void orderStateModify(int orderNum, int orderState) {
+	public void orderStateModify(int orderNum, String orderState) {
 		// TODO Auto-generated method stub
 		adminDao.orderStateModify(orderNum, orderState);
 	}

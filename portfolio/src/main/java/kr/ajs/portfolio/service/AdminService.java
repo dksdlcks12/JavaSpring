@@ -32,5 +32,5 @@ public interface AdminService {
 
 	ModelAndView adminCountInfo(ModelAndView mv);
 
-	void orderStateModify(int orderNum, int orderState);
+	void orderStateModify(int orderNum, String orderState);
 }

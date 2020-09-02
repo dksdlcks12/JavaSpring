@@ -90,10 +90,10 @@
 		<div class="admin-orderView-orderStateBox">
 			<div class="admin-orderView-orderTitleState">주문상태</div>
 			<select class="admin-orderView-orderState">
-				<option value="0" <c:if test="${order.orderState==0}">selected</c:if>>미확인</option>
-				<option value="1" <c:if test="${order.orderState==1}">selected</c:if>>배송준비중</option>
-				<option value="2" <c:if test="${order.orderState==2}">selected</c:if>>배송중</option>
-				<option value="3" <c:if test="${order.orderState==3}">selected</c:if>>배송완료</option>
+				<option value="미확인" <c:if test="${order.orderState eq '미확인'}">selected</c:if>>미확인</option>
+				<option value="배송준비중" <c:if test="${order.orderState eq '배송준비중'}">selected</c:if>>배송준비중</option>
+				<option value="배송중" <c:if test="${order.orderState eq '배송중'}">selected</c:if>>배송중</option>
+				<option value="배송완료" <c:if test="${order.orderState eq '배송완료'}">selected</c:if>>배송완료</option>
 			</select>
 		</div>
 		<a href="<%=request.getContextPath()%>/orderviewlist?page=${page}"><button class="admin-orderView-goList">목록으로</button></a>
@@ -115,6 +115,7 @@
 			contentType:"application/json; charset=UTF-8",
 			success : function(data){
 				alert('주문상태를 수정하였습니다.')
+				location.reload();
 			}
 		});
 	})
