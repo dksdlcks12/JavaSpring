@@ -6,7 +6,7 @@
        	<div class="user-set-header-menuBox">
        		<c:if test="${user.userAuth ne 'admin'}">
 	           	<ul class="user-set-topMenuBox">
-					<a href="<%=request.getContextPath()%>/test" class="user-set-notice">공지사항</a>
+					<a href="#" class="user-set-notice">공지사항</a>
 					<a href="#" class="user-set-QA">Q&A</a>
 					<a href="#" class="user-set-review">리뷰</a>
 					<a href="<%=request.getContextPath()%>/cart" class="user-set-cart">장바구니</a>
@@ -82,10 +82,10 @@
 <c:if test="${user.userAuth ne 'admin'}">
 	<div class="user-set-right">
 		<a href="<%=request.getContextPath()%>/orderviewlist"><div class="user-set-orderCheck">주문 조회</div></a>
-		<a href="#"><div class="user-set-orderCheck">반품 조회</div></a>
-		<a href="#"><div class="user-set-orderCheck">A/S 조회</div></a>
+		<a href="<%=request.getContextPath()%>/recallselect"><div class="user-set-orderCheck">반품 관련</div></a>
+		<a href="#"><div class="user-set-orderCheck">A / S 관련</div></a>
 		<a href="#"><div class="user-set-deliveryCheck">배송 조회</div></a>
-		<div class="user-set-csTel">C/S 관련<br>xxx)xxx-xxxx</div>
+		<div class="user-set-csTel">C / S 관련<br>xxx)xxx-xxxx</div>
 		<div class="user-set-latelyViewGoodsList">
 			<div class="user-set-goods"><a href="#" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>
 			<div class="user-set-goods"><a href="#" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>

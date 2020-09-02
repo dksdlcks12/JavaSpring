@@ -27,12 +27,7 @@ $(function(){
 		}
 	})
 	$('input[type=tel]').keydown(function(event){
-		var limit; 
-		if($(this).attr('class') == 'user-order-tel tel1'){
-			limit = 3;
-		}else{
-			limit = 4;
-		}
+		var limit = 4;
 		if($(this).val().length<limit){
 			if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) { 
 				return true;

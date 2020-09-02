@@ -73,6 +73,13 @@ public class OrderVo {
 		return orderSenderTel;
 	}
 	public void setOrderSenderTel(String orderSenderTel) {
+		if(orderSenderTel.length()==12) {
+			orderSenderTel = orderSenderTel.substring(0, 4) + "-" + orderSenderTel.substring(4, 8) + "-" + orderSenderTel.substring(8, orderSenderTel.length());
+		}else if(orderSenderTel.length()==11) {
+			orderSenderTel = orderSenderTel.substring(0, 3) + "-" + orderSenderTel.substring(3, 7) + "-" + orderSenderTel.substring(7, orderSenderTel.length());
+		}else {
+			orderSenderTel = orderSenderTel.substring(0, 3) + "-" + orderSenderTel.substring(3, 6) + "-" + orderSenderTel.substring(6, orderSenderTel.length());
+		}
 		this.orderSenderTel = orderSenderTel;
 	}
 	public String getOrderReceiver() {
@@ -109,6 +116,15 @@ public class OrderVo {
 		return orderReceiverTel;
 	}
 	public void setOrderReceiverTel(String orderReceiverTel) {
+		if(orderReceiverTel.length()==12) {
+			orderReceiverTel = orderReceiverTel.substring(0, 4) + "-" + orderReceiverTel.substring(4, 8) + "-" + orderReceiverTel.substring(8, orderReceiverTel.length());
+		}else if(orderReceiverTel.length()==11) {
+			orderReceiverTel = orderReceiverTel.substring(0, 3) + "-" + orderReceiverTel.substring(3, 7) + "-" + orderReceiverTel.substring(7, orderReceiverTel.length());
+		}else if(orderReceiverTel.length()==10){
+			orderReceiverTel = orderReceiverTel.substring(0, 3) + "-" + orderReceiverTel.substring(3, 6) + "-" + orderReceiverTel.substring(6, orderReceiverTel.length());
+		}else {
+			orderReceiverTel = orderReceiverTel.substring(0, 2) + "-" + orderReceiverTel.substring(2, 5) + "-" + orderReceiverTel.substring(5, orderReceiverTel.length());
+		}
 		this.orderReceiverTel = orderReceiverTel;
 	}
 	public int getOrderTotalPrice() {

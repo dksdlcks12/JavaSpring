@@ -1,0 +1,25 @@
+@charset "UTF-8";
+.user_recallSelect-box{
+	width: 1400px;
+	padding: 100px 0 50px 0;
+	margin: 0 auto;
+	margin-top: 100px;
+	background-color: palegoldenrod;
+	box-sizing: border-box;
+}
+.user_recallSelect-recallSelectBox{
+	width: 1200px;
+	height: 469px;
+	margin-left: 100px;
+	background-color: lavender;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	position: relative;
+}
+.user_recallSelect-goRecallApplyList, .user_recallSelect-goRecallViewList{
+	width: 400px;
+	height: 100px;
+	font-size: 30px;
+	margin-left: calc(50% - 200px);
+	margin-top: 70px;
+}

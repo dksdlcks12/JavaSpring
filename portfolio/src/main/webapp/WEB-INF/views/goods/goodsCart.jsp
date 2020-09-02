@@ -11,7 +11,7 @@
 						<th class="user-cart-goodsInfoTitle">제품 정보</th>
 						<th class="user-cart-goodsPriceTitle">할인 적용가</th>
 						<th class="user-cart-goodsCountTitle">수량</th>
-						<th class="user-cart-goodsPointTitle">적립 포인트</th>
+						<th class="user-cart-goodsPointTitle">포인트(개별)</th>
 						<th class="user-cart-goodsGoodsAllPriceTitle">합계금액</th>
 					</tr>
 					<c:forEach var="cart" items="${list}">
@@ -42,18 +42,38 @@
 	function totalPriceCalculation(){
 		totalPrice = 0;
 		if($('.user-cart-goodsCheck').length!=0){
+			var checkCount = 0;
 			$('.user-cart-goodsGoodsAllPrice').each(function(){
-				totalPrice = totalPrice + Number($(this).children('.user-cart-goodsGoodsAllPriceNumber').text());
-				if(totalPrice<freeDeliveryLimit){
-					$('.user-cart-totalPrice').text('배송비 '+defaultDeliveryPrice+'원 + '+totalPrice+'원 = '+Number(totalPrice+defaultDeliveryPrice)+'원');
-				}else{
-					$('.user-cart-totalPrice').text('배송비 0원 + '+totalPrice+'원 = '+totalPrice+'원');
+				if($(this).siblings('.user-cart-goodsCheckBox').children('.user-cart-goodsCheck').is(':checked')){
+					totalPrice = totalPrice + Number($(this).children('.user-cart-goodsGoodsAllPriceNumber').text());
+					checkCount++;
+				}
+				if(checkCount!=0){
+					if(totalPrice<freeDeliveryLimit){
+						$('.user-cart-totalPrice').text('배송비 '+defaultDeliveryPrice+'원 + '+totalPrice+'원 = '+Number(totalPrice+defaultDeliveryPrice)+'원');
+					}else{
+						$('.user-cart-totalPrice').text('배송비 0원 + '+totalPrice+'원 = '+totalPrice+'원');
+					}
+				}
+				else{
+					$('.user-cart-totalPrice').text('0원');
 				}
 			})
 		}else{
 			$('.user-cart-cartBox').empty();
 		}
 	}
+	$('.user-cart-goodsCheckAll').click(function(){
+		if($(this).is(':checked')){
+			$('.user-cart-goodsCheck').prop('checked', true);
+		}else{
+			$('.user-cart-goodsCheck').prop('checked', false);
+		}
+		totalPriceCalculation()
+	})
+	$('.user-cart-goodsCheck').click(function(){
+		totalPriceCalculation()
+	})
 	$('.user-cart-goodsCount').children('input').change(function(){
 		price = Number($(this).parent().siblings('.user-cart-goodsPrice').children('.user-cart-goodsPriceNumber').text());
 		count = $(this).val();

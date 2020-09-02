@@ -339,7 +339,7 @@ public class UserController {
 	    return mv;
 	}
 	@RequestMapping(value= {"/orderview"}, method = RequestMethod.GET)
-	public ModelAndView Get(ModelAndView mv, int orderNum, HttpServletRequest request) throws Exception{
+	public ModelAndView orderViewGet(ModelAndView mv, int orderNum, HttpServletRequest request) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null) {
 			ArrayList<OrderListVo> list;
@@ -352,6 +352,11 @@ public class UserController {
 		}else {
 			mv.setViewName("redirect:/login");
 		}
+		return mv;
+	}
+	@RequestMapping(value= {"/recallselect"}, method = RequestMethod.GET)
+	public ModelAndView recallSelectGet(ModelAndView mv) throws Exception{
+		mv.setViewName("/afterOrder/recallSelect");
 		return mv;
 	}
 }

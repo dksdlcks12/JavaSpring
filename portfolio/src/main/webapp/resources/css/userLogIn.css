@@ -1,7 +1,6 @@
 @charset "UTF-8";
 .common-login-box{
 	width: 1400px;
-	height: 620px;
 	padding: 100px 0 50px 0;
 	margin: 0 auto;
 	margin-top: 100px;
@@ -10,8 +9,9 @@
 }
 .common-login-loginBox{
 	width: 800px;
+	height: 469px;
 	margin: 0 auto;
-	padding-top: 30px;
+	padding-top: 80px;
 	background-color: paleturquoise;
 	box-sizing: border-box;
 }
