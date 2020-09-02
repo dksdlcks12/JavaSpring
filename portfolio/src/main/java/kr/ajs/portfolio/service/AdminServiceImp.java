@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.ajs.portfolio.dao.AdminDao;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionVo;
+import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
 
@@ -97,5 +98,11 @@ public class AdminServiceImp implements AdminService {
 	public void orderStateModify(int orderNum, String orderState) {
 		// TODO Auto-generated method stub
 		adminDao.orderStateModify(orderNum, orderState);
+	}
+
+	@Override
+	public ArrayList<OrderVo> getUncheckOrder() {
+		// TODO Auto-generated method stub
+		return adminDao.getUncheckOrder();
 	}
 }

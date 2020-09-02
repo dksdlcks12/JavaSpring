@@ -81,5 +81,7 @@ public interface UserDao {
 
 	public OrderVo getOrder(@Param("orderNum")int orderNum, @Param("user")UserVo user);
 
-	public int getOrderViewListTotalCount(@Param("user")UserVo user);
+	public int getOrderViewListTotalCount(@Param("user")UserVo user, @Param("cri")Criteria cri);
+
+	public int getAllOrderCount();
 }

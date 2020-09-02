@@ -6,7 +6,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionVo;
+import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
+import kr.ajs.portfolio.vo.UserVo;
 
 public interface AdminService {
 
@@ -33,4 +35,6 @@ public interface AdminService {
 	ModelAndView adminCountInfo(ModelAndView mv);
 
 	void orderStateModify(int orderNum, String orderState);
+
+	ArrayList<OrderVo> getUncheckOrder();
 }

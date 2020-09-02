@@ -46,6 +46,12 @@ public class UserController {
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null && user.getUserAuth().equals("admin")) {
 			mv = adminService.adminCountInfo(mv);
+			ArrayList<OrderVo> list;
+			list = adminService.getUncheckOrder();
+			for(OrderVo order : list) {
+				userService.getOrderGoods(order);
+			}
+			mv.addObject("list", list);
 			mv.setViewName("/main/adminMain");
 		}else {
 			int type = 0;
@@ -309,6 +315,10 @@ public class UserController {
 	public ModelAndView orderViewListGet(ModelAndView mv, HttpServletRequest request, Criteria cri) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null) {
+			if(cri.getSearch()==null) {
+				cri.setSearch("");
+			}
+			int count = userService.getAllOrderCount();
 			PageMaker pm = userService.getPageMakerOrderView(cri, user);
 			ArrayList<OrderVo> list;
 			list = userService.getOrderList(user,cri);
@@ -321,6 +331,7 @@ public class UserController {
 			mv.addObject("pm", pm);
 			mv.addObject("user", user);
 			mv.addObject("list", list);
+			mv.addObject("count", count);
 		    mv.setViewName("/afterOrder/orderViewList");
 		}else {
 			mv.setViewName("redirect:/login");

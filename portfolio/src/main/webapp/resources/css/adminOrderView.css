@@ -103,14 +103,8 @@
 .admin-orderView-postcodeBox{
 	width: 200px;
 }
-.admin-orderView-addressBox{
+.admin-orderView-addressBox, .admin-orderView-detailAddressBox, .admin-orderView-extraAddressBox{
 	width: 520px;
-}
-.admin-orderView-detailAddressBox, .admin-orderView-extraAddressBox{
-	width: 300px;
-}
-.admin-orderView-tel{
-	width: 50px;
 }
 .admin-orderView-addressLineTitle{
 	position: absolute;
@@ -131,13 +125,8 @@
 	text-align: center;
 	box-sizing: border-box;
 }
-.admin-orderView-address{
+.admin-orderView-address, .admin-orderView-detailAddress, .admin-orderView-extraAddress{
 	width: 420px;
-	text-align: left;
-	padding-left: 10px;
-}
-.admin-orderView-detailAddress, .admin-orderView-extraAddress{
-	width: 200px;
 	text-align: left;
 	padding-left: 10px;
 }

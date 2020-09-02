@@ -47,6 +47,7 @@ public class BoardController {
 	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
 	public ModelAndView boardlist(ModelAndView mv, Criteria cri, HttpServletRequest request) {
 		mv.setViewName("/board/list");
+		System.out.println(cri.getSearch());
 		PageMaker pm = boardService.getPageMaker(cri);
 		ArrayList<BoardVo> list;
 		list = boardService.getBoardlist(cri);

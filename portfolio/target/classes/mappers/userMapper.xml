@@ -148,9 +148,25 @@
 		delete from cart where cartNum = #{order.orderNum}
 	</delete>
 	<select id="getOrderList" resultType="kr.ajs.portfolio.vo.OrderVo">
-		select orderNum, orderDate, orderState from portfolio.order
+		select orderNum, orderDate, orderState, orderUserId from portfolio.order
 		<if test="user.userAuth!='admin'">
 			where orderUserId = #{user.userId}
+		</if>
+		<if test="user.userAuth=='admin'">
+			<if test="cri.type == 0">
+				where (orderUserId like concat('%',#{cri.search},'%')
+				or orderState like concat('%',#{cri.search},'%')
+				or orderNum like concat('%',#{cri.search},'%'))
+			</if>
+			<if test="cri.type == 1">
+				where orderNum like concat('%',#{cri.search},'%')
+			</if>
+			<if test="cri.type == 2">
+				where orderUserId like concat('%',#{cri.search},'%')
+			</if>
+			<if test="cri.type == 3">
+				where orderState like concat('%',#{cri.search},'%')
+			</if>
 		</if>
 		order by orderNum desc limit #{cri.pageStart}, #{cri.perPageNum};
 	</select>
@@ -172,6 +188,28 @@
 		select * from portfolio.order where orderNum = #{orderNum} <if test="user.userAuth!='admin'"> and orderUserId = #{user.userId} </if>
 	</select>
 	<select id="getOrderViewListTotalCount" resultType="int">
-		select count(*) from portfolio.order <if test="user.userAuth!='admin'"> where orderUserId = #{user.userId} </if>
+		select count(*) from portfolio.order
+		<if test="user.userAuth!='admin'">
+			where orderUserId = #{user.userId}
+		</if>
+		<if test="user.userAuth=='admin'">
+			<if test="cri.type == 0">
+				where (orderUserId like concat('%',#{cri.search},'%')
+				or orderState like concat('%',#{cri.search},'%')
+				or orderNum like concat('%',#{cri.search},'%'))
+			</if>
+			<if test="cri.type == 1">
+				where orderNum like concat('%',#{cri.search},'%')
+			</if>
+			<if test="cri.type == 2">
+				where orderUserId like concat('%',#{cri.search},'%')
+			</if>
+			<if test="cri.type == 3">
+				where orderState like concat('%',#{cri.search},'%')
+			</if>
+		</if>
+	</select>
+	<select id="getAllOrderCount" resultType="int">
+		select count(*) from portfolio.order
 	</select>
 </mapper>

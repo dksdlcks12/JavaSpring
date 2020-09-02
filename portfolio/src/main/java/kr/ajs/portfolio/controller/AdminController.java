@@ -108,7 +108,7 @@ public class AdminController {
 	    return map;
 	}
 	@RequestMapping(value= {"/admin/orderview"}, method = RequestMethod.GET)
-	public ModelAndView adminOrderViewGet(ModelAndView mv, HttpServletRequest request, int orderNum, int page) throws Exception{
+	public ModelAndView adminOrderViewGet(ModelAndView mv, HttpServletRequest request, int orderNum, int page, int type, String search) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null) {
 			mv = adminService.adminCountInfo(mv);
@@ -119,6 +119,8 @@ public class AdminController {
 			mv.addObject("order", order);
 			mv.addObject("list", list);
 			mv.addObject("page", page);
+			mv.addObject("type", type);
+			mv.addObject("search", search);
 		}
 		mv.setViewName("/afterOrder/adminOrderView");
 	    return mv;

@@ -76,6 +76,8 @@ public interface UserService {
 
 	public PageMaker getPageMakerOrderView(Criteria cri, UserVo user);
 
+	public int getAllOrderCount();
+
 
 
 }

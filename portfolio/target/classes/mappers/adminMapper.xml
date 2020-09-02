@@ -55,4 +55,7 @@
 	<update id="orderStateModify">
 		update portfolio.order set orderState = #{orderState} where orderNum = #{orderNum}
 	</update>
+	<select id="getUncheckOrder" resultType="kr.ajs.portfolio.vo.OrderVo">
+		select * from portfolio.order where orderState = "미확인" order by orderNum desc limit 0, 6;
+	</select>
 </mapper>

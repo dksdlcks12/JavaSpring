@@ -96,7 +96,7 @@
 				<option value="배송완료" <c:if test="${order.orderState eq '배송완료'}">selected</c:if>>배송완료</option>
 			</select>
 		</div>
-		<a href="<%=request.getContextPath()%>/orderviewlist?page=${page}"><button class="admin-orderView-goList">목록으로</button></a>
+		<a href="<%=request.getContextPath()%>/orderviewlist?page=${page}&type=${type}&search=${search}"><button class="admin-orderView-goList">목록으로</button></a>
 		<button class="admin-orderView-orderStateButton">주문상태 수정</button>
 	</div>
 </div>

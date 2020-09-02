@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionVo;
+import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
 
@@ -38,4 +39,6 @@ public interface AdminDao {
 	public int countUncheckOrder();
 
 	void orderStateModify(@Param("orderNum")int orderNum, @Param("orderState")String orderState);
+
+	ArrayList<OrderVo> getUncheckOrder();
 }

@@ -219,9 +219,14 @@ public class UserServiceImp implements UserService {
 	public PageMaker getPageMakerOrderView(Criteria cri, UserVo user) {
 		cri.setPerPageNum(6);
 		PageMaker pm = new PageMaker();
-		int totalCount = userDao.getOrderViewListTotalCount(user);
+		int totalCount = userDao.getOrderViewListTotalCount(user, cri);
 	    pm.setCriteria(cri);
 	    pm.setTotalCount(totalCount);
 		return pm;
+	}
+	@Override
+	public int getAllOrderCount() {
+		// TODO Auto-generated method stub
+		return userDao.getAllOrderCount();
 	}
 }
