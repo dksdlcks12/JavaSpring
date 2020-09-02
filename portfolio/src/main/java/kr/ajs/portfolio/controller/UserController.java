@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.ajs.portfolio.pagination.Criteria;
 import kr.ajs.portfolio.pagination.PageMaker;
+import kr.ajs.portfolio.service.AdminService;
 import kr.ajs.portfolio.service.UserService;
 import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.BoardCartVo;
@@ -38,17 +39,19 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	@Autowired
+	AdminService adminService;
 	@RequestMapping(value= {"/"}, method = RequestMethod.GET)
 	public ModelAndView mainGet(ModelAndView mv, HttpServletRequest request, Criteria cri) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null && user.getUserAuth().equals("admin")) {
+			mv = adminService.adminCountInfo(mv);
 			mv.setViewName("/main/adminMain");
 		}else {
 			int type = 0;
 			ArrayList<GoodsVo> list;
 			list = userService.getGoodsList(type, cri);
 			mv.addObject("list", list);
-			mv.setViewName("/goods/goodsList");
 			mv.setViewName("/main/userMain");		
 		}	
 	    return mv;
@@ -311,6 +314,9 @@ public class UserController {
 			list = userService.getOrderList(user,cri);
 			for(OrderVo order : list) {
 				userService.getOrderGoods(order);
+			}
+			if(user.getUserAuth().equals("admin")) {
+				mv = adminService.adminCountInfo(mv);
 			}
 			mv.addObject("pm", pm);
 			mv.addObject("user", user);

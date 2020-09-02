@@ -12,7 +12,12 @@
 			</div>
 			<c:forEach var="order" items="${list}">
 				<div class="admin-orderList-orderBox">
-					<a href="<%=request.getContextPath()%>/orderview?orderNum=${order.orderNum}"><div class="admin-orderList-orderNumber">${order.orderNum}</div>
+					<c:if test="${user.userAuth ne 'admin'}">
+						<a href="<%=request.getContextPath()%>/orderview?orderNum=${order.orderNum}"><div class="admin-orderList-orderNumber">${order.orderNum}</div>
+					</c:if>
+					<c:if test="${user.userAuth eq 'admin'}">
+						<a href="<%=request.getContextPath()%>/admin/orderview?orderNum=${order.orderNum}&page=${pm.criteria.page}"><div class="admin-orderList-orderNumber">${order.orderNum}</div>
+					</c:if>
 					<div class="admin-orderList-orderInfo">[제품명 : ${order.orderGoodsName} / 색상 : ${order.orderGoodsColor}]<c:if test="${order.orderGoodsCount>1}"> 외 ${order.orderGoodsCount-1} 종</c:if></div>
 					<div class="admin-orderList-orderDate">${order.orderDate}</div>
 					<div class="admin-orderList-orderState"><c:if test="${order.orderState==0}">미확인</c:if><c:if test="${order.orderState==1}">배송준비중</c:if><c:if test="${order.orderState==2}">배송중</c:if><c:if test="${order.orderState==3}">배송완료</c:if></div></a>
@@ -52,10 +57,15 @@
 				</c:if>
 				<c:if test="${pm.criteria.page>pm.endPage}">
 					<script>
-						location.href = "<%=request.getContextPath()%>/orderviewlist?page=${pm.endPage}"
+						location.replace('<%=request.getContextPath()%>/goodslist?type=${type}&page=${pm.endPage}');
 					</script>
 				</c:if>
 			</c:if>
 		</c:if>
 	</div>
+	<c:if test="${list.size()==0 && pm.criteria.page>1}">
+		<script>
+			location.replace('<%=request.getContextPath()%>/goodslist?type=${type}&page=${pm.endPage}');
+		</script>
+	</c:if>
 </div>

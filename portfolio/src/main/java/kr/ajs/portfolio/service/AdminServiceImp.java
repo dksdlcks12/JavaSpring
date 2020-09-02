@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.ajs.portfolio.dao.AdminDao;
 import kr.ajs.portfolio.vo.GoodsVo;
@@ -77,5 +78,18 @@ public class AdminServiceImp implements AdminService {
 		// TODO Auto-generated method stub
 		adminDao.postDelete(postNum);
 	}
+	
+	@Override
+	public int countUncheckOrder() {
+		// TODO Auto-generated method stub
+		return adminDao.countUncheckOrder();
+	}
 
+	@Override
+	public ModelAndView adminCountInfo(ModelAndView mv) {
+		// TODO Auto-generated method stub
+		int countUncheckOrder = countUncheckOrder();
+		mv.addObject("countUncheckOrder", countUncheckOrder);
+		return mv;
+	}
 }

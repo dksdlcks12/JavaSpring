@@ -106,7 +106,7 @@
 </c:if>
 <c:if test="${user.userAuth eq 'admin'}">
 	<div class="admin-set-right">
-		<a href="#"><div class="admin-set-rightInfo">미확인<br>주문 개수<br></div></a>
+		<a href="<%=request.getContextPath()%>/orderviewlist"><div class="admin-set-rightInfo">미확인<br>주문 개수<br>${countUncheckOrder} 개</div></a>
 		<a href="#"><div class="admin-set-rightInfo">미확인<br>반품 개수</div></a>
 		<a href="#"><div class="admin-set-rightInfo">미확인<br>A/S 개수</div></a>
 		<a href="#"><div class="admin-set-rightInfo">미확인<br>Q<span>&</span>A 개수</div></a>

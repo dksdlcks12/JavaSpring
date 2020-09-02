@@ -12,6 +12,7 @@ public class OrderListVo {
 	private String goodsName;
 	private String optionColor;
 	private int payPrice;
+	private String goodsType;
 	public int getOrderListNum() {
 		return orderListNum;
 	}
@@ -79,13 +80,19 @@ public class OrderListVo {
 	public void setPayPrice(int payPrice) {
 		this.payPrice = payPrice;
 	}
+	public String getGoodsType() {
+		return goodsType;
+	}
+	public void setGoodsType(String goodsType) {
+		this.goodsType = goodsType;
+	}
+	
 	@Override
 	public String toString() {
 		return "OrderListVo [orderListNum=" + orderListNum + ", orderList_postNum=" + orderList_postNum
 				+ ", orderList_orderNum=" + orderList_orderNum + ", orderList_optionNum=" + orderList_optionNum
 				+ ", orderListCount=" + orderListCount + ", orderListPrice=" + orderListPrice + ", orderListUsePoint="
 				+ orderListUsePoint + ", goodsImg=" + goodsImg + ", goodsName=" + goodsName + ", optionColor="
-				+ optionColor + ", payPrice=" + payPrice + "]";
+				+ optionColor + ", payPrice=" + payPrice + ", goodsType=" + goodsType + "]";
 	}
-	
 }

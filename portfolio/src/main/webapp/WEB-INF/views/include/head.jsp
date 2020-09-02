@@ -27,3 +27,4 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/goodsOrder.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/orderViewList.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/orderView.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminOrderView.css">

@@ -35,4 +35,5 @@ public interface AdminDao {
 
 	void postDelete(@Param("postNum")int postNum);
 
+	public int countUncheckOrder();
 }

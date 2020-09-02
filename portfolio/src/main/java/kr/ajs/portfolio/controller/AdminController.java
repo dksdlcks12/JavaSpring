@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,9 +17,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.ajs.portfolio.service.AdminService;
+import kr.ajs.portfolio.service.UserService;
 import kr.ajs.portfolio.utils.UploadFileUtils;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionVo;
+import kr.ajs.portfolio.vo.OrderListVo;
+import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostDeleteVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.UserVo;
@@ -30,9 +32,13 @@ public class AdminController {
 	
 	@Autowired
 	AdminService adminService;
+	@Autowired
+	UserService userService;
+
 	
 	@RequestMapping(value= {"/admin/goodsadd"}, method = RequestMethod.GET)
 	public ModelAndView adminGoodsAddGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		mv = adminService.adminCountInfo(mv);
 		mv.setViewName("/goods/adminGoodsAdd");
 	    return mv;
 	}
@@ -60,6 +66,7 @@ public class AdminController {
 			PostVo post = adminService.getPost(postNum);
 			GoodsVo goods = adminService.getGoods(post.getPost_goodsNum());
 			ArrayList<OptionVo> list = adminService.getOptionList(goods.getGoodsNum());
+			mv = adminService.adminCountInfo(mv);
 			mv.addObject("user", user);
 			mv.addObject("post", post);
 			mv.addObject("goods", goods);
@@ -99,5 +106,20 @@ public class AdminController {
 	    map.put("page",page);
 	    map.put("type",type);
 	    return map;
+	}
+	@RequestMapping(value= {"/admin/orderview"}, method = RequestMethod.GET)
+	public ModelAndView adminOrderViewGet(ModelAndView mv, HttpServletRequest request, int orderNum, int page) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		if(user!=null) {
+			mv = adminService.adminCountInfo(mv);
+			ArrayList<OrderListVo> list;
+			list = userService.getOrderGoodsList(orderNum, user);
+			OrderVo order = userService.getOrder(orderNum, user);
+			mv.addObject("orderNum", orderNum);
+			mv.addObject("order", order);
+			mv.addObject("list", list);
+		}
+		mv.setViewName("/afterOrder/adminOrderView");
+	    return mv;
 	}
 }

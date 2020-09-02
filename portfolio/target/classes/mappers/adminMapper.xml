@@ -49,4 +49,7 @@
 	<update id="postDelete">
 		update post set postIsDel = 'Y', postDelDate = now() where postNum = #{postNum}
 	</update>
+	<select id="countUncheckOrder" resultType="int">
+		select count(*) from portfolio.order where orderState = 0
+	</select>
 </mapper>

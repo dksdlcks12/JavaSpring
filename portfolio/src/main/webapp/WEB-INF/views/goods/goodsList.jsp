@@ -35,7 +35,7 @@
 		</c:if>
 		<c:if test="${pm.criteria.page>pm.endPage}">
 			<script>
-				location.href = "<%=request.getContextPath()%>/goodslist?type=${type}&page=${pm.endPage}"
+				location.replace('<%=request.getContextPath()%>/goodslist?type=${type}&page=${pm.endPage}');
 			</script>
 		</c:if>
 	</c:if>

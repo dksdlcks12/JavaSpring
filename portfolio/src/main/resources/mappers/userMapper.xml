@@ -69,7 +69,7 @@
 		join portfolio.option on wishList_optionNum = optionNum 
 		join goods on option_goodsNum = goodsNum
 		where wishList_userId = #{user.userId}
-		and optionIdDel = 'N'
+		and optionIsDel = 'N'
 		and postIsDel = 'N'
 		order by wishListNum desc limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
@@ -90,7 +90,7 @@
 		join portfolio.option on cart_optionNum = optionNum 
 		join goods on option_goodsNum = goodsNum
 		where cart_userId = #{user.userId}
-		and optionIdDel = 'N'
+		and optionIsDel = 'N'
 		and postIsDel = 'N'
 		order by cartNum desc
 	</select>
@@ -149,7 +149,9 @@
 	</delete>
 	<select id="getOrderList" resultType="kr.ajs.portfolio.vo.OrderVo">
 		select orderNum, orderDate, orderState from portfolio.order
-		where orderUserId = #{user.userId}
+		<if test="user.userAuth!='admin'">
+			where orderUserId = #{user.userId}
+		</if>
 		order by orderNum desc limit #{cri.pageStart}, #{cri.perPageNum};
 	</select>
 	<select id="getOrderGoodsCount" resultType="int">
@@ -162,14 +164,14 @@
 		select optionColor from orderList join portfolio.option on orderList_optionNum = optionNum where orderList_orderNum = #{order.orderNum} limit 0,1
 	</select>
 	<select id="getOrderGoodsList" resultType="kr.ajs.portfolio.vo.OrderListVo">
-		select goodsName, goodsImg, optionColor, orderListPrice, orderListCount, orderListUsePoint
+		select goodsName, goodsImg, optionColor, orderListPrice, orderListCount, orderListUsePoint, goodsType
 		from orderlist join portfolio.option on orderList_optionNum = optionNum join goods on option_goodsNum = goodsNum join portfolio.order on orderList_orderNum = orderNum
-		where orderList_orderNum = #{orderNum} and orderUserId = #{user.userId}
+		where orderList_orderNum = #{orderNum} <if test="user.userAuth!='admin'"> and orderUserId = #{user.userId} </if>
 	</select>
 	<select id="getOrder" resultType="kr.ajs.portfolio.vo.OrderVo">
-		select * from portfolio.order where orderNum = #{orderNum} and orderUserId = #{user.userId}
+		select * from portfolio.order where orderNum = #{orderNum} <if test="user.userAuth!='admin'"> and orderUserId = #{user.userId} </if>
 	</select>
 	<select id="getOrderViewListTotalCount" resultType="int">
-		select count(*) from portfolio.order where orderUserId = #{user.userId}
+		select count(*) from portfolio.order <if test="user.userAuth!='admin'"> where orderUserId = #{user.userId} </if>
 	</select>
 </mapper>

@@ -2,10 +2,11 @@ package kr.ajs.portfolio.service;
 
 import java.util.ArrayList;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.PostVo;
-import kr.ajs.portfolio.vo.UserVo;
 
 public interface AdminService {
 
@@ -27,4 +28,7 @@ public interface AdminService {
 
 	void postDelete(int postNum);
 
+	public int countUncheckOrder();
+
+	ModelAndView adminCountInfo(ModelAndView mv);
 }
