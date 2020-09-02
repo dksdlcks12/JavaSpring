@@ -359,4 +359,14 @@ public class UserController {
 		mv.setViewName("/afterOrder/recallSelect");
 		return mv;
 	}
+	@RequestMapping(value= {"/recallapplylist"}, method = RequestMethod.GET)
+	public ModelAndView recallApplyListGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		if(user!=null) {
+			mv.setViewName("/afterOrder/recallApplyList");
+		}else {
+			mv.setViewName("redirect:/login");
+		}
+		return mv;
+	}
 }

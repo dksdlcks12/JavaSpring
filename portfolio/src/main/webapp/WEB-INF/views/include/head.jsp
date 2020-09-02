@@ -28,3 +28,4 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/orderView.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminOrderView.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/recallSelect.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/recallApplyList.css">

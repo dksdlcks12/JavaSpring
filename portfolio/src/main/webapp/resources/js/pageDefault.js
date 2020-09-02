@@ -5,6 +5,9 @@ $(function(){
 	if($('.common-goodsList-goodsListBox').height()<=401){
 	    $('.common-goodsList-goodsListBox').height('401');
 	}
+	if($('.user-recallApplyList-recallApplyListBox').height()<=429){
+		$('.user-recallApplyList-recallApplyListBox').height('429');
+	}
 	$('.number').keydown(function(event){
 		if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) { 
 			return true;
