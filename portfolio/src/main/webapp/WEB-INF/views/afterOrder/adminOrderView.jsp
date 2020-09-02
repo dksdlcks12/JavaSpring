@@ -87,17 +87,35 @@
 				</tr>
 			</table>
 		</div>
-		<form action="#">
-			<div class="admin-orderView-orderStateBox">
-				<div class="admin-orderView-orderTitleState">주문상태</div>
-				<select name="" id="" class="admin-orderView-orderState">
-					<option value="0" <c:if test="${order.orderState==0}">selected</c:if>>미확인</option>
-					<option value="1" <c:if test="${order.orderState==1}">selected</c:if>>배송준비중</option>
-					<option value="2" <c:if test="${order.orderState==2}">selected</c:if>>배송중</option>
-					<option value="3" <c:if test="${order.orderState==3}">selected</c:if>>배송완료</option>
-				</select>
-			</div>
-			<button class="admin-orderView-orderStateButton">주문상태 수정</button>
-		</form>
+		<div class="admin-orderView-orderStateBox">
+			<div class="admin-orderView-orderTitleState">주문상태</div>
+			<select class="admin-orderView-orderState">
+				<option value="0" <c:if test="${order.orderState==0}">selected</c:if>>미확인</option>
+				<option value="1" <c:if test="${order.orderState==1}">selected</c:if>>배송준비중</option>
+				<option value="2" <c:if test="${order.orderState==2}">selected</c:if>>배송중</option>
+				<option value="3" <c:if test="${order.orderState==3}">selected</c:if>>배송완료</option>
+			</select>
+		</div>
+		<a href="<%=request.getContextPath()%>/orderviewlist?page=${page}"><button class="admin-orderView-goList">목록으로</button></a>
+		<button class="admin-orderView-orderStateButton">주문상태 수정</button>
 	</div>
 </div>
+<script>
+	$('.admin-orderView-orderStateButton').click(function(){
+		var orderNum = $('.admin-orderView-orderNumber').text();
+		var orderState = $('.admin-orderView-orderState').val();
+		var arr = [];
+		arr.push({'orderNum':orderNum,'orderState':orderState});
+		$.ajax({
+			async:false,
+			type:'POST',
+			data: JSON.stringify(arr),
+			url:"<%=request.getContextPath()%>/admin/orderstatemodify",
+			dataType:"json",
+			contentType:"application/json; charset=UTF-8",
+			success : function(data){
+				alert('주문상태를 수정하였습니다.')
+			}
+		});
+	})
+</script>

@@ -145,11 +145,15 @@
 	left: 200px;
 	padding-left: 10px;
 }
-.admin-orderView-orderStateButton{
-	width: 200px;
+.admin-orderView-goList, .admin-orderView-orderStateButton{
+	width: 150px;
 	height: 50px;
 	font-size: 25px;
-	margin-left: calc(50% - 100px);
+	margin-left: 100px;
+}
+.admin-orderView-orderStateButton{
+	width: 200px;
+	margin-left: calc(50% - 350px);
 }
 .admin-orderView-people{
 	padding-left: 10px;

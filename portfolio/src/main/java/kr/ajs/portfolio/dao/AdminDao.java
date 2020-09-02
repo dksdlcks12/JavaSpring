@@ -36,4 +36,6 @@ public interface AdminDao {
 	void postDelete(@Param("postNum")int postNum);
 
 	public int countUncheckOrder();
+
+	void orderStateModify(@Param("orderNum")int orderNum, @Param("orderState")int orderState);
 }

@@ -52,4 +52,7 @@
 	<select id="countUncheckOrder" resultType="int">
 		select count(*) from portfolio.order where orderState = 0
 	</select>
+	<update id="orderStateModify">
+		update portfolio.order set orderState = #{orderState} where orderNum = #{orderNum}
+	</update>
 </mapper>

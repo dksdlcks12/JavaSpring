@@ -31,4 +31,6 @@ public interface AdminService {
 	public int countUncheckOrder();
 
 	ModelAndView adminCountInfo(ModelAndView mv);
+
+	void orderStateModify(int orderNum, int orderState);
 }

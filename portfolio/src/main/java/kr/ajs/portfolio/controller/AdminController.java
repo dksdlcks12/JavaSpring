@@ -118,8 +118,16 @@ public class AdminController {
 			mv.addObject("orderNum", orderNum);
 			mv.addObject("order", order);
 			mv.addObject("list", list);
+			mv.addObject("page", page);
 		}
 		mv.setViewName("/afterOrder/adminOrderView");
 	    return mv;
+	}
+	@RequestMapping("/admin/orderstatemodify")
+	@ResponseBody
+	public Map<Object, Object> adminOrderstateModify(@RequestBody ArrayList<OrderVo> orderState){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    adminService.orderStateModify(orderState.get(0).getOrderNum(), orderState.get(0).getOrderState());
+	    return map;
 	}
 }

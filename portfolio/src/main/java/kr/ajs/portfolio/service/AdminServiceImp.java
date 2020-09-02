@@ -92,4 +92,10 @@ public class AdminServiceImp implements AdminService {
 		mv.addObject("countUncheckOrder", countUncheckOrder);
 		return mv;
 	}
+
+	@Override
+	public void orderStateModify(int orderNum, int orderState) {
+		// TODO Auto-generated method stub
+		adminDao.orderStateModify(orderNum, orderState);
+	}
 }
