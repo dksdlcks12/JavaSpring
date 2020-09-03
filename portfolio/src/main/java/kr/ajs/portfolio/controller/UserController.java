@@ -1,5 +1,6 @@
 package kr.ajs.portfolio.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.ajs.portfolio.pagination.Criteria;
 import kr.ajs.portfolio.pagination.PageMaker;
 import kr.ajs.portfolio.service.AdminService;
 import kr.ajs.portfolio.service.UserService;
+import kr.ajs.portfolio.utils.UploadFileUtils;
 import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.BoardCartVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
@@ -380,5 +383,14 @@ public class UserController {
 	public ModelAndView recallApplyGet(ModelAndView mv) throws Exception{
 		mv.setViewName("/afterOrder/recallApply");
 		return mv;
+	}
+	@RequestMapping("/recallApplyImg")
+	@ResponseBody
+	public Map<Object, Object> recallApplyImg(@RequestBody MultipartFile file) throws IOException, Exception{
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    String uploadPath = "D:\\AJS\\JavaSpring\\portfolio\\src\\main\\webapp\\resources\\image\\recallApply";
+	    String img = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(),file.getBytes());
+	    map.put("img", img);
+	    return map;
 	}
 }

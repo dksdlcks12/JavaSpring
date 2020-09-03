@@ -4,7 +4,6 @@
 	<div class="user-recallApply-recallApplyBox">
 		<h2>반품신청</h2>
 		<div class="user-recallApply-recallApplyInfoBox">
-			<form>
 				<div class="user-recallApply-orderNumberBox">
 					<div>주문번호</div><div>1</div>
 				</div>
@@ -19,21 +18,21 @@
 						</tr>
 						<tr>
 							<td><input type="checkbox" class="user-recallApply-goodsCheck"></td>
-							<td class="user-recallApply-goodsImg"><img src="상품대용.gif" alt="" ></td>
+							<td class="user-recallApply-goodsImg"><img src="#" alt="" ></td>
 							<td class="user-recallApply-goodsInfo"></td>
 							<td class="user-recallApply-goodsPrice"></td>
 							<td class="user-recallApply-goodsCount"></td>
 						</tr>
 						<tr>
 							<td><input type="checkbox" class="user-recallApply-goodsCheck"></td>
-							<td class="user-recallApply-goodsImg"><img src="상품대용.gif" alt="" ></td>
+							<td class="user-recallApply-goodsImg"><img src="#" alt="" ></td>
 							<td class="user-recallApply-goodsInfo"></td>
 							<td class="user-recallApply-goodsPrice"></td>
 							<td class="user-recallApply-goodsCount"></td>
 						</tr>
 						<tr>
 							<td><input type="checkbox" class="user-recallApply-goodsCheck"></td>
-							<td class="user-recallApply-goodsImg"><img src="상품대용.gif" alt="" ></td>
+							<td class="user-recallApply-goodsImg"><img src="#" alt="" ></td>
 							<td class="user-recallApply-goodsInfo"></td>
 							<td class="user-recallApply-goodsPrice"></td>
 							<td class="user-recallApply-goodsCount"></td>
@@ -53,29 +52,20 @@
 					</select>
 				</div><br>
 				<div class="common-boardWrite-Content">
-						<div id="summernote"></div>
+						<div id="recallApply"></div>
 						<script>
-							$('#summernote').summernote({
-							tabsize: 2,
-							height: 300,
-							lang : 'ko-KR',
-							toolbar: [
-								['style', ['style']],
-								['font', ['bold', 'underline', 'clear']],
-								['color', ['color']],
-								['insert', ['picture']],
-								['view', ['codeview']]
-								]
-							});
+							
 						</script>
 				</div>
+				<div class="transImg" rows="" cols="" hidden></div>
+				<textarea class="sandNote" rows="" cols="" hidden></textarea>
 				<button class="user-recallApply-button">반품신청</button>
-			</form>
 		</div>
 	</div>
 </div>
 <script>
 	$(function(){
+		var imgList = [];
 		$('.user-recallApply-goodsCheckAll').click(function(){
 			if($('.user-recallApply-goodsCheckAll').is(':checked')){
 				$('.user-recallApply-goodsCheck').prop('checked', true);
@@ -83,5 +73,52 @@
 				$('.user-recallApply-goodsCheck').prop('checked', false);
 			}
 		})
+		$('.user-recallApply-button').click(function(){
+			var index = 0;
+			$('.transImg').html($('#recallApply').summernote('code'));
+			$('.transImg img').each(function(){
+				$(this).attr('src', '<%=request.getContextPath()%>/resources/image/recallApply'+imgList[index]);
+				index++;
+			})
+			$('.sandNote').html($('.transImg').html());
+			console.log($('.sandNote').html());
+			console.log(imgList);
+		})
+		$('#recallApply').summernote({
+			tabsize: 2,
+			height: 300,
+			lang : 'ko-KR',
+			toolbar: [
+				['style', ['style']],
+				['font', ['bold', 'underline', 'clear']],
+				['color', ['color']],
+				['insert', ['picture']],
+				['view', ['codeview']]
+			],
+			callbacks: {
+				onImageUpload: function(files, editor, welEditable) {
+		            for (var i = files.length - 1; i >= 0; i--) {
+		            	sendFile(files[i], this);
+		            }
+		        }
+			}
+		});
+		function sendFile(file, el) {
+			var form_data = new FormData();
+	      	form_data.append('file', file);
+	      	$.ajax({
+	        	data: form_data,
+	        	type: "POST",
+	        	url: '<%=request.getContextPath()%>/recallApplyImg',
+	        	cache: false,
+	        	contentType: false,
+	        	enctype: 'multipart/form-data',
+	        	processData: false,
+	        	success: function(data) {
+	          		$(el).summernote('editor.insertImage', '<%=request.getContextPath()%>/resources/image/photo6.JPG');
+	          		imgList.push(data.img);
+	        	}
+	      	});
+	    }
 	})
 </script>

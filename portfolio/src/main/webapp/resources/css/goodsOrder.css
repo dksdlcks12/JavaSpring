@@ -181,3 +181,7 @@
 	right: 0;
 	border: none;
 }
+.common-boardWrite-Content img{
+	width: 200px !important;
+	height: 200px;
+}
