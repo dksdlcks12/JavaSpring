@@ -40,20 +40,6 @@ $(function(){
 		}
 		$(this).children('.user-order-allGoodsPriceNumber').text(price*count-point);
 	})
-	$('.user-order-goodsUsePoint').children('input').change(function(){
-		price = Number($(this).parent().siblings('.user-order-goodsPrice').children('.user-order-goodsPriceNumber').text());
-		count = Number($(this).parent().siblings('.user-order-goodsCount').text());
-		if($(this).val()<0){
-			$(this).val(0);
-		}
-		if($(this).val()>(price*count)/10){
-			$(this).val((price*count)/10);
-		}
-		if($(this).val()%10!=0){
-			$(this).val($(this).val()-($(this).val()%10));
-		}
-		$(this).parent().siblings('.user-order-allGoodsPrice').children('.user-order-allGoodsPriceNumber').text(price*count-$(this).val());
-		totalPriceCalculation();
-	})
+
 	totalPriceCalculation();
 })

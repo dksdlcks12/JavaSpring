@@ -36,7 +36,6 @@ import kr.ajs.portfolio.vo.UserVo;
  */
 @Controller
 public class UserController {
-
 	@Autowired
 	UserService userService;
 	@Autowired
@@ -271,8 +270,9 @@ public class UserController {
 	public ModelAndView cartOrderGet(ModelAndView mv, HttpServletRequest request, Integer[] orderList) throws Exception{
 	    mv.setViewName("/goods/goodsOrder");
 	    UserVo user = (UserVo) request.getSession().getAttribute("user");
-	    mv.addObject("user", user);
 	    if(user!= null) {
+		    userService.getUserPoint(user);
+		    mv.addObject("user", user);
 		    if(orderList!=null) {
 			    ArrayList<BoardCartVo> list = new ArrayList<BoardCartVo>();
 			    for(Integer order : orderList) {
@@ -360,18 +360,25 @@ public class UserController {
 		return mv;
 	}
 	@RequestMapping(value= {"/recallapplylist"}, method = RequestMethod.GET)
-	public ModelAndView recallApplyListGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+	public ModelAndView recallApplyListGet(ModelAndView mv, HttpServletRequest request, Criteria cri) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null) {
-			ArrayList<OrderVo> list = userService.getRecallOrderList(user);
+			PageMaker pm = userService.getPageMakerRecallOrderList(cri, user);
+			ArrayList<OrderVo> list = userService.getRecallOrderList(user, cri);
 			for(OrderVo order : list) {
 				userService.getOrderGoods(order);
 			}
+			mv.addObject("pm", pm);
 			mv.addObject("list", list);
 			mv.setViewName("/afterOrder/recallApplyList");
 		}else {
 			mv.setViewName("redirect:/login");
 		}
+		return mv;
+	}
+	@RequestMapping(value= {"/recallapply"}, method = RequestMethod.GET)
+	public ModelAndView recallApplyGet(ModelAndView mv) throws Exception{
+		mv.setViewName("/afterOrder/recallApply");
 		return mv;
 	}
 }

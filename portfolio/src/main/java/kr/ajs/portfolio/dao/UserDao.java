@@ -85,5 +85,9 @@ public interface UserDao {
 
 	public int getAllOrderCount();
 
-	public ArrayList<OrderVo> getRecallOrderList(@Param("user")UserVo user);
+	public ArrayList<OrderVo> getRecallOrderList(@Param("user")UserVo user, @Param("cri")Criteria cri);
+
+	public int getRecallOrderListCount(@Param("user")UserVo user);
+
+	public int getuserPoint(@Param("user")UserVo user);
 }

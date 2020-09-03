@@ -229,8 +229,26 @@ public class UserServiceImp implements UserService {
 		return userDao.getAllOrderCount();
 	}
 	@Override
-	public ArrayList<OrderVo> getRecallOrderList(UserVo user) {
+	public ArrayList<OrderVo> getRecallOrderList(UserVo user, Criteria cri) {
 		// TODO Auto-generated method stub
-		return userDao.getRecallOrderList(user);
+		cri.setPerPageNum(6);
+		return userDao.getRecallOrderList(user, cri);
+	}
+	@Override
+	public PageMaker getPageMakerRecallOrderList(Criteria cri, UserVo user) {
+		// TODO Auto-generated method stub
+		cri.setPerPageNum(6);
+		PageMaker pm = new PageMaker();
+	    int totalCount = userDao.getRecallOrderListCount(user);
+	    pm.setCriteria(cri);
+	    pm.setTotalCount(totalCount);
+	    return pm;
+	}
+	@Override
+	public void getUserPoint(UserVo user) {
+		// TODO Auto-generated method stub
+		int userPoint = userDao.getuserPoint(user);
+		user.setUserPoint(userPoint);
+		System.out.println(user);
 	}
 }

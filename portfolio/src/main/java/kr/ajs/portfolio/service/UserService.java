@@ -78,8 +78,9 @@ public interface UserService {
 
 	public int getAllOrderCount();
 
-	public ArrayList<OrderVo> getRecallOrderList(UserVo user);
+	public ArrayList<OrderVo> getRecallOrderList(UserVo user, Criteria cri);
 
+	public PageMaker getPageMakerRecallOrderList(Criteria cri, UserVo user);
 
-
+	public void getUserPoint(UserVo user);
 }

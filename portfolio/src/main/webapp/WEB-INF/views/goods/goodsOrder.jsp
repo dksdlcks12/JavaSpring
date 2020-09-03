@@ -198,6 +198,7 @@
 	var count=0;
 	var defaultDeliveryPrice = 2500;
 	var freeDeliveryLimit = 16000;
+	var usePoint = 0;
 	function totalPriceCalculation(){
 		totalPrice = 0;
 		$('.user-order-allGoodsPrice').each(function(){
@@ -209,6 +210,32 @@
 			} 
 		})
 	}
+	$('.user-order-goodsUsePoint').children('input').change(function(){
+		price = Number($(this).parent().siblings('.user-order-goodsPrice').children('.user-order-goodsPriceNumber').text());
+		count = Number($(this).parent().siblings('.user-order-goodsCount').text());
+		if($(this).val()<0){
+			$(this).val(0);
+		}
+		if(Number(${user.userPoint}-usePoint)<$(this).val()){
+			$(this).val(Number(${user.userPoint}-usePoint))
+		}
+		if($(this).val()>(price*count)/10){
+			$(this).val((price*count)/10);
+		}
+		if($(this).val()%10!=0){
+			$(this).val($(this).val()-($(this).val()%10));
+		}
+		$(this).parent().siblings('.user-order-allGoodsPrice').children('.user-order-allGoodsPriceNumber').text(price*count-$(this).val());
+		totalPriceCalculation();
+	})
+	$('.user-order-goodsUsePoint').children('input').focusin(function(){
+		usePoint = usePoint - Number($(this).val());
+		console.log(usePoint);
+	})
+		$('.user-order-goodsUsePoint').children('input').focusout(function(){
+		usePoint = usePoint + Number($(this).val());
+		console.log(usePoint);
+	})
 	if($('.user-order-goodsCheck').length==0){
 		location.href='<%=request.getContextPath()%>/cart' 
 	}
@@ -252,7 +279,8 @@
 				var orderCount = $(this).parent().siblings('.user-order-goodsCount').text();
 				var orderPrice = $(this).parent().siblings('.user-order-goodsPrice').children('.user-order-goodsPriceNumber').text();
 				var orderUsePoint = $(this).parent().siblings('.user-order-goodsUsePoint').children('.number').val();
-				goodsList.push({'orderNum':orderNum, 'orderCount':orderCount, 'orderPrice':orderPrice, 'orderUsePoint':orderUsePoint});
+				var orderPoint = $(this).parent().siblings('.user-order-goodsGoodsPoint').text();
+				goodsList.push({'orderNum':orderNum, 'orderCount':orderCount, 'orderPrice':orderPrice, 'orderUsePoint':orderUsePoint, 'orderPoint':orderPoint});
 			})
 			orderList.push({'totalPrice':totalPrice,'senderName':senderName,  'sendPostcode':sendPostcode, 'sendAddress':sendAddress, 'sendDetailAddress':sendDetailAddress, 'sendExtraAddress':sendExtraAddress, 'sendTel':sendTel, 'noneMemberPassword':noneMemberPassword, 'receiverName':receiverName, 'receivePostcode':receivePostcode, 'receiveAddress':receiveAddress, 'receiveDetailAddress':receiveDetailAddress, 'receiveExtraAddress':receiveExtraAddress, 'receiveTel':receiveTel})
 			arr.push({'goodsList':goodsList, 'orderList':orderList});

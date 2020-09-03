@@ -23,6 +23,7 @@ public class AddOrderVo {
 	private String receiveTel;
 	private int orderPrice;
 	private int orderUsePoint;
+	private int orderPoint;
 	public ArrayList<AddOrderVo> getGoodsList() {
 		return goodsList;
 	}
@@ -143,6 +144,12 @@ public class AddOrderVo {
 	public void setOrderUsePoint(int orderUsePoint) {
 		this.orderUsePoint = orderUsePoint;
 	}
+	public int getOrderPoint() {
+		return orderPoint;
+	}
+	public void setOrderPoint(int orderPoint) {
+		this.orderPoint = orderPoint;
+	}
 	
 	@Override
 	public String toString() {
@@ -153,6 +160,7 @@ public class AddOrderVo {
 				+ ", noneMemberPassword=" + noneMemberPassword + ", receiverName=" + receiverName + ", receivePostcode="
 				+ receivePostcode + ", receiveAddress=" + receiveAddress + ", receiveDetailAddress="
 				+ receiveDetailAddress + ", receiveExtraAddress=" + receiveExtraAddress + ", receiveTel=" + receiveTel
-				+ ", orderPrice=" + orderPrice + ", orderUsePoint=" + orderUsePoint + "]";
-	}
+				+ ", orderPrice=" + orderPrice + ", orderUsePoint=" + orderUsePoint + ", orderPoint=" + orderPoint
+				+ "]";
+	}	
 }

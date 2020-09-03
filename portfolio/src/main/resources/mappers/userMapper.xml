@@ -136,8 +136,8 @@
 		update portfolio.option set optionStock = #{stock} where optionNum = (select cart_optionNum from cart where cartNum = #{order.orderNum})
 	</update>
 	<insert id="addOrderList"> 
-		insert into orderList (orderList_postNum, orderList_orderNum, orderList_optionNum, orderListCount, orderListPrice, orderListUsePoint)
-		values((select cart_postNum from cart where cartNum = #{order.orderNum}), #{index}, (select cart_optionNum from cart where cartNum = #{order.orderNum}), #{order.orderCount}, #{order.orderPrice}, #{order.orderUsePoint})
+		insert into orderList (orderList_postNum, orderList_orderNum, orderList_optionNum, orderListCount, orderListPrice, orderListUsePoint, orderListPoint)
+		values((select cart_postNum from cart where cartNum = #{order.orderNum}), #{index}, (select cart_optionNum from cart where cartNum = #{order.orderNum}), #{order.orderCount}, #{order.orderPrice}, #{order.orderUsePoint}, #{order.orderPoint})
 	</insert>
 		<insert id="addGoodsViewOrderCart" parameterType="kr.ajs.portfolio.vo.CartVo" useGeneratedKeys="true" keyProperty="cart.cartNum">
 		insert into cart (cart_postNum, cart_userId, cartCount, cart_optionNum)
@@ -213,6 +213,18 @@
 		select count(*) from portfolio.order
 	</select>
 	<select id="getRecallOrderList" resultType="kr.ajs.portfolio.vo.OrderVo">
-		select orderNum, orderSender, orderReceiver, orderDate from portfolio.order where orderUserId = #{user.userId} order by orderNum desc
+		<![CDATA[select orderNum, orderSender, orderReceiver, orderDate from portfolio.order
+		where orderUserId = #{user.userId}
+		and date(orderDate) >= date(subdate(now(), INTERVAL 14 DAY)) and date(orderDate) <= date(now())
+		order by orderNum desc
+		limit #{cri.pageStart}, #{cri.perPageNum}]]>
+	</select>
+	<select id="getRecallOrderListCount" resultType="int">
+		<![CDATA[select count(*) from portfolio.order
+		where orderUserId = #{user.userId}
+		and date(orderDate) >= date(subdate(now(), INTERVAL 14 DAY)) and date(orderDate) <= date(now())]]>
+	</select>
+	<select id="getuserPoint" resultType="int">
+		select userPoint from user where userId = #{user.userId}
 	</select>
 </mapper>

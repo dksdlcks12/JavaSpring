@@ -56,16 +56,26 @@
 					</c:if>
 				</ul>
 			</c:if>
-			<c:if test="${pm.criteria.page>pm.endPage}">
+			<c:if test="${pm.criteria.page>pm.endPage && user.userAuth ne 'admin'}">
 				<script>
-					location.replace('<%=request.getContextPath()%>/goodslist?type=${type}&page=${pm.endPage}');
+					location.replace('<%=request.getContextPath()%>/orderviewlist?page=${pm.endPage}');
+				</script>
+			</c:if>
+			<c:if test="${pm.criteria.page>pm.endPage && user.userAuth eq 'admin'}">
+				<script>
+					location.replace('<%=request.getContextPath()%>/orderviewlist?page=${pm.endPage}&type=${pm.criteria.type}&search=${pm.criteria.search}');
 				</script>
 			</c:if>
 		</c:if>
 	</div>
-	<c:if test="${list.size()==0 && pm.criteria.page>1}">
+	<c:if test="${list.size()==0 && pm.criteria.page>1 && user.userAuth ne 'admin'}">
 		<script>
-			location.replace('<%=request.getContextPath()%>/goodslist?type=${type}&page=${pm.endPage}');
+			location.replace('<%=request.getContextPath()%>/orderviewlist?page=${pm.endPage}');
+		</script>
+	</c:if>
+	<c:if test="${list.size()==0 && pm.criteria.page>1 && user.userAuth eq 'admin'}">
+		<script>
+			location.replace('<%=request.getContextPath()%>/orderviewlist?page=${pm.endPage}&type=${pm.criteria.type}&search=${pm.criteria.search}');
 		</script>
 	</c:if>
 </div>

@@ -1,0 +1,142 @@
+@charset "UTF-8";
+.user-recallApply-box{
+	width: 1400px;
+	padding: 100px 0 50px 0;
+	margin: 0 auto;
+	background-color: palegoldenrod;
+	box-sizing: border-box;
+}
+.user-recallApply-recallApplyBox{
+	width: 1200px;
+	margin-left: 100px;
+	background-color: lavender;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.user-recallApply-recallApplyBox>h2{
+	margin-left: 110px;
+}
+.user-recallApply-recallApplyInfoBox{
+	width: 1000px;
+	margin-left: 100px;
+	background-color: lemonchiffon;
+	padding: 10px
+}
+.user-recallApply-orderNumberBox{
+	width: 400px;
+	height: 50px;
+	margin-bottom: 20px;
+	background-color: lightcyan;
+}
+.user-recallApply-orderNumberBox>*{
+	display: inline-block;
+	width: 200px;
+	height: 50px;
+	border: 1px solid black;
+	box-sizing: border-box;
+	font-size: 20px;
+	text-align: center;
+	line-height: 50px;
+}
+.user-recallApply-orderNumberBox>div+div{
+	border-left: none;
+}
+.user-recallApply-goodsBox{
+	width: 960px;
+	background-color: cyan; 
+	border-collapse: collapse;
+	border-color: black;
+}
+.user-recallApply-goodsCheck, .user-recallApply-goodsCheckAll{
+	cursor: pointer;
+}
+.user-recallApply-goodsCheck, .user-recallApply-goodsCheckAll{
+	margin-left: 17px;
+}
+.user-recallApply-goodsImgTitle{
+	width: 10%;
+	text-align: center;
+}
+.user-recallApply-goodsInfoTitle{
+	width: 50%;
+	text-align: center;
+}
+.user-recallApply-goodsPriceTitle{
+	width: 20%;
+	text-align: center;
+}
+.user-recallApply-goodsCountTitle{
+	width: 15%;
+	text-align: center;
+}
+.user-recallApply-goodsImg>img{
+	margin: 5px;
+	width: 90px;
+	height: 90px;
+}
+.user-recallApply-goodsInfo{
+	padding-left: 10px;
+	font-size: 20px;
+}
+.user-recallApply-goodsPrice{
+	text-align: right;
+	font-size: 20px;
+	padding-right: 10px;
+}
+.user-recallApply-goodsCount{
+	font-size: 20px;
+	width: 60px;
+	text-align: center;
+}
+.user-recallApply-recallOptionBox{
+	width: 1000px;
+	height: 50px;
+	position: relative;
+}
+.user-recallApply-selectGoodsBox{
+	width: 700px;
+	height: 50px;
+	margin-top: 20px;
+	background-color: lightcyan;
+	box-sizing: border-box;
+	border: 1px solid black;
+}
+.user-recallApply-selectGoodsTitle{
+	width: 200px;
+	height: 50px;
+	text-align: center;
+	font-size: 25px;
+	line-height: 50px;
+	box-sizing: border-box;
+	border-right: 1px solid black;
+	float: left;
+}
+.user-recallApply-selectGoods{
+	width: 488px;
+	height: 50px;
+	margin-left: 10px;
+	font-size: 15px;
+	line-height: 50px;
+	float: left;
+}
+.user-recallApply-recallReason{
+	position: absolute;
+	width: 160px;
+	height: 50px;
+	font-size: 20px;
+	top: 0;
+	left: 720px;
+}
+.user-recallApply-board{
+	margin-top: 10px;
+	width: 1000px;
+	height: 150px;
+	resize: none;
+}
+.user-recallApply-button{
+	margin-top: 10px;
+	margin-left: calc(50% - 100px);
+	width: 200px;
+	height: 50px;
+	font-size: 30px;
+}
