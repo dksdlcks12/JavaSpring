@@ -212,4 +212,7 @@
 	<select id="getAllOrderCount" resultType="int">
 		select count(*) from portfolio.order
 	</select>
+	<select id="getRecallOrderList" resultType="kr.ajs.portfolio.vo.OrderVo">
+		select orderNum, orderSender, orderReceiver, orderDate from portfolio.order where orderUserId = #{user.userId} order by orderNum desc
+	</select>
 </mapper>

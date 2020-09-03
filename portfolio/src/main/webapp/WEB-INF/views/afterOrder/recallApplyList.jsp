@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>   
 <div class="user-recallApplyList-box">
 	<div class="user-recallApplyList-recallApplyListBox">
 		<h2 class="user-recallApplyList-title">반품신청</h2>
@@ -11,30 +11,16 @@
 				<th class="user-recallApplyList-orderDateTitle">주문날짜</th>
 			</tr>
 		</table>
-		<div class="user-recallApplyList-orderBox">
-			<a href="#">
-				<div class="user-recallApplyList-orderNumber">1</div>
-				<div class="user-recallApplyList-orderInfo">1</div>
-				<div class="user-recallApplyList-address">1</div>
-		    	<div class="user-recallApplyList-orderDate">1</div>
-			</a>
-		</div>
-		<div class="user-recallApplyList-orderBox">
-			<a href="#">
-				<div class="user-recallApplyList-orderNumber"></div>
-				<div class="user-recallApplyList-orderInfo"></div>
-				<div class="user-recallApplyList-address"></div>
-				<div class="user-recallApplyList-orderDate"></div>
-			</a>
-		</div>
-		<div class="user-recallApplyList-orderBox">
-			<a href="#">
-				<div class="user-recallApplyList-orderNumber"></div>
-				<div class="user-recallApplyList-orderInfo"></div>
-				<div class="user-recallApplyList-address"></div>
-				<div class="user-recallApplyList-orderDate"></div>
-			</a>
-		</div>
+		<c:forEach var="order" items="${list}">
+			<div class="user-recallApplyList-orderBox">
+				<a href="#">
+					<div class="user-recallApplyList-orderNumber">${order.orderNum}</div>
+					<div class="user-recallApplyList-orderInfo">[제품명 : ${order.orderGoodsName} / 색상 : ${order.orderGoodsColor}]<c:if test="${order.orderGoodsCount>1}"> 외 ${order.orderGoodsCount-1} 종</c:if></div>
+					<div class="user-recallApplyList-address">${order.orderSender} / ${order.orderReceiver}</div>
+			    	<div class="user-recallApplyList-orderDate">${order.orderDate}</div>
+				</a>
+			</div>
+		</c:forEach>
 		<ul class="user-recallApplyList-pagination pagination justify-content-center">
 			<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
 			<li class="page-item"><a class="page-link" href="#">1</a></li>

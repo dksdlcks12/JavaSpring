@@ -363,6 +363,11 @@ public class UserController {
 	public ModelAndView recallApplyListGet(ModelAndView mv, HttpServletRequest request) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null) {
+			ArrayList<OrderVo> list = userService.getRecallOrderList(user);
+			for(OrderVo order : list) {
+				userService.getOrderGoods(order);
+			}
+			mv.addObject("list", list);
 			mv.setViewName("/afterOrder/recallApplyList");
 		}else {
 			mv.setViewName("redirect:/login");

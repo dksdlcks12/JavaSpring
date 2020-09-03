@@ -84,4 +84,6 @@ public interface UserDao {
 	public int getOrderViewListTotalCount(@Param("user")UserVo user, @Param("cri")Criteria cri);
 
 	public int getAllOrderCount();
+
+	public ArrayList<OrderVo> getRecallOrderList(@Param("user")UserVo user);
 }

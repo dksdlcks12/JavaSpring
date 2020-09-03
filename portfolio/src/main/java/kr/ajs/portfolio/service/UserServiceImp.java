@@ -202,8 +202,7 @@ public class UserServiceImp implements UserService {
 	public void getOrderGoods(OrderVo order) {
 		order.setOrderGoodsCount(userDao.getOrderGoodsCount(order));
 		order.setOrderGoodsName(userDao.getOrderGoodsName(order));
-		order.setOrderGoodsColor(userDao.getOrderGoodsColor(order));
-		
+		order.setOrderGoodsColor(userDao.getOrderGoodsColor(order));	
 	}
 	@Override
 	public ArrayList<OrderListVo> getOrderGoodsList(int orderNum, UserVo user) {
@@ -228,5 +227,10 @@ public class UserServiceImp implements UserService {
 	public int getAllOrderCount() {
 		// TODO Auto-generated method stub
 		return userDao.getAllOrderCount();
+	}
+	@Override
+	public ArrayList<OrderVo> getRecallOrderList(UserVo user) {
+		// TODO Auto-generated method stub
+		return userDao.getRecallOrderList(user);
 	}
 }

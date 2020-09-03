@@ -16,6 +16,7 @@
 .user-recallApplyList-title{
 	margin-left: 100px;
 	margin-bottom: 10px;
+	text-align: center;
 }
 .user-recallApplyList-orderTitle{
 	width: 1000px;
@@ -26,18 +27,23 @@
 }
 .user-recallApplyList-orderNumberTitle{
 	width: 10%;
+	text-align: center;
 }
 .user-recallApplyList-orderInfoTitle{
-	width: 20%;        
+	width: 35%;
+	text-align: center;
 }
 .user-recallApplyList-addressTitle{
-	width: 45%;
+	width: 30%;
+	text-align: center;
 }
 .user-recallApplyList-orderDateTitle{
 	width: 15%;
+	text-align: center;
 }
 .user-recallApplyList-goodsCountTitle{
 	width: 10%;
+	text-align: center;
 }
 .user-recallApplyList-orderBox{
 	width: 1000px;
@@ -59,7 +65,7 @@
 .user-recallApplyList-orderNumber{
 	width: 110px;
 	height: 100%;
-	font-size: 20px;
+	font-size: 17px;
 	text-align: center;
 	line-height: 100px;
 	border: none;
@@ -67,8 +73,8 @@
 .user-recallApplyList-orderInfo{
 	padding-left: 10px;
 	height: 100%;
-	width: 222px;
-	font-size: 20px;
+	width: 389px;
+	font-size: 17px;
 	position: absolute;
 	top: 0;
 	left: 110px;
@@ -77,11 +83,11 @@
 .user-recallApplyList-address{
 	padding-left: 10px;
 	height: 100%;
-	width: 500px;
-	font-size: 20px;
+	width: 333px;
+	font-size: 17px;
 	position: absolute;
 	top: 0;
-	left: 332px;
+	left: 499px;
 	box-sizing: border-box;
 	line-height: normal;
 }
@@ -89,7 +95,7 @@
 	text-align: center;
 	height: 100%;
 	width: 167px;
-	font-size: 20px;
+	font-size: 17px;
 	position: absolute;
 	top: 0;
 	left: 832px;

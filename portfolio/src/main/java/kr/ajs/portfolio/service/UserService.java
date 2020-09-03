@@ -78,6 +78,8 @@ public interface UserService {
 
 	public int getAllOrderCount();
 
+	public ArrayList<OrderVo> getRecallOrderList(UserVo user);
+
 
 
 }
