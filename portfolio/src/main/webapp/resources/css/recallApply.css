@@ -95,7 +95,7 @@
 	position: relative;
 }
 .user-recallApply-selectGoodsBox{
-	width: 700px;
+	width: 600px;
 	height: 50px;
 	margin-top: 20px;
 	background-color: lightcyan;
@@ -113,7 +113,7 @@
 	float: left;
 }
 .user-recallApply-selectGoods{
-	width: 488px;
+	width: 388px;
 	height: 50px;
 	margin-left: 10px;
 	font-size: 15px;
@@ -126,7 +126,15 @@
 	height: 50px;
 	font-size: 20px;
 	top: 0;
-	left: 720px;
+	left: 620px;
+}
+.user-recallApply-recallChange{
+	position: absolute;
+	width: 160px;
+	height: 50px;
+	font-size: 20px;
+	top: 0;
+	left: 800px;
 }
 .user-recallApply-board{
 	margin-top: 10px;

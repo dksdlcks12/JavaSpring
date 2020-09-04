@@ -14,7 +14,7 @@
 			</table>
 			<c:forEach var="order" items="${list}">
 				<div class="user-recallApplyList-orderBox">
-					<a href="#">
+					<a href="<%=request.getContextPath()%>/recallapply?orderNum=${order.orderNum}">
 						<div class="user-recallApplyList-orderNumber">${order.orderNum}</div>
 						<div class="user-recallApplyList-orderInfo">[제품명 : ${order.orderGoodsName} / 색상 : ${order.orderGoodsColor}]<c:if test="${order.orderGoodsCount>1}"> 외 ${order.orderGoodsCount-1} 종</c:if></div>
 						<div class="user-recallApplyList-address">${order.orderSender} / ${order.orderReceiver}</div>

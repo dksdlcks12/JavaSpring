@@ -32,6 +32,7 @@ import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderListVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
+import kr.ajs.portfolio.vo.RecallAddVo;
 import kr.ajs.portfolio.vo.UserVo;
 
 /**
@@ -380,8 +381,16 @@ public class UserController {
 		return mv;
 	}
 	@RequestMapping(value= {"/recallapply"}, method = RequestMethod.GET)
-	public ModelAndView recallApplyGet(ModelAndView mv) throws Exception{
-		mv.setViewName("/afterOrder/recallApply");
+	public ModelAndView recallApplyGet(ModelAndView mv, HttpServletRequest request, int orderNum) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		if(user!=null) {
+			ArrayList<OrderListVo> list;
+			list = userService.getOrderGoodsList(orderNum, user);
+			mv.addObject("list", list);
+			mv.setViewName("/afterOrder/recallApply");
+		}else {
+			mv.setViewName("redirect:/login");
+		}
 		return mv;
 	}
 	@RequestMapping("/recallApplyImg")
@@ -391,6 +400,23 @@ public class UserController {
 	    String uploadPath = "D:\\AJS\\JavaSpring\\portfolio\\src\\main\\webapp\\resources\\image\\recallApply";
 	    String img = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(),file.getBytes());
 	    map.put("img", img);
+	    return map;
+	}
+	@RequestMapping(value= {"/recallapply"}, method = RequestMethod.POST)
+	public ModelAndView recallApplyPost(ModelAndView mv) throws Exception{
+		mv.setViewName("/afterOrder/aaaa");
+		return mv;
+	}
+	@RequestMapping("/recallAdd")
+	@ResponseBody
+	public Map<Object, Object> recallAdd(@RequestBody ArrayList<RecallAddVo> recallList, HttpServletRequest request){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		System.out.println(recallList.get(0).getSandNote());
+		ArrayList<RecallAddVo>list = recallList.get(0).getGoodsList();
+		for(RecallAddVo tmp:list) {
+			System.out.println(tmp);
+		}
 	    return map;
 	}
 }

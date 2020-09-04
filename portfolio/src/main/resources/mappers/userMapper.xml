@@ -180,7 +180,7 @@
 		select optionColor from orderList join portfolio.option on orderList_optionNum = optionNum where orderList_orderNum = #{order.orderNum} limit 0,1
 	</select>
 	<select id="getOrderGoodsList" resultType="kr.ajs.portfolio.vo.OrderListVo">
-		select goodsName, goodsImg, optionColor, orderListPrice, orderListCount, orderListUsePoint, goodsType
+		select orderListNum, goodsName, goodsImg, optionColor, orderListPrice, orderListCount, orderListUsePoint, goodsType
 		from orderlist join portfolio.option on orderList_optionNum = optionNum join goods on option_goodsNum = goodsNum join portfolio.order on orderList_orderNum = orderNum
 		where orderList_orderNum = #{orderNum} <if test="user.userAuth!='admin'"> and orderUserId = #{user.userId} </if>
 	</select>
