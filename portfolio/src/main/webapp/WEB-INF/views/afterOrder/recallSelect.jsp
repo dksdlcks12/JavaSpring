@@ -3,6 +3,6 @@
 <div class="user_recallSelect-box">
 	<div class="user_recallSelect-recallSelectBox">
 		<a href="<%=request.getContextPath()%>/recallapplylist"><button class="user_recallSelect-goRecallApplyList">반 품 신 청</button></a>
-		<button class="user_recallSelect-goRecallViewList">반 품 조 회</button>
+		<a href="<%=request.getContextPath()%>/recallviewlist"><button class="user_recallSelect-goRecallViewList">반 품 조 회</button></a>
 	</div>
 </div>

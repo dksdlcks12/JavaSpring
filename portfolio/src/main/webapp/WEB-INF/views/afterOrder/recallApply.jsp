@@ -138,6 +138,13 @@
 								dataType:"json",
 								contentType:"application/json; charset=UTF-8",
 								success : function(data){
+									if(data.check){
+										alert('반품신청이 성공적으로 이루어졌습니다.')
+										location.replace('<%=request.getContextPath()%>/recallapplylist');
+									}else{
+										alert('비정상적인 접근으로 인하여 메인 페이지로 돌아갑니다.')
+										location.replace('<%=request.getContextPath()%>/');
+									}
 								}
 							});
 						}else{

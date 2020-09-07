@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import kr.ajs.portfolio.pagination.Criteria;
 import kr.ajs.portfolio.vo.BoardCartVo;
+import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
@@ -99,5 +100,9 @@ public interface UserDao {
 	public void addRecallList(@Param("recall")RecallAddVo recallOrderList, @Param("recallNum")int recallNum);
 
 	public void updateOrderListRecall(@Param("recall")RecallAddVo recallOrderList);
+
+	public ArrayList<OrderListVo> getOrderRecallList(@Param("orderNum")int orderNum, @Param("user")UserVo user);
+
+	public ArrayList<BoardRecallListVo> getBoardRecallList(@Param("user")UserVo user);
 
 }

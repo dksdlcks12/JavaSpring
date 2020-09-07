@@ -3,10 +3,10 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-response.setHeader("Pragma", "no-cache"); //HTTP 1.0
-response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
-response.setHeader("Cache-Control", "no-store"); //HTTP 1.1
-response.setDateHeader("Expires", 0L); // Do not cache in proxy server
+	response.setHeader("Pragma", "no-cache"); //HTTP 1.0
+	response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
+	response.setHeader("Cache-Control", "no-store"); //HTTP 1.1
+	response.setDateHeader("Expires", 0L); // Do not cache in proxy server
 %>
 <html>
 <head>

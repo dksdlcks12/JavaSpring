@@ -30,7 +30,7 @@ a:hover{
 	width: 1400px;
 	height: 150px;
 	background-color: blue;
-	z-index: 5;
+	z-index: 20;
 }
 .user-set-header-logo{
 	height: 100%;
@@ -146,7 +146,7 @@ a:hover{
 	right: 30px;
 	background-color: blue;
 	box-sizing: border-box;
-	z-index: 10;
+	z-index: 25;
 }
 .user-set-orderCheck, .user-set-deliveryCheck,  .user-set-csTel{
 	height: 40px;

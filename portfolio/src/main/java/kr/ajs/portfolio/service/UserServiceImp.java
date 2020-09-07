@@ -11,6 +11,7 @@ import kr.ajs.portfolio.pagination.Criteria;
 import kr.ajs.portfolio.pagination.PageMaker;
 import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.BoardCartVo;
+import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
@@ -265,5 +266,15 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		userDao.addRecallList(recallOrderList, recallNum);
 		userDao.updateOrderListRecall(recallOrderList);
+	}
+	@Override
+	public ArrayList<OrderListVo> getOrderRecallList(int orderNum, UserVo user) {
+		// TODO Auto-generated method stub
+		return userDao.getOrderRecallList(orderNum, user);
+	}
+	@Override
+	public ArrayList<BoardRecallListVo> getBoardRecallList(UserVo user) {
+		// TODO Auto-generated method stub
+		return userDao.getBoardRecallList(user);
 	}
 }

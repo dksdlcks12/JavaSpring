@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import kr.ajs.portfolio.pagination.Criteria;
 import kr.ajs.portfolio.pagination.PageMaker;
 import kr.ajs.portfolio.vo.BoardCartVo;
+import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
@@ -90,4 +91,8 @@ public interface UserService {
 	public void addRecall(RecallAddVo recall);
 
 	public void addRecallList(RecallAddVo recallOrderList, int recallNum);
+
+	public ArrayList<OrderListVo> getOrderRecallList(int orderNum, UserVo user);
+
+	public ArrayList<BoardRecallListVo> getBoardRecallList(UserVo user);
 }

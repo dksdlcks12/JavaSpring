@@ -24,6 +24,7 @@ import kr.ajs.portfolio.service.UserService;
 import kr.ajs.portfolio.utils.UploadFileUtils;
 import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.BoardCartVo;
+import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
@@ -385,7 +386,7 @@ public class UserController {
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null) {
 			ArrayList<OrderListVo> list;
-			list = userService.getOrderGoodsList(orderNum, user);
+			list = userService.getOrderRecallList(orderNum, user);
 			mv.addObject("orderNum", orderNum);
 			mv.addObject("list", list);
 			mv.setViewName("/afterOrder/recallApply");
@@ -409,6 +410,7 @@ public class UserController {
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		String checkUser = userService.getOrderUserId(recallList.get(0).getOrderNum());
+		boolean check = false;
 		if(user!=null && user.getUserId().equals(checkUser)) {
 			RecallAddVo recall = recallList.get(0);
 			userService.addRecall(recall);
@@ -416,9 +418,26 @@ public class UserController {
 			for(RecallAddVo recallOrderList:recall.getGoodsList()) {
 				userService.addRecallList(recallOrderList, recall.getRecallNum());
 			}
-		}else {
-			
+			check = true;
 		}
+		map.put("check", check);
 	    return map;
+	}
+	@RequestMapping(value= {"/recallviewlist"}, method = RequestMethod.GET)
+	public ModelAndView recallviewlistGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		if(user!=null) {
+			mv.addObject("user", user);
+			ArrayList<BoardRecallListVo> list;
+			list = userService.getBoardRecallList(user);
+			for(BoardRecallListVo tmp : list) {
+				System.out.println(tmp);
+			}
+			mv.addObject("list", list);
+			mv.setViewName("/afterOrder/recallViewList");
+		}else {
+			mv.setViewName("redirect:/login");
+		}
+		return mv;
 	}
 }

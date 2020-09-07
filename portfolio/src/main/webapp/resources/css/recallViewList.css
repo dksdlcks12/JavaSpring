@@ -1,0 +1,90 @@
+@charset "UTF-8";
+.admin-recallList-box{
+	width: 1400px;
+	height: 769px;
+	padding: 100px 0 50px 0;
+	margin: 0 auto;
+	margin-top: 100px;
+	background-color: palegoldenrod;
+	box-sizing: border-box;
+}
+.admin-recallList-orderListBox{
+	width: 1200px;
+	padding: 20px 0 20px 0;
+	margin-left: 100px;
+	background-color: whitesmoke;
+	box-sizing: border-box;
+}
+.admin-recallList-orderListBox>h2{
+	margin-left: calc(50% - 75px);
+	margin-bottom: 20px;
+}
+.admin-recallList-orderTitleBox, .admin-recallList-orderBox{
+	width: 1000px;
+	height: 51px;
+	margin-left: 100px;
+	background-color: wheat;
+	position: relative;
+	border: 1px solid black;
+	border-right: none;
+}
+.admin-recallList-orderBox{
+	border-top: none;
+}
+.admin-recallList-orderTitleNumber, .admin-recallList-orderTitleInfo, .admin-recallList-orderTitleDate, .admin-recallList-orderTitleState, .admin-recallList-orderNumber, .admin-recallList-orderInfo, .admin-recallList-orderDate, .admin-recallList-orderState{
+	position: absolute;
+	width: 100px;
+	height: 49px;
+	background-color: lemonchiffon;
+	font-size: 15px;
+	line-height: 50px;
+	text-align: center;
+	padding-right: 10px;
+	border-right: 1px solid black;
+	box-sizing: border-box;
+}
+.admin-recallList-orderTitleInfo, .admin-recallList-orderInfo{
+	width: 550px;
+	left: 100px;
+	text-align: left;
+	padding: 0;
+	padding-left: 10px;
+}
+.admin-recallList-orderTitleDate, .admin-recallList-orderDate{
+	left: 650px;
+	width: 200px;
+	padding: 0;
+}
+.admin-recallList-orderTitleState, .admin-recallList-orderState{
+	left: 850px;
+	width: 150px;
+	padding: 0;
+}
+.admin-recallList-orderTitleBox>*{
+	text-align: center;
+	font-weight: bold;
+	padding: 0;
+}
+.common-boardList-searchBox{
+	margin-top: 20px;
+	margin-left: 100px;
+	width: 400px;
+	height: 50px;
+	background-color: azure;
+}
+.common-boardList-searchType, .common-boardList-searchContent{
+	width: 150px;
+	height: 50px;
+	float: left;
+	padding-left: 10px;
+}
+.common-boardList-searchContent{
+	width: 200px;
+}
+.common-boardList-searchButton{
+	width: 50px;
+	height: 50px;
+}
+.admin-recallList-pagination{
+	margin-top: 20px;
+}

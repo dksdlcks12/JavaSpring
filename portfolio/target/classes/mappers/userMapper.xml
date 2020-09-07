@@ -241,4 +241,17 @@
 	<update id="updateOrderListRecall">
 		update orderlist set orderListIsRecall = 'Y' where orderListNum = #{recall.orderListNum}
 	</update>
+	<select id="getOrderRecallList" resultType="kr.ajs.portfolio.vo.OrderListVo">
+		select orderListNum, goodsName, goodsImg, optionColor, orderListPrice, orderListCount, orderListUsePoint, goodsType, orderListIsRecall
+		from orderlist join portfolio.option on orderList_optionNum = optionNum join goods on option_goodsNum = goodsNum join portfolio.order on orderList_orderNum = orderNum
+		where orderList_orderNum = #{orderNum} and orderListIsRecall = 'N' and orderUserId = #{user.userId}
+	</select>
+	<select id="getBoardRecallList" resultType="kr.ajs.portfolio.vo.BoardRecallListVo">
+		select recallNum, recallDate, recallState from recall
+		join recalllist on recallNum = recallList_recallNum
+		join orderlist on recallList_orderListNum = orderListNum
+		join portfolio.order on orderList_orderNum = orderNum
+		where orderUserId = '${user.userId}'
+		group by recallNum
+	</select>
 </mapper>
