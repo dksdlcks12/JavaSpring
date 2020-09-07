@@ -442,4 +442,9 @@ public class UserController {
 		}
 		return mv;
 	}
+	@RequestMapping(value= {"/recallview"}, method = RequestMethod.GET)
+	public ModelAndView recallViewGet(ModelAndView mv) throws Exception{
+		mv.setViewName("/afterOrder/recallView");
+		return mv;
+	}
 }

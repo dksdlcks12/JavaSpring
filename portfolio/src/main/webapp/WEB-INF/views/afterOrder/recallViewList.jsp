@@ -13,7 +13,7 @@
 			<c:forEach var="recallList" items="${list}">
 				<div class="admin-recallList-orderBox">
 					<div class="admin-recallList-orderNumber">${recallList.recallNum}</div>
-					<a href="#"><div class="admin-recallList-orderInfo">[제품명 : ${recallList.goodsName} / 색상 : ${recallList.goodsColor}] <c:if test="${recallList.goodsCount>1}">외 ${recallList.goodsCount-1}종</c:if></div></a>
+					<a href="<%=request.getContextPath()%>/recallview?recallNum=${recallList.recallNum}"><div class="admin-recallList-orderInfo">[제품명 : ${recallList.goodsName} / 색상 : ${recallList.goodsColor}] <c:if test="${recallList.goodsCount>1}">외 ${recallList.goodsCount-1}종</c:if></div></a>
 					<div class="admin-recallList-orderDate">${recallList.recallDate}</div>
 					<div class="admin-recallList-orderState">${recallList.recallState}</div>
 				</div>
