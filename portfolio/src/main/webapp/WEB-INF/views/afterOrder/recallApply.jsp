@@ -2,10 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="user-recallApply-box">
 	<div class="user-recallApply-recallApplyBox">
-		<h2>반품신청</h2>
-		<div class="user-recallApply-recallApplyInfoBox">
+		<c:if test="${list.size()!=0}">
+			<h2>반품신청</h2>
+			<div class="user-recallApply-recallApplyInfoBox">
 				<div class="user-recallApply-orderNumberBox">
-					<div>주문번호</div><div>1</div>
+					<div>주문번호</div><div class="user-recallApply-orderNumber">${orderNum}</div>
 				</div>
 				<div style="overflow-x: hidden;width:980px;height: 200px;">
 					<table class="user-recallApply-goodsBox" border="1">
@@ -17,13 +18,15 @@
 							<th class="user-recallApply-goodsCountTitle">수량</th>
 						</tr>
 						<c:forEach var="orderList" items="${list}">
-						<tr>
-							<td><input type="checkbox" class="user-recallApply-goodsCheck"><sapn class="user-recallApply-orderListNum" hidden>${orderList.orderListNum}</td>
-							<td class="user-recallApply-goodsImg"><img src="<%=request.getContextPath()%>/resources/image/goodsImg/${orderList.goodsImg}" alt="" ></td>
-							<td class="user-recallApply-goodsInfo">제품명 : <span class="user-recallApply-goodsName">${orderList.goodsName}</span><br>색상 : <span class="user-recallApply-goodsColor">${orderList.optionColor}</span></td>
-							<td class="user-recallApply-goodsPrice">${orderList.payPrice}</td>
-							<td class="user-recallApply-goodsCount">${orderList.orderListCount}</td>
-						</tr>
+							<c:if test="${orderList.orderListIsRecall=='N'}">
+								<tr>
+									<td><input type="checkbox" class="user-recallApply-goodsCheck"><sapn class="user-recallApply-orderListNum" hidden>${orderList.orderListNum}</td>
+									<td class="user-recallApply-goodsImg"><img src="<%=request.getContextPath()%>/resources/image/goodsImg/${orderList.goodsImg}" alt="" ></td>
+									<td class="user-recallApply-goodsInfo">제품명 : <span class="user-recallApply-goodsName">${orderList.goodsName}</span><br>색상 : <span class="user-recallApply-goodsColor">${orderList.optionColor}</span></td>
+									<td class="user-recallApply-goodsPrice">${orderList.payPrice}</td>
+									<td class="user-recallApply-goodsCount">${orderList.orderListCount}</td>
+								</tr>
+							</c:if>
 						</c:forEach>
 					</table>
 				</div>
@@ -50,7 +53,8 @@
 				<div class="transImg" hidden></div>
 				<textarea class="sandNote" hidden></textarea>
 				<button class="user-recallApply-button">반품신청</button>
-		</div>
+			</div>
+		</c:if>
 	</div>
 </div>
 <script>
@@ -76,6 +80,7 @@
 			goodsInfo = "";
 			if($(this).is(':checked')){
 				$(this).prop('checked', true);
+				$('.common-boardWrite-Content').before('')
 			}else{
 				$(this).prop('checked', false);
 			}
@@ -87,10 +92,22 @@
 				$('.user-recallApply-selectGoods').text(goodsInfo);
 			})
 		})
+		$('.user-recallApply-recallChange').change(function(){
+			if($(this).val()=='환불'){
+				$('.common-boardWrite-Content').before('<div class="user-recallAdd-recallAccount"><h4>환불받을 계좌정보</h4><div>은행명</div><input class="bank" type="text"><div>계좌번호( \'-\' 제외 )</div><input class="account" type="text"></div>')
+			}else{
+				$('.user-recallAdd-recallAccount').remove();
+			}
+		})
 		$('.user-recallApply-button').click(function(){
 			var index = 0;
 			var goodsList = [];
-			var arr = []; 
+			var arr = [];
+			var recallReaseon = $('.user-recallApply-recallReason').val();
+			var recallChange = $('.user-recallApply-recallChange').val();
+			var orderNum = Number($('.user-recallApply-orderNumber').text());
+			var recallAccount = $('.account').val();
+			var recallBank = $('.bank').val();
 			$('.transImg').html($('#recallApply').summernote('code'));
 			$('.transImg img').each(function(){
 				$(this).attr('src', '<%=request.getContextPath()%>/resources/image/recallApply'+imgList[index]);
@@ -106,22 +123,34 @@
 			})
 			var sandNote = $('.sandNote').html();
 			console.log(goodsList);	
-			arr.push({"goodsList":goodsList, "sandNote":sandNote});
+			arr.push({"goodsList":goodsList, "sandNote":sandNote, "recallReaseon":recallReaseon, "recallChange":recallChange, "orderNum":orderNum, "recallAccount":recallAccount, "recallBank":recallBank});
 			console.log(arr);
 			console.log($('.user-recallApply-recallReason').val());
-			if(sandNote != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'){
-				$.ajax({
-					async:false,
-					type:'POST',
-					data: JSON.stringify(arr),
-					url:"<%=request.getContextPath()%>/recallAdd",
-					dataType:"json",
-					contentType:"application/json; charset=UTF-8",
-					success : function(data){
+			if(goodsList.length!=0){
+				if(recallReaseon!=""){
+					if(recallChange!=""){
+						if(sandNote != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'){
+							$.ajax({
+								async:false,
+								type:'POST',
+								data: JSON.stringify(arr),
+								url:"<%=request.getContextPath()%>/recallAdd",
+								dataType:"json",
+								contentType:"application/json; charset=UTF-8",
+								success : function(data){
+								}
+							});
+						}else{
+							alert("반품내용을 작성해주세요.")
+						}
+					}else{
+						alert("교환여부를 선택하여 주세요.")
 					}
-				});
+				}else{
+					alert("반품사유를 선택하여 주세요.")
+				}
 			}else{
-				alert("반품내용를 작성해주세요.")
+				alert("반품 할 물건을 선택하여 주세요")
 			}
 		})
 		$('#recallApply').summernote({

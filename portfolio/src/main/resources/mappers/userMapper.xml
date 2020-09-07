@@ -180,7 +180,7 @@
 		select optionColor from orderList join portfolio.option on orderList_optionNum = optionNum where orderList_orderNum = #{order.orderNum} limit 0,1
 	</select>
 	<select id="getOrderGoodsList" resultType="kr.ajs.portfolio.vo.OrderListVo">
-		select orderListNum, goodsName, goodsImg, optionColor, orderListPrice, orderListCount, orderListUsePoint, goodsType
+		select orderListNum, goodsName, goodsImg, optionColor, orderListPrice, orderListCount, orderListUsePoint, goodsType, orderListIsRecall
 		from orderlist join portfolio.option on orderList_optionNum = optionNum join goods on option_goodsNum = goodsNum join portfolio.order on orderList_orderNum = orderNum
 		where orderList_orderNum = #{orderNum} <if test="user.userAuth!='admin'"> and orderUserId = #{user.userId} </if>
 	</select>
@@ -227,4 +227,18 @@
 	<select id="getuserPoint" resultType="int">
 		select userPoint from user where userId = #{user.userId}
 	</select>
+	<select id="getOrderUserId" resultType="String">
+		select orderUserId from portfolio.order where orderNum = #{orderNum}
+	</select>
+	<insert id="addRecall" parameterType="kr.ajs.portfolio.vo.RecallAddVo" useGeneratedKeys="true" keyProperty="recall.recallNum">
+		insert into recall (recallReason, recallContent, recallIsChange, recallBankName, recallAccount)
+		values (#{recall.recallReaseon}, #{recall.sandNote}, #{recall.recallChange}, #{recall.recallBank}, #{recall.recallAccount})
+	</insert>
+	<insert id="addRecallList">
+		insert into recalllist (recallList_orderListNum, recallList_recallNum)
+		values (#{recall.orderListNum}, #{recallNum})
+	</insert>
+	<update id="updateOrderListRecall">
+		update orderlist set orderListIsRecall = 'Y' where orderListNum = #{recall.orderListNum}
+	</update>
 </mapper>

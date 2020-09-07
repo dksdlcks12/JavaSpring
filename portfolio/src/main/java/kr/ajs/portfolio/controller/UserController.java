@@ -386,6 +386,7 @@ public class UserController {
 		if(user!=null) {
 			ArrayList<OrderListVo> list;
 			list = userService.getOrderGoodsList(orderNum, user);
+			mv.addObject("orderNum", orderNum);
 			mv.addObject("list", list);
 			mv.setViewName("/afterOrder/recallApply");
 		}else {
@@ -402,20 +403,21 @@ public class UserController {
 	    map.put("img", img);
 	    return map;
 	}
-	@RequestMapping(value= {"/recallapply"}, method = RequestMethod.POST)
-	public ModelAndView recallApplyPost(ModelAndView mv) throws Exception{
-		mv.setViewName("/afterOrder/aaaa");
-		return mv;
-	}
 	@RequestMapping("/recallAdd")
 	@ResponseBody
 	public Map<Object, Object> recallAdd(@RequestBody ArrayList<RecallAddVo> recallList, HttpServletRequest request){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		System.out.println(recallList.get(0).getSandNote());
-		ArrayList<RecallAddVo>list = recallList.get(0).getGoodsList();
-		for(RecallAddVo tmp:list) {
-			System.out.println(tmp);
+		String checkUser = userService.getOrderUserId(recallList.get(0).getOrderNum());
+		if(user!=null && user.getUserId().equals(checkUser)) {
+			RecallAddVo recall = recallList.get(0);
+			userService.addRecall(recall);
+			System.out.println(recall.getRecallNum());
+			for(RecallAddVo recallOrderList:recall.getGoodsList()) {
+				userService.addRecallList(recallOrderList, recall.getRecallNum());
+			}
+		}else {
+			
 		}
 	    return map;
 	}

@@ -19,6 +19,7 @@ import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderListVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
+import kr.ajs.portfolio.vo.RecallAddVo;
 import kr.ajs.portfolio.vo.UserVo;
 import kr.ajs.portfolio.vo.WishListVo;
 
@@ -248,5 +249,21 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		int userPoint = userDao.getuserPoint(user);
 		user.setUserPoint(userPoint);
+	}
+	@Override
+	public String getOrderUserId(int orderNum) {
+		// TODO Auto-generated method stub
+		return userDao.getOrderUserId(orderNum);
+	}
+	@Override
+	public void addRecall(RecallAddVo recall) {
+		// TODO Auto-generated method stub
+		userDao.addRecall(recall);
+	}
+	@Override
+	public void addRecallList(RecallAddVo recallOrderList, int recallNum) {
+		// TODO Auto-generated method stub
+		userDao.addRecallList(recallOrderList, recallNum);
+		userDao.updateOrderListRecall(recallOrderList);
 	}
 }

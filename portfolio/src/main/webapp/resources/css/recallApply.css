@@ -149,3 +149,9 @@
 	height: 50px;
 	font-size: 30px;
 }
+.user-recallAdd-recallAccount>*{
+	font-size: 20px;
+ }
+ .user-recallAdd-recallAccount>input{
+	margin-bottom: 10px;
+ }

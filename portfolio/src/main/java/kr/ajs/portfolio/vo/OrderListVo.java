@@ -8,6 +8,7 @@ public class OrderListVo {
 	private int orderListCount;
 	private int orderListPrice;
 	private int orderListUsePoint;
+	private String orderListIsRecall;
 	private String goodsImg;
 	private String goodsName;
 	private String optionColor;
@@ -56,6 +57,12 @@ public class OrderListVo {
 		this.orderListUsePoint = orderListUsePoint;
 		payPrice = (orderListPrice*orderListCount)-orderListUsePoint;
 	}
+	public String getOrderListIsRecall() {
+		return orderListIsRecall;
+	}
+	public void setOrderListIsRecall(String orderListIsRecall) {
+		this.orderListIsRecall = orderListIsRecall;
+	}
 	public String getGoodsImg() {
 		return goodsImg;
 	}
@@ -92,7 +99,8 @@ public class OrderListVo {
 		return "OrderListVo [orderListNum=" + orderListNum + ", orderList_postNum=" + orderList_postNum
 				+ ", orderList_orderNum=" + orderList_orderNum + ", orderList_optionNum=" + orderList_optionNum
 				+ ", orderListCount=" + orderListCount + ", orderListPrice=" + orderListPrice + ", orderListUsePoint="
-				+ orderListUsePoint + ", goodsImg=" + goodsImg + ", goodsName=" + goodsName + ", optionColor="
-				+ optionColor + ", payPrice=" + payPrice + ", goodsType=" + goodsType + "]";
+				+ orderListUsePoint + ", orderListIsRecall=" + orderListIsRecall + ", goodsImg=" + goodsImg
+				+ ", goodsName=" + goodsName + ", optionColor=" + optionColor + ", payPrice=" + payPrice
+				+ ", goodsType=" + goodsType + "]";
 	}
 }

@@ -31,7 +31,6 @@ public class OptionVo {
 	public void setOptionStock(int optionStock) {
 		this.optionStock = optionStock;
 	}
-	
 	public String getOptionIsDel() {
 		return optionIsDel;
 	}
@@ -43,5 +42,4 @@ public class OptionVo {
 		return "OptionVo [optionNum=" + optionNum + ", option_goodsNum=" + option_goodsNum + ", optionColor="
 				+ optionColor + ", optionStock=" + optionStock + ", optionIsDel=" + optionIsDel + "]";
 	}
-	
 }
