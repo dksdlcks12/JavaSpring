@@ -443,8 +443,13 @@ public class UserController {
 		return mv;
 	}
 	@RequestMapping(value= {"/recallview"}, method = RequestMethod.GET)
-	public ModelAndView recallViewGet(ModelAndView mv) throws Exception{
-		mv.setViewName("/afterOrder/recallView");
+	public ModelAndView recallViewGet(ModelAndView mv, HttpServletRequest request, int recallNum) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		if(user!=null) {
+			mv.setViewName("/afterOrder/recallView");
+		}else {
+			mv.setViewName("redirect:/login");
+		}
 		return mv;
 	}
 }

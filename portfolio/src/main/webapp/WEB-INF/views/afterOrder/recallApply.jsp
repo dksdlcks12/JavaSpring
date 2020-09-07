@@ -8,7 +8,7 @@
 				<div class="user-recallApply-orderNumberBox">
 					<div>주문번호</div><div class="user-recallApply-orderNumber">${orderNum}</div>
 				</div>
-				<div style="overflow-x: hidden;width:980px;height: 200px;">
+				<div style="overflow-x: hidden;width:980px;height: 203px;">
 					<table class="user-recallApply-goodsBox" border="1">
 						<tr>
 							<th><input type="checkbox" class="user-recallApply-goodsCheckAll"></th>

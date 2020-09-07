@@ -7,7 +7,7 @@
 			<div class="user_recallView-orderNumberBox">
 				<div>반품번호</div><div>1</div><div>주문번호</div><div>1</div>
 			</div>
-			<div style="overflow-x: hidden;width:1000px;height: 203px;">
+			<div style="overflow-x: hidden;width:980px;height: 203px;">
 				<table class="user_recallView-goodsBox" border="1">
 					<tr>
 						<th class="user_recallView-goodsImgTitle">이미지</th>
