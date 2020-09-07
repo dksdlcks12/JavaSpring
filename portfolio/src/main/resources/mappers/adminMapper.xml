@@ -13,10 +13,10 @@
 		insert into portfolio.option (option_goodsNum, optionColor, optionStock) values((select goodsNum from goods where goodsName=#{goods.goodsName}), #{color}, #{stock});
 	</insert>
 	<select id="getPost" resultType="kr.ajs.portfolio.vo.PostVo">
-		select * from post where postNum=${postNum}
+		select * from post where postNum=#{postNum}
 	</select>
 	<select id="getGoods" resultType="kr.ajs.portfolio.vo.GoodsVo">
-		select * from goods where goodsNum=${goodsNum}
+		select * from goods where goodsNum=#{goodsNum}
 	</select>
 	<select id="getOptionList" resultType="kr.ajs.portfolio.vo.OptionVo">
 		select * from portfolio.option where option_goodsNum = #{goodsNum} and optionIsDel = 'N'

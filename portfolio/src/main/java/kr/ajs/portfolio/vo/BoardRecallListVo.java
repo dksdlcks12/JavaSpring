@@ -8,6 +8,9 @@ public class BoardRecallListVo {
 	private int recallNum;
 	private Date recallDate;
 	private String recallState;
+	private String goodsName;
+	private String goodsColor;
+	private int goodsCount;
 	
 	public int getRecallNum() {
 		return recallNum;
@@ -34,10 +37,29 @@ public class BoardRecallListVo {
 	public void setRecallState(String recallState) {
 		this.recallState = recallState;
 	}
+	public String getGoodsName() {
+		return goodsName;
+	}
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
+	public String getGoodsColor() {
+		return goodsColor;
+	}
+	public void setGoodsColor(String goodsColor) {
+		this.goodsColor = goodsColor;
+	}
+	public int getGoodsCount() {
+		return goodsCount;
+	}
+	public void setGoodsCount(int goodsCount) {
+		this.goodsCount = goodsCount;
+	}
 	
 	@Override
 	public String toString() {
 		return "BoardRecallListVo [recallNum=" + recallNum + ", recallDate=" + recallDate + ", recallState="
-				+ recallState + "]";
+				+ recallState + ", goodsName=" + goodsName + ", goodsColor=" + goodsColor + ", goodsCount=" + goodsCount
+				+ "]";
 	}
 }

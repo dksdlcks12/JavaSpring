@@ -424,15 +424,17 @@ public class UserController {
 	    return map;
 	}
 	@RequestMapping(value= {"/recallviewlist"}, method = RequestMethod.GET)
-	public ModelAndView recallviewlistGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+	public ModelAndView recallviewlistGet(ModelAndView mv, HttpServletRequest request, Criteria cri) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null) {
 			mv.addObject("user", user);
+			PageMaker pm = userService.getPageMakerRecallViewList(cri, user);
 			ArrayList<BoardRecallListVo> list;
-			list = userService.getBoardRecallList(user);
-			for(BoardRecallListVo tmp : list) {
-				System.out.println(tmp);
+			list = userService.getBoardRecallList(user, cri);
+			for(BoardRecallListVo recallList : list) {
+				userService.addRecallListGoodsInfo(recallList);
 			}
+			mv.addObject("pm", pm);
 			mv.addObject("list", list);
 			mv.setViewName("/afterOrder/recallViewList");
 		}else {

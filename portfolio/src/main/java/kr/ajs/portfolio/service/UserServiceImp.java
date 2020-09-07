@@ -273,8 +273,26 @@ public class UserServiceImp implements UserService {
 		return userDao.getOrderRecallList(orderNum, user);
 	}
 	@Override
-	public ArrayList<BoardRecallListVo> getBoardRecallList(UserVo user) {
+	public ArrayList<BoardRecallListVo> getBoardRecallList(UserVo user, Criteria cri) {
 		// TODO Auto-generated method stub
-		return userDao.getBoardRecallList(user);
+		cri.setPerPageNum(6);
+		return userDao.getBoardRecallList(user, cri);
+	}
+	@Override
+	public void addRecallListGoodsInfo(BoardRecallListVo recallList) {
+		// TODO Auto-generated method stub
+		recallList.setGoodsName(userDao.getRecallGoodsName(recallList.getRecallNum()));
+		recallList.setGoodsColor(userDao.getRecallGoodsColor(recallList.getRecallNum()));
+		recallList.setGoodsCount(userDao.getRecallGoodsCount(recallList.getRecallNum()));
+	}
+	@Override
+	public PageMaker getPageMakerRecallViewList(Criteria cri, UserVo user) {
+		// TODO Auto-generated method stub
+		cri.setPerPageNum(6);
+		PageMaker pm = new PageMaker();
+	    int totalCount = userDao.getRecallViewListCount(user);
+	    pm.setCriteria(cri);
+	    pm.setTotalCount(totalCount);
+	    return pm;
 	}
 }

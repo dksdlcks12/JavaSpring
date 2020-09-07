@@ -251,7 +251,37 @@
 		join recalllist on recallNum = recallList_recallNum
 		join orderlist on recallList_orderListNum = orderListNum
 		join portfolio.order on orderList_orderNum = orderNum
-		where orderUserId = '${user.userId}'
+		<if test="user.userAuth!='admin'">
+			where orderUserId = #{user.userId}
+		</if>
 		group by recallNum
+		order by recallNum desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<select id="getRecallGoodsName" resultType="String">
+		select goodsName from recalllist
+		join orderlist on recallList_orderListNum = orderListNum
+		join portfolio.option on orderList_optionNum = optionNum
+		join goods on option_goodsNum = goodsNum
+		where recallList_recallNum = #{recallNum}
+		limit 0,1
+	</select>
+	<select id="getRecallGoodsColor" resultType="String">
+		select optionColor from recalllist
+		join orderlist on recallList_orderListNum = orderListNum
+		join portfolio.option on orderList_optionNum = optionNum
+		where recallList_recallNum = #{recallNum}
+		limit 0,1
+	</select>
+	<select id="getRecallGoodsCount" resultType="int">
+		select count(*) from recalllist where recallList_recallNum = #{recallNum}
+	</select>
+	<select id="getRecallViewListCount" resultType="int">
+		select count(DISTINCT recallList_recallNum) from recalllist
+		join orderlist on recallList_orderListNum = orderListNum
+		join portfolio.order on orderList_orderNum = orderNum
+		<if test="user.userAuth!='admin'">
+			where orderUserId = #{user.userId}
+		</if>
 	</select>
 </mapper>

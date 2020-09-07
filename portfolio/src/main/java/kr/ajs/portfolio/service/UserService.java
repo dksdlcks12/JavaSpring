@@ -94,5 +94,9 @@ public interface UserService {
 
 	public ArrayList<OrderListVo> getOrderRecallList(int orderNum, UserVo user);
 
-	public ArrayList<BoardRecallListVo> getBoardRecallList(UserVo user);
+	public ArrayList<BoardRecallListVo> getBoardRecallList(UserVo user, Criteria cri);
+
+	public void addRecallListGoodsInfo(BoardRecallListVo recallList);
+
+	public PageMaker getPageMakerRecallViewList(Criteria cri, UserVo user);
 }

@@ -98,6 +98,24 @@
 			}else{
 				$('.user-recallAdd-recallAccount').remove();
 			}
+			$('.account').keydown(function(event){
+				var limit = 18;
+				if($(this).val().length<limit){
+					if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) { 
+						return true;
+					}else if(event.keyCode==8 || event.keyCode==9 || event.keyCode==13 || event.keyCode==37 || event.keyCode==39 || event.keyCode==46){
+						return true;
+					}else{
+						return false;
+					}
+				}else{
+					if(event.keyCode==8 || event.keyCode==9 || event.keyCode==13 || event.keyCode==37 || event.keyCode==39 || event.keyCode==46){
+						return true;
+					}else{
+						return false;
+					}
+				}
+			})
 		})
 		$('.user-recallApply-button').click(function(){
 			var index = 0;

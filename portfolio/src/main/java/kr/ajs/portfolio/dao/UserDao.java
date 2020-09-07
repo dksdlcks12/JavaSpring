@@ -103,6 +103,14 @@ public interface UserDao {
 
 	public ArrayList<OrderListVo> getOrderRecallList(@Param("orderNum")int orderNum, @Param("user")UserVo user);
 
-	public ArrayList<BoardRecallListVo> getBoardRecallList(@Param("user")UserVo user);
+	public ArrayList<BoardRecallListVo> getBoardRecallList(@Param("user")UserVo user, @Param("cri")Criteria cri);
+
+	public String getRecallGoodsName(@Param("recallNum")int recallNum);
+
+	public String getRecallGoodsColor(@Param("recallNum")int recallNum);
+
+	public int getRecallGoodsCount(@Param("recallNum")int recallNum);
+
+	public int getRecallViewListCount(@Param("user")UserVo user);
 
 }
