@@ -13,7 +13,12 @@
 			<c:forEach var="recallList" items="${list}">
 				<div class="admin-recallList-orderBox">
 					<div class="admin-recallList-orderNumber">${recallList.recallNum}</div>
-					<a href="<%=request.getContextPath()%>/recallview?recallNum=${recallList.recallNum}"><div class="admin-recallList-orderInfo">[제품명 : ${recallList.goodsName} / 색상 : ${recallList.goodsColor}] <c:if test="${recallList.goodsCount>1}">외 ${recallList.goodsCount-1}종</c:if></div></a>
+					<c:if test="${user.userAuth eq 'admin'}">
+						<a href="<%=request.getContextPath()%>/recallview?recallNum=${recallList.recallNum}&page=${pm.criteria.page}"><div class="admin-recallList-orderInfo">[제품명 : ${recallList.goodsName} / 색상 : ${recallList.goodsColor}] <c:if test="${recallList.goodsCount>1}">외 ${recallList.goodsCount-1}종</c:if></div></a>
+					</c:if>
+					<c:if test="${user.userAuth eq 'admin'}">
+						<a href="<%=request.getContextPath()%>/admin/recallview?recallNum=${recallList.recallNum}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}"><div class="admin-recallList-orderInfo">[제품명 : ${recallList.goodsName} / 색상 : ${recallList.goodsColor}] <c:if test="${recallList.goodsCount>1}">외 ${recallList.goodsCount-1}종</c:if></div></a>
+					</c:if>
 					<div class="admin-recallList-orderDate">${recallList.recallDate}</div>
 					<div class="admin-recallList-orderState">${recallList.recallState}</div>
 				</div>

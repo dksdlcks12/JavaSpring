@@ -133,4 +133,13 @@ public class AdminController {
 	    adminService.orderStateModify(orderState.get(0).getOrderNum(), orderState.get(0).getOrderState());
 	    return map;
 	}
+	@RequestMapping(value= {"/admin/recallview"}, method = RequestMethod.GET)
+	public ModelAndView adminRecallViewGet(ModelAndView mv, HttpServletRequest request, int recallNum, int page, int type, String search) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		if(user!=null) {
+			mv = adminService.adminCountInfo(mv);
+		}
+		mv.setViewName("/afterOrder/adminRecallView");
+	    return mv;
+	}
 }

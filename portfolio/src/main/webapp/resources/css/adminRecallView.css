@@ -1,0 +1,126 @@
+@charset "UTF-8";
+.admin-recallView-box{
+	width: 1400px;
+	padding: 100px 0 50px 0;
+	margin: 0 auto;
+	margin-top: 100px;
+	background-color: palegoldenrod;
+	box-sizing: border-box;
+}
+.admin-recallView-recallViewBox{
+	width: 1200px;
+	margin-left: 100px;
+	padding: 20px 0 20px 0;
+	background-color: blanchedalmond;
+	box-sizing: border-box;
+}
+.admin-recallView-recallViewBox>h2{
+	margin-left: calc(50% - 50px);
+	margin-bottom: 20px;
+}
+.admin-recallView-recallNumberBox, .admin-recallView-recallGoodsTitleBox, .admin-recallView-recallGoodsBox, .admin-recallView-recallStateBox{
+	position: relative;
+	width: 800px;
+	height: 50px;
+	margin-left: 100px;
+	background-color: cornsilk;
+	border: 1px solid black;
+	border-right: none;
+	margin-bottom: 20px;
+}
+.admin-recallView-recallNumberBox>*, .admin-recallView-recallGoodsTitleBox>*, .admin-recallView-recallGoodsBox>*, .admin-recallView-recallStateBox>*{
+	position: absolute;
+	width: 200px;
+	height: 48px;
+	background-color: honeydew;
+	font-size: 25px;
+	line-height: 50px;
+	text-align: center;
+	border-right: 1px solid black;
+	box-sizing: border-box;
+}
+.admin-recallView-recallNumber{
+	left: 200px;
+}
+.admin-recallView-orderTitleNumber{
+	left: 400px;
+}
+.admin-recallView-orderNumber{
+	left: 600px;
+}
+.admin-recallView-recallGoodsTitleBox, .admin-recallView-recallGoodsBox{
+	width: 1000px;
+	margin-bottom: 0;
+}
+.admin-recallView-recallGoodsBox{
+	border-top: none;
+}
+.admin-recallView-recallGoodsTitleType, .admin-recallView-recallGoodsType{
+	width: 200px;
+}
+.admin-recallView-recallGoodsTitleName, .admin-recallView-recallGoodsName{
+	width: 550px;
+	left: 200px;
+}
+.admin-recallView-recallGoodsTitleColor, .admin-recallView-recallGoodsColor{
+	width: 250px;
+	left: 750px;
+}
+.admin-recallView-recallGoodsName{
+	text-align: left;
+	padding-left: 10px;
+}
+.admin-recallView-recallReasonBox{
+	width: 300px;
+	height: 50px;
+	margin: 10px 0 0 100px;
+	position: relative;
+}
+.admin-recallView-recallReasonBox>*{
+	width: 150px;
+	height: 50px;
+	position: absolute;
+	border: 1px solid black;
+	box-sizing: border-box;
+	text-align: center;
+	font-size: 25px;
+	line-height: 50px;
+	background-color: honeydew;
+}
+.admin-recallView-recallReasonBox>div:nth-of-type(2){
+	left: 149px;
+}
+.admin-recallView-recallReasonBox>div:nth-of-type(3){
+	left: 350px;
+}
+.admin-recallView-recallReasonBox>div:nth-of-type(4){
+	left: 499px;
+}
+.admin-recallView-board{
+	margin: 10px 0 0 100px;
+	width: 1000px;
+	border: 1px solid black;
+	box-sizing: border-box;
+	background-color: white;
+	padding: 20px;
+}
+.admin-recallView-recallStateBox{
+	margin-top: 10px;
+	width: 400px;
+}
+.admin-recallView-recallState{
+	left: 200px;
+	padding-left: 10px;
+}
+.admin-recallView-recallStateButton{
+	width: 200px;
+	height: 50px;
+	font-size: 25px;
+	margin-left: calc(50% - 350px);
+}
+.admin-recallView-goList{
+	width: 160px;
+	height: 50px;
+	font-size: 25px;
+	margin-left: 100px;
+}
