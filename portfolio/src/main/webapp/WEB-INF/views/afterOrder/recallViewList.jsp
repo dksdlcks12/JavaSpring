@@ -18,41 +18,41 @@
 					<div class="admin-recallList-orderState">${recallList.recallState}</div>
 				</div>
 			</c:forEach>
-			<c:if test="${user.userAuth eq 'admin'}">
-				<form action="#">
-					<div class="common-boardList-searchBox">
-						<select name="" id="" class="common-boardList-searchType">
-							<option value="0" selected>전체</option>
-							<option value="1">반품 번호</option>
-							<option value="2">주문 번호</option>
-							<option value="3">반품 날짜</option>
-							<option value="4">반품 상태</option>
-						</select>
-						<input type="text" class="common-boardList-searchContent">
-						<button class="common-boardList-searchButton"><i class="fas fa-search"></i></button>
-					</div>
-				</form>
-			</c:if>
-			<c:if test="${pm.endPage!=1}">
-				<ul class="common-goodsList-pagination pagination justify-content-center">
-					<c:if test="${pm.criteria.page!=1}">
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/recallviewlist?page=${pm.criteria.page-1}"><i class="fas fa-angle-left"></i></a></li>
-					</c:if>
-				    <c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="index">
-				        <li class="page-item <c:if test="${index==pm.criteria.page}">active</c:if>">
-				            <a class="page-link" href="<%=request.getContextPath()%>/recallviewlist?page=${index}">${index}</a>
-				        </li>
-				    </c:forEach>
-				    <c:if test="${pm.criteria.page!=pm.endPage}">
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/recallviewlist?page=${pm.criteria.page+1}"><i class="fas fa-angle-right"></i></a></li>
-					</c:if>
-				</ul>
-			</c:if>
-			<c:if test="${pm.criteria.page>pm.endPage}">
-				<script>
-					location.replace('<%=request.getContextPath()%>/recallviewlist?&page=${pm.endPage}');
-				</script>
-			</c:if>
+		</c:if>
+		<c:if test="${user.userAuth eq 'admin'}">
+			<form action="<%=request.getContextPath()%>/recallviewlist">
+				<div class="common-boardList-searchBox">
+					<select name="type" class="common-boardList-searchType">
+						<option value="0" <c:if test="${pm.criteria.type==0}">selected</c:if>>전체</option>
+						<option value="1" <c:if test="${pm.criteria.type==1}">selected</c:if>>반품 번호</option>
+						<option value="2" <c:if test="${pm.criteria.type==3}">selected</c:if>>반품 내용</option>
+						<option value="3" <c:if test="${pm.criteria.type==2}">selected</c:if>>반품 상태</option>
+						<option value="4" <c:if test="${pm.criteria.type==3}">selected</c:if>>반품 날짜</option>
+					</select>
+					<input type="text" class="common-boardList-searchContent" name="search">
+					<button class="common-boardList-searchButton"><i class="fas fa-search"></i></button>
+				</div>
+			</form>
+		</c:if>
+		<c:if test="${pm.endPage!=1 && list.size()!=0}">
+			<ul class="common-goodsList-pagination pagination justify-content-center">
+				<c:if test="${pm.criteria.page!=1}">
+					<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/recallviewlist?page=${pm.criteria.page-1}<c:if test="${user.userAuth eq 'admin'}">&type=${pm.criteria.type}&search=${pm.criteria.search}</c:if>"><i class="fas fa-angle-left"></i></a></li>
+				</c:if>
+			    <c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="index">
+			        <li class="page-item <c:if test="${index==pm.criteria.page}">active</c:if>">
+			            <a class="page-link" href="<%=request.getContextPath()%>/recallviewlist?page=${index}<c:if test="${user.userAuth eq 'admin'}">&type=${pm.criteria.type}&search=${pm.criteria.search}</c:if>">${index}</a>
+			        </li>
+			    </c:forEach>
+			    <c:if test="${pm.criteria.page!=pm.endPage}">
+					<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/recallviewlist?page=${pm.criteria.page+1}<c:if test="${user.userAuth eq 'admin'}">&type=${pm.criteria.type}&search=${pm.criteria.search}</c:if>"><i class="fas fa-angle-right"></i></a></li>
+				</c:if>
+			</ul>
+		</c:if>
+		<c:if test="${pm.criteria.page>pm.endPage}">
+			<script>
+				location.replace('<%=request.getContextPath()%>/recallviewlist?&page=${pm.endPage}');
+			</script>
 		</c:if>
 		<c:if test="${list.size()==0 && pm.criteria.page>1}">
 			<script>

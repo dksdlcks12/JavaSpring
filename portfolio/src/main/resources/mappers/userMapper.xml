@@ -251,8 +251,32 @@
 		join recalllist on recallNum = recallList_recallNum
 		join orderlist on recallList_orderListNum = orderListNum
 		join portfolio.order on orderList_orderNum = orderNum
+		join portfolio.option on orderList_optionNum = optionNum
+		join goods on option_goodsNum = goodsNum
 		<if test="user.userAuth!='admin'">
 			where orderUserId = #{user.userId}
+		</if>
+		<if test="user.userAuth=='admin'">
+			<if test="cri.type == 0">
+				where (recallNum like concat('%',#{cri.search},'%')
+				or recallState like concat('%',#{cri.search},'%')
+				or goodsName like concat('%',#{cri.search},'%')
+				or optionColor like concat('%',#{cri.search},'%')
+				or recallDate like concat('%',#{cri.search},'%'))
+			</if>
+			<if test="cri.type == 1">
+				where recallNum like concat('%',#{cri.search},'%')
+			</if>
+			<if test="cri.type == 2">
+				where (goodsName like concat('%',#{cri.search},'%')
+				or optionColor like concat('%',#{cri.search},'%'))
+			</if>
+			<if test="cri.type == 3">
+				where recallState like concat('%',#{cri.search},'%')
+			</if>
+			<if test="cri.type == 4">
+				where recallDate like concat('%',#{cri.search},'%')
+			</if>
 		</if>
 		group by recallNum
 		order by recallNum desc
@@ -277,11 +301,36 @@
 		select count(*) from recalllist where recallList_recallNum = #{recallNum}
 	</select>
 	<select id="getRecallViewListCount" resultType="int">
-		select count(DISTINCT recallList_recallNum) from recalllist
+		select count(DISTINCT recallNum) from recall
+		join recalllist on recallNum = recallList_recallNum 
 		join orderlist on recallList_orderListNum = orderListNum
 		join portfolio.order on orderList_orderNum = orderNum
+		join portfolio.option on orderList_optionNum = optionNum
+		join goods on option_goodsNum = goodsNum
 		<if test="user.userAuth!='admin'">
 			where orderUserId = #{user.userId}
+		</if>
+		<if test="user.userAuth=='admin'">
+			<if test="cri.type == 0">
+				where (recallNum like concat('%',#{cri.search},'%')
+				or recallState like concat('%',#{cri.search},'%')
+				or goodsName like concat('%',#{cri.search},'%')
+				or optionColor like concat('%',#{cri.search},'%')
+				or recallDate like concat('%',#{cri.search},'%'))
+			</if>
+			<if test="cri.type == 1">
+				where recallNum like concat('%',#{cri.search},'%')
+			</if>
+			<if test="cri.type == 2">
+				where (goodsName like concat('%',#{cri.search},'%')
+				or optionColor like concat('%',#{cri.search},'%'))
+			</if>
+			<if test="cri.type == 3">
+				where recallState like concat('%',#{cri.search},'%')
+			</if>
+			<if test="cri.type == 4">
+				where recallDate like concat('%',#{cri.search},'%')
+			</if>
 		</if>
 	</select>
 	<select id="getRecallView" resultType="kr.ajs.portfolio.vo.RecallViewVo">

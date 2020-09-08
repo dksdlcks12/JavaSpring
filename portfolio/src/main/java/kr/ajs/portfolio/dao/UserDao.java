@@ -112,7 +112,7 @@ public interface UserDao {
 
 	public int getRecallGoodsCount(@Param("recallNum")int recallNum);
 
-	public int getRecallViewListCount(@Param("user")UserVo user);
+	public int getRecallViewListCount(@Param("user")UserVo user, @Param("cri")Criteria cri);
 
 	public RecallViewVo getRecallView(@Param("recallNum")int recallNum);
 

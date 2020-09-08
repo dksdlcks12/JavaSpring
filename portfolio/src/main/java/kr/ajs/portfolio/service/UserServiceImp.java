@@ -291,7 +291,7 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		cri.setPerPageNum(6);
 		PageMaker pm = new PageMaker();
-	    int totalCount = userDao.getRecallViewListCount(user);
+	    int totalCount = userDao.getRecallViewListCount(user, cri);
 	    pm.setCriteria(cri);
 	    pm.setTotalCount(totalCount);
 	    return pm;
