@@ -18,6 +18,17 @@ public class AdminServiceImp implements AdminService {
 	@Autowired
 	AdminDao adminDao;
 
+
+	@Override
+	public ModelAndView adminCountInfo(ModelAndView mv) {
+		// TODO Auto-generated method stub
+		int countUncheckOrder = adminDao.countUncheckOrder();
+		mv.addObject("countUncheckOrder", countUncheckOrder);
+		int countUncheckRecall = adminDao.countUncheckRecall();
+		mv.addObject("countUncheckRecall", countUncheckRecall);
+		return mv;
+	}
+	
 	@Override
 	public void goodsAdd(GoodsVo goods, PostVo post) {
 		// TODO Auto-generated method stub
@@ -78,20 +89,6 @@ public class AdminServiceImp implements AdminService {
 	public void postDelete(int postNum) {
 		// TODO Auto-generated method stub
 		adminDao.postDelete(postNum);
-	}
-	
-	@Override
-	public int countUncheckOrder() {
-		// TODO Auto-generated method stub
-		return adminDao.countUncheckOrder();
-	}
-
-	@Override
-	public ModelAndView adminCountInfo(ModelAndView mv) {
-		// TODO Auto-generated method stub
-		int countUncheckOrder = countUncheckOrder();
-		mv.addObject("countUncheckOrder", countUncheckOrder);
-		return mv;
 	}
 
 	@Override

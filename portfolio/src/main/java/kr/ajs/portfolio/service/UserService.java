@@ -15,6 +15,7 @@ import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.RecallAddVo;
+import kr.ajs.portfolio.vo.RecallViewVo;
 import kr.ajs.portfolio.vo.UserVo;
 import kr.ajs.portfolio.vo.WishListVo;
 import kr.ajs.portfolio.vo.OptionListVo;
@@ -99,4 +100,8 @@ public interface UserService {
 	public void addRecallListGoodsInfo(BoardRecallListVo recallList);
 
 	public PageMaker getPageMakerRecallViewList(Criteria cri, UserVo user);
+
+	public RecallViewVo getRecallView(int recallNum);
+
+	public ArrayList<RecallViewVo> getRecallGoodsList(int recallNum);
 }

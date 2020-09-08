@@ -34,6 +34,7 @@ import kr.ajs.portfolio.vo.OrderListVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.RecallAddVo;
+import kr.ajs.portfolio.vo.RecallViewVo;
 import kr.ajs.portfolio.vo.UserVo;
 
 /**
@@ -111,6 +112,7 @@ public class UserController {
 	}
 	@RequestMapping(value= {"/goodslist"}, method = RequestMethod.GET)
 	public ModelAndView goodsListGet(ModelAndView mv, int type, Criteria cri) throws Exception{
+		mv = adminService.adminCountInfo(mv);
 		PageMaker pm = userService.getPageMaker(cri, type);
 		ArrayList<GoodsVo> list;
 		list = userService.getGoodsList(type, cri);
@@ -122,6 +124,7 @@ public class UserController {
 	}
 	@RequestMapping(value= {"/goodsview"}, method = RequestMethod.GET)
 	public ModelAndView goodsView(ModelAndView mv, HttpServletRequest request, int num, int type, int page) throws Exception{
+		mv = adminService.adminCountInfo(mv);
 		GoodsVo goods = userService.getGoods(num);
 		PostVo post = userService.getPost(num);
 		ArrayList<OptionVo> list = userService.getOptionList(num);
@@ -427,6 +430,7 @@ public class UserController {
 	public ModelAndView recallviewlistGet(ModelAndView mv, HttpServletRequest request, Criteria cri) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null) {
+			mv = adminService.adminCountInfo(mv);
 			mv.addObject("user", user);
 			PageMaker pm = userService.getPageMakerRecallViewList(cri, user);
 			ArrayList<BoardRecallListVo> list;
@@ -446,6 +450,12 @@ public class UserController {
 	public ModelAndView recallViewGet(ModelAndView mv, HttpServletRequest request, int recallNum) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null) {
+			RecallViewVo recall;
+			recall = userService.getRecallView(recallNum);
+			ArrayList<RecallViewVo> goodsList;
+			goodsList = userService.getRecallGoodsList(recallNum);
+			mv.addObject("recall", recall);
+			mv.addObject("goodsList", goodsList);
 			mv.setViewName("/afterOrder/recallView");
 		}else {
 			mv.setViewName("redirect:/login");

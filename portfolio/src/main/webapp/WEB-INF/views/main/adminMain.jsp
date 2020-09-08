@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<div class="admin-main-rightContent">
-			미확인 반품 개수 : n개
+			미확인 반품 개수 : ${countUncheckRecall} 개
 		</div>
 	</div>
 	<h2 class="admin-main-title">미확인 A/S</h2>

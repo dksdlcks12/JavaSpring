@@ -21,6 +21,7 @@ import kr.ajs.portfolio.vo.OrderListVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.RecallAddVo;
+import kr.ajs.portfolio.vo.RecallViewVo;
 import kr.ajs.portfolio.vo.UserVo;
 import kr.ajs.portfolio.vo.WishListVo;
 
@@ -294,5 +295,15 @@ public class UserServiceImp implements UserService {
 	    pm.setCriteria(cri);
 	    pm.setTotalCount(totalCount);
 	    return pm;
+	}
+	@Override
+	public RecallViewVo getRecallView(int recallNum) {
+		// TODO Auto-generated method stub
+		return userDao.getRecallView(recallNum);
+	}
+	@Override
+	public ArrayList<RecallViewVo> getRecallGoodsList(int recallNum) {
+		// TODO Auto-generated method stub
+		return userDao.getRecallGoodsList(recallNum);
 	}
 }

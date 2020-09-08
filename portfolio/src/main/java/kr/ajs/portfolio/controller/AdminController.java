@@ -63,6 +63,7 @@ public class AdminController {
 		mv.setViewName("/goods/adminGoodsModify");
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null) {
+			mv = adminService.adminCountInfo(mv);
 			PostVo post = adminService.getPost(postNum);
 			GoodsVo goods = adminService.getGoods(post.getPost_goodsNum());
 			ArrayList<OptionVo> list = adminService.getOptionList(goods.getGoodsNum());

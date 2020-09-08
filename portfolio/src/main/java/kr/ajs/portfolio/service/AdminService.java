@@ -30,8 +30,6 @@ public interface AdminService {
 
 	void postDelete(int postNum);
 
-	public int countUncheckOrder();
-
 	ModelAndView adminCountInfo(ModelAndView mv);
 
 	void orderStateModify(int orderNum, String orderState);

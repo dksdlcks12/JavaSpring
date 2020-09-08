@@ -284,4 +284,20 @@
 			where orderUserId = #{user.userId}
 		</if>
 	</select>
+	<select id="getRecallView" resultType="kr.ajs.portfolio.vo.RecallViewVo">
+		select recallNum, recallReason, recallContent, recallIsChange, recallBankName, recallAccount, recallState, recallDate, orderNum 
+		from recall
+		join recalllist on recallNum = recallList_recallNum
+		join orderlist on recallList_orderListNum = orderListNum
+		join portfolio.order on orderList_orderNum = orderNum
+		where recallNum = #{recallNum}
+		group by recallNum
+	</select>
+	<select id="getRecallGoodsList" resultType="kr.ajs.portfolio.vo.RecallViewVo">
+		select goodsImg, goodsName, optionColor from recallList
+		join orderlist on recallList_orderListNum = orderListNum
+		join portfolio.option on orderList_optionNum = optionNum
+		join goods on option_goodsNum = goodsNum
+		where recallList_recallNum = #{recallNum}
+	</select>
 </mapper>

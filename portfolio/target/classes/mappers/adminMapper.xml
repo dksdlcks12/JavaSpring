@@ -58,4 +58,7 @@
 	<select id="getUncheckOrder" resultType="kr.ajs.portfolio.vo.OrderVo">
 		select * from portfolio.order where orderState = "미확인" order by orderNum desc limit 0, 6;
 	</select>
+	<select id="countUncheckRecall" resultType="int">
+		select count(*) from recall where recallState = "미확인"
+	</select>
 </mapper>

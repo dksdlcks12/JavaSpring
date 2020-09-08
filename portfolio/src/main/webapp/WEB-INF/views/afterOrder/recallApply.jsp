@@ -140,10 +140,7 @@
 				}
 			})
 			var sandNote = $('.sandNote').html();
-			console.log(goodsList);	
 			arr.push({"goodsList":goodsList, "sandNote":sandNote, "recallReaseon":recallReaseon, "recallChange":recallChange, "orderNum":orderNum, "recallAccount":recallAccount, "recallBank":recallBank});
-			console.log(arr);
-			console.log($('.user-recallApply-recallReason').val());
 			if(goodsList.length!=0){
 				if(recallReaseon!=""){
 					if(recallChange!=""){
