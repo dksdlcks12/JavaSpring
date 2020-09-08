@@ -25,6 +25,7 @@ import kr.ajs.portfolio.vo.OrderListVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostDeleteVo;
 import kr.ajs.portfolio.vo.PostVo;
+import kr.ajs.portfolio.vo.RecallViewVo;
 import kr.ajs.portfolio.vo.UserVo;
 
 @Controller
@@ -138,8 +139,23 @@ public class AdminController {
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null) {
 			mv = adminService.adminCountInfo(mv);
+			RecallViewVo recallInfo = userService.getRecallView(recallNum);
+			ArrayList<RecallViewVo> list;
+			list = userService.getRecallGoodsList(recallNum);
+			mv.addObject("recallInfo", recallInfo);
+			mv.addObject("list", list);
+			mv.addObject("page", page);
+			mv.addObject("type", type);
+			mv.addObject("search", search);
 		}
 		mv.setViewName("/afterOrder/adminRecallView");
 	    return mv;
+	}
+	@RequestMapping("/admin/recallstatemodify")
+	@ResponseBody
+	public Map<Object, Object> adminRecallstateModify(@RequestBody ArrayList<RecallViewVo> recallState){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    adminService.recallStateModify(recallState.get(0).getRecallNum(), recallState.get(0).getRecallState());
+	    return map;
 	}
 }

@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
+import kr.ajs.portfolio.vo.RecallViewVo;
 import kr.ajs.portfolio.vo.UserVo;
 
 public interface AdminService {
@@ -35,4 +37,8 @@ public interface AdminService {
 	void orderStateModify(int orderNum, String orderState);
 
 	ArrayList<OrderVo> getUncheckOrder();
+
+	void recallStateModify(int recallNum, String recallState);
+
+	ArrayList<BoardRecallListVo> getUncheckRecallList();
 }

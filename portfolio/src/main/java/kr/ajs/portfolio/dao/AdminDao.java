@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 
+import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
+import kr.ajs.portfolio.vo.RecallViewVo;
 import kr.ajs.portfolio.vo.UserVo;
 
 public interface AdminDao {
@@ -43,5 +45,9 @@ public interface AdminDao {
 	ArrayList<OrderVo> getUncheckOrder();
 
 	int countUncheckRecall();
+
+	void recallStateModify(@Param("recallNum")int recallNum, @Param("recallState")String recallState);
+
+	ArrayList<BoardRecallListVo> getUncheckRecallList();
 
 }

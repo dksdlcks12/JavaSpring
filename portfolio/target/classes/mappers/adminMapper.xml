@@ -61,4 +61,10 @@
 	<select id="countUncheckRecall" resultType="int">
 		select count(*) from recall where recallState = "미확인"
 	</select>
+	<update id="recallStateModify">
+		update recall set recallState = #{recallState} where recallNum = #{recallNum}
+	</update>
+	<select id="getUncheckRecallList" resultType="kr.ajs.portfolio.vo.BoardRecallListVo">
+		select * from recall where recallState = "미확인" order by recallNum desc limit 0, 6;
+	</select>
 </mapper>

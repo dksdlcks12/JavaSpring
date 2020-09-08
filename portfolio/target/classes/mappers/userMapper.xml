@@ -343,7 +343,7 @@
 		group by recallNum
 	</select>
 	<select id="getRecallGoodsList" resultType="kr.ajs.portfolio.vo.RecallViewVo">
-		select goodsImg, goodsName, optionColor from recallList
+		select goodsImg, goodsName, optionColor, goodsType from recallList
 		join orderlist on recallList_orderListNum = orderListNum
 		join portfolio.option on orderList_optionNum = optionNum
 		join goods on option_goodsNum = goodsNum

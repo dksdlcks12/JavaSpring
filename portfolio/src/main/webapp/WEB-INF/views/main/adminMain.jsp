@@ -17,15 +17,18 @@
 			미확인 주문 개수 : ${countUncheckOrder} 개
 		</div>
 	</div>
-	<h2 class="admin-main-title">미확인 반품</h2>
+	
+	<h2 class="admin-main-title">미확인 반품 (최근 6개)</h2>
 	<div class="admin-main-contentBox">
 		<div class="admin-main-leftContent">
-			<div class="admin-main-boardLine">
-				<a href="#" class="admin-main-board">
-					<div class="admin-main-boardTitle">미확인 반품 1</div>
-				</a>
-				<div class="admin-main-boardDate">2020/08/10 11:33:22</div>
-			</div>
+			<c:forEach var="recall" items="${recallList}">
+				<div class="admin-main-boardLine">
+					<a href="<%=request.getContextPath()%>/admin/recallview?recallNum=${recall.recallNum}&page=1&type=0&search=" class="admin-main-board">
+						<div class="admin-main-boardTitle">[제품명 : ${recall.goodsName} / 색상 : ${recall.goodsColor}]<c:if test="${recall.goodsCount>1}"> 외 ${recall.goodsCount-1} 종</c:if></div>
+					</a>
+					<div class="admin-main-boardDate">${recall.recallDate}</div>
+				</div>
+			</c:forEach>
 		</div>
 		<div class="admin-main-rightContent">
 			미확인 반품 개수 : ${countUncheckRecall} 개

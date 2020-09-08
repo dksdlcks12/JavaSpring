@@ -56,7 +56,13 @@ public class UserController {
 			for(OrderVo order : list) {
 				userService.getOrderGoods(order);
 			}
+			ArrayList<BoardRecallListVo> recallList;
+			recallList = adminService.getUncheckRecallList();
+			for(BoardRecallListVo recall : recallList) {
+				userService.addRecallListGoodsInfo(recall);
+			}
 			mv.addObject("list", list);
+			mv.addObject("recallList", recallList);
 			mv.setViewName("/main/adminMain");
 		}else {
 			int type = 0;

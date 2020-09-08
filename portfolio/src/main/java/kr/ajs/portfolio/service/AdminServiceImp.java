@@ -7,10 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.ajs.portfolio.dao.AdminDao;
+import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
+import kr.ajs.portfolio.vo.RecallViewVo;
 import kr.ajs.portfolio.vo.UserVo;
 
 @Service
@@ -101,5 +103,17 @@ public class AdminServiceImp implements AdminService {
 	public ArrayList<OrderVo> getUncheckOrder() {
 		// TODO Auto-generated method stub
 		return adminDao.getUncheckOrder();
+	}
+
+	@Override
+	public void recallStateModify(int recallNum, String recallState) {
+		// TODO Auto-generated method stub
+		adminDao.recallStateModify(recallNum, recallState);
+	}
+
+	@Override
+	public ArrayList<BoardRecallListVo> getUncheckRecallList() {
+		// TODO Auto-generated method stub
+		return adminDao.getUncheckRecallList();
 	}
 }

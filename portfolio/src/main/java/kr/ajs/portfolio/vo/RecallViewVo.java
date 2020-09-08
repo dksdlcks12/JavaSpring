@@ -17,6 +17,7 @@ public class RecallViewVo {
 	private String goodsImg;
 	private String goodsName;
 	private String optionColor;
+	private int goodsType;
 	
 	public int getRecallNum() {
 		return recallNum;
@@ -97,6 +98,12 @@ public class RecallViewVo {
 	public void setOptionColor(String optionColor) {
 		this.optionColor = optionColor;
 	}
+	public int getGoodsType() {
+		return goodsType;
+	}
+	public void setGoodsType(int goodsType) {
+		this.goodsType = goodsType;
+	}
 	
 	@Override
 	public String toString() {
@@ -104,6 +111,6 @@ public class RecallViewVo {
 				+ ", recallDate=" + recallDate + ", recallReason=" + recallReason + ", recallIsChange=" + recallIsChange
 				+ ", recallContent=" + recallContent + ", recallBankName=" + recallBankName + ", recallAccount="
 				+ recallAccount + ", goodsImg=" + goodsImg + ", goodsName=" + goodsName + ", optionColor=" + optionColor
-				+ "]";
+				+ ", goodsType=" + goodsType + "]";
 	}
 }
