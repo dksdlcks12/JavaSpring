@@ -10,6 +10,7 @@ import kr.ajs.portfolio.dao.UserDao;
 import kr.ajs.portfolio.pagination.Criteria;
 import kr.ajs.portfolio.pagination.PageMaker;
 import kr.ajs.portfolio.vo.AddOrderVo;
+import kr.ajs.portfolio.vo.AsAddVo;
 import kr.ajs.portfolio.vo.BoardCartVo;
 import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
@@ -305,5 +306,10 @@ public class UserServiceImp implements UserService {
 	public ArrayList<RecallViewVo> getRecallGoodsList(int recallNum) {
 		// TODO Auto-generated method stub
 		return userDao.getRecallGoodsList(recallNum);
+	}
+	@Override
+	public void addAs(AsAddVo asAddVo, UserVo user) {
+		// TODO Auto-generated method stub
+		userDao.addAs(asAddVo, user);
 	}
 }

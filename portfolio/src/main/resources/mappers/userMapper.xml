@@ -349,4 +349,8 @@
 		join goods on option_goodsNum = goodsNum
 		where recallList_recallNum = #{recallNum}
 	</select>
+	<insert id="addAs">
+		insert into portfolio.as (asTitle, asName, asTel, asContent, asUserId)
+		values (#{as.title}, #{as.name}, #{as.tel}, #{as.sandNote}, #{user.userId})
+	</insert>
 </mapper>

@@ -494,6 +494,7 @@ public class UserController {
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		System.out.println(asApply.get(0));
+		userService.addAs(asApply.get(0), user);
 	    return map;
 	}
 }

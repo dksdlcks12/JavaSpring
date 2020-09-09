@@ -35,7 +35,8 @@
 	    </beans:property>
 	</beans:bean>
 	<beans:bean id="loginInterceptor" class="kr.ajs.portfolio.interceptor.LoginInterceptor"></beans:bean>
-	<beans:bean id="memberInterceptor" class="kr.ajs.portfolio.interceptor.MemberInterceptor"></beans:bean>
+	<beans:bean id="adminInterceptor" class="kr.ajs.portfolio.interceptor.AdminInterceptor"></beans:bean>
+		<beans:bean id="memberInterceptor" class="kr.ajs.portfolio.interceptor.MemberInterceptor"></beans:bean>
 	<interceptors>
 		<interceptor>
 			<mapping path="/login"/>
@@ -43,6 +44,13 @@
 		</interceptor>
 		<interceptor> 
        		<mapping path="/admin/*"/>
+        	<beans:ref bean="adminInterceptor"/>
+    	</interceptor>
+		<interceptor> 
+       		<mapping path="/asselect"/>
+       		<mapping path="/asapply"/>
+       		<mapping path="/asviewlist"/>
+       		<mapping path="/asview"/>
         	<beans:ref bean="memberInterceptor"/>
     	</interceptor>
 	</interceptors>

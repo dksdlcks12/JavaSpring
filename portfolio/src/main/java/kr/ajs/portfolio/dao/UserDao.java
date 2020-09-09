@@ -15,6 +15,7 @@ import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderListVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.AddOrderVo;
+import kr.ajs.portfolio.vo.AsAddVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.RecallAddVo;
 import kr.ajs.portfolio.vo.RecallViewVo;
@@ -117,5 +118,7 @@ public interface UserDao {
 	public RecallViewVo getRecallView(@Param("recallNum")int recallNum);
 
 	public ArrayList<RecallViewVo> getRecallGoodsList(@Param("recallNum")int recallNum);
+
+	public void addAs(@Param("as")AsAddVo asAddVo, @Param("user")UserVo user);
 
 }
