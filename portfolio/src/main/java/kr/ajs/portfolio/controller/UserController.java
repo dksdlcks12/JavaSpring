@@ -531,4 +531,21 @@ public class UserController {
 		}
 		return mv;
 	}
+	@RequestMapping(value= {"/notice"}, method = RequestMethod.GET)
+	public ModelAndView noticeGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		mv = adminService.adminCountInfo(mv);
+		mv.addObject("user", user);
+		mv.setViewName("/board/notice");
+		return mv;
+	}
+	@RequestMapping(value= {"/noticewrite"}, method = RequestMethod.GET)
+	public ModelAndView noticeWriteGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		mv = adminService.adminCountInfo(mv);
+		mv.addObject("user", user);
+		mv.setViewName("/board/noticeWrite");
+		return mv;
+	}
+	
 }

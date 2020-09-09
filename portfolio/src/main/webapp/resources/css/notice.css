@@ -1,0 +1,89 @@
+@charset "UTF-8";
+.common-boardList-table th, .common-boardList-table td{
+	text-align: center;
+	height: 50px;
+	font-size: 20px;
+}
+.common-boardList-table td{
+	font-size: 15px;
+}
+a, a:hover{
+	text-decoration: none;
+	color: black;
+}
+.common-boardList-box{
+	width: 1400px;
+	height: 620px;
+	padding: 100px 0 50px 0;
+	margin: 0 auto;
+	margin-top: 100px;
+	background-color: palegoldenrod;
+	box-sizing: border-box;
+}
+.common-boardList-boardListBox{
+	width: 1200px;
+	margin-left: 100px;
+	padding: 20px 0 20px 0;
+	background-color: blanchedalmond;
+	box-sizing: border-box;
+}
+.common-boardList-title{
+	margin-left: 100px;
+	margin-bottom: 50px;
+}
+.common-boardList-table{
+	margin-left: 100px;
+	width: 1000px;
+	background-color: aliceblue;
+	margin-bottom: 10px;			
+}
+.common-boardList-boardNum{
+	width: 10%;
+}
+.common-boardList-boardTitle{
+	width: 50%;
+}
+.common-boardList-boardWriter{
+	width: 15%;
+}
+.common-boardList-boardDate{
+	width: 15%;
+}
+.common-boardList-titleLine{
+	text-align: start;
+	margin-left: 10px;
+}
+.common-boardList-etcBox{
+	width: 1000px;
+	height: 30px;
+	margin-left: 100px;
+	margin-bottom: 10px;
+	position: relative;
+	background-color: aqua;
+}
+.common-boardList-searchAndButtonBox{
+	width: 300px;
+	height: 30px;
+	background-color: azure;
+}
+.common-boardList-searchType{
+	width: 90px;
+	height: 30px;
+	float: left;
+}
+.common-boardList-searchContent{
+	width: 180px;
+	height: 30px;
+	float: left;
+}
+.common-boardList-searchButton{
+	width: 50px;
+	height: 30px;
+}
+.common-board-write{
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 30px;
+	width: 80px;
+}

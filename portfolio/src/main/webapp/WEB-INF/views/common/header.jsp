@@ -6,7 +6,7 @@
        	<div class="user-set-header-menuBox">
        		<c:if test="${user.userAuth ne 'admin'}">
 	           	<ul class="user-set-topMenuBox">
-					<a href="#" class="user-set-notice">공지사항</a>
+					<a href="<%=request.getContextPath()%>/notice" class="user-set-notice">공지사항</a>
 					<a href="#" class="user-set-QA">Q&A</a>
 					<a href="#" class="user-set-review">리뷰</a>
 					<a href="<%=request.getContextPath()%>/cart" class="user-set-cart">장바구니</a>
@@ -40,7 +40,7 @@
 			</c:if>
 			<c:if test="${user.userAuth eq 'admin'}">
 				<ul class="admin-set-topMenuBox">
-					<a href="#" class="admin-set-notice">공지사항</a>
+					<a href="<%=request.getContextPath()%>/notice" class="admin-set-notice">공지사항</a>
 					<a href="#" class="admin-set-QA">Q&A</a>
 					<a href="#" class="admin-set-review">리뷰</a>
 					<a href="<%=request.getContextPath()%>/admin/goodsadd" class="admin-set-goodsManage">상품등록</a>
