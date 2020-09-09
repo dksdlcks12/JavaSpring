@@ -502,18 +502,30 @@ public class UserController {
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null) {
 			mv = adminService.adminCountInfo(mv);
-			mv.addObject("user", user);
 			PageMaker pm = userService.getPageMakerAsViewList(cri, user);
 			ArrayList<AsVo> list;
 			list = userService.getBoardAsList(user, cri);
-			System.out.println(pm);
-			for(AsVo tmp:list) {
-				System.out.println(tmp);
-			}
+			mv.addObject("user", user);
 			mv.addObject("pm", pm);
 			mv.addObject("list", list);
 		}
 		mv.setViewName("/afterOrder/asViewList");
+		return mv;
+	}
+	@RequestMapping(value= {"/asview"}, method = RequestMethod.GET)
+	public ModelAndView asViewGet(ModelAndView mv, int asNum, int page, HttpServletRequest request) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		mv.setViewName("/afterOrder/asView");
+		if(user!=null) {
+			String userCheck = userService.getAsUser(asNum ,user);
+			if(userCheck!=null) {
+				AsVo as = userService.getAs(asNum);
+				mv.addObject("as", as);
+				mv.addObject("page", page);
+			}else {
+				mv.setViewName("redirect:/asviewlist");
+			}
+		}
 		return mv;
 	}
 }

@@ -112,4 +112,9 @@ public interface UserService {
 	public PageMaker getPageMakerAsViewList(Criteria cri, UserVo user);
 
 	public ArrayList<AsVo> getBoardAsList(UserVo user, Criteria cri);
+	
+	public String getAsUser(int asNum, UserVo user);
+
+	public AsVo getAs(int asNum);
+	
 }

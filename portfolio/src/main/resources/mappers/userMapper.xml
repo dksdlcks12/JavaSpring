@@ -367,4 +367,10 @@
 		order by asNum desc
 		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
+	<select id="getAsUser" resultType="String">
+		select asUserId from portfolio.as where  asNum = #{asNum} and asUserId = #{user.userId}
+	</select>
+	<select id="getAs" resultType="kr.ajs.portfolio.vo.AsVo">
+		select * from portfolio.as where asNum = #{asNum}
+	</select>
 </mapper>

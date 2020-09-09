@@ -125,5 +125,9 @@ public interface UserDao {
 	public int getAsViewListCount(@Param("user")UserVo user, @Param("cri")Criteria cri);
 
 	public ArrayList<AsVo> getAsViewList(@Param("user")UserVo user, @Param("cri")Criteria cri);
+	
+	public String getAsUser(@Param("asNum")int asNum, @Param("user")UserVo user);
+
+	public AsVo getAs(@Param("asNum")int asNum);
 
 }

@@ -328,4 +328,14 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		return userDao.getAsViewList(user, cri);
 	}
+	@Override
+	public String getAsUser(int asNum, UserVo user) {
+		// TODO Auto-generated method stub
+		return userDao.getAsUser(asNum, user);
+	}
+	@Override
+	public AsVo getAs(int asNum) {
+		// TODO Auto-generated method stub
+		return userDao.getAs(asNum);
+	}
 }

@@ -12,7 +12,7 @@
 					<div class="user-asApply-selectGoodsTitle">이름</div><input class="user-asApply-name" maxlength="24">
 				</div>
 				<div class="user-asApply-selectGoodsBox">
-					<div class="user-asApply-selectGoodsTitle">전화번호</div><input type="tel" class="user-asApply-tel" maxlength="16">
+					<div class="user-asApply-selectGoodsTitle">전화번호</div><input type="tel" class="user-asApply-tel" maxlength="12">
 				</div>
 			</div>
 			<h2>상세설명</h2>

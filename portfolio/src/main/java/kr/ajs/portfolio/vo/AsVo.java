@@ -36,6 +36,13 @@ public class AsVo {
 		return asTel;
 	}
 	public void setAsTel(String asTel) {
+		if(asTel.length()==12) {
+			asTel = asTel.substring(0, 4) + "-" + asTel.substring(4, 8) + "-" + asTel.substring(8, asTel.length());
+		}else if(asTel.length()==11) {
+			asTel = asTel.substring(0, 3) + "-" + asTel.substring(3, 7) + "-" + asTel.substring(7, asTel.length());
+		}else {
+			asTel = asTel.substring(0, 3) + "-" + asTel.substring(3, 6) + "-" + asTel.substring(6, asTel.length());
+		}
 		this.asTel = asTel;
 	}
 	public String getAsContent() {

@@ -1,0 +1,91 @@
+@charset "UTF-8";
+.admin-asView-box{
+	width: 1400px;
+	padding: 100px 0 50px 0;
+	margin: 0 auto;
+	margin-top: 100px;
+	background-color: palegoldenrod;
+	box-sizing: border-box;
+}
+.admin-asView-asViewBox{
+	width: 1200px;
+	margin-left: 100px;
+	padding: 20px 0 20px 0;
+	background-color: blanchedalmond;
+	box-sizing: border-box;
+}
+.admin-asView-asViewBox>h2{
+	margin-left: calc(50% - 50px);
+	margin-bottom: 20px;
+}
+.admin-asView-asNumberBox, .admin-asView-asGoodsTitleBox, .admin-asView-asGoodsBox, .admin-asView-asStateBox{
+	position: relative;
+	width: 400px;
+	height: 50px;
+	margin-left: 100px;
+	background-color: cornsilk;
+	border: 1px solid black;
+	border-right: none;
+	margin-bottom: 20px;
+}
+.admin-asView-asNumberBox>*, .admin-asView-asGoodsTitleBox>*, .admin-asView-asGoodsBox>*, .admin-asView-asStateBox>*{
+	position: absolute;
+	width: 200px;
+	height: 48px;
+	background-color: honeydew;
+	font-size: 20px;
+	line-height: 50px;
+	text-align: center;
+	border-right: 1px solid black;
+	box-sizing: border-box;
+}
+.admin-asView-asNumber{
+	left: 200px;
+}
+.admin-asView-asGoodsTitleBox, .admin-asView-asGoodsBox{
+	width: 700px;
+	margin-bottom: 0;
+}
+.admin-asView-asGoodsBox{
+	border-top: none;
+}
+.admin-asView-asGoodsTitleType, .admin-asView-asGoodsType{
+	width: 200px;
+}
+.admin-asView-asGoodsTitleName, .admin-asView-asGoodsName{
+	width: 500px;
+	left: 200px;
+	text-align: left;
+	padding-left: 10px;
+}
+.admin-asView-asGoodsTitleColor, .admin-asView-asGoodsColor{
+	left: 800px;
+}
+.admin-asView-asReasonBox{
+	width: 300px;
+	height: 50px;
+	margin: 10px 0 0 100px;
+	position: relative;
+}
+.admin-recallView-board{
+	margin: 10px 0 0 100px;
+	width: 1000px;
+	border: 1px solid black;
+	box-sizing: border-box;
+	background-color: white;
+	padding: 20px;
+}
+.admin-asView-asStateBox{
+	margin-top: 10px;
+}
+.admin-asView-asState{
+	left: 200px;
+	padding-left: 10px;
+}
+.admin-asView-asStateButton{
+	width: 200px;
+	height: 50px;
+	font-size: 25px;
+	margin-top: 20px;
+	margin-left: calc(50% - 100px);
+}
