@@ -11,6 +11,7 @@ import kr.ajs.portfolio.pagination.Criteria;
 import kr.ajs.portfolio.pagination.PageMaker;
 import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.AsAddVo;
+import kr.ajs.portfolio.vo.AsVo;
 import kr.ajs.portfolio.vo.BoardCartVo;
 import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
@@ -311,5 +312,20 @@ public class UserServiceImp implements UserService {
 	public void addAs(AsAddVo asAddVo, UserVo user) {
 		// TODO Auto-generated method stub
 		userDao.addAs(asAddVo, user);
+	}
+	@Override
+	public PageMaker getPageMakerAsViewList(Criteria cri, UserVo user) {
+		// TODO Auto-generated method stub
+		cri.setPerPageNum(6);
+		PageMaker pm = new PageMaker();
+	    int totalCount = userDao.getAsViewListCount(user, cri);
+	    pm.setCriteria(cri);
+	    pm.setTotalCount(totalCount);
+	    return pm;
+	}
+	@Override
+	public ArrayList<AsVo> getBoardAsList(UserVo user, Criteria cri) {
+		// TODO Auto-generated method stub
+		return userDao.getAsViewList(user, cri);
 	}
 }

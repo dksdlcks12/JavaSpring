@@ -24,6 +24,7 @@ import kr.ajs.portfolio.service.UserService;
 import kr.ajs.portfolio.utils.UploadFileUtils;
 import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.AsAddVo;
+import kr.ajs.portfolio.vo.AsVo;
 import kr.ajs.portfolio.vo.BoardCartVo;
 import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
@@ -434,7 +435,7 @@ public class UserController {
 	    return map;
 	}
 	@RequestMapping(value= {"/recallviewlist"}, method = RequestMethod.GET)
-	public ModelAndView recallviewlistGet(ModelAndView mv, HttpServletRequest request, Criteria cri) throws Exception{
+	public ModelAndView recallViewlistGet(ModelAndView mv, HttpServletRequest request, Criteria cri) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		if(user!=null) {
 			mv = adminService.adminCountInfo(mv);
@@ -493,17 +494,26 @@ public class UserController {
 	public Map<Object, Object> asAdd(@RequestBody ArrayList<AsAddVo> asApply, HttpServletRequest request){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		System.out.println(asApply.get(0));
 		userService.addAs(asApply.get(0), user);
 	    return map;
 	}
 	@RequestMapping(value= {"/asviewlist"}, method = RequestMethod.GET)
-	public ModelAndView asViewListGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+	public ModelAndView asViewListGet(ModelAndView mv, HttpServletRequest request, Criteria cri) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		mv = adminService.adminCountInfo(mv);
-		mv.addObject("user", user);
+		if(user!=null) {
+			mv = adminService.adminCountInfo(mv);
+			mv.addObject("user", user);
+			PageMaker pm = userService.getPageMakerAsViewList(cri, user);
+			ArrayList<AsVo> list;
+			list = userService.getBoardAsList(user, cri);
+			System.out.println(pm);
+			for(AsVo tmp:list) {
+				System.out.println(tmp);
+			}
+			mv.addObject("pm", pm);
+			mv.addObject("list", list);
+		}
 		mv.setViewName("/afterOrder/asViewList");
 		return mv;
 	}
-	
 }

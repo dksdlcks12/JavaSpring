@@ -353,4 +353,18 @@
 		insert into portfolio.as (asTitle, asName, asTel, asContent, asUserId)
 		values (#{as.title}, #{as.name}, #{as.tel}, #{as.sandNote}, #{user.userId})
 	</insert>
+		<select id="getAsViewListCount" resultType="int">
+		select count(*) from portfolio.as
+		<if test="user.userAuth!='admin'">
+			where asUserId = #{user.userId}
+		</if>
+	</select>
+	<select id="getAsViewList" resultType="kr.ajs.portfolio.vo.AsVo">
+		select * from portfolio.as
+		<if test="user.userAuth!='admin'">
+			where asUserId = #{user.userId}
+		</if>
+		order by asNum desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
 </mapper>
