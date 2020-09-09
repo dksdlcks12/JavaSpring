@@ -497,4 +497,13 @@ public class UserController {
 		userService.addAs(asApply.get(0), user);
 	    return map;
 	}
+	@RequestMapping(value= {"/asviewlist"}, method = RequestMethod.GET)
+	public ModelAndView asViewListGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		mv = adminService.adminCountInfo(mv);
+		mv.addObject("user", user);
+		mv.setViewName("/afterOrder/asViewList");
+		return mv;
+	}
+	
 }

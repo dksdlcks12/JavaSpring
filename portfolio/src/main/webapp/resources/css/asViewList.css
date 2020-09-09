@@ -1,0 +1,90 @@
+@charset "UTF-8";
+.admin-asList-box{
+	width: 1400px;
+	height: 769px;
+	padding: 100px 0 50px 0;
+	margin: 0 auto;
+	margin-top: 100px;
+	background-color: palegoldenrod;
+	box-sizing: border-box;
+}
+.admin-asList-orderListBox{
+	width: 1200px;
+	padding: 20px 0 20px 0;
+	margin-left: 100px;
+	background-color: whitesmoke;
+	box-sizing: border-box;
+}
+.admin-asList-orderListBox>h2{
+	margin-left: calc(50% - 50px);
+	margin-bottom: 20px;
+}
+.admin-asList-orderTitleBox, .admin-asList-orderBox{
+	width: 1000px;
+	height: 51px;
+	margin-left: 100px;
+	background-color: wheat;
+	position: relative;
+	border: 1px solid black;
+	border-right: none;
+}
+.admin-asList-orderBox{
+	border-top: none;
+}
+.admin-asList-orderTitleNumber, .admin-asList-orderTitleInfo, .admin-asList-orderTitleDate, .admin-asList-orderTitleState, .admin-asList-orderNumber, .admin-asList-orderInfo, .admin-asList-orderDate, .admin-asList-orderState{
+	position: absolute;
+	width: 100px;
+	height: 49px;
+	background-color: lemonchiffon;
+	font-size: 20px;
+	line-height: 50px;
+	text-align: center;
+	padding-right: 10px;
+	border-right: 1px solid black;
+	box-sizing: border-box;
+}
+.admin-asList-orderTitleInfo, .admin-asList-orderInfo{
+	width: 500px;
+	left: 100px;
+	text-align: left;
+	padding: 0;
+	padding-left: 10px;
+}
+.admin-asList-orderTitleDate, .admin-asList-orderDate{
+	left: 600px;
+	width: 250px;
+	padding: 0;
+}
+.admin-asList-orderTitleState, .admin-asList-orderState{
+	left: 850px;
+	width: 150px;
+	padding: 0;
+}
+.admin-asList-orderTitleBox>*{
+	text-align: center;
+	font-weight: bold;
+	padding: 0;
+}
+.common-boardList-searchBox{
+	margin-top: 20px;
+	margin-left: 100px;
+	width: 400px;
+	height: 50px;
+	background-color: azure;
+}
+.common-boardList-searchType, .common-boardList-searchContent{
+	width: 150px;
+	height: 50px;
+	float: left;
+	padding-left: 10px;
+}
+.common-boardList-searchContent{
+	width: 200px;
+}
+.common-boardList-searchButton{
+	width: 50px;
+	height: 50px;
+}
+.admin-asList-pagination{
+	margin-top: 20px;
+}
