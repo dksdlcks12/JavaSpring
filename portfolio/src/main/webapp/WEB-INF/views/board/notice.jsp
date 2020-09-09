@@ -46,7 +46,7 @@
 				</div>
 			</form>
 			<c:if test="${user.userAuth eq 'admin'}">
-				<a href="<%=request.getContextPath()%>/noticewrite"><button class="common-board-write">글쓰기</button></a>
+				<a href="<%=request.getContextPath()%>/admin/noticewrite"><button class="common-board-write">글쓰기</button></a>
 			</c:if>
 		</div>
 		<ul class="common-goodsList-pagination pagination justify-content-center">

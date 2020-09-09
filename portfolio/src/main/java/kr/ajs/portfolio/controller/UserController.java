@@ -409,7 +409,7 @@ public class UserController {
 		}
 		return mv;
 	}
-	@RequestMapping("/recallApplyImg")
+	@RequestMapping("/recallapplyimg")
 	@ResponseBody
 	public Map<Object, Object> recallApplyImg(@RequestBody MultipartFile file) throws IOException, Exception{
 	    Map<Object, Object> map = new HashMap<Object, Object>();
@@ -418,7 +418,7 @@ public class UserController {
 	    map.put("img", img);
 	    return map;
 	}
-	@RequestMapping("/recallAdd")
+	@RequestMapping("/recalladd")
 	@ResponseBody
 	public Map<Object, Object> recallAdd(@RequestBody ArrayList<RecallAddVo> recallList, HttpServletRequest request){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
@@ -428,7 +428,6 @@ public class UserController {
 		if(user!=null && user.getUserId().equals(checkUser)) {
 			RecallAddVo recall = recallList.get(0);
 			userService.addRecall(recall);
-			System.out.println(recall.getRecallNum());
 			for(RecallAddVo recallOrderList:recall.getGoodsList()) {
 				userService.addRecallList(recallOrderList, recall.getRecallNum());
 			}
@@ -483,7 +482,7 @@ public class UserController {
 		mv.setViewName("/afterOrder/asApply");
 		return mv;
 	}
-	@RequestMapping("/asApplyImg")
+	@RequestMapping("/asapplyimg")
 	@ResponseBody
 	public Map<Object, Object> asApplyImg(@RequestBody MultipartFile file) throws IOException, Exception{
 	    Map<Object, Object> map = new HashMap<Object, Object>();
@@ -539,13 +538,4 @@ public class UserController {
 		mv.setViewName("/board/notice");
 		return mv;
 	}
-	@RequestMapping(value= {"/noticewrite"}, method = RequestMethod.GET)
-	public ModelAndView noticeWriteGet(ModelAndView mv, HttpServletRequest request) throws Exception{
-		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		mv = adminService.adminCountInfo(mv);
-		mv.addObject("user", user);
-		mv.setViewName("/board/noticeWrite");
-		return mv;
-	}
-	
 }

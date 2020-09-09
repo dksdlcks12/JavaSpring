@@ -24,7 +24,7 @@
 			<div class="admin-asView-asState">${as.asState}</div>
 		</div>
 		<div class="admin-recallView-board">${as.asContent}</div>
-		<a href="<%=request.getContextPath()%>/asviewlist?page=${page}")><button class="admin-asView-asStateButton">목록으로</button></a>
+		<a class="admin-asView-memberGoList" href="<%=request.getContextPath()%>/asviewlist?page=${page}")><button class="admin-asView-asStateButton">목록으로</button></a>
 	</div>
 </div>
 <script>

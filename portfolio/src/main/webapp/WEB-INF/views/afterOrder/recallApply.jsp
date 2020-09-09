@@ -47,7 +47,7 @@
 						<option>환불</option>
 					</select>
 				</div><br>
-				<div class="common-boardWrite-Content">
+				<div class="user-recallApply-Content">
 						<div id="recallApply"></div>
 				</div>
 				<div class="transImg" hidden></div>
@@ -80,7 +80,7 @@
 			goodsInfo = "";
 			if($(this).is(':checked')){
 				$(this).prop('checked', true);
-				$('.common-boardWrite-Content').before('')
+				$('.user-recallApply-Content').before('')
 			}else{
 				$(this).prop('checked', false);
 			}
@@ -94,7 +94,7 @@
 		})
 		$('.user-recallApply-recallChange').change(function(){
 			if($(this).val()=='환불'){
-				$('.common-boardWrite-Content').before('<div class="user-recallAdd-recallAccount"><h4>환불받을 계좌정보</h4><div>은행명</div><input class="bank" type="text"><div>계좌번호( \'-\' 제외 )</div><input class="account" type="text"></div>')
+				$('.user-recallApply-Content').before('<div class="user-recallAdd-recallAccount"><h4>환불받을 계좌정보</h4><div>은행명</div><input class="bank" type="text"><div>계좌번호( \'-\' 제외 )</div><input class="account" type="text"></div>')
 			}else{
 				$('.user-recallAdd-recallAccount').remove();
 			}
@@ -149,7 +149,7 @@
 								async:false,
 								type:'POST',
 								data: JSON.stringify(arr),
-								url:"<%=request.getContextPath()%>/recallAdd",
+								url:"<%=request.getContextPath()%>/recalladd",
 								dataType:"json",
 								contentType:"application/json; charset=UTF-8",
 								success : function(data){
@@ -199,7 +199,7 @@
 	      	$.ajax({
 	        	data: form_data,
 	        	type: "POST",
-	        	url: '<%=request.getContextPath()%>/recallApplyImg',
+	        	url: '<%=request.getContextPath()%>/recallapplyimg',
 	        	cache: false,
 	        	contentType: false,
 	        	enctype: 'multipart/form-data',

@@ -49,7 +49,7 @@
 		$.ajax({
 			data: form_data,
 			type: "POST",
-			url: '<%=request.getContextPath()%>/asApplyImg',
+			url: '<%=request.getContextPath()%>/asapplyimg',
 			cache: false,
 			contentType: false,
 			enctype: 'multipart/form-data',
@@ -57,7 +57,6 @@
 			success: function(data) {
 				$(el).summernote('editor.insertImage', '<%=request.getContextPath()%>/resources/image/photo6.JPG');
 				imgList.push(data.img);
-				console.log(imgList);
 			}
 		});
 	}
@@ -88,8 +87,8 @@
 							dataType:"json",
 							contentType:"application/json; charset=UTF-8",
 							success : function(data){
-								alert('반품신청이 성공적으로 이루어졌습니다.')
-								location.replace('<%=request.getContextPath()%>/');
+								alert('A/S신청이 성공적으로 이루어졌습니다.')
+								location.replace('<%=request.getContextPath()%>/asviewlist');
 							}
 						});
     				}else{

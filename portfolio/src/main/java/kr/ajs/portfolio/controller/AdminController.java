@@ -21,6 +21,7 @@ import kr.ajs.portfolio.service.UserService;
 import kr.ajs.portfolio.utils.UploadFileUtils;
 import kr.ajs.portfolio.vo.AsVo;
 import kr.ajs.portfolio.vo.GoodsVo;
+import kr.ajs.portfolio.vo.NoticeVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderListVo;
 import kr.ajs.portfolio.vo.OrderVo;
@@ -180,5 +181,28 @@ public class AdminController {
 	    adminService.asStateModify(as.get(0));
 	    return map;
 	}
-	
+	@RequestMapping(value= {"/admin/noticewrite"}, method = RequestMethod.GET)
+	public ModelAndView noticeWriteGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		mv = adminService.adminCountInfo(mv);
+		mv.addObject("user", user);
+		mv.setViewName("/board/noticeWrite");
+		return mv;
+	}
+	@RequestMapping("/admin/noticeimg")
+	@ResponseBody
+	public Map<Object, Object> noticeImg(@RequestBody MultipartFile file) throws IOException, Exception{
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    String uploadPath = "D:\\AJS\\JavaSpring\\portfolio\\src\\main\\webapp\\resources\\image\\notice";
+	    String img = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(),file.getBytes());
+	    map.put("img", img);
+	    return map;
+	}
+	@RequestMapping("/admin/noticeadd")
+	@ResponseBody
+	public Map<Object, Object> noticeAdd(@RequestBody ArrayList<NoticeVo> notice) throws IOException, Exception{
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    System.out.println(notice.get(0));
+	    return map;
+	}
 }
