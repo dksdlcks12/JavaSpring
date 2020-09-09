@@ -99,16 +99,16 @@
 					</tr>
 					<tr>
 						<td>주문한 사람 전화번호 (필수)</td>
-						<td id="sendTel"><input type="tel" class="user-order-tel tel1">-<input type="tel" class="user-order-tel tel2">-<input type="tel" class="user-order-tel tel3"></td>
+						<td id="sendTel"><input type="tel" class="user-order-tel tel1" maxlength="4">-<input type="tel" class="user-order-tel tel2" maxlength="4">-<input type="tel" class="user-order-tel tel3" maxlength="4"></td>
 					</tr>
 					<c:if test="${user==null}">
 						<tr>
 							<td>비회원 비밀번호 (필수)</td>
-							<td><input type="password" class="user-order-password noneMemberPassword">(숫자 4~8자)</td>
+							<td><input type="password" class="user-order-password noneMemberPassword" maxlength="8">(숫자 4~8자)</td>
 						</tr>
 						<tr>
 							<td>비회원 비밀번호 확인 (필수)</td>
-							<td><input type="password" class="user-order-password noneMemberPasswordCheck"></td>
+							<td><input type="password" class="user-order-password noneMemberPasswordCheck" maxlength="8"></td>
 						</tr>
 					</c:if>
 				</table>
@@ -179,7 +179,7 @@
 					</tr>
 					<tr>
 						<td>받는 사람 전화번호 (필수)</td>
-						<td id="receiveTel"><input type="tel" class="user-order-tel tel1">-<input type="tel" class="user-order-tel tel2">-<input type="tel" class="user-order-tel tel3"></td>
+						<td id="receiveTel"><input type="tel" class="user-order-tel tel1" maxlength="4">-<input type="tel" class="user-order-tel tel2" maxlength="4">-<input type="tel" class="user-order-tel tel3" maxlength="4"></td>
 					</tr>
 				</table>
 				<p>결제</p>

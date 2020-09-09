@@ -1,0 +1,73 @@
+@charset "UTF-8";
+.user-asApply-box{
+	width: 1400px;
+	padding: 100px 0 50px 0;
+	margin: 0 auto;
+	margin-top: 100px;
+	background-color: palegoldenrod;
+	box-sizing: border-box;
+}
+.user-asApply-asApplyBox{
+	width: 1200px;
+	margin-left: 100px;
+	background-color: lavender;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.user-asApply-asApplyBox>h2{
+	margin-left: 110px;
+}
+.user-asApply-asApplyInfoBox{
+	width: 1000px;
+	margin-left: 100px;
+	background-color: lemonchiffon;
+	padding: 10px;
+}
+.user-asApply-selectGoodsBox{
+	width: 700px;
+	height: 50px;
+	margin-top: 20px;
+	box-sizing: border-box;
+	position: relative;
+}
+.user-asApply-selectGoodsTitle{
+	width: 200px;
+	height: 49px;
+	text-align: center;
+	background-color: lightcyan;
+	font-size: 25px;
+	line-height: 50px;
+	box-sizing: border-box;
+	border: 1px solid black;
+}
+.user-asApply-selectGoods, .user-asApply-name, .user-asApply-tel{
+	width: 500px;
+	height: 50px;
+	font-size: 15px;
+	line-height: 50px;
+	position: absolute;
+	top: -1px;
+	left: 199px;
+	padding-left: 10px;
+	box-sizing: border-box;
+	font-size: 20px;
+}
+.user-asApply-name, .user-asApply-tel{
+	width: 200px;
+}
+.user-asApply-asApplyInfoBox h2{
+	margin-top: 10px;
+}
+.user-asApply-board{
+	margin-top: 10px;
+	width: 1000px;
+	height: 150px;
+	resize: none;
+}
+.user-asApply-button{
+	margin-top: 10px;
+	margin-left: calc(50% - 100px);
+	width: 200px;
+	height: 50px;
+	font-size: 30px;
+}

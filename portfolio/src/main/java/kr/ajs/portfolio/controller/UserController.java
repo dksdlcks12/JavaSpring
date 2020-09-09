@@ -23,6 +23,7 @@ import kr.ajs.portfolio.service.AdminService;
 import kr.ajs.portfolio.service.UserService;
 import kr.ajs.portfolio.utils.UploadFileUtils;
 import kr.ajs.portfolio.vo.AddOrderVo;
+import kr.ajs.portfolio.vo.AsAddVo;
 import kr.ajs.portfolio.vo.BoardCartVo;
 import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
@@ -467,5 +468,32 @@ public class UserController {
 			mv.setViewName("redirect:/login");
 		}
 		return mv;
+	}
+	@RequestMapping(value= {"/asselect"}, method = RequestMethod.GET)
+	public ModelAndView asSelectGet(ModelAndView mv) throws Exception{
+		mv.setViewName("/afterOrder/asSelect");
+		return mv;
+	}
+	@RequestMapping(value= {"/asapply"}, method = RequestMethod.GET)
+	public ModelAndView asApplyGet(ModelAndView mv) throws Exception{
+		mv.setViewName("/afterOrder/asApply");
+		return mv;
+	}
+	@RequestMapping("/asApplyImg")
+	@ResponseBody
+	public Map<Object, Object> asApplyImg(@RequestBody MultipartFile file) throws IOException, Exception{
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    String uploadPath = "D:\\AJS\\JavaSpring\\portfolio\\src\\main\\webapp\\resources\\image\\asApply";
+	    String img = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(),file.getBytes());
+	    map.put("img", img);
+	    return map;
+	}
+	@RequestMapping("/asAdd")
+	@ResponseBody
+	public Map<Object, Object> asAdd(@RequestBody ArrayList<AsAddVo> asApply, HttpServletRequest request){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		System.out.println(asApply.get(0));
+	    return map;
 	}
 }
