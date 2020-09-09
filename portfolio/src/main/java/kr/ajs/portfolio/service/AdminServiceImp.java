@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.ajs.portfolio.dao.AdminDao;
+import kr.ajs.portfolio.vo.AsVo;
 import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionVo;
@@ -28,6 +29,8 @@ public class AdminServiceImp implements AdminService {
 		mv.addObject("countUncheckOrder", countUncheckOrder);
 		int countUncheckRecall = adminDao.countUncheckRecall();
 		mv.addObject("countUncheckRecall", countUncheckRecall);
+		int countUncheckAs = adminDao.countUncheckAs();
+		mv.addObject("countUncheckAs", countUncheckAs);
 		return mv;
 	}
 	
@@ -115,5 +118,17 @@ public class AdminServiceImp implements AdminService {
 	public ArrayList<BoardRecallListVo> getUncheckRecallList() {
 		// TODO Auto-generated method stub
 		return adminDao.getUncheckRecallList();
+	}
+
+	@Override
+	public ArrayList<AsVo> getUncheckAs() {
+		// TODO Auto-generated method stub
+		return adminDao.getUncheckAs();
+	}
+
+	@Override
+	public void asStateModify(AsVo as) {
+		// TODO Auto-generated method stub
+		adminDao.asStateModify(as);
 	}
 }

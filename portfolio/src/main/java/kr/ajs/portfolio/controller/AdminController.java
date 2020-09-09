@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.ajs.portfolio.service.AdminService;
 import kr.ajs.portfolio.service.UserService;
 import kr.ajs.portfolio.utils.UploadFileUtils;
+import kr.ajs.portfolio.vo.AsVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderListVo;
@@ -112,6 +113,7 @@ public class AdminController {
 	@RequestMapping(value= {"/admin/orderview"}, method = RequestMethod.GET)
 	public ModelAndView adminOrderViewGet(ModelAndView mv, HttpServletRequest request, int orderNum, int page, int type, String search) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		mv.setViewName("/afterOrder/adminOrderView");
 		if(user!=null) {
 			mv = adminService.adminCountInfo(mv);
 			ArrayList<OrderListVo> list;
@@ -124,12 +126,11 @@ public class AdminController {
 			mv.addObject("type", type);
 			mv.addObject("search", search);
 		}
-		mv.setViewName("/afterOrder/adminOrderView");
 	    return mv;
 	}
 	@RequestMapping("/admin/orderstatemodify")
 	@ResponseBody
-	public Map<Object, Object> adminOrderstateModify(@RequestBody ArrayList<OrderVo> orderState){
+	public Map<Object, Object> adminOrderStateModify(@RequestBody ArrayList<OrderVo> orderState){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 	    adminService.orderStateModify(orderState.get(0).getOrderNum(), orderState.get(0).getOrderState());
 	    return map;
@@ -137,6 +138,7 @@ public class AdminController {
 	@RequestMapping(value= {"/admin/recallview"}, method = RequestMethod.GET)
 	public ModelAndView adminRecallViewGet(ModelAndView mv, HttpServletRequest request, int recallNum, int page, int type, String search) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		mv.setViewName("/afterOrder/adminRecallView");
 		if(user!=null) {
 			mv = adminService.adminCountInfo(mv);
 			RecallViewVo recallInfo = userService.getRecallView(recallNum);
@@ -148,14 +150,35 @@ public class AdminController {
 			mv.addObject("type", type);
 			mv.addObject("search", search);
 		}
-		mv.setViewName("/afterOrder/adminRecallView");
 	    return mv;
 	}
 	@RequestMapping("/admin/recallstatemodify")
 	@ResponseBody
-	public Map<Object, Object> adminRecallstateModify(@RequestBody ArrayList<RecallViewVo> recallState){
+	public Map<Object, Object> adminRecallStateModify(@RequestBody ArrayList<RecallViewVo> recallState){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 	    adminService.recallStateModify(recallState.get(0).getRecallNum(), recallState.get(0).getRecallState());
 	    return map;
 	}
+	@RequestMapping(value= {"/admin/asview"}, method = RequestMethod.GET)
+	public ModelAndView adminAsViewGet(ModelAndView mv, HttpServletRequest request, int asNum, int page, int type, String search) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		mv.setViewName("/afterOrder/adminAsView");
+		if(user!=null) {
+			mv = adminService.adminCountInfo(mv);
+			AsVo as = userService.getAs(asNum);
+			mv.addObject("as", as);
+			mv.addObject("page", page);
+			mv.addObject("type", type);
+			mv.addObject("search", search);
+		}
+	    return mv;
+	}
+	@RequestMapping("/admin/asstatemodify")
+	@ResponseBody
+	public Map<Object, Object> adminAsStateModify(@RequestBody ArrayList<AsVo> as){
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    adminService.asStateModify(as.get(0));
+	    return map;
+	}
+	
 }

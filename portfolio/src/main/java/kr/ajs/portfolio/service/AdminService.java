@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.ajs.portfolio.vo.AsVo;
 import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionVo;
@@ -41,4 +42,8 @@ public interface AdminService {
 	void recallStateModify(int recallNum, String recallState);
 
 	ArrayList<BoardRecallListVo> getUncheckRecallList();
+
+	ArrayList<AsVo> getUncheckAs();
+
+	void asStateModify(AsVo as);
 }

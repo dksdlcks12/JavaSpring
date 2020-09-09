@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 
+import kr.ajs.portfolio.vo.AsVo;
 import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.OptionVo;
@@ -49,5 +50,11 @@ public interface AdminDao {
 	void recallStateModify(@Param("recallNum")int recallNum, @Param("recallState")String recallState);
 
 	ArrayList<BoardRecallListVo> getUncheckRecallList();
+
+	int countUncheckAs();
+
+	ArrayList<AsVo> getUncheckAs();
+
+	void asStateModify(@Param("as")AsVo as);
 
 }

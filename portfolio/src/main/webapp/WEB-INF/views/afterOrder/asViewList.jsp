@@ -13,22 +13,28 @@
 			<c:forEach var="as" items="${list}">
 				<div class="admin-asList-orderBox">
 					<div class="admin-asList-orderNumber">${as.asNum}</div>
-					<a href="<%=request.getContextPath()%>/asview?asNum=${as.asNum}&page=${pm.criteria.page}"><div class="admin-asList-orderInfo">${as.asTitle}</div></a>
+					<c:if test="${user.userAuth ne 'admin'}">
+						<a href="<%=request.getContextPath()%>/asview?asNum=${as.asNum}&page=${pm.criteria.page}"><div class="admin-asList-orderInfo">${as.asTitle}</div></a>
+					</c:if>
+					<c:if test="${user.userAuth eq 'admin'}">
+						<a href="<%=request.getContextPath()%>/admin/asview?asNum=${as.asNum}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}"><div class="admin-asList-orderInfo">${as.asTitle}</div></a>
+					</c:if>
 					<div class="admin-asList-orderDate">${as.asDate}</div>
 					<div class="admin-asList-orderState">${as.asState}</div>
 				</div>
 			</c:forEach>
 		</c:if>
 		<c:if test="${user.userAuth eq 'admin'}">
-			<form action="#">
+			<form action="<%=request.getContextPath()%>/asviewlist">
 				<div class="common-boardList-searchBox">
-					<select name="" id="" class="common-boardList-searchType">
+					<select name="type" class="common-boardList-searchType">
 						<option value="0" selected>전체</option>
 						<option value="1">A/S 번호</option>
 						<option value="2">A/S 신청날짜</option>
 						<option value="3">A/S 상태</option>
+						<option value="4">신청 아이디</option>
 					</select>
-					<input type="text" class="common-boardList-searchContent">
+					<input type="text" class="common-boardList-searchContent" name="search">
 					<button class="common-boardList-searchButton"><i class="fas fa-search"></i></button>
 				</div>
 			</form>

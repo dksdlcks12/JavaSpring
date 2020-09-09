@@ -34,18 +34,20 @@
 			미확인 반품 개수 : ${countUncheckRecall} 개
 		</div>
 	</div>
-	<h2 class="admin-main-title">미확인 A/S</h2>
+	<h2 class="admin-main-title">미확인 A/S (최근 6개)</h2>
 	<div class="admin-main-contentBox">
 		<div class="admin-main-leftContent">
-			<div class="admin-main-boardLine">
-				<a href="#" class="admin-main-board">
-					<div class="admin-main-boardTitle">미확인 A/S 1</div>
-				</a>
-				<div class="admin-main-boardDate">2020/08/10 11:33:22</div>
-			</div>
+			<c:forEach var="as" items="${asList}">
+				<div class="admin-main-boardLine">
+					<a href="<%=request.getContextPath()%>/admin/asview?asNum=${as.asNum}&page=1&type=0&search=" class="admin-main-board">
+						<div class="admin-main-boardTitle">${as.asTitle}</div>
+					</a>
+					<div class="admin-main-boardDate">${as.asDate}</div>
+				</div>
+			</c:forEach>
 		</div>
 		<div class="admin-main-rightContent">
-			미확인 A/S 개수 : n개
+			미확인 A/S 개수 : ${countUncheckAs}개
 		</div>
 	</div>
 	<h2 class="admin-main-title">미확인 Q&A</h2>

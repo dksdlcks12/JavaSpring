@@ -16,7 +16,7 @@
 	box-sizing: border-box;
 }
 .admin-orderList-orderListBox>h2{
-	margin-left: calc(50% - 50px);
+	margin-left: calc(50% - 75px);
 	margin-bottom: 20px;
 }
 .admin-orderList-orderTitleBox, .admin-orderList-orderBox{

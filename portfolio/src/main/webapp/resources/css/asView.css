@@ -82,10 +82,16 @@
 	left: 200px;
 	padding-left: 10px;
 }
-.admin-asView-asStateButton{
+.admin-asView-asStateButton, .admin-asView-goList, .admin-asView-asStateModifyButton{
 	width: 200px;
 	height: 50px;
 	font-size: 25px;
-	margin-top: 20px;
 	margin-left: calc(50% - 100px);
+}
+.admin-asView-goList{
+	width: 150px;
+	margin-left: 100px;
+}
+.admin-asView-asStateModifyButton{
+	margin-left: calc(50% - 350px);
 }

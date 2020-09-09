@@ -358,11 +358,32 @@
 		<if test="user.userAuth!='admin'">
 			where asUserId = #{user.userId}
 		</if>
+		
 	</select>
 	<select id="getAsViewList" resultType="kr.ajs.portfolio.vo.AsVo">
 		select * from portfolio.as
 		<if test="user.userAuth!='admin'">
 			where asUserId = #{user.userId}
+		</if>
+		<if test="user.userAuth=='admin'">
+			<if test="cri.type == 0">
+				where (asNum like concat('%',#{cri.search},'%')
+				or asDate like concat('%',#{cri.search},'%')
+				or asState like concat('%',#{cri.search},'%')
+				or asUserId like concat('%',#{cri.search},'%'))
+			</if>
+			<if test="cri.type == 1">
+				where asNum like concat('%',#{cri.search},'%')
+			</if>
+			<if test="cri.type == 2">
+				where asDate like concat('%',#{cri.search},'%')
+			</if>
+			<if test="cri.type == 3">
+				where asState like concat('%',#{cri.search},'%')
+			</if>
+			<if test="cri.type == 4">
+				where asUserId like concat('%',#{cri.search},'%')
+			</if>
 		</if>
 		order by asNum desc
 		limit #{cri.pageStart}, #{cri.perPageNum}
