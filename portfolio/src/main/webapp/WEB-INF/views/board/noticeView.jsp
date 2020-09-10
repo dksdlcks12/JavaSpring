@@ -15,9 +15,9 @@
 			</tr>
 		</table>
 		<div class="common-boardView-content">${notice.noticeContent}</div>
-		<a href="<%=request.getContextPath()%>/noticelist?&page=${page}&type=${type}&search=${search}"><button class="common-boardView-button common-boardView-goList">목 록</button></a>
+		<a href="<%=request.getContextPath()%>/noticelist?page=${page}&type=${type}&search=${search}"><button class="common-boardView-button common-boardView-goList">목 록</button></a>
 		<c:if test="${user.userAuth eq 'admin'}">
-			<button class="common-boardView-button common-boardView-goModify">수 정</button>
+			<a href="<%=request.getContextPath()%>//admin/noticemodify?noticeNum=${notice.noticeNum}&page=${page}&type=${type}&search=${search}"><button class="common-boardView-button common-boardView-goModify">수 정</button></a>
 			<button class="common-boardView-button common-boardView-goDelete">삭 제</button>
 		</c:if>
 	</div>
