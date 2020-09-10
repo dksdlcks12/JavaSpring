@@ -367,6 +367,7 @@ public class UserServiceImp implements UserService {
 			qa.setQaPw(null);
 		}
 		userDao.qaAdd(qa);
+		userDao.qaOriginNumAdd(qa.getQaNum());
 	}
 	@Override
 	public PageMaker getPageMakerQaList(Criteria cri) {

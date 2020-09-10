@@ -12,6 +12,7 @@ public class QaVo {
 	private String qaPw;
 	private String qaContent;
 	private Date qaDate;
+	private int qaOriginNum;
 	
 	public int getQaNum() {
 		return qaNum;
@@ -62,10 +63,17 @@ public class QaVo {
 			e.printStackTrace();
 		}
 	}
+	public int getQaOriginNum() {
+		return qaOriginNum;
+	}
+	public void setQaOriginNum(int qaOriginNum) {
+		this.qaOriginNum = qaOriginNum;
+	}
 	
 	@Override
 	public String toString() {
 		return "QaVo [qaNum=" + qaNum + ", qaTitle=" + qaTitle + ", qaWriter=" + qaWriter + ", qaIsOpen=" + qaIsOpen
-				+ ", qaPw=" + qaPw + ", qaContent=" + qaContent + ", qaDate=" + qaDate + "]";
+				+ ", qaPw=" + qaPw + ", qaContent=" + qaContent + ", qaDate=" + qaDate + ", qaOriginNum=" + qaOriginNum
+				+ "]";
 	}
 }

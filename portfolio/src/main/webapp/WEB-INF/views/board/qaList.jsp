@@ -18,10 +18,10 @@
 						<tr>
 							<td>${qa.qaNum}</td>
 							<c:if test="${qa.qaIsOpen eq 'Y'}">
-								<td><a href="#"><div class="common-boardList-titleLine">${qa.qaTitle}</div></a></td>
+								<td><a href="<%=request.getContextPath()%>/qaview?qaNum=${qa.qaNum}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}"><div class="common-boardList-titleLine">${qa.qaTitle}</div></a></td>
 							</c:if>
 							<c:if test="${qa.qaIsOpen eq 'N'}">
-								<td><a href="#"><div class="common-boardList-titleLine"><i class="fas fa-lock"></i> ${qa.qaTitle}</div></a></td>
+								<td><div class="common-boardList-titleLine common-boardList-pauseOn"><i class="fas fa-lock"></i> ${qa.qaTitle}</div></a></td>
 							</c:if>
 							<td>${qa.qaWriter}</td>
 							<td>${qa.qaDate}</td>
@@ -76,3 +76,24 @@
 		</script>
 	</c:if>
 </div>
+<div class="common-board-pause" style="display:none">
+	<div class="common-board-pauseBox">
+		<div class="common-board-pauseTitle">비밀번호를 입력하여 주세요.<button class="common-board-pauseColse"><i class="fas fa-times common-board-pauseColseImg"></i></button></div>
+		<div><input type="text" class="common-board-pausePassWord"></div>
+		<div><button class="common-board-pausePassWord">확인</button></div>
+	</div>
+</div>
+<script>
+	$('.common-boardList-pauseOn').click(function(){
+		$('.common-board-pause').css({"top":(($(window).height()-$('.common-board-pause').outerHeight())/2+$(window).scrollTop())+"px", "left":(($(window).width()-$('.common-board-pause').outerWidth())/2+$(window).scrollLeft())+"px", "display":"block"});
+		$('.common-board-pause').on('scroll touchmove mousewheel', function(event) {
+			event.preventDefault();
+			event.stopPropagation();
+			return false;
+		});
+	})
+	$('.common-board-pauseColseImg').click(function(){
+		$('.common-board-pause').off('scroll touchmove mousewheel');
+		$('.common-board-pause').css("display","none");
+	})
+</script>

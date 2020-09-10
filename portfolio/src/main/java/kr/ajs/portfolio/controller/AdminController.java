@@ -201,7 +201,7 @@ public class AdminController {
 	}
 	@RequestMapping("/admin/noticeadd")
 	@ResponseBody
-	public Map<Object, Object> noticeAdd(@RequestBody ArrayList<NoticeVo> notice, HttpServletRequest request) throws IOException, Exception{
+	public Map<Object, Object> noticeAdd(@RequestBody ArrayList<NoticeVo> notice, HttpServletRequest request) throws Exception{
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 	    UserVo user = (UserVo) request.getSession().getAttribute("user");
 	    adminService.noticeAdd(notice.get(0), user);
@@ -221,9 +221,8 @@ public class AdminController {
 	}
 	@RequestMapping("/admin/noticemodify")
 	@ResponseBody
-	public Map<Object, Object> noticeModisy(@RequestBody ArrayList<NoticeVo> notice, HttpServletRequest request) throws IOException, Exception{
+	public Map<Object, Object> noticeModisy(@RequestBody ArrayList<NoticeVo> notice, HttpServletRequest request) throws Exception{
 	    Map<Object, Object> map = new HashMap<Object, Object>();
-	    UserVo user = (UserVo) request.getSession().getAttribute("user");
 	    adminService.noticeModify(notice.get(0));
 	    return map;
 	}

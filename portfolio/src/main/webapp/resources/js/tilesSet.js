@@ -4,6 +4,7 @@ $(function(){
 		window.scrollTo(0, 0);
 	})
 	window.onbeforeunload = function () {
+		$('.common-board-pause').css("display","none")
 		window.scrollTo(0, 0);
 	}
 })

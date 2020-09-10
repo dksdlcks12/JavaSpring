@@ -583,9 +583,18 @@ public class UserController {
 	}
 	@RequestMapping("qaadd")
 	@ResponseBody
-	public Map<Object, Object> qaAdd(@RequestBody ArrayList<QaVo> qa, HttpServletRequest request) throws IOException, Exception{
+	public Map<Object, Object> qaAdd(@RequestBody ArrayList<QaVo> qa, HttpServletRequest request) throws Exception{
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		userService.qaAdd(qa.get(0));
     	return map;
+	}
+	@RequestMapping(value= {"/qaview"}, method = RequestMethod.GET)
+	public ModelAndView qaViewGet(ModelAndView mv, int qaNum, int page, int type, String search) throws Exception{
+		System.out.println(qaNum);
+		System.out.println(page);
+		System.out.println(type);
+		System.out.println(search);
+		mv.setViewName("/board/qaView");
+		return mv;
 	}
 }

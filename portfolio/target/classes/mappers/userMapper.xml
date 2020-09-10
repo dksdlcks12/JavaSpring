@@ -425,10 +425,13 @@
 	<select id="getNotice" resultType="kr.ajs.portfolio.vo.NoticeVo">
 		select * from notice where noticeNum=#{noticeNum}
 	</select>
-	<insert id="qaAdd">
+	<insert id="qaAdd" parameterType="kr.ajs.portfolio.vo.QaVo" useGeneratedKeys="true" keyProperty="qa.qaNum">
 		insert into qa (qaTitle, qaWriter, qaIsOpen, qaPw, qaContent)
 		values(#{qa.qaTitle}, #{qa.qaWriter}, #{qa.qaIsOpen}, #{qa.qaPw}, #{qa.qaContent})
 	</insert>
+	<update id="qaOriginNumAdd">
+		update qa set qaOriginNum = #{qaNum} where qaNum=#{qaNum}
+	</update>
 	<select id="getQaCount" resultType="int">
 		select count(*) from qa
 		<if test="cri.type == 0">
@@ -462,7 +465,7 @@
 		<if test="cri.type == 3">
 			where qaDate like concat('%',#{cri.search},'%')
 		</if>
-		order by qaNum desc
+		order by qaOriginNum desc
 		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 </mapper>

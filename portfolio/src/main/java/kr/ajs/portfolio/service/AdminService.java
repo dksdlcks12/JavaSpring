@@ -52,5 +52,5 @@ public interface AdminService {
 	void noticeAdd(NoticeVo notice, UserVo user);
 
 	void noticeModify(NoticeVo notice);
-	
+
 }

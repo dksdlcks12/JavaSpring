@@ -139,6 +139,8 @@ public interface UserDao {
 	public NoticeVo getNotice(@Param("noticeNum")int noticeNum);
 
 	public void qaAdd(@Param("qa")QaVo qa);
+	
+	public void qaOriginNumAdd(@Param("qaNum")int qaNum);
 
 	public int getQaCount(@Param("cri")Criteria cri);
 
