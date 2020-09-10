@@ -60,4 +60,6 @@ public interface AdminDao {
 
 	void noticeAdd(@Param("notice")NoticeVo notice, @Param("user")UserVo user);
 
+	void noticeModify(@Param("notice")NoticeVo notice);
+
 }

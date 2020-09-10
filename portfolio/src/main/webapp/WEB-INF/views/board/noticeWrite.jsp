@@ -21,6 +21,8 @@
 	$('#notice').summernote({
 		tabsize: 2,
 		height: 300,
+		minHeight: 300,
+		maxHeight: 300,
 		lang : 'ko-KR',
 		toolbar: [
 			['style', ['style']],
@@ -63,7 +65,6 @@
     		index++;
     	})
     	$('.sandNote').html($('.transImg').html());
-    	console.log($('.sandNote').html());
     	var noticeTitle = $('.common-boardWrite-title').val();
 		var noticeContent = $('.sandNote').html();
     	if(noticeTitle != ""){

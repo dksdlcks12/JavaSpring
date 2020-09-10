@@ -210,9 +210,20 @@ public class AdminController {
 	public ModelAndView noticeModifyGet(ModelAndView mv, HttpServletRequest request, int noticeNum, int page, int type, String search) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		NoticeVo notice = userService.getNotice(noticeNum);
-		System.out.println(notice);
+		mv.addObject("notice", notice);
 		mv.addObject("user", user);
+		mv.addObject("page", page);
+		mv.addObject("type", type);
+		mv.addObject("search", search);
 		mv.setViewName("/board/noticeModify");
 		return mv;
+	}
+	@RequestMapping("/admin/noticemodify")
+	@ResponseBody
+	public Map<Object, Object> noticeModisy(@RequestBody ArrayList<NoticeVo> notice, HttpServletRequest request) throws IOException, Exception{
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    UserVo user = (UserVo) request.getSession().getAttribute("user");
+	    adminService.noticeModify(notice.get(0));
+	    return map;
 	}
 }

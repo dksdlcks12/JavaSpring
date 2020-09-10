@@ -49,4 +49,6 @@ public interface AdminService {
 	void asStateModify(AsVo as);
 
 	void noticeAdd(NoticeVo notice, UserVo user);
+
+	void noticeModify(NoticeVo notice);
 }

@@ -28,6 +28,8 @@
 	$('#asApply').summernote({
 		tabsize: 2,
 		height: 300,
+		minHeight: 300,
+		maxHeight: 300,
 		lang : 'ko-KR',
 		toolbar: [
 			['style', ['style']],
@@ -69,7 +71,6 @@
     		index++;
     	})
     	$('.sandNote').html($('.transImg').html());
-    	console.log($('.sandNote').html());
     	var title = $('.user-asApply-selectGoods').val();
     	var name = $('.user-asApply-name').val();
     	var tel = $('.user-asApply-tel').val();

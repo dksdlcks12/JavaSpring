@@ -132,7 +132,6 @@
 				index++;
 			})
 			$('.sandNote').html($('.transImg').html());
-			console.log($('.sandNote').html());
 			$('.user-recallApply-goodsCheck').each(function(){
 				if($(this).is(':checked')){
 					orderListNum = Number($(this).siblings('.user-recallApply-orderListNum').text());
@@ -178,6 +177,8 @@
 		$('#recallApply').summernote({
 			tabsize: 2,
 			height: 300,
+			minHeight: 300,
+			maxHeight: 300,
 			lang : 'ko-KR',
 			toolbar: [
 				['style', ['style']],

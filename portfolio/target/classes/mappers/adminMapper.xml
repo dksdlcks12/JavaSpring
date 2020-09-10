@@ -80,4 +80,7 @@
 		insert into notice (noticeTitle, notice_userId, noticeContent)
 		values(#{notice.noticeTitle}, #{user.userId}, #{notice.noticeContent})
 	</insert>
+	<update id="noticeModify">
+		update notice set noticeTitle=#{notice.noticeTitle}, noticeContent=#{notice.noticeContent} where noticeNum=#{notice.noticeNum}
+	</update>
 </mapper>
