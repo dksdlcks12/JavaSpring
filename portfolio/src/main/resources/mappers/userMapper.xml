@@ -421,6 +421,8 @@
 		</if>
 		order by noticeNum desc
 		limit #{cri.pageStart}, #{cri.perPageNum}
-		
+	</select>
+	<select id="getNotice" resultType="kr.ajs.portfolio.vo.NoticeVo">
+		select * from notice where noticeNum=#{noticeNum}
 	</select>
 </mapper>

@@ -135,4 +135,6 @@ public interface UserDao {
 
 	public ArrayList<NoticeVo> getNoticeList(@Param("cri")Criteria cri);
 
+	public NoticeVo getNotice(@Param("noticeNum")int noticeNum);
+
 }

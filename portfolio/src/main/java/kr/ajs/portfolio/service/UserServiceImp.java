@@ -354,4 +354,9 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		return userDao.getNoticeList(cri);
 	}
+	@Override
+	public NoticeVo getNotice(int noticeNum) {
+		// TODO Auto-generated method stub
+		return userDao.getNotice(noticeNum);
+	}
 }

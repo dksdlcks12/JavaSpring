@@ -1,0 +1,73 @@
+@charset "UTF-8";
+.common-boardView-titleBox td{
+	cursor: default;
+}
+.common-boardView-box{
+	width: 1400px;
+	padding: 100px 0 50px 0;
+	margin: 0 auto;
+	margin-top: 100px;
+	background-color: palegoldenrod;
+	box-sizing: border-box;
+}
+.common-boardView-ViewBox{
+	width: 1000px;
+	padding: 30px 0;
+	margin: 0 auto;
+	box-sizing: border-box;
+	background-color: aquamarine;
+}
+.common-boardView-titleBox{
+	width: 900px;
+	height: 40px;   
+	margin-left: 50px;
+	margin-bottom: 30px;
+	border-color: black;
+	border-collapse: collapse;
+}
+.common-boardView-rowTitle{
+	background-color: blanchedalmond;
+	width: 30%;
+	text-align: center;
+	font-size: 20px;
+}
+.common-boardView-rowContent{
+	background-color: azure;
+	font-size: 20px;
+	padding-left: 20px;
+	box-sizing: border-box;
+}
+.common-boardView-menu{
+	width: 25%;
+	height: 45px;
+	background-color: blanchedalmond;
+	text-align: center;
+	font-size: 20px;
+}
+.common-boardView-menu:nth-child(even){
+	background-color: azure;
+}
+.common-boardView-content{
+	width: 900px;
+	height: auto;
+	padding: 20px;
+	margin-left: 50px;
+	background-color: azure;
+	border: 1px solid black;
+	box-sizing: border-box;
+}
+.common-boardView-button{
+	margin-top: 20px;
+	width: 100px;
+	height: 40px;
+	font-size: 25px;
+}
+.common-boardView-goList{
+	margin-left: 50px;
+}
+.common-boardView-goModify{
+	margin-left: 580px;
+}
+.common-boardView-goDelete{
+	margin-left: 10px;
+}

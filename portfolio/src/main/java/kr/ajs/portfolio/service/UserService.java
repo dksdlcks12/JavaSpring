@@ -121,5 +121,7 @@ public interface UserService {
 	public PageMaker getPageMakerNoticeList(Criteria cri);
 
 	public ArrayList<NoticeVo> getNoticeList(Criteria cri);
+
+	public NoticeVo getNotice(int noticeNum);
 	
 }

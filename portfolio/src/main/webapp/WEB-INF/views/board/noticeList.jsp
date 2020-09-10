@@ -17,7 +17,7 @@
 					<c:forEach var="notice" items="${list}">
 					<tr>
 						<td>${notice.noticeNum}</td>
-						<td><a href="#"><div class="common-boardList-titleLine">${notice.noticeTitle}</div></a></td>
+						<td><a href="<%=request.getContextPath()%>/noticeview?noticeNum=${notice.noticeNum}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}"><div class="common-boardList-titleLine">${notice.noticeTitle}</div></a></td>
 						<td>${notice.notice_userId}</td>
 						<td>${notice.noticeDate}</td>
 					</tr>

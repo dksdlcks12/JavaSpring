@@ -544,4 +544,14 @@ public class UserController {
 		mv.setViewName("/board/noticeList");
 		return mv;
 	}
+	@RequestMapping(value= {"/noticeview"}, method = RequestMethod.GET)
+	public ModelAndView noticeViewGet(ModelAndView mv, int noticeNum, int page, int type, String search) throws Exception{
+		NoticeVo notice = userService.getNotice(noticeNum);
+		mv.addObject("notice", notice);
+		mv.addObject("page", page);
+		mv.addObject("type", type);
+		mv.addObject("search", search);
+		mv.setViewName("/board/noticeView");
+		return mv;
+	}
 }
