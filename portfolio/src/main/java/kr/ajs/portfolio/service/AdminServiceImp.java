@@ -14,6 +14,7 @@ import kr.ajs.portfolio.vo.NoticeVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
+import kr.ajs.portfolio.vo.QaVo;
 import kr.ajs.portfolio.vo.UserVo;
 
 @Service
@@ -142,4 +143,5 @@ public class AdminServiceImp implements AdminService {
 		// TODO Auto-generated method stub
 		adminDao.noticeModify(notice);
 	}
+	
 }

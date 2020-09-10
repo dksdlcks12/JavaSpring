@@ -7,7 +7,7 @@
        		<c:if test="${user.userAuth ne 'admin'}">
 	           	<ul class="user-set-topMenuBox">
 					<a href="<%=request.getContextPath()%>/noticelist" class="user-set-notice">공지사항</a>
-					<a href="#" class="user-set-QA">Q&A</a>
+					<a href="<%=request.getContextPath()%>/qalist" class="user-set-QA">Q&A</a>
 					<a href="#" class="user-set-review">리뷰</a>
 					<a href="<%=request.getContextPath()%>/cart" class="user-set-cart">장바구니</a>
 					<a href="<%=request.getContextPath()%>/wishlist" class="user-set-wishList">위시리스트</a>
@@ -41,7 +41,7 @@
 			<c:if test="${user.userAuth eq 'admin'}">
 				<ul class="admin-set-topMenuBox">
 					<a href="<%=request.getContextPath()%>/noticelist" class="admin-set-notice">공지사항</a>
-					<a href="#" class="admin-set-QA">Q&A</a>
+					<a href="<%=request.getContextPath()%>/qalist" class="admin-set-QA">Q&A</a>
 					<a href="#" class="admin-set-review">리뷰</a>
 					<a href="<%=request.getContextPath()%>/admin/goodsadd" class="admin-set-goodsManage">상품등록</a>
 					<a href="#" class="admin-set-myPage">마이페이지</a>
@@ -109,7 +109,7 @@
 		<a href="<%=request.getContextPath()%>/orderviewlist"><div class="admin-set-rightInfo">미확인<br>주문 개수<br>${countUncheckOrder} 개</div></a>
 		<a href="<%=request.getContextPath()%>/recallviewlist"><div class="admin-set-rightInfo">미확인<br>반품 개수<br>${countUncheckRecall} 개</div></a>
 		<a href="<%=request.getContextPath()%>/asviewlist"><div class="admin-set-rightInfo">미확인<br>A/S 개수<br>${countUncheckAs} 개</div></a>
-		<a href="#"><div class="admin-set-rightInfo">미확인<br>Q<span>&</span>A 개수</div></a>
+		<a href="<%=request.getContextPath()%>/qalist"><div class="admin-set-rightInfo">미확인<br>Q<span>&</span>A 개수</div></a>
 		<div class="user-set-goTop">T O P</div>
 	</div>
 </c:if>

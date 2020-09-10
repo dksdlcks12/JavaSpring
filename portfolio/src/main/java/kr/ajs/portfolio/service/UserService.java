@@ -17,6 +17,7 @@ import kr.ajs.portfolio.vo.AddOrderVo;
 import kr.ajs.portfolio.vo.AsAddVo;
 import kr.ajs.portfolio.vo.AsVo;
 import kr.ajs.portfolio.vo.PostVo;
+import kr.ajs.portfolio.vo.QaVo;
 import kr.ajs.portfolio.vo.RecallAddVo;
 import kr.ajs.portfolio.vo.RecallViewVo;
 import kr.ajs.portfolio.vo.UserVo;
@@ -123,5 +124,11 @@ public interface UserService {
 	public ArrayList<NoticeVo> getNoticeList(Criteria cri);
 
 	public NoticeVo getNotice(int noticeNum);
+
+	public void qaAdd(QaVo qa);
+
+	public PageMaker getPageMakerQaList(Criteria cri);
+
+	public ArrayList<QaVo> getQaList(Criteria cri);
 	
 }

@@ -23,6 +23,7 @@ import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderListVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
+import kr.ajs.portfolio.vo.QaVo;
 import kr.ajs.portfolio.vo.RecallAddVo;
 import kr.ajs.portfolio.vo.RecallViewVo;
 import kr.ajs.portfolio.vo.UserVo;
@@ -358,5 +359,28 @@ public class UserServiceImp implements UserService {
 	public NoticeVo getNotice(int noticeNum) {
 		// TODO Auto-generated method stub
 		return userDao.getNotice(noticeNum);
+	}
+	@Override
+	public void qaAdd(QaVo qa) {
+		// TODO Auto-generated method stub
+		if(qa.getQaIsOpen().equals("Y")) {
+			qa.setQaPw(null);
+		}
+		userDao.qaAdd(qa);
+	}
+	@Override
+	public PageMaker getPageMakerQaList(Criteria cri) {
+		// TODO Auto-generated method stub
+		cri.setPerPageNum(6);
+		PageMaker pm = new PageMaker();
+	    int totalCount = userDao.getQaCount(cri);
+	    pm.setCriteria(cri);
+	    pm.setTotalCount(totalCount);
+	    return pm;
+	}
+	@Override
+	public ArrayList<QaVo> getQaList(Criteria cri) {
+		// TODO Auto-generated method stub
+		return userDao.getQaList(cri);
 	}
 }

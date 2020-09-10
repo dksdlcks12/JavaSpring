@@ -425,4 +425,16 @@
 	<select id="getNotice" resultType="kr.ajs.portfolio.vo.NoticeVo">
 		select * from notice where noticeNum=#{noticeNum}
 	</select>
+	<insert id="qaAdd">
+		insert into qa (qaTitle, qaWriter, qaIsOpen, qaPw, qaContent)
+		values(#{qa.qaTitle}, #{qa.qaWriter}, #{qa.qaIsOpen}, #{qa.qaPw}, #{qa.qaContent})
+	</insert>
+	<select id="getQaCount" resultType="int">
+		select count(*) from qa
+	</select>
+	<select id="getQaList" resultType="kr.ajs.portfolio.vo.QaVo">
+		select * from qa
+		order by qaNum desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
 </mapper>

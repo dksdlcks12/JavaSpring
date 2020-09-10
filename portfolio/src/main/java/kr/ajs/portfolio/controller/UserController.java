@@ -36,6 +36,7 @@ import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderListVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
+import kr.ajs.portfolio.vo.QaVo;
 import kr.ajs.portfolio.vo.RecallAddVo;
 import kr.ajs.portfolio.vo.RecallViewVo;
 import kr.ajs.portfolio.vo.UserVo;
@@ -532,7 +533,7 @@ public class UserController {
 		return mv;
 	}
 	@RequestMapping(value= {"/noticelist"}, method = RequestMethod.GET)
-	public ModelAndView noticeGet(ModelAndView mv, HttpServletRequest request, Criteria cri) throws Exception{
+	public ModelAndView noticeListGet(ModelAndView mv, HttpServletRequest request, Criteria cri) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		mv = adminService.adminCountInfo(mv);
 		PageMaker pm = userService.getPageMakerNoticeList(cri);
@@ -553,5 +554,38 @@ public class UserController {
 		mv.addObject("search", search);
 		mv.setViewName("/board/noticeView");
 		return mv;
+	}
+	@RequestMapping(value= {"/qalist"}, method = RequestMethod.GET)
+	public ModelAndView qaListGet(ModelAndView mv, HttpServletRequest request, Criteria cri) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		mv = adminService.adminCountInfo(mv);
+		PageMaker pm = userService.getPageMakerQaList(cri);
+		ArrayList<QaVo> list;
+		list = userService.getQaList(cri);
+		mv.addObject("pm", pm);
+		mv.addObject("list", list);
+		mv.setViewName("/board/qaList");
+		return mv;
+	}
+	@RequestMapping(value= {"/qawrite"}, method = RequestMethod.GET)
+	public ModelAndView qaWriteGet(ModelAndView mv) throws Exception{
+		mv.setViewName("/board/qaWrite");
+		return mv;
+	}
+	@RequestMapping("/qaimg")
+	@ResponseBody
+	public Map<Object, Object> qaImg(@RequestBody MultipartFile file) throws IOException, Exception{
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    String uploadPath = "D:\\AJS\\JavaSpring\\portfolio\\src\\main\\webapp\\resources\\image\\qa";
+	    String img = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(),file.getBytes());
+	    map.put("img", img);
+	    return map;
+	}
+	@RequestMapping("qaadd")
+	@ResponseBody
+	public Map<Object, Object> qaAdd(@RequestBody ArrayList<QaVo> qa, HttpServletRequest request) throws IOException, Exception{
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		userService.qaAdd(qa.get(0));
+    	return map;
 	}
 }

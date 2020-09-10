@@ -28,8 +28,7 @@
 			['style', ['style']],
 			['font', ['bold', 'underline', 'clear']],
 			['color', ['color']],
-			['insert', ['picture']],
-			['view', ['fullscreen', 'codeview', 'help']]
+			['insert', ['picture']]
 		],
 		callbacks: {
 			onImageUpload: function(files, editor, welEditable) {
@@ -65,8 +64,8 @@
     		index++;
     	})
     	$('.sandNote').html($('.transImg').html());
-    	var noticeTitle = $('.common-boardWrite-title').val();
-		var noticeContent = $('.sandNote').html();
+    	var qaTitle = $('.common-boardWrite-title').val();
+		var qaContent = $('.sandNote').html();
     	if(noticeTitle != ""){
     		if(noticeContent != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'){
     			arr.push({"noticeTitle":noticeTitle, "noticeContent":noticeContent})
