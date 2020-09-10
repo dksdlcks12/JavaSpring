@@ -36,7 +36,8 @@
 					<select name="type" class="common-boardList-searchType">
 						<option value="0" selected>전체</option>
 						<option value="1">제목</option>
-						<option value="2">작성일</option>
+						<option value="2">작성자</option>
+						<option value="3">작성일</option>
 					</select>
 					<input type="text" class="common-boardList-searchContent" name="search">
 					<button class="common-boardList-searchButton"><i class="fas fa-search"></i></button>

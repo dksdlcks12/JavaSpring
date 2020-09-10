@@ -431,9 +431,37 @@
 	</insert>
 	<select id="getQaCount" resultType="int">
 		select count(*) from qa
+		<if test="cri.type == 0">
+			where (qaTitle like concat('%',#{cri.search},'%')
+			or qaWriter like concat('%',#{cri.search},'%')
+			or qaDate like concat('%',#{cri.search},'%'))
+		</if>
+		<if test="cri.type == 1">
+			where qaTitle like concat('%',#{cri.search},'%')
+		</if>
+		<if test="cri.type == 2">
+			where qaWriter like concat('%',#{cri.search},'%')
+		</if>
+		<if test="cri.type == 3">
+			where qaDate like concat('%',#{cri.search},'%')
+		</if>
 	</select>
 	<select id="getQaList" resultType="kr.ajs.portfolio.vo.QaVo">
 		select * from qa
+		<if test="cri.type == 0">
+			where (qaTitle like concat('%',#{cri.search},'%')
+			or qaWriter like concat('%',#{cri.search},'%')
+			or qaDate like concat('%',#{cri.search},'%'))
+		</if>
+		<if test="cri.type == 1">
+			where qaTitle like concat('%',#{cri.search},'%')
+		</if>
+		<if test="cri.type == 2">
+			where qaWriter like concat('%',#{cri.search},'%')
+		</if>
+		<if test="cri.type == 3">
+			where qaDate like concat('%',#{cri.search},'%')
+		</if>
 		order by qaNum desc
 		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
