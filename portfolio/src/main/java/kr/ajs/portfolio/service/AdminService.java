@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.ajs.portfolio.vo.AsVo;
 import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.GoodsVo;
+import kr.ajs.portfolio.vo.NoticeVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
@@ -46,4 +47,6 @@ public interface AdminService {
 	ArrayList<AsVo> getUncheckAs();
 
 	void asStateModify(AsVo as);
+
+	void noticeAdd(NoticeVo notice, UserVo user);
 }

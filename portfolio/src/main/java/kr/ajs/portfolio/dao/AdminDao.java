@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import kr.ajs.portfolio.vo.AsVo;
 import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.GoodsVo;
+import kr.ajs.portfolio.vo.NoticeVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
@@ -56,5 +57,7 @@ public interface AdminDao {
 	ArrayList<AsVo> getUncheckAs();
 
 	void asStateModify(@Param("as")AsVo as);
+
+	void noticeAdd(@Param("notice")NoticeVo notice, @Param("user")UserVo user);
 
 }

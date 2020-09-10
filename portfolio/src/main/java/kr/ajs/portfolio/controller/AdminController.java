@@ -200,9 +200,10 @@ public class AdminController {
 	}
 	@RequestMapping("/admin/noticeadd")
 	@ResponseBody
-	public Map<Object, Object> noticeAdd(@RequestBody ArrayList<NoticeVo> notice) throws IOException, Exception{
+	public Map<Object, Object> noticeAdd(@RequestBody ArrayList<NoticeVo> notice, HttpServletRequest request) throws IOException, Exception{
 	    Map<Object, Object> map = new HashMap<Object, Object>();
-	    System.out.println(notice.get(0));
+	    UserVo user = (UserVo) request.getSession().getAttribute("user");
+	    adminService.noticeAdd(notice.get(0), user);
 	    return map;
 	}
 }

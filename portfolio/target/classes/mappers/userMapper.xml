@@ -394,4 +394,33 @@
 	<select id="getAs" resultType="kr.ajs.portfolio.vo.AsVo">
 		select * from portfolio.as where asNum = #{asNum}
 	</select>
+	<select id="getNoticeListCount" resultType="int">
+		select count(*) from notice
+		<if test="cri.type == 0">
+			where (noticeTitle like concat('%',#{cri.search},'%')
+			or noticeDate like concat('%',#{cri.search},'%'))
+		</if>
+		<if test="cri.type == 1">
+			where noticeTitle like concat('%',#{cri.search},'%')
+		</if>
+		<if test="cri.type == 2">
+			where noticeDate like concat('%',#{cri.search},'%')
+		</if>
+	</select>
+	<select id="getNoticeList" resultType="kr.ajs.portfolio.vo.NoticeVo">
+		select * from notice
+		<if test="cri.type == 0">
+			where (noticeTitle like concat('%',#{cri.search},'%')
+			or noticeDate like concat('%',#{cri.search},'%'))
+		</if>
+		<if test="cri.type == 1">
+			where noticeTitle like concat('%',#{cri.search},'%')
+		</if>
+		<if test="cri.type == 2">
+			where noticeDate like concat('%',#{cri.search},'%')
+		</if>
+		order by noticeNum desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+		
+	</select>
 </mapper>

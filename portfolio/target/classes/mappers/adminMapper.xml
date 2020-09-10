@@ -76,4 +76,8 @@
 	<update id="asStateModify">
 		update portfolio.as set asState=#{as.asState} where asNum = #{as.asNum}
 	</update>
+	<insert id="noticeAdd">
+		insert into notice (noticeTitle, notice_userId, noticeContent)
+		values(#{notice.noticeTitle}, #{user.userId}, #{notice.noticeContent})
+	</insert>
 </mapper>

@@ -10,6 +10,7 @@ import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
+import kr.ajs.portfolio.vo.NoticeVo;
 import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderListVo;
@@ -129,5 +130,9 @@ public interface UserDao {
 	public String getAsUser(@Param("asNum")int asNum, @Param("user")UserVo user);
 
 	public AsVo getAs(@Param("asNum")int asNum);
+
+	public int getNoticeListCount(@Param("cri")Criteria cri);
+
+	public ArrayList<NoticeVo> getNoticeList(@Param("cri")Criteria cri);
 
 }

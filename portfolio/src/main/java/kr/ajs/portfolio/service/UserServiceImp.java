@@ -17,6 +17,7 @@ import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
+import kr.ajs.portfolio.vo.NoticeVo;
 import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderListVo;
@@ -337,5 +338,20 @@ public class UserServiceImp implements UserService {
 	public AsVo getAs(int asNum) {
 		// TODO Auto-generated method stub
 		return userDao.getAs(asNum);
+	}
+	@Override
+	public PageMaker getPageMakerNoticeList(Criteria cri) {
+		// TODO Auto-generated method stub
+		cri.setPerPageNum(6);
+		PageMaker pm = new PageMaker();
+	    int totalCount = userDao.getNoticeListCount(cri);
+	    pm.setCriteria(cri);
+	    pm.setTotalCount(totalCount);
+	    return pm;
+	}
+	@Override
+	public ArrayList<NoticeVo> getNoticeList(Criteria cri) {
+		// TODO Auto-generated method stub
+		return userDao.getNoticeList(cri);
 	}
 }

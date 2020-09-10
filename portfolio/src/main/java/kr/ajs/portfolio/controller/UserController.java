@@ -30,6 +30,7 @@ import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
+import kr.ajs.portfolio.vo.NoticeVo;
 import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderListVo;
@@ -530,12 +531,17 @@ public class UserController {
 		}
 		return mv;
 	}
-	@RequestMapping(value= {"/notice"}, method = RequestMethod.GET)
-	public ModelAndView noticeGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+	@RequestMapping(value= {"/noticelist"}, method = RequestMethod.GET)
+	public ModelAndView noticeGet(ModelAndView mv, HttpServletRequest request, Criteria cri) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		mv = adminService.adminCountInfo(mv);
+		PageMaker pm = userService.getPageMakerNoticeList(cri);
+		ArrayList<NoticeVo> list;
+		list = userService.getNoticeList(cri);
 		mv.addObject("user", user);
-		mv.setViewName("/board/notice");
+		mv.addObject("pm", pm);
+		mv.addObject("list", list);
+		mv.setViewName("/board/noticeList");
 		return mv;
 	}
 }

@@ -10,6 +10,7 @@ import kr.ajs.portfolio.dao.AdminDao;
 import kr.ajs.portfolio.vo.AsVo;
 import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.GoodsVo;
+import kr.ajs.portfolio.vo.NoticeVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderVo;
 import kr.ajs.portfolio.vo.PostVo;
@@ -20,7 +21,6 @@ import kr.ajs.portfolio.vo.UserVo;
 public class AdminServiceImp implements AdminService {
 	@Autowired
 	AdminDao adminDao;
-
 
 	@Override
 	public ModelAndView adminCountInfo(ModelAndView mv) {
@@ -130,5 +130,11 @@ public class AdminServiceImp implements AdminService {
 	public void asStateModify(AsVo as) {
 		// TODO Auto-generated method stub
 		adminDao.asStateModify(as);
+	}
+
+	@Override
+	public void noticeAdd(NoticeVo notice, UserVo user) {
+		// TODO Auto-generated method stub
+		adminDao.noticeAdd(notice, user);
 	}
 }

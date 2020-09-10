@@ -78,7 +78,7 @@
 					contentType:"application/json; charset=UTF-8",
 					success : function(data){
 						alert('공지사항이 성공적으로 등록되었습니다.')
-						location.replace('<%=request.getContextPath()%>/');
+						location.replace('<%=request.getContextPath()%>/noticelist');
 					}
 				});
     		}else{

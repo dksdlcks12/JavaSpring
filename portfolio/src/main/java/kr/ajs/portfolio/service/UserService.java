@@ -9,6 +9,7 @@ import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
+import kr.ajs.portfolio.vo.NoticeVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderListVo;
 import kr.ajs.portfolio.vo.OrderVo;
@@ -116,5 +117,9 @@ public interface UserService {
 	public String getAsUser(int asNum, UserVo user);
 
 	public AsVo getAs(int asNum);
+
+	public PageMaker getPageMakerNoticeList(Criteria cri);
+
+	public ArrayList<NoticeVo> getNoticeList(Criteria cri);
 	
 }
