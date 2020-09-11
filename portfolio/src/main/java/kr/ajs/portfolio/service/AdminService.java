@@ -53,4 +53,6 @@ public interface AdminService {
 
 	void noticeModify(NoticeVo notice);
 
+	void noticeDel(int num);
+
 }

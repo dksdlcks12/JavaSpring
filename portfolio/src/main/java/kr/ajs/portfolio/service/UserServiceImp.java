@@ -366,6 +366,9 @@ public class UserServiceImp implements UserService {
 		if(qa.getQaIsOpen().equals("Y")) {
 			qa.setQaPw(null);
 		}
+		if(qa.getQaPw()!=null) {
+			qa.setQaPw(passwordEncoder.encode(qa.getQaPw()));
+		}
 		userDao.qaAdd(qa);
 		userDao.qaOriginNumAdd(qa.getQaNum());
 	}
@@ -383,5 +386,14 @@ public class UserServiceImp implements UserService {
 	public ArrayList<QaVo> getQaList(Criteria cri) {
 		// TODO Auto-generated method stub
 		return userDao.getQaList(cri);
+	}
+	@Override
+	public boolean qaPwcheck(QaVo qa) {
+		// TODO Auto-generated method stub
+		if(passwordEncoder.matches(qa.getQaPw(), userDao.getQaPw(qa.getQaNum()))){
+			return true;
+		}else {
+			return false;
+		}
 	}
 }

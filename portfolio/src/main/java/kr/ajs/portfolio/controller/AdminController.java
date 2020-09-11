@@ -226,4 +226,12 @@ public class AdminController {
 	    adminService.noticeModify(notice.get(0));
 	    return map;
 	}
+	@RequestMapping("/admin/noticedel")
+	@ResponseBody
+	public Map<Object, Object> noticeDel(@RequestBody Integer noticeNum, HttpServletRequest request) throws Exception{
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    int num = noticeNum;
+	    adminService.noticeDel(num);
+	    return map;
+	}
 }

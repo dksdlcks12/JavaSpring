@@ -83,4 +83,7 @@
 	<update id="noticeModify">
 		update notice set noticeTitle=#{notice.noticeTitle}, noticeContent=#{notice.noticeContent} where noticeNum=#{notice.noticeNum}
 	</update>
+	<update id="noticeDel">
+		update notice set noticeIsDel = 'Y' where noticeNum=#{num}
+	</update>
 </mapper>

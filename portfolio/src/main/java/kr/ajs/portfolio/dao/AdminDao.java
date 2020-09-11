@@ -63,4 +63,6 @@ public interface AdminDao {
 
 	void noticeModify(@Param("notice")NoticeVo notice);
 
+	void noticeDel(@Param("num")int num);
+
 }

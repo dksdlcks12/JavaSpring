@@ -590,11 +590,15 @@ public class UserController {
 	}
 	@RequestMapping(value= {"/qaview"}, method = RequestMethod.GET)
 	public ModelAndView qaViewGet(ModelAndView mv, int qaNum, int page, int type, String search) throws Exception{
-		System.out.println(qaNum);
-		System.out.println(page);
-		System.out.println(type);
-		System.out.println(search);
 		mv.setViewName("/board/qaView");
 		return mv;
+	}
+	@RequestMapping("qapwcheck")
+	@ResponseBody
+	public Map<Object, Object> qaPwCheck(@RequestBody ArrayList<QaVo> qa, HttpServletRequest request) throws Exception{
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		boolean qaPwCheck = userService.qaPwcheck(qa.get(0));
+		map.put("qaPwCheck", qaPwCheck);
+    	return map;
 	}
 }

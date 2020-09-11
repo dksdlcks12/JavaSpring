@@ -406,6 +406,7 @@
 		<if test="cri.type == 2">
 			where noticeDate like concat('%',#{cri.search},'%')
 		</if>
+		and noticeIsDel = 'N'
 	</select>
 	<select id="getNoticeList" resultType="kr.ajs.portfolio.vo.NoticeVo">
 		select * from notice
@@ -419,6 +420,7 @@
 		<if test="cri.type == 2">
 			where noticeDate like concat('%',#{cri.search},'%')
 		</if>
+		and noticeIsDel = 'N'
 		order by noticeNum desc
 		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
@@ -448,6 +450,7 @@
 		<if test="cri.type == 3">
 			where qaDate like concat('%',#{cri.search},'%')
 		</if>
+		and qaIsDel = 'N'
 	</select>
 	<select id="getQaList" resultType="kr.ajs.portfolio.vo.QaVo">
 		select * from qa
@@ -465,7 +468,11 @@
 		<if test="cri.type == 3">
 			where qaDate like concat('%',#{cri.search},'%')
 		</if>
+		and qaIsDel = 'N'
 		order by qaOriginNum desc
 		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<select id="getQaPw" resultType="String">
+		select qaPw from qa where qaNum = #{qaNum}
 	</select>
 </mapper>

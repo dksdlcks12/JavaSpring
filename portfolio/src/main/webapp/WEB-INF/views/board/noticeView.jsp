@@ -18,9 +18,26 @@
 		<a href="<%=request.getContextPath()%>/noticelist?page=${page}&type=${type}&search=${search}"><button class="common-boardView-button common-boardView-goList">목 록</button></a>
 		<c:if test="${user.userAuth eq 'admin'}">
 			<a href="<%=request.getContextPath()%>/admin/noticemodify?noticeNum=${notice.noticeNum}&page=${page}&type=${type}&search=${search}" class="common-boardView-goModify"><button class="common-boardView-button">수 정</button></a>
+			<button class="common-boardView-button common-boardView-goDelete">삭 제</button>
 		</c:if>
 	</div>
 </div>
 <script>
 	$('.common-boardView-content').html($('.common-boardView-content').text());
+	$('.common-boardView-goDelete').click(function(){
+		var noticeNum = ${notice.noticeNum};
+		noticeNum = noticeNum+""; 
+		$.ajax({
+			async:false,
+			type:'POST',
+			data: noticeNum,
+			url:"<%=request.getContextPath()%>/admin/noticedel",
+			dataType:"json",
+			contentType:"application/json; charset=UTF-8",
+			success : function(data){
+				alert('공지사항이 성공적으로 삭제되었습니다.')
+				location.replace('<%=request.getContextPath()%>/noticelist');
+			}
+		});
+	})
 </script>

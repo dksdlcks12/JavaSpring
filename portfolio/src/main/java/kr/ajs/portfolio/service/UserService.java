@@ -130,5 +130,7 @@ public interface UserService {
 	public PageMaker getPageMakerQaList(Criteria cri);
 
 	public ArrayList<QaVo> getQaList(Criteria cri);
+
+	public boolean qaPwcheck(QaVo qa);
 	
 }

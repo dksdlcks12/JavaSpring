@@ -16,7 +16,7 @@
 				<tbody>
 					<c:forEach var="qa" items="${list}">
 						<tr>
-							<td>${qa.qaNum}</td>
+							<td class="common-boardList-num">${qa.qaNum}</td>
 							<c:if test="${qa.qaIsOpen eq 'Y'}">
 								<td><a href="<%=request.getContextPath()%>/qaview?qaNum=${qa.qaNum}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}"><div class="common-boardList-titleLine">${qa.qaTitle}</div></a></td>
 							</c:if>
@@ -79,12 +79,14 @@
 <div class="common-board-pause" style="display:none">
 	<div class="common-board-pauseBox">
 		<div class="common-board-pauseTitle">비밀번호를 입력하여 주세요.<button class="common-board-pauseColse"><i class="fas fa-times common-board-pauseColseImg"></i></button></div>
-		<div><input type="text" class="common-board-pausePassWord"></div>
-		<div><button class="common-board-pausePassWord">확인</button></div>
+		<div><input type="text" class="common-board-pausePassWord noneMemberPassword" maxlength="8"></div>
+		<div><button class=" common-board-pauseCheckButton">확인</button></div>
 	</div>
 </div>
 <script>
+	var qaNum;
 	$('.common-boardList-pauseOn').click(function(){
+		qaNum = $(this).parent().siblings('.common-boardList-num').text();
 		$('.common-board-pause').css({"top":(($(window).height()-$('.common-board-pause').outerHeight())/2+$(window).scrollTop())+"px", "left":(($(window).width()-$('.common-board-pause').outerWidth())/2+$(window).scrollLeft())+"px", "display":"block"});
 		$('.common-board-pause').on('scroll touchmove mousewheel', function(event) {
 			event.preventDefault();
@@ -95,5 +97,26 @@
 	$('.common-board-pauseColseImg').click(function(){
 		$('.common-board-pause').off('scroll touchmove mousewheel');
 		$('.common-board-pause').css("display","none");
+	})
+	$('.common-board-pauseCheckButton').click(function(){
+		var arr = [];
+		var qaPw = $('.common-board-pausePassWord').val();
+		arr.push({"qaNum":qaNum, "qaPw":qaPw});
+		$.ajax({
+			async:false,
+			type:'POST',
+			data: JSON.stringify(arr),
+			url:"<%=request.getContextPath()%>/qapwcheck",
+			dataType:"json",
+			contentType:"application/json; charset=UTF-8",
+			success : function(data){
+				if(data.qaPwCheck){	
+					location.href='<%=request.getContextPath()%>/qaview?qaNum='+qaNum+'&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}' 
+				}else{
+					alert('잘못된 비밀번호 입니다..')
+					location.replace('<%=request.getContextPath()%>/qalist');
+				}
+			}
+		});
 	})
 </script>

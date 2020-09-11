@@ -146,4 +146,6 @@ public interface UserDao {
 
 	public ArrayList<QaVo> getQaList(@Param("cri")Criteria cri);
 
+	public String getQaPw(@Param("qaNum")int qaNum);
+
 }

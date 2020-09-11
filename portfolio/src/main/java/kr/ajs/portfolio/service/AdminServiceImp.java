@@ -143,5 +143,11 @@ public class AdminServiceImp implements AdminService {
 		// TODO Auto-generated method stub
 		adminDao.noticeModify(notice);
 	}
+
+	@Override
+	public void noticeDel(int num) {
+		// TODO Auto-generated method stub
+		adminDao.noticeDel(num);
+	}
 	
 }
