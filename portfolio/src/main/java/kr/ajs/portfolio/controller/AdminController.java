@@ -1,11 +1,13 @@
 package kr.ajs.portfolio.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -235,7 +237,7 @@ public class AdminController {
 	    return map;
 	}
 	@RequestMapping(value= {"/admin/qaanswer"}, method = RequestMethod.GET)
-	public ModelAndView qaAnswerGet(ModelAndView mv, HttpServletRequest request, int qaNum, int page, int type, String search) throws Exception{
+	public ModelAndView qaAnswerGet(ModelAndView mv, HttpServletRequest request, int qaNum, int page, int type, String search, HttpServletResponse response) throws Exception{
 		mv.setViewName("/board/qaAnswer");
 		if(adminService.qaOriginNumCount(qaNum)==1) {
 			mv = adminService.adminCountInfo(mv);
@@ -244,7 +246,11 @@ public class AdminController {
 			mv.addObject("qa", qa);
 			mv.addObject("user", user);
 		}else {
-			mv.setViewName("redirect:/qalist?&page="+page+"%type="+type+"&search"+search);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('등록된 답변이 있습니다..'); location.href='"+request.getContextPath()+"/qalist?&page="+page+"%type="+type+"&search="+search+"'</script>");
+			out.flush();
+			
 		}
 		return mv;
 	}
