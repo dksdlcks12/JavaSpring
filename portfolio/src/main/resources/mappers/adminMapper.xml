@@ -56,7 +56,7 @@
 		update portfolio.order set orderState = #{orderState} where orderNum = #{orderNum}
 	</update>
 	<select id="getUncheckOrder" resultType="kr.ajs.portfolio.vo.OrderVo">
-		select * from portfolio.order where orderState = "미확인" order by orderNum desc limit 0, 6;
+		select * from portfolio.order where orderState = "미확인" order by orderNum asc limit 0, 6;
 	</select>
 	<select id="countUncheckRecall" resultType="int">
 		select count(*) from recall where recallState = "미확인"
@@ -65,13 +65,13 @@
 		update recall set recallState = #{recallState} where recallNum = #{recallNum}
 	</update>
 	<select id="getUncheckRecallList" resultType="kr.ajs.portfolio.vo.BoardRecallListVo">
-		select * from recall where recallState = "미확인" order by recallNum desc limit 0, 6;
+		select * from recall where recallState = "미확인" order by recallNum asc limit 0, 6;
 	</select>
 	<select id="countUncheckAs" resultType="int">
 		select count(*) from portfolio.as where asState = "미확인"
 	</select>
 	<select id="getUncheckAs" resultType="kr.ajs.portfolio.vo.AsVo">
-		select * from portfolio.as where asState = "미확인" order by asNum desc limit 0, 6;
+		select * from portfolio.as where asState = "미확인" order by asNum asc limit 0, 6;
 	</select>
 	<update id="asStateModify">
 		update portfolio.as set asState=#{as.asState} where asNum = #{as.asNum}
@@ -105,7 +105,16 @@
 			where qaOriginNum = #{qa.qaOriginNum}
 		</if>
 		<if test="qa.qaNum!=qa.qaOriginNum">
-			where qaNum = #{qa.qaNum};
+			where qaNum = #{qa.qaNum}
 		</if>
 	</update>
+	<update id="qaStateReset">
+		update qa set qaIsDel = 'N' where qaNum = #{qa.qaOriginNum}
+	</update>
+	<select id="countUncheckQa" resultType="int">
+		select count(*) from qa where qaIsCheck = 'N'
+	</select>
+	<select id="getUncheckQa" resultType="kr.ajs.portfolio.vo.QaVo">
+		select * from qa where qaNum = qaOriginNum and qaIsCheck = 'N' order by qaNum asc limit 0, 6;
+	</select>
 </mapper>

@@ -67,9 +67,12 @@ public class UserController {
 			}
 			ArrayList<AsVo> asList;
 			asList = adminService.getUncheckAs();
+			ArrayList<QaVo> qaList;
+			qaList = adminService.getUncheckQa();
 			mv.addObject("list", list);
 			mv.addObject("recallList", recallList);
 			mv.addObject("asList", asList);
+			mv.addObject("qaList", qaList);
 			mv.setViewName("/main/adminMain");
 		}else {
 			int type = 0;

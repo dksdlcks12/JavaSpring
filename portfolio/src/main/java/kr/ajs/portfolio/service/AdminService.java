@@ -63,4 +63,6 @@ public interface AdminService {
 
 	void qaDel(QaVo qa);
 
+	ArrayList<QaVo> getUncheckQa();
+
 }

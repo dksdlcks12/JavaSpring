@@ -75,4 +75,10 @@ public interface AdminDao {
 
 	void qaDel(@Param("qa")QaVo qa);
 
+	void qaStateReset(@Param("qa")QaVo qa);
+
+	int countUncheckQa();
+
+	ArrayList<QaVo> getUncheckQa();
+
 }

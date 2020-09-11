@@ -109,7 +109,7 @@
 		<a href="<%=request.getContextPath()%>/orderviewlist"><div class="admin-set-rightInfo">미확인<br>주문 개수<br>${countUncheckOrder} 개</div></a>
 		<a href="<%=request.getContextPath()%>/recallviewlist"><div class="admin-set-rightInfo">미확인<br>반품 개수<br>${countUncheckRecall} 개</div></a>
 		<a href="<%=request.getContextPath()%>/asviewlist"><div class="admin-set-rightInfo">미확인<br>A/S 개수<br>${countUncheckAs} 개</div></a>
-		<a href="<%=request.getContextPath()%>/qalist"><div class="admin-set-rightInfo">미확인<br>Q<span>&</span>A 개수</div></a>
+		<a href="<%=request.getContextPath()%>/qalist"><div class="admin-set-rightInfo">미답변<br>Q<span>&</span>A 개수<br>${countUncheckQa} 개</div></a>
 		<div class="user-set-goTop">T O P</div>
 	</div>
 </c:if>

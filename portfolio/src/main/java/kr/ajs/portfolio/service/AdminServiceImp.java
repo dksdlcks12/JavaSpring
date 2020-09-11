@@ -32,6 +32,8 @@ public class AdminServiceImp implements AdminService {
 		mv.addObject("countUncheckRecall", countUncheckRecall);
 		int countUncheckAs = adminDao.countUncheckAs();
 		mv.addObject("countUncheckAs", countUncheckAs);
+		int countUncheckQa = adminDao.countUncheckQa();
+		mv.addObject("countUncheckQa", countUncheckQa);
 		return mv;
 	}
 	
@@ -170,12 +172,21 @@ public class AdminServiceImp implements AdminService {
 	public void qaModify(QaVo qa) {
 		// TODO Auto-generated method stub
 		adminDao.qaModify(qa);
+		if(qa.getQaNum()!=qa.getQaOriginNum()) {
+			adminDao.qaStateReset(qa);
+		}
 	}
 
 	@Override
 	public void qaDel(QaVo qa) {
 		// TODO Auto-generated method stub
 		adminDao.qaDel(qa);
+	}
+
+	@Override
+	public ArrayList<QaVo> getUncheckQa() {
+		// TODO Auto-generated method stub
+		return adminDao.getUncheckQa();
 	}
 	
 }
