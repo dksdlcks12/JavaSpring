@@ -1,5 +1,9 @@
 package kr.ajs.portfolio.vo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class OrderListVo {
 	private int orderListNum;
 	private int orderList_postNum;
@@ -9,11 +13,13 @@ public class OrderListVo {
 	private int orderListPrice;
 	private int orderListUsePoint;
 	private String orderListIsRecall;
+	private String orderListIsReview;
 	private String goodsImg;
 	private String goodsName;
 	private String optionColor;
 	private int payPrice;
 	private String goodsType;
+	private Date orderDate;
 	public int getOrderListNum() {
 		return orderListNum;
 	}
@@ -63,6 +69,12 @@ public class OrderListVo {
 	public void setOrderListIsRecall(String orderListIsRecall) {
 		this.orderListIsRecall = orderListIsRecall;
 	}
+	public String getOrderListIsReview() {
+		return orderListIsReview;
+	}
+	public void setOrderListIsReview(String orderListIsReview) {
+		this.orderListIsReview = orderListIsReview;
+	}
 	public String getGoodsImg() {
 		return goodsImg;
 	}
@@ -93,14 +105,28 @@ public class OrderListVo {
 	public void setGoodsType(String goodsType) {
 		this.goodsType = goodsType;
 	}
+	public String getOrderDate() {
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String to = transFormat.format(orderDate);
+		return to;
+	}
+	public void setOrderDate(String orderDate) {
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			this.orderDate = transFormat.parse(orderDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@Override
 	public String toString() {
 		return "OrderListVo [orderListNum=" + orderListNum + ", orderList_postNum=" + orderList_postNum
 				+ ", orderList_orderNum=" + orderList_orderNum + ", orderList_optionNum=" + orderList_optionNum
 				+ ", orderListCount=" + orderListCount + ", orderListPrice=" + orderListPrice + ", orderListUsePoint="
-				+ orderListUsePoint + ", orderListIsRecall=" + orderListIsRecall + ", goodsImg=" + goodsImg
-				+ ", goodsName=" + goodsName + ", optionColor=" + optionColor + ", payPrice=" + payPrice
-				+ ", goodsType=" + goodsType + "]";
+				+ orderListUsePoint + ", orderListIsRecall=" + orderListIsRecall + ", orderListIsReview="
+				+ orderListIsReview + ", goodsImg=" + goodsImg + ", goodsName=" + goodsName + ", optionColor="
+				+ optionColor + ", payPrice=" + payPrice + ", goodsType=" + goodsType + ", orderDate=" + orderDate
+				+ "]";
 	}
 }

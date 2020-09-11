@@ -9,7 +9,7 @@
 			</tr>
 		</table>
 		<div class="common-boardWrite-Content">
-			<div id="notice"></div>
+			<div id="review"></div>
 		</div>
 		<div class="transImg" hidden></div>
 		<textarea class="sandNote" hidden></textarea>
@@ -18,7 +18,7 @@
 </div>
 <script>
 	var imgList = [];
-	$('#notice').summernote({
+	$('#review').summernote({
 		tabsize: 2,
 		height: 300,
 		minHeight: 300,
@@ -44,7 +44,7 @@
 		$.ajax({
 			data: form_data,
 			type: "POST",
-			url: '<%=request.getContextPath()%>/admin/noticeimg',
+			url: '<%=request.getContextPath()%>/reviewimg',
 			cache: false,
 			contentType: false,
 			enctype: 'multipart/form-data',
@@ -58,27 +58,27 @@
 	$('.common-boardWrite-button').click(function(){
     	var index = 0;
     	var arr = [];
-    	$('.transImg').html($('#notice').summernote('code'));
+    	$('.transImg').html($('#review').summernote('code'));
     	$('.transImg img').each(function(){
-    		$(this).attr('src', '<%=request.getContextPath()%>/resources/image/notice'+imgList[index]);
+    		$(this).attr('src', '<%=request.getContextPath()%>/resources/image/review'+imgList[index]);
     		index++;
     	})
     	$('.sandNote').html($('.transImg').html());
-    	var noticeTitle = $('.common-boardWrite-title').val();
-		var noticeContent = $('.sandNote').html();
-    	if(noticeTitle != ""){
-    		if(noticeContent != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'){
-    			arr.push({"noticeTitle":noticeTitle, "noticeContent":noticeContent})
+    	var reviewTitle = $('.common-boardWrite-title').val();
+		var reviewContent = $('.sandNote').html();
+    	if(reviewTitle != ""){
+    		if(reviewContent != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'){
+    			arr.push({"reviewTitle":reviewTitle, "reviewContent":reviewContent})
     			$.ajax({
 					async:false,
 					type:'POST',
 					data: JSON.stringify(arr),
-					url:"<%=request.getContextPath()%>/admin/noticeadd",
+					url:"<%=request.getContextPath()%>/reviewadd",
 					dataType:"json",
 					contentType:"application/json; charset=UTF-8",
 					success : function(data){
 						alert('공지사항이 성공적으로 등록되었습니다.')
-						location.replace('<%=request.getContextPath()%>/noticelist');
+						location.replace('<%=request.getContextPath()%>/reviewlist');
 					}
 				});
     		}else{

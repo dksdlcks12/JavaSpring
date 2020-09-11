@@ -51,6 +51,9 @@
        		<mapping path="/asapply"/>
        		<mapping path="/asviewlist"/>
        		<mapping path="/asview"/>
+       		<mapping path="/reviewwritelist"/>
+       		<mapping path="/reviewwrite"/>
+       		
         	<beans:ref bean="memberInterceptor"/>
     	</interceptor>
 	</interceptors>

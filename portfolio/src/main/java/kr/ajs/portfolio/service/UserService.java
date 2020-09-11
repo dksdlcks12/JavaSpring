@@ -20,6 +20,7 @@ import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.QaVo;
 import kr.ajs.portfolio.vo.RecallAddVo;
 import kr.ajs.portfolio.vo.RecallViewVo;
+import kr.ajs.portfolio.vo.ReviewVo;
 import kr.ajs.portfolio.vo.UserVo;
 import kr.ajs.portfolio.vo.WishListVo;
 import kr.ajs.portfolio.vo.OptionListVo;
@@ -134,5 +135,11 @@ public interface UserService {
 	public boolean qaPwcheck(QaVo qa);
 
 	public QaVo getQa(int qaNum);
+
+	public PageMaker getPageMakerReviewList(Criteria cri);
+
+	public ArrayList<ReviewVo> getReviewList(Criteria cri);
 	
+	public ArrayList<OrderListVo> getReviewOrderList(UserVo user);
+
 }

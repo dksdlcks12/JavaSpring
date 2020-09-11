@@ -39,6 +39,7 @@ import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.QaVo;
 import kr.ajs.portfolio.vo.RecallAddVo;
 import kr.ajs.portfolio.vo.RecallViewVo;
+import kr.ajs.portfolio.vo.ReviewVo;
 import kr.ajs.portfolio.vo.UserVo;
 
 /**
@@ -610,5 +611,47 @@ public class UserController {
 		mv.addObject("type", type);
 		mv.addObject("search", search);
 		return mv;
+	}
+	@RequestMapping(value= {"/reviewlist"}, method = RequestMethod.GET)
+	public ModelAndView reviewListGet(ModelAndView mv, HttpServletRequest request, Criteria cri) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		mv = adminService.adminCountInfo(mv);
+		PageMaker pm = userService.getPageMakerReviewList(cri);
+		ArrayList<ReviewVo> list;
+		list = userService.getReviewList(cri);
+		mv.addObject("pm", pm);
+		mv.addObject("list", list);
+		mv.setViewName("/board/reviewList");
+		return mv;
+	}
+	@RequestMapping(value= {"/reviewwritelist"}, method = RequestMethod.GET)
+	public ModelAndView reviewWriteListGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		mv.setViewName("/board/reviewWriteList");
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		ArrayList<OrderListVo> list;
+		list = userService.getReviewOrderList(user);
+		mv.addObject("list", list);
+		return mv;
+	}
+	@RequestMapping(value= {"/reviewwrite"}, method = RequestMethod.GET)
+	public ModelAndView reviewWriteGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		mv.setViewName("/board/reviewWrite");
+		return mv;
+	}
+	@RequestMapping("/reviewimg")
+	@ResponseBody
+	public Map<Object, Object> reviewImg(@RequestBody MultipartFile file) throws IOException, Exception{
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    String uploadPath = "D:\\AJS\\JavaSpring\\portfolio\\src\\main\\webapp\\resources\\image\\review";
+	    String img = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(),file.getBytes());
+	    map.put("img", img);
+	    return map;
+	}
+	@RequestMapping("reviewadd")
+	@ResponseBody
+	public Map<Object, Object> reviewAdd(@RequestBody ArrayList<ReviewVo> review, HttpServletRequest request) throws Exception{
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		System.out.println(review.get(0));
+    	return map;
 	}
 }

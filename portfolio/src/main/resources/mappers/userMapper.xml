@@ -478,4 +478,23 @@
 	<select id="getQa" resultType="kr.ajs.portfolio.vo.QaVo">
 		select * from qa where qaNum = #{qaNum}
 	</select>
+	<select id="getReviewCount" resultType="int">
+		select count(*) from review;
+	</select>
+	<select id="getReviewList" resultType="kr.ajs.portfolio.vo.ReviewVo">
+		select * from review
+		where reviewIsDel = 'N'
+		order by reviewNum desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<select id="getReviewOrderList" resultType="kr.ajs.portfolio.vo.OrderListVo">
+		<![CDATA[select orderListNum, orderList_optionNum, goodsImg, goodsName, optionColor, orderDate
+		from orderlist join portfolio.order on orderList_orderNum=orderNum
+		join portfolio.option on orderList_optionNum = optionNum
+		join goods on option_goodsNum = goodsNum
+		where orderUserId = #{user.userId}
+		and date(orderDate) >= date(subdate(now(), INTERVAL 30 DAY)) and date(orderDate) <= date(now())
+		group by orderList_optionNum
+		order by orderListNum asc]]>
+	</select>
 </mapper>

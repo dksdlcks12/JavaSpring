@@ -26,6 +26,7 @@ import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.QaVo;
 import kr.ajs.portfolio.vo.RecallAddVo;
 import kr.ajs.portfolio.vo.RecallViewVo;
+import kr.ajs.portfolio.vo.ReviewVo;
 import kr.ajs.portfolio.vo.UserVo;
 import kr.ajs.portfolio.vo.WishListVo;
 
@@ -328,6 +329,7 @@ public class UserServiceImp implements UserService {
 	@Override
 	public ArrayList<AsVo> getBoardAsList(UserVo user, Criteria cri) {
 		// TODO Auto-generated method stub
+		cri.setPerPageNum(6);
 		return userDao.getAsViewList(user, cri);
 	}
 	@Override
@@ -353,6 +355,7 @@ public class UserServiceImp implements UserService {
 	@Override
 	public ArrayList<NoticeVo> getNoticeList(Criteria cri) {
 		// TODO Auto-generated method stub
+		cri.setPerPageNum(6);
 		return userDao.getNoticeList(cri);
 	}
 	@Override
@@ -385,6 +388,7 @@ public class UserServiceImp implements UserService {
 	@Override
 	public ArrayList<QaVo> getQaList(Criteria cri) {
 		// TODO Auto-generated method stub
+		cri.setPerPageNum(6);
 		return userDao.getQaList(cri);
 	}
 	@Override
@@ -400,5 +404,26 @@ public class UserServiceImp implements UserService {
 	public QaVo getQa(int qaNum) {
 		// TODO Auto-generated method stub
 		return userDao.getQa(qaNum);
+	}
+	@Override
+	public PageMaker getPageMakerReviewList(Criteria cri) {
+		// TODO Auto-generated method stub
+		cri.setPerPageNum(6);
+		PageMaker pm = new PageMaker();
+	    int totalCount = userDao.getReviewCount(cri);
+	    pm.setCriteria(cri);
+	    pm.setTotalCount(totalCount);
+	    return pm;
+	}
+	@Override
+	public ArrayList<ReviewVo> getReviewList(Criteria cri) {
+		// TODO Auto-generated method stub
+		cri.setPerPageNum(6);
+		return userDao.getReviewList(cri);
+	}
+	@Override
+	public ArrayList<OrderListVo> getReviewOrderList(UserVo user) {
+		// TODO Auto-generated method stub
+		return userDao.getReviewOrderList(user);
 	}
 }

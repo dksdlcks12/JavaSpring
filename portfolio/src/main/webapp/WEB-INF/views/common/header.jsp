@@ -8,7 +8,7 @@
 	           	<ul class="user-set-topMenuBox">
 					<a href="<%=request.getContextPath()%>/noticelist" class="user-set-notice">공지사항</a>
 					<a href="<%=request.getContextPath()%>/qalist" class="user-set-QA">Q&A</a>
-					<a href="#" class="user-set-review">리뷰</a>
+					<a href="<%=request.getContextPath()%>/reviewlist" class="user-set-review">리뷰</a>
 					<a href="<%=request.getContextPath()%>/cart" class="user-set-cart">장바구니</a>
 					<a href="<%=request.getContextPath()%>/wishlist" class="user-set-wishList">위시리스트</a>
 					<a href="#" class="user-set-myPage">마이페이지</a>
@@ -42,7 +42,7 @@
 				<ul class="admin-set-topMenuBox">
 					<a href="<%=request.getContextPath()%>/noticelist" class="admin-set-notice">공지사항</a>
 					<a href="<%=request.getContextPath()%>/qalist" class="admin-set-QA">Q&A</a>
-					<a href="#" class="admin-set-review">리뷰</a>
+					<a href="<%=request.getContextPath()%>/reviewlist" class="admin-set-review">리뷰</a>
 					<a href="<%=request.getContextPath()%>/admin/goodsadd" class="admin-set-goodsManage">상품등록</a>
 					<a href="#" class="admin-set-myPage">마이페이지</a>
 					<div class="admin-set-loginInfo">관리자님 환영합니다.</div>

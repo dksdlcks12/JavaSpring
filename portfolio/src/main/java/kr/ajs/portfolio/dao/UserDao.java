@@ -22,6 +22,7 @@ import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.QaVo;
 import kr.ajs.portfolio.vo.RecallAddVo;
 import kr.ajs.portfolio.vo.RecallViewVo;
+import kr.ajs.portfolio.vo.ReviewVo;
 import kr.ajs.portfolio.vo.UserVo;
 import kr.ajs.portfolio.vo.WishListVo;
 
@@ -150,4 +151,10 @@ public interface UserDao {
 
 	public QaVo getQa(@Param("qaNum")int qaNum);
 
+	public int getReviewCount(@Param("cri")Criteria cri);
+
+	public ArrayList<ReviewVo> getReviewList(@Param("cri")Criteria cri);
+
+	public ArrayList<OrderListVo> getReviewOrderList(@Param("user")UserVo user);
+	
 }
