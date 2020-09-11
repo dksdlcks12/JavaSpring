@@ -90,7 +90,22 @@
 		insert into qa (qaOriginNum, qaTitle, qaWriter, qaIsOpen, qaPw, qaContent, qaIsCheck)
 		values(#{qa.qaOriginNum}, #{qa.qaTitle}, #{user.userId}, #{qa.qaIsOpen}, #{qa.qaPw}, #{qa.qaContent}, 'Y')
 	</insert>
+	<update id="qaStateModify">
+		update qa set qaIsCheck = 'Y' where qaNum=#{qa.qaNum}
+	</update>
 	<select id="qaOriginNumCount" resultType="int">
-		select count(*) from qa where qaOriginNum = #{qaOriginNum}
+		select count(*) from qa where qaOriginNum = #{qaOriginNum} and qaIsDel = 'N'
 	</select>
+	<update id="qaModify">
+		update qa set qaTitle = #{qa.qaTitle}, qaContent = #{qa.qaContent} where qaNum = #{qa.qaNum}
+	</update>
+	<update id="qaDel">
+		update qa set qaIsDel = 'Y'
+		<if test="qa.qaNum==qa.qaOriginNum">
+			where qaOriginNum = #{qa.qaOriginNum}
+		</if>
+		<if test="qa.qaNum!=qa.qaOriginNum">
+			where qaNum = #{qa.qaNum};
+		</if>
+	</update>
 </mapper>

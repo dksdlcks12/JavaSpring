@@ -59,4 +59,8 @@ public interface AdminService {
 
 	int qaOriginNumCount(int qaOriginNum);
 
+	void qaModify(QaVo qa);
+
+	void qaDel(QaVo qa);
+
 }

@@ -469,7 +469,7 @@
 			where qaDate like concat('%',#{cri.search},'%')
 		</if>
 		and qaIsDel = 'N'
-		order by qaOriginNum desc
+		order by qaOriginNum desc, qaNum asc
 		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<select id="getQaPw" resultType="String">

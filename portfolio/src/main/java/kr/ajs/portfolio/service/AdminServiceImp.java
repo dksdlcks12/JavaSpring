@@ -157,12 +157,25 @@ public class AdminServiceImp implements AdminService {
 		qa.setQaIsOpen(dbQa.getQaIsOpen());
 		qa.setQaPw(dbQa.getQaPw());
 		adminDao.qaAnswerAdd(qa, user);
+		adminDao.qaStateModify(dbQa);
 	}
 
 	@Override
 	public int qaOriginNumCount(int qaOriginNum) {
 		// TODO Auto-generated method stub
 		return adminDao.qaOriginNumCount(qaOriginNum);
+	}
+
+	@Override
+	public void qaModify(QaVo qa) {
+		// TODO Auto-generated method stub
+		adminDao.qaModify(qa);
+	}
+
+	@Override
+	public void qaDel(QaVo qa) {
+		// TODO Auto-generated method stub
+		adminDao.qaDel(qa);
 	}
 	
 }

@@ -29,4 +29,22 @@
 </div>
 <script>
 	$('.common-boardView-content').html($('.common-boardView-content').text());
+	$('.common-boardView-goDelete').click(function(){
+		var arr = [];
+		var qaNum = ${qa.qaNum};
+		var qaOriginNum = ${qa.qaOriginNum};
+		arr.push({"qaNum":qaNum, "qaOriginNum":qaOriginNum});
+		$.ajax({
+			async:false,
+			type:'POST',
+			data: JSON.stringify(arr),
+			url:"<%=request.getContextPath()%>/admin/qadel",
+			dataType:"json",
+			contentType:"application/json; charset=UTF-8",
+			success : function(data){
+				alert('글이 성공적으로 삭제되었습니다.')
+				location.replace('<%=request.getContextPath()%>/qalist?page=${page}&type=${type}&search=${search}');
+			}
+		});
+	})
 </script>

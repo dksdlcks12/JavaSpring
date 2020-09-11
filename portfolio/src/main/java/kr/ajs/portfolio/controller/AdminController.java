@@ -267,27 +267,36 @@ public class AdminController {
 	@ResponseBody
 	public Map<Object, Object> qaAnswerAdd(@RequestBody ArrayList<QaVo> qa, HttpServletRequest request) throws Exception{
 	    Map<Object, Object> map = new HashMap<Object, Object>();
-	    boolean answerCheck = false;
-	    if(adminService.qaOriginNumCount(qa.get(0).getQaOriginNum())==1) {
-		    UserVo user = (UserVo) request.getSession().getAttribute("user");
-		    QaVo dbQa = userService.getQa(qa.get(0).getQaOriginNum());
-		    adminService.qaAnswerAdd(qa.get(0), dbQa, user);
-	    }else {
-	    	answerCheck = true;
-	    }
-	    map.put("answerCheck", answerCheck);
+	    UserVo user = (UserVo) request.getSession().getAttribute("user");
+	    QaVo dbQa = userService.getQa(qa.get(0).getQaOriginNum());
+	    adminService.qaAnswerAdd(qa.get(0), dbQa, user);
 	    return map;
 	}
 	@RequestMapping(value= {"/admin/qaanswermodify"}, method = RequestMethod.GET)
 	public ModelAndView qaAnswerModifyGet(ModelAndView mv, HttpServletRequest request, int qaNum, int page, int type, String search) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		NoticeVo notice = userService.getNotice(qaNum);
-		mv.addObject("notice", notice);
+		QaVo qa = userService.getQa(qaNum);
+		mv.addObject("qa", qa);
 		mv.addObject("user", user);
 		mv.addObject("page", page);
 		mv.addObject("type", type);
 		mv.addObject("search", search);
-		mv.setViewName("/board/noticeModify");
+		mv.setViewName("/board/qaAnswerModify");
 		return mv;
+	}
+	@RequestMapping("/admin/qaanswermodifyadd")
+	@ResponseBody
+	public Map<Object, Object> qaAnswerModifyAddImg(@RequestBody ArrayList<QaVo> qa, HttpServletRequest request) throws Exception{
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    adminService.qaModify(qa.get(0));
+	    return map;
+	}
+	@RequestMapping("/admin/qadel")
+	@ResponseBody
+	public Map<Object, Object> qaDel(@RequestBody ArrayList<QaVo> qa, HttpServletRequest request) throws Exception{
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    System.out.println(qa.get(0));
+	    adminService.qaDel(qa.get(0));
+	    return map;
 	}
 }

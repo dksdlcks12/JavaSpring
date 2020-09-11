@@ -69,4 +69,10 @@ public interface AdminDao {
 
 	int qaOriginNumCount(@Param("qaOriginNum")int qaOriginNum);
 
+	void qaModify(@Param("qa")QaVo qa);
+
+	void qaStateModify(@Param("qa")QaVo dbQa);
+
+	void qaDel(@Param("qa")QaVo qa);
+
 }

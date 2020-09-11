@@ -5,20 +5,22 @@
 		<table class="common-boardWrite-titleBox" border="1">
 			<tr>
 				<td class="common-boardWrite-rowTitle">제 목</td>
-				<td class="common-boardWrite-rowContent"><input type="text" class="common-boardWrite-title" maxlength="30" value="답변 : ${qa.qaTitle}"></td>
+				<td class="common-boardWrite-rowContent"><input type="text" class="common-boardWrite-title" maxlength="30" value="${qa.qaTitle}"></td>
 			</tr>
 		</table>
 		<div class="common-boardWrite-Content">
-			<div id="qaAnswer"></div>
+			<div id="qaAnswerModify"></div>
 		</div>
 		<div class="transImg" hidden></div>
-		<textarea class="sandNote" hidden></textarea>
+		<textarea class="sandNote" hidden>${qa.qaContent}</textarea>
 		<button class="common-boardWrite-button">등 록</button>
 	</div>
 </div>
 <script>
 	var imgList = [];
-	$('#qaAnswer').summernote({
+	var viewNote = $('.sandNote').text();
+	$('.sandNote').text("");
+	$('#qaAnswerModify').summernote({
 		tabsize: 2,
 		height: 300,
 		minHeight: 300,
@@ -38,6 +40,7 @@
 	        }
 		}
 	});
+	$('#qaAnswerModify').summernote('code', viewNote);
 	function sendFile(file, el) {
 		var form_data = new FormData();
 		form_data.append('file', file);
@@ -58,28 +61,31 @@
 	$('.common-boardWrite-button').click(function(){
     	var index = 0;
     	var arr = [];
-    	$('.transImg').html($('#qaAnswer').summernote('code'));
+    	$('.transImg').html($('#qaAnswerModify').summernote('code'));
     	$('.transImg img').each(function(){
-    		$(this).attr('src', '<%=request.getContextPath()%>/resources/image/qaanswer'+imgList[index]);
-    		index++;
+    		if($(this).attr('src') == "/portfolio/resources/image/photo6.JPG"){
+	    		$(this).attr('src', '<%=request.getContextPath()%>/resources/image/qaanswer'+imgList[index]);
+	    		index++;
+    		}
     	})
     	$('.sandNote').html($('.transImg').html());
-    	var qaOriginNum = ${qa.qaOriginNum};
+    	//여기서 부터 손봐야함
+    	var qaNum = ${qa.qaNum};
     	var qaTitle = $('.common-boardWrite-title').val();
 		var qaContent = $('.sandNote').html();
     	if(qaTitle != ""){
     		if(qaContent != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'){
-    			arr.push({"qaOriginNum":qaOriginNum, "qaTitle":qaTitle, "qaContent":qaContent});
+    			arr.push({"qaNum":qaNum, "qaTitle":qaTitle, "qaContent":qaContent});
     			$.ajax({
 					async:false,
 					type:'POST',
 					data: JSON.stringify(arr),
-					url:"<%=request.getContextPath()%>/admin/qaansweradd",
+					url:"<%=request.getContextPath()%>/admin/qaanswermodifyadd",
 					dataType:"json",
 					contentType:"application/json; charset=UTF-8",
 					success : function(data){
-						alert('답변이 성공적으로 등록되었습니다.')
-						location.replace('<%=request.getContextPath()%>/qalist');
+						alert('답변이 성공적으로 수정되었습니다.')
+						location.replace('<%=request.getContextPath()%>/qaview?qaNum=${qa.qaNum}&page=${page}&type=${type}&search=${search}');
 					}
 				});
     		}else{
