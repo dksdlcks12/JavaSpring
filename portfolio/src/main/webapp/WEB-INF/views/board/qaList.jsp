@@ -17,11 +17,16 @@
 					<c:forEach var="qa" items="${list}">
 						<tr>
 							<td class="common-boardList-num">${qa.qaNum}</td>
-							<c:if test="${qa.qaIsOpen eq 'Y'}">
-								<td><a href="<%=request.getContextPath()%>/qaview?qaNum=${qa.qaNum}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}"><div class="common-boardList-titleLine">${qa.qaTitle}</div></a></td>
+							<c:if test="${user.userAuth ne 'admin'}">
+								<c:if test="${qa.qaIsOpen eq 'Y'}">
+									<td><a href="<%=request.getContextPath()%>/qaview?qaNum=${qa.qaNum}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}"><div class="common-boardList-titleLine">${qa.qaTitle}</div></a></td>
+								</c:if>
+								<c:if test="${qa.qaIsOpen eq 'N'}">
+									<td><div class="common-boardList-titleLine common-boardList-pauseOn"><i class="fas fa-lock"></i> ${qa.qaTitle}</div></a></td>
+								</c:if>
 							</c:if>
-							<c:if test="${qa.qaIsOpen eq 'N'}">
-								<td><div class="common-boardList-titleLine common-boardList-pauseOn"><i class="fas fa-lock"></i> ${qa.qaTitle}</div></a></td>
+							<c:if test="${user.userAuth eq 'admin'}">
+								<td><a href="<%=request.getContextPath()%>/qaview?qaNum=${qa.qaNum}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}"><div class="common-boardList-titleLine"><c:if test="${qa.qaIsOpen eq 'N'}"><i class="fas fa-lock"></i> </c:if>${qa.qaTitle}</div></a></td>
 							</c:if>
 							<td>${qa.qaWriter}</td>
 							<td>${qa.qaDate}</td>
@@ -44,7 +49,7 @@
 				</div>
 			</form>
 			<c:if test="${user.userAuth ne 'admin'}">
-			<a href="<%=request.getContextPath()%>/qawrite"><button class="common-board-write">글쓰기</button></a>
+				<a href="<%=request.getContextPath()%>/qawrite"><button class="common-board-write">글쓰기</button></a>
 			</c:if>
 		</div>
 		<c:if test="${list.size()!=0}">

@@ -6,19 +6,27 @@ import java.util.Date;
 
 public class QaVo {
 	private int qaNum;
+	private int qaOriginNum;
 	private String qaTitle;
 	private String qaWriter;
 	private String qaIsOpen;
 	private String qaPw;
 	private String qaContent;
 	private Date qaDate;
-	private int qaOriginNum;
+	private String qaIsDel;
+	private String qaIsCheck;
 	
 	public int getQaNum() {
 		return qaNum;
 	}
 	public void setQaNum(int qaNum) {
 		this.qaNum = qaNum;
+	}
+	public int getQaOriginNum() {
+		return qaOriginNum;
+	}
+	public void setQaOriginNum(int qaOriginNum) {
+		this.qaOriginNum = qaOriginNum;
 	}
 	public String getQaTitle() {
 		return qaTitle;
@@ -63,17 +71,23 @@ public class QaVo {
 			e.printStackTrace();
 		}
 	}
-	public int getQaOriginNum() {
-		return qaOriginNum;
+	public String getQaIsDel() {
+		return qaIsDel;
 	}
-	public void setQaOriginNum(int qaOriginNum) {
-		this.qaOriginNum = qaOriginNum;
+	public void setQaIsDel(String qaIsDel) {
+		this.qaIsDel = qaIsDel;
+	}
+	public String getQaIsCheck() {
+		return qaIsCheck;
+	}
+	public void setQaIsCheck(String qaIsCheck) {
+		this.qaIsCheck = qaIsCheck;
 	}
 	
 	@Override
 	public String toString() {
-		return "QaVo [qaNum=" + qaNum + ", qaTitle=" + qaTitle + ", qaWriter=" + qaWriter + ", qaIsOpen=" + qaIsOpen
-				+ ", qaPw=" + qaPw + ", qaContent=" + qaContent + ", qaDate=" + qaDate + ", qaOriginNum=" + qaOriginNum
-				+ "]";
+		return "QaVo [qaNum=" + qaNum + ", qaOriginNum=" + qaOriginNum + ", qaTitle=" + qaTitle + ", qaWriter="
+				+ qaWriter + ", qaIsOpen=" + qaIsOpen + ", qaPw=" + qaPw + ", qaContent=" + qaContent + ", qaDate="
+				+ qaDate + ", qaIsDel=" + qaIsDel + ", qaIsCheck=" + qaIsCheck + "]";
 	}
 }

@@ -475,4 +475,7 @@
 	<select id="getQaPw" resultType="String">
 		select qaPw from qa where qaNum = #{qaNum}
 	</select>
+	<select id="getQa" resultType="kr.ajs.portfolio.vo.QaVo">
+		select * from qa where qaNum = #{qaNum}
+	</select>
 </mapper>

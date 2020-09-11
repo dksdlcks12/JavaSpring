@@ -132,5 +132,7 @@ public interface UserService {
 	public ArrayList<QaVo> getQaList(Criteria cri);
 
 	public boolean qaPwcheck(QaVo qa);
+
+	public QaVo getQa(int qaNum);
 	
 }

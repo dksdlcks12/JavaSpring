@@ -5,19 +5,19 @@
 		<table class="common-boardView-titleBox" border="1">
 			<tr>
 				<td class="common-boardView-rowTitle">제 목</td>
-				<td class="common-boardView-rowContent" colspan="3"></td>
+				<td class="common-boardView-rowContent" colspan="3">${qa.qaTitle}</td>
 			</tr>
 			<tr>
 				<td class="common-boardView-menu">작 성 자</td>
-				<td class="common-boardView-menu"></td>
+				<td class="common-boardView-menu">${qa.qaWriter}</td>
 				<td class="common-boardView-menu">게 시 일</td>
-				<td class="common-boardView-menu"></td>
+				<td class="common-boardView-menu">${qa.qaDate}</td>
 			</tr>
 		</table>
-		<div class="common-boardView-content"></div>
-		<a href="<%=request.getContextPath()%>/noticelist?page=${page}&type=${type}&search=${search}"><button class="common-boardView-button common-boardView-goList">목 록</button></a>
+		<div class="common-boardView-content">${qa.qaContent}</div>
+		<a href="<%=request.getContextPath()%>/qalist?page=${page}&type=${type}&search=${search}"><button class="common-boardView-button common-boardView-goList">목 록</button></a>
 		<c:if test="${user.userAuth eq 'admin'}">
-			<a href="<%=request.getContextPath()%>/admin/noticemodify?noticeNum=${notice.noticeNum}&page=${page}&type=${type}&search=${search}" class="common-boardView-goModify"><button class="common-boardView-button">수 정</button></a>
+			<a href="<%=request.getContextPath()%>/admin/noticemodify?noticeNum=${notice.noticeNum}&page=${page}&type=${type}&search=${search}" class="common-boardView-goModify"><button class="common-boardView-button">답 글</button></a>
 			<button class="common-boardView-button common-boardView-goDelete">삭 제</button>
 		</c:if>
 	</div>

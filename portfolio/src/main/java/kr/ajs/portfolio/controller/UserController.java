@@ -562,6 +562,7 @@ public class UserController {
 		PageMaker pm = userService.getPageMakerQaList(cri);
 		ArrayList<QaVo> list;
 		list = userService.getQaList(cri);
+		mv.addObject("user", user);
 		mv.addObject("pm", pm);
 		mv.addObject("list", list);
 		mv.setViewName("/board/qaList");
@@ -588,11 +589,6 @@ public class UserController {
 		userService.qaAdd(qa.get(0));
     	return map;
 	}
-	@RequestMapping(value= {"/qaview"}, method = RequestMethod.GET)
-	public ModelAndView qaViewGet(ModelAndView mv, int qaNum, int page, int type, String search) throws Exception{
-		mv.setViewName("/board/qaView");
-		return mv;
-	}
 	@RequestMapping("qapwcheck")
 	@ResponseBody
 	public Map<Object, Object> qaPwCheck(@RequestBody ArrayList<QaVo> qa, HttpServletRequest request) throws Exception{
@@ -600,5 +596,15 @@ public class UserController {
 		boolean qaPwCheck = userService.qaPwcheck(qa.get(0));
 		map.put("qaPwCheck", qaPwCheck);
     	return map;
+	}
+	@RequestMapping(value= {"/qaview"}, method = RequestMethod.GET)
+	public ModelAndView qaViewGet(ModelAndView mv, int qaNum, int page, int type, String search) throws Exception{
+		mv.setViewName("/board/qaView");
+		QaVo qa = userService.getQa(qaNum);
+		mv.addObject("qa", qa);
+		mv.addObject("page", page);
+		mv.addObject("type", type);
+		mv.addObject("search", search);
+		return mv;
 	}
 }

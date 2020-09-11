@@ -148,4 +148,6 @@ public interface UserDao {
 
 	public String getQaPw(@Param("qaNum")int qaNum);
 
+	public QaVo getQa(@Param("qaNum")int qaNum);
+
 }

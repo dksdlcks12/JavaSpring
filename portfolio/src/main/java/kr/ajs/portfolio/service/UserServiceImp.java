@@ -396,4 +396,9 @@ public class UserServiceImp implements UserService {
 			return false;
 		}
 	}
+	@Override
+	public QaVo getQa(int qaNum) {
+		// TODO Auto-generated method stub
+		return userDao.getQa(qaNum);
+	}
 }

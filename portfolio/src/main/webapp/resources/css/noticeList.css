@@ -99,6 +99,12 @@ a, a:hover{
 .common-boardWrite-isOpen label{
 	font-size: 20px;
 }
+.common-boardList-pauseOn{
+	cursor: default;
+}
+.common-boardList-pauseOn:hover{
+	cursor: pointer;
+}
 .common-board-pause{
 	position: absolute;
 	top: 0;

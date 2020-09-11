@@ -10,7 +10,7 @@ public class NoticeVo {
 	private String noticeTitle;
 	private String noticeContent;
 	private Date noticeDate;
-	
+	private String noticeIsDel;
 	public int getNoticeNum() {
 		return noticeNum;
 	}
@@ -48,10 +48,17 @@ public class NoticeVo {
 			e.printStackTrace();
 		}
 	}
+	public String getNoticeIsDel() {
+		return noticeIsDel;
+	}
+	public void setNoticeIsDel(String noticeIsDel) {
+		this.noticeIsDel = noticeIsDel;
+	}
 	
 	@Override
 	public String toString() {
 		return "NoticeVo [noticeNum=" + noticeNum + ", notice_userId=" + notice_userId + ", noticeTitle=" + noticeTitle
-				+ ", noticeContent=" + noticeContent + ", noticeDate=" + noticeDate + "]";
+				+ ", noticeContent=" + noticeContent + ", noticeDate=" + noticeDate + ", noticeIsDel=" + noticeIsDel
+				+ "]";
 	}
 }
