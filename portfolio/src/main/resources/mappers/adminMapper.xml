@@ -86,4 +86,8 @@
 	<update id="noticeDel">
 		update notice set noticeIsDel = 'Y' where noticeNum=#{num}
 	</update>
+	<insert id="qaAnswerAdd">
+		insert into qa (qaOriginNum, qaTitle, qaWriter, qaIsOpen, qaPw, qaContent, qaIsCheck)
+		values(#{qa.qaOriginNum}, #{qa.qaTitle}, #{user.userId}, #{qa.qaIsOpen}, #{qa.qaPw}, #{qa.qaContent}, 'Y')
+	</insert>
 </mapper>

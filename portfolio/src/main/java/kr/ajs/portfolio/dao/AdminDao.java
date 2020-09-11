@@ -65,4 +65,6 @@ public interface AdminDao {
 
 	void noticeDel(@Param("num")int num);
 
+	void qaAnswerAdd(@Param("qa")QaVo qa, @Param("user")UserVo user);
+
 }

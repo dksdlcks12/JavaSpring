@@ -599,6 +599,7 @@ public class UserController {
 	}
 	@RequestMapping(value= {"/qaview"}, method = RequestMethod.GET)
 	public ModelAndView qaViewGet(ModelAndView mv, int qaNum, int page, int type, String search) throws Exception{
+		mv = adminService.adminCountInfo(mv);
 		mv.setViewName("/board/qaView");
 		QaVo qa = userService.getQa(qaNum);
 		mv.addObject("qa", qa);

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.ajs.portfolio.dao.AdminDao;
+import kr.ajs.portfolio.dao.UserDao;
 import kr.ajs.portfolio.vo.AsVo;
 import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.GoodsVo;
@@ -21,6 +22,8 @@ import kr.ajs.portfolio.vo.UserVo;
 public class AdminServiceImp implements AdminService {
 	@Autowired
 	AdminDao adminDao;
+	@Autowired
+	UserDao userDao;
 
 	@Override
 	public ModelAndView adminCountInfo(ModelAndView mv) {
@@ -148,6 +151,15 @@ public class AdminServiceImp implements AdminService {
 	public void noticeDel(int num) {
 		// TODO Auto-generated method stub
 		adminDao.noticeDel(num);
+	}
+
+	@Override
+	public void qaAnswerAdd(QaVo qa, UserVo user) {
+		// TODO Auto-generated method stub
+		QaVo dbQa = userDao.getQa(qa.getQaOriginNum());
+		qa.setQaIsOpen(dbQa.getQaIsOpen());
+		qa.setQaPw(dbQa.getQaPw());
+		adminDao.qaAnswerAdd(qa, user);
 	}
 	
 }

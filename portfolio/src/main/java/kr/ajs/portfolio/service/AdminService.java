@@ -55,4 +55,6 @@ public interface AdminService {
 
 	void noticeDel(int num);
 
+	void qaAnswerAdd(QaVo qa, UserVo user);
+
 }

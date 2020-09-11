@@ -17,7 +17,12 @@
 		<div class="common-boardView-content">${qa.qaContent}</div>
 		<a href="<%=request.getContextPath()%>/qalist?page=${page}&type=${type}&search=${search}"><button class="common-boardView-button common-boardView-goList">목 록</button></a>
 		<c:if test="${user.userAuth eq 'admin'}">
-			<a href="<%=request.getContextPath()%>/admin/noticemodify?noticeNum=${notice.noticeNum}&page=${page}&type=${type}&search=${search}" class="common-boardView-goModify"><button class="common-boardView-button">답 글</button></a>
+			<c:if test="${qa.qaNum == qa.qaOriginNum}">
+				<a href="<%=request.getContextPath()%>/admin/qaanswer?qaNum=${qa.qaNum}&page=${page}&type=${type}&search=${search}" class="common-boardView-goModify"><button class="common-boardView-button">답 글</button></a>
+			</c:if>
+			<c:if test="${qa.qaNum != qa.qaOriginNum}">
+				<a href="<%=request.getContextPath()%>/admin/qaanswer?qaNum=${qa.qaNum}&page=${page}&type=${type}&search=${search}" class="common-boardView-goModify"><button class="common-boardView-button">수 정</button></a>
+			</c:if>
 			<button class="common-boardView-button common-boardView-goDelete">삭 제</button>
 		</c:if>
 	</div>

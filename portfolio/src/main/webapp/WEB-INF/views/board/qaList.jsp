@@ -19,14 +19,14 @@
 							<td class="common-boardList-num">${qa.qaNum}</td>
 							<c:if test="${user.userAuth ne 'admin'}">
 								<c:if test="${qa.qaIsOpen eq 'Y'}">
-									<td><a href="<%=request.getContextPath()%>/qaview?qaNum=${qa.qaNum}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}"><div class="common-boardList-titleLine">${qa.qaTitle}</div></a></td>
+									<td><a href="<%=request.getContextPath()%>/qaview?qaNum=${qa.qaNum}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}"><div class="common-boardList-titleLine"><c:if test="${qa.qaNum != qa.qaOriginNum}">ㄴ </c:if>${qa.qaTitle}</div></a></td>
 								</c:if>
 								<c:if test="${qa.qaIsOpen eq 'N'}">
-									<td><div class="common-boardList-titleLine common-boardList-pauseOn"><i class="fas fa-lock"></i> ${qa.qaTitle}</div></a></td>
+									<td><div class="common-boardList-titleLine common-boardList-pauseOn"><c:if test="${qa.qaNum != qa.qaOriginNum}">ㄴ </c:if><i class="fas fa-lock"></i> ${qa.qaTitle}</div></a></td>
 								</c:if>
 							</c:if>
 							<c:if test="${user.userAuth eq 'admin'}">
-								<td><a href="<%=request.getContextPath()%>/qaview?qaNum=${qa.qaNum}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}"><div class="common-boardList-titleLine"><c:if test="${qa.qaIsOpen eq 'N'}"><i class="fas fa-lock"></i> </c:if>${qa.qaTitle}</div></a></td>
+								<td><a href="<%=request.getContextPath()%>/qaview?qaNum=${qa.qaNum}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}"><div class="common-boardList-titleLine"><c:if test="${qa.qaNum != qa.qaOriginNum}">ㄴ </c:if><c:if test="${qa.qaIsOpen eq 'N'}"><i class="fas fa-lock"></i> </c:if>${qa.qaTitle}</div></a></td>
 							</c:if>
 							<td>${qa.qaWriter}</td>
 							<td>${qa.qaDate}</td>

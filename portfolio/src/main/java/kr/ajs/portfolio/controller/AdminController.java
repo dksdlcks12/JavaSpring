@@ -234,4 +234,32 @@ public class AdminController {
 	    adminService.noticeDel(num);
 	    return map;
 	}
+	@RequestMapping(value= {"/admin/qaanswer"}, method = RequestMethod.GET)
+	public ModelAndView qaAnswerGet(ModelAndView mv, HttpServletRequest request, int qaNum, int page, int type, String search) throws Exception{
+		mv = adminService.adminCountInfo(mv);
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		QaVo qa = userService.getQa(qaNum);
+		mv.addObject("qa", qa);
+		mv.addObject("user", user);
+		mv.setViewName("/board/qaAnswer");
+		return mv;
+	}
+	@RequestMapping("/admin/qaanswerimg")
+	@ResponseBody
+	public Map<Object, Object> qaAnswerImg(@RequestBody MultipartFile file) throws IOException, Exception{
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    String uploadPath = "D:\\AJS\\JavaSpring\\portfolio\\src\\main\\webapp\\resources\\image\\qaanswer";
+	    String img = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(),file.getBytes());
+	    map.put("img", img);
+	    return map;
+	}
+	@RequestMapping("/admin/qaansweradd")
+	@ResponseBody
+	public Map<Object, Object> qaAnswerAdd(@RequestBody ArrayList<QaVo> qa, HttpServletRequest request) throws Exception{
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    UserVo user = (UserVo) request.getSession().getAttribute("user");
+	    System.out.println(qa.get(0));
+	    adminService.qaAnswerAdd(qa.get(0), user);
+	    return map;
+	}
 }
