@@ -4,6 +4,10 @@
 	<div class="common-boardWrite-writeBox">
 		<table class="common-boardWrite-titleBox" border="1">
 			<tr>
+				<td class="common-boardWrite-rowTitle">제 목</td>
+				<td class="common-boardWrite-rowContent"><input type="text" class="common-boardWrite-title"></td>
+			</tr>
+			<tr>
 				<td class="common-boardWrite-rowTitle">작성자</td>
 				<td class="common-boardWrite-rowContent"><input type="text" class="common-boardWrite-reviewWriter" maxlength="16"> 16자 이내로 입력해 주세요.</td>
 			</tr>

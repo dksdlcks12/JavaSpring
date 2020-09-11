@@ -22,8 +22,6 @@ import kr.ajs.portfolio.vo.UserVo;
 public class AdminServiceImp implements AdminService {
 	@Autowired
 	AdminDao adminDao;
-	@Autowired
-	UserDao userDao;
 
 	@Override
 	public ModelAndView adminCountInfo(ModelAndView mv) {
@@ -154,12 +152,17 @@ public class AdminServiceImp implements AdminService {
 	}
 
 	@Override
-	public void qaAnswerAdd(QaVo qa, UserVo user) {
+	public void qaAnswerAdd(QaVo qa, QaVo dbQa, UserVo user) {
 		// TODO Auto-generated method stub
-		QaVo dbQa = userDao.getQa(qa.getQaOriginNum());
 		qa.setQaIsOpen(dbQa.getQaIsOpen());
 		qa.setQaPw(dbQa.getQaPw());
 		adminDao.qaAnswerAdd(qa, user);
+	}
+
+	@Override
+	public int qaOriginNumCount(int qaOriginNum) {
+		// TODO Auto-generated method stub
+		return adminDao.qaOriginNumCount(qaOriginNum);
 	}
 	
 }

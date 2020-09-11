@@ -78,8 +78,13 @@
 					dataType:"json",
 					contentType:"application/json; charset=UTF-8",
 					success : function(data){
-						alert('답변이 성공적으로 등록되었습니다.')
-						location.replace('<%=request.getContextPath()%>/qalist');
+						if(answerCheck){
+							alert('등록된 답변이 있습니다.')
+							location.replace('<%=request.getContextPath()%>/qalist');
+						}else{
+							alert('답변이 성공적으로 등록되었습니다.')
+							location.replace('<%=request.getContextPath()%>/qalist');
+						}
 					}
 				});
     		}else{

@@ -67,4 +67,6 @@ public interface AdminDao {
 
 	void qaAnswerAdd(@Param("qa")QaVo qa, @Param("user")UserVo user);
 
+	int qaOriginNumCount(@Param("qaOriginNum")int qaOriginNum);
+
 }

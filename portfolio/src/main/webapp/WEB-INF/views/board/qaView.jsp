@@ -21,7 +21,7 @@
 				<a href="<%=request.getContextPath()%>/admin/qaanswer?qaNum=${qa.qaNum}&page=${page}&type=${type}&search=${search}" class="common-boardView-goModify"><button class="common-boardView-button">답 글</button></a>
 			</c:if>
 			<c:if test="${qa.qaNum != qa.qaOriginNum}">
-				<a href="<%=request.getContextPath()%>/admin/qaanswer?qaNum=${qa.qaNum}&page=${page}&type=${type}&search=${search}" class="common-boardView-goModify"><button class="common-boardView-button">수 정</button></a>
+				<a href="<%=request.getContextPath()%>/admin/qaanswermodify?qaNum=${qa.qaNum}&page=${page}&type=${type}&search=${search}" class="common-boardView-goModify"><button class="common-boardView-button">수 정</button></a>
 			</c:if>
 			<button class="common-boardView-button common-boardView-goDelete">삭 제</button>
 		</c:if>

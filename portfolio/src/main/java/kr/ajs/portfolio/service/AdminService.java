@@ -55,6 +55,8 @@ public interface AdminService {
 
 	void noticeDel(int num);
 
-	void qaAnswerAdd(QaVo qa, UserVo user);
+	void qaAnswerAdd(QaVo qa, QaVo dbQa, UserVo user);
+
+	int qaOriginNumCount(int qaOriginNum);
 
 }

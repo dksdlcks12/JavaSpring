@@ -16,7 +16,7 @@
 				<tbody>
 					<c:forEach var="qa" items="${list}">
 						<tr>
-							<td class="common-boardList-num">${qa.qaNum}</td>
+							<td class="common-boardList-num"><c:if test="${qa.qaNum == qa.qaOriginNum}">${qa.qaNum}</c:if></td>
 							<c:if test="${user.userAuth ne 'admin'}">
 								<c:if test="${qa.qaIsOpen eq 'Y'}">
 									<td><a href="<%=request.getContextPath()%>/qaview?qaNum=${qa.qaNum}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}"><div class="common-boardList-titleLine"><c:if test="${qa.qaNum != qa.qaOriginNum}">ㄴ </c:if>${qa.qaTitle}</div></a></td>

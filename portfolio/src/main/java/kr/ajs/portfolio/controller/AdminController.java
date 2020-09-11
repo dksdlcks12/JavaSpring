@@ -236,12 +236,16 @@ public class AdminController {
 	}
 	@RequestMapping(value= {"/admin/qaanswer"}, method = RequestMethod.GET)
 	public ModelAndView qaAnswerGet(ModelAndView mv, HttpServletRequest request, int qaNum, int page, int type, String search) throws Exception{
-		mv = adminService.adminCountInfo(mv);
-		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		QaVo qa = userService.getQa(qaNum);
-		mv.addObject("qa", qa);
-		mv.addObject("user", user);
 		mv.setViewName("/board/qaAnswer");
+		if(adminService.qaOriginNumCount(qaNum)==1) {
+			mv = adminService.adminCountInfo(mv);
+			UserVo user = (UserVo) request.getSession().getAttribute("user");
+			QaVo qa = userService.getQa(qaNum);
+			mv.addObject("qa", qa);
+			mv.addObject("user", user);
+		}else {
+			mv.setViewName("redirect:/qalist?&page="+page+"%type="+type+"&search"+search);
+		}
 		return mv;
 	}
 	@RequestMapping("/admin/qaanswerimg")
@@ -257,9 +261,27 @@ public class AdminController {
 	@ResponseBody
 	public Map<Object, Object> qaAnswerAdd(@RequestBody ArrayList<QaVo> qa, HttpServletRequest request) throws Exception{
 	    Map<Object, Object> map = new HashMap<Object, Object>();
-	    UserVo user = (UserVo) request.getSession().getAttribute("user");
-	    System.out.println(qa.get(0));
-	    adminService.qaAnswerAdd(qa.get(0), user);
+	    boolean answerCheck = false;
+	    if(adminService.qaOriginNumCount(qa.get(0).getQaOriginNum())==1) {
+		    UserVo user = (UserVo) request.getSession().getAttribute("user");
+		    QaVo dbQa = userService.getQa(qa.get(0).getQaOriginNum());
+		    adminService.qaAnswerAdd(qa.get(0), dbQa, user);
+	    }else {
+	    	answerCheck = true;
+	    }
+	    map.put("answerCheck", answerCheck);
 	    return map;
+	}
+	@RequestMapping(value= {"/admin/qaanswermodify"}, method = RequestMethod.GET)
+	public ModelAndView qaAnswerModifyGet(ModelAndView mv, HttpServletRequest request, int qaNum, int page, int type, String search) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		NoticeVo notice = userService.getNotice(qaNum);
+		mv.addObject("notice", notice);
+		mv.addObject("user", user);
+		mv.addObject("page", page);
+		mv.addObject("type", type);
+		mv.addObject("search", search);
+		mv.setViewName("/board/noticeModify");
+		return mv;
 	}
 }

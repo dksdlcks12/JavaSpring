@@ -90,4 +90,7 @@
 		insert into qa (qaOriginNum, qaTitle, qaWriter, qaIsOpen, qaPw, qaContent, qaIsCheck)
 		values(#{qa.qaOriginNum}, #{qa.qaTitle}, #{user.userId}, #{qa.qaIsOpen}, #{qa.qaPw}, #{qa.qaContent}, 'Y')
 	</insert>
+	<select id="qaOriginNumCount" resultType="int">
+		select count(*) from qa where qaOriginNum = #{qaOriginNum}
+	</select>
 </mapper>
