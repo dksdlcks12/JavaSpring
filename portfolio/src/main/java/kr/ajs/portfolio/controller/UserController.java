@@ -621,6 +621,7 @@ public class UserController {
 		list = userService.getReviewList(cri);
 		mv.addObject("pm", pm);
 		mv.addObject("list", list);
+		mv.addObject("user", user);
 		mv.setViewName("/board/reviewList");
 		return mv;
 	}
@@ -657,4 +658,17 @@ public class UserController {
 		userService.reviewAdd(review.get(0), user);
     	return map;
 	}
+	@RequestMapping(value= {"/reviewlookup"}, method = RequestMethod.GET)
+	public ModelAndView reviewLookUpGet(ModelAndView mv, HttpServletRequest request, int reviewNum, int page, int type, String search) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		ReviewVo review = userService.getreview(reviewNum);
+		mv.addObject("user", user);
+		mv.addObject("review", review);
+		mv.addObject("page", page);
+		mv.addObject("type", type);
+		mv.addObject("search", search);
+		mv.setViewName("/board/reviewLookUp");
+		return mv;
+	}
+	
 }

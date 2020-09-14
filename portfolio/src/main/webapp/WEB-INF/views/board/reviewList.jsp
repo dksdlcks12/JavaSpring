@@ -17,7 +17,7 @@
 					<c:forEach var="review" items="${list}">
 					<tr>
 						<td>${review.reviewNum}</td>
-						<td><a href="<%=request.getContextPath()%>/noticeview?noticeNum=${review.reviewNum}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}"><div class="common-boardList-titleLine">${review.reviewTitle}</div></a></td>
+						<td><a href="<%=request.getContextPath()%>/reviewlookup?reviewNum=${review.reviewNum}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}"><div class="common-boardList-titleLine">${review.reviewTitle}</div></a></td>
 						<td>${review.review_userId}</td>
 						<td>${review.reviewDate}</td>
 					</tr>

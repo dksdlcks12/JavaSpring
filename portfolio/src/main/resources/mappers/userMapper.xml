@@ -506,4 +506,9 @@
 	<update id="orderListIsReviewUpdate">
 		update orderlist set orderListIsReview = 'Y' where orderlistNum=#{review.review_orderListNum}
 	</update>
+	<select id="getreview" resultType="kr.ajs.portfolio.vo.ReviewVo">
+		select * from review
+		where reviewNum = ${reviewNum}
+		and reviewIsDel = 'N'
+	</select>
 </mapper>

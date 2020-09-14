@@ -432,4 +432,9 @@ public class UserServiceImp implements UserService {
 		userDao.reviewAdd(review, user);
 		userDao.orderListIsReviewUpdate(review);
 	}
+	@Override
+	public ReviewVo getreview(int reviewNum) {
+		// TODO Auto-generated method stub
+		return userDao.getreview(reviewNum);
+	}
 }
