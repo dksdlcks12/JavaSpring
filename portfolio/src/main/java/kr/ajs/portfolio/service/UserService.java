@@ -21,6 +21,7 @@ import kr.ajs.portfolio.vo.QaVo;
 import kr.ajs.portfolio.vo.RecallAddVo;
 import kr.ajs.portfolio.vo.RecallViewVo;
 import kr.ajs.portfolio.vo.ReviewVo;
+import kr.ajs.portfolio.vo.SearchVo;
 import kr.ajs.portfolio.vo.UserVo;
 import kr.ajs.portfolio.vo.WishListVo;
 import kr.ajs.portfolio.vo.OptionListVo;
@@ -151,5 +152,9 @@ public interface UserService {
 	public void reviewDel(ReviewVo review);
 
 	public ArrayList<NoticeVo> getNoticeMain();
+
+	public PageMaker getPageMakerSearch(SearchVo search, Criteria cri);
+
+	public ArrayList<SearchVo> getGoodsSearch(SearchVo search, Criteria cri);
 
 }

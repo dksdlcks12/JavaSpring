@@ -27,6 +27,7 @@ import kr.ajs.portfolio.vo.QaVo;
 import kr.ajs.portfolio.vo.RecallAddVo;
 import kr.ajs.portfolio.vo.RecallViewVo;
 import kr.ajs.portfolio.vo.ReviewVo;
+import kr.ajs.portfolio.vo.SearchVo;
 import kr.ajs.portfolio.vo.UserVo;
 import kr.ajs.portfolio.vo.WishListVo;
 
@@ -452,5 +453,21 @@ public class UserServiceImp implements UserService {
 	public ArrayList<NoticeVo> getNoticeMain() {
 		// TODO Auto-generated method stub
 		return userDao.getNoticeMain();
+	}
+	@Override
+	public PageMaker getPageMakerSearch(SearchVo search, Criteria cri) {
+		// TODO Auto-generated method stub
+		cri.setPerPageNum(12);
+		PageMaker pm = new PageMaker();
+	    int totalCount = userDao.getSearchCount(search);
+	    pm.setCriteria(cri);
+	    pm.setTotalCount(totalCount);
+	    return pm;
+	}
+	@Override
+	public ArrayList<SearchVo> getGoodsSearch(SearchVo search, Criteria cri) {
+		// TODO Auto-generated method stub
+		cri.setPerPageNum(12);
+		return userDao.getGoodsSearch(search, cri);
 	}
 }

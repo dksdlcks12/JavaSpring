@@ -1,0 +1,35 @@
+$(function(){
+	$('.common-goodsSearch-discountMin').change(function(){
+		$(this).val(Number($(this).val()));
+		if(Number($(this).val())<0){
+			$(this).val(0);
+		}
+		if(Number($(this).val())>Number($('.common-goodsSearch-discountMax').val())){
+			$(this).val($('.common-goodsSearch-discountMax').val());
+		}
+	})
+	$('.common-goodsSearch-discountMax').change(function(){
+		$(this).val(Number($(this).val()));
+		if(Number($(this).val())>100){
+			$(this).val(100);
+		}
+		if(Number($(this).val())<Number($('.common-goodsSearch-discountMin').val())){
+			$(this).val($('.common-goodsSearch-discountMin').val());
+		}
+	})
+	$('.common-goodsSearch-priceMin').change(function(){
+		$(this).val(Number($(this).val()));
+		if(Number($(this).val())<0){
+			$(this).val(0);
+		}
+		if(Number($(this).val())>Number($('.common-goodsSearch-priceMax').val())){
+			$(this).val($('.common-goodsSearch-priceMax').val());
+		}	
+	})
+	$('.common-goodsSearch-priceMax').change(function(){
+		$(this).val(Number($(this).val()));
+		if(Number($(this).val())<Number($('.common-goodsSearch-priceMin').val())){
+			$(this).val($('.common-goodsSearch-priceMin').val());
+		}
+	})
+})

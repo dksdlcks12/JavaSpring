@@ -23,6 +23,7 @@ import kr.ajs.portfolio.vo.QaVo;
 import kr.ajs.portfolio.vo.RecallAddVo;
 import kr.ajs.portfolio.vo.RecallViewVo;
 import kr.ajs.portfolio.vo.ReviewVo;
+import kr.ajs.portfolio.vo.SearchVo;
 import kr.ajs.portfolio.vo.UserVo;
 import kr.ajs.portfolio.vo.WishListVo;
 
@@ -170,5 +171,9 @@ public interface UserDao {
 	public void orderListIsReviewDel(@Param("review")ReviewVo review);
 
 	public ArrayList<NoticeVo> getNoticeMain();
+
+	public int getSearchCount(@Param("search")SearchVo search);
+
+	public ArrayList<SearchVo> getGoodsSearch(@Param("search")SearchVo search, @Param("cri")Criteria cri);
 	
 }

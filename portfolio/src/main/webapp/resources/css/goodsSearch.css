@@ -1,0 +1,111 @@
+@charset "UTF-8";
+.common-goodsSearch-optionBox{
+	width: 1200px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin: 0 auto;
+	margin-bottom: 50px;
+	margin-top: 100px;
+	background-color: aliceblue;
+	position: relative;
+}
+.common-goodsSearch-optionBox>h2{
+	margin-left: 30px;
+}
+.common-goodSearch-optionSubBox{
+	height: 50px;
+	margin: 10px 0 10px 20px;
+	position: relative;
+}
+.common-goodsSearch-optionTitle{
+	width: 200px;
+	height: 50px;
+	background-color: aquamarine;
+	text-align: center;
+	line-height: 50px;
+	font-size: 30px;
+}
+.common-goodsSearch-option{
+	width: 480px;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 220px;
+	font-size: 20px;
+	padding-left: 10px;
+}
+.common-goodsSearch-option + span{
+	position: absolute;
+	top: 0;
+	left: 440px;
+	font-size: 60px;
+	line-height: 40px;
+}
+span + .common-goodsSearch-option{
+	left: 500px;
+}
+.number{
+	width: 200px;
+}
+.common-goodSearch-optionSearchButton{
+	width: 200px;
+	height: 50px;
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	font-size: 30px;
+}
+.common-goodsSearch-box{
+	width: 1400px;
+	padding: 100px 0 50px 0;
+	margin: 0 auto;
+	background-color: palegoldenrod;
+	box-sizing: border-box;
+}
+.common-goodsSearch-goodsTitle{
+	margin-left: 50px;
+	margin-bottom: 30px;
+}
+.common-goodsSearch-goodsSearchBox{
+	margin: 0 auto;
+	width: 1320px;
+	height: auto;
+	background-color: cadetblue;
+}
+.common-goodsSearch-goodsBox{
+	width: 300px;
+	height: 380px;
+	background-color: chartreuse;
+	float: left;
+	margin: 15px;
+}
+.common-goodsSearch-goods{
+	width: 100%;
+	height: 300px;
+	background-color: cyan;
+}
+.common-goodsSearch-goodsInfo{
+	width: 100%;
+	height: 80px;
+	background-color: darkgray;
+}
+.common-goodsSearch-goodsName{
+	width: 100%;
+	height: 50px;
+	background-color: cornsilk;
+}
+.common-goodsSearch-goodsPrice{
+	width: 100%;
+	height: 30px;
+	background-color: lightpink;
+}
+.common-goodsSearch-pagination>*{
+	width: 50px;
+	font-size: 30px;
+	text-align: center;
+}
+.common-goodsSearch-goodsSearchBox::after{
+	clear: both;
+	content: '';
+	display: block;
+}

@@ -70,10 +70,16 @@
 					<li><a href="<%=request.getContextPath()%>/goodslist?type=3&page=1" class="user-set-goEarClip">귀  찌</a></li>
 					<li><a href="<%=request.getContextPath()%>/goodslist?type=4&page=1" class="user-set-goEarRing">귀걸이</a></li>
 				</ul>
-				<div class="user-set-searchBox">
-					<input type="text" class="user-set-search" placeholder="Search">
-					<button class="user-set-searchButton" type="submit"><i class="fas fa-search"></i></button>
-				</div>
+				<form action="<%=request.getContextPath()%>/goodssearch">
+					<div class="user-set-searchBox">
+						<input type="text" class="user-set-search" placeholder="Search" name="search">
+						<input type="number" name="minPirce" hidden>
+						<input type="number" name="maxPirce" hidden>
+						<input type="number" name="minDisCount" hidden>
+						<input type="number" name="maxDisCount" hidden>
+						<button class="user-set-searchButton" type="submit"><i class="fas fa-search"></i></button>
+					</div>
+				</form>
 			</ul>
 		</div>
 	</div>

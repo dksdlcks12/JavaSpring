@@ -523,4 +523,32 @@
 	<select id="getNoticeMain" resultType="kr.ajs.portfolio.vo.NoticeVo">
 		select * from notice order by noticeNum desc limit 0, 6
 	</select>
+	<select id="getSearchCount" resultType="int">
+		select count(*) from goods
+		join post on post_goodsNum = goodsNum
+		where goodsName like concat('%',#{search.search},'%')
+		and goodsPrice >= #{search.minPrice}
+		<if test="search.maxPrice != 0">
+			<![CDATA[and goodsPrice <= #{search.maxPrice}]]>
+		</if>
+		and postDiscount >= #{search.minDisCount}
+		<if test="search.maxDisCount != 0">
+			<![CDATA[and postDiscount <= #{search.maxDisCount}]]>
+		</if>
+	</select>
+	<select id="getGoodsSearch" resultType="kr.ajs.portfolio.vo.SearchVo">
+		select goodsNum, goodsImg, goodsName, goodsPrice from goods
+		join post on post_goodsNum = goodsNum
+		where goodsName like concat('%',#{search.search},'%')
+		and goodsPrice >= #{search.minPrice}
+		<if test="search.maxPrice != 0">
+			<![CDATA[and goodsPrice <= #{search.maxPrice}]]>
+		</if>
+		and postDiscount >= #{search.minDisCount}
+		<if test="search.maxDisCount != 0">
+			<![CDATA[and postDiscount <= #{search.maxDisCount}]]>
+		</if>
+		order by goodsNum desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
 </mapper>

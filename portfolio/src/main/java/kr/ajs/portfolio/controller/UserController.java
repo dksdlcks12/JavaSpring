@@ -40,6 +40,7 @@ import kr.ajs.portfolio.vo.QaVo;
 import kr.ajs.portfolio.vo.RecallAddVo;
 import kr.ajs.portfolio.vo.RecallViewVo;
 import kr.ajs.portfolio.vo.ReviewVo;
+import kr.ajs.portfolio.vo.SearchVo;
 import kr.ajs.portfolio.vo.UserVo;
 
 /**
@@ -663,6 +664,7 @@ public class UserController {
 	@RequestMapping(value= {"/reviewlookup"}, method = RequestMethod.GET)
 	public ModelAndView reviewLookUpGet(ModelAndView mv, HttpServletRequest request, int reviewNum, int page, int type, String search) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		mv = adminService.adminCountInfo(mv);
 		ReviewVo review = userService.getreview(reviewNum);
 		mv.addObject("user", user);
 		mv.addObject("review", review);
@@ -709,5 +711,22 @@ public class UserController {
 		}
 		map.put("check", check);
     	return map;
+	}
+	@RequestMapping(value= {"/goodssearch"}, method = RequestMethod.GET)
+	public ModelAndView goodsSearchGet(ModelAndView mv, HttpServletRequest request, Criteria cri, SearchVo search) throws Exception{
+		System.out.println();
+		mv = adminService.adminCountInfo(mv);
+		System.out.println(search);
+		PageMaker pm = userService.getPageMakerSearch(search, cri);
+		System.out.println(pm);
+		ArrayList<SearchVo> list = userService.getGoodsSearch(search, cri);
+		for(SearchVo tmp:list) {
+			System.out.println(tmp);
+		}
+		mv.addObject("search", search);
+		mv.addObject("list", list);
+		mv.addObject("pm", pm);
+		mv.setViewName("/goods/goodsSearch");
+		return mv;
 	}
 }
