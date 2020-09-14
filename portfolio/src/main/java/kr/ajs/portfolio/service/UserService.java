@@ -150,4 +150,6 @@ public interface UserService {
 
 	public void reviewDel(ReviewVo review);
 
+	public ArrayList<NoticeVo> getNoticeMain();
+
 }

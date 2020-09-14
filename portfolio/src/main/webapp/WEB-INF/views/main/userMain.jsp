@@ -35,26 +35,12 @@
 		</div>
 		<div class="user-main-notice">
 			<h2>공지사항</h2>
-			<a href="#" class="user-main-noticeLine">
-				<div class="user-main-noticeTitle">공지사항1</div>
-				<div class="user-main-noticeDate">2020/06/20</div>
-			</a>
-			<a href="#" class="user-main-noticeLine">
-				<div class="user-main-noticeTitle">공지사항1</div>
-				<div class="user-main-noticeDate">2020/06/20</div>
-			</a>
-			<a href="#" class="user-main-noticeLine">
-				<div class="user-main-noticeTitle">공지사항1</div>
-				<div class="user-main-noticeDate">2020/06/20</div>
-			</a>
-			<a href="#" class="user-main-noticeLine">
-				<div class="user-main-noticeTitle">공지사항1</div>
-				<div class="user-main-noticeDate">2020/06/20</div>
-			</a>
-			<a href="#" class="user-main-noticeLine">
-				<div class="user-main-noticeTitle">공지사항1</div>
-				<div class="user-main-noticeDate">2020/06/20</div>
-			</a>
+			<c:forEach var="notice" items="${noticeList}">
+				<a href="<%=request.getContextPath()%>/noticeview?noticeNum=${notice.noticeNum}&page=1&type=0&search=" class="user-main-noticeLine">
+					<div class="user-main-noticeTitle">${notice.noticeTitle}</div>
+					<div class="user-main-noticeDate">${notice.noticeDate}</div>
+				</a>
+			</c:forEach>
 		</div>
 	</div>
 	<h2 class="user-main-newGoodsTitle">최신 제품</h2>

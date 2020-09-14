@@ -520,4 +520,7 @@
 	<update id="orderListIsReviewDel">
 		update orderlist set orderListIsReview = 'N' where orderlistNum=(select review_orderListNum from review where reviewNum = #{review.reviewNum})
 	</update>
+	<select id="getNoticeMain" resultType="kr.ajs.portfolio.vo.NoticeVo">
+		select * from notice order by noticeNum desc limit 0, 6
+	</select>
 </mapper>

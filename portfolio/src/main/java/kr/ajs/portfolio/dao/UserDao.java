@@ -168,5 +168,7 @@ public interface UserDao {
 	public void reviewDel(@Param("review")ReviewVo review);
 
 	public void orderListIsReviewDel(@Param("review")ReviewVo review);
+
+	public ArrayList<NoticeVo> getNoticeMain();
 	
 }

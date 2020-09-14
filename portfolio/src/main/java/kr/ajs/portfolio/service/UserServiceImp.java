@@ -448,4 +448,9 @@ public class UserServiceImp implements UserService {
 		userDao.reviewDel(review);
 		userDao.orderListIsReviewDel(review);
 	}
+	@Override
+	public ArrayList<NoticeVo> getNoticeMain() {
+		// TODO Auto-generated method stub
+		return userDao.getNoticeMain();
+	}
 }

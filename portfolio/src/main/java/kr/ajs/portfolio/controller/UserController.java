@@ -79,7 +79,10 @@ public class UserController {
 			int type = 0;
 			ArrayList<GoodsVo> list;
 			list = userService.getGoodsList(type, cri);
+			ArrayList<NoticeVo> noticeList;
+			noticeList = userService.getNoticeMain();
 			mv.addObject("list", list);
+			mv.addObject("noticeList", noticeList);
 			mv.setViewName("/main/userMain");		
 		}	
 	    return mv;
@@ -688,7 +691,6 @@ public class UserController {
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		boolean check = false;
 		if(review.get(0).getReview_userId().equals(user.getUserId())) {
-			System.out.println(review.get(0));
 			userService.reviewModify(review.get(0));
 			check = true;
 		}
@@ -702,7 +704,6 @@ public class UserController {
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		boolean check = false;
 		if(user!=null && (review.get(0).getReview_userId().equals(user.getUserId()) || user.getUserAuth().equals("admin"))) {
-			System.out.println(review.get(0));
 			userService.reviewDel(review.get(0));
 			check = true;
 		}
