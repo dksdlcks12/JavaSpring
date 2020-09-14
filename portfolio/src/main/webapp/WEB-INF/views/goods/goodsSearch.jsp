@@ -2,11 +2,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="common-goodsSearch-box"> 
 	<div class="common-goodsSearch-optionBox">
-		<h2>상세검색</h2>
-		<div class="common-goodSearch-optionSubBox"><div class="common-goodsSearch-optionTitle">제품명</div><input type="text" class="common-goodsSearch-option goodsName"></div>
-		<div class="common-goodSearch-optionSubBox"><div class="common-goodsSearch-optionTitle">가격</div><input type="text" class="common-goodsSearch-option number common-goodsSearch-priceMin"><span>~</span><input type="text"  class="common-goodsSearch-option number common-goodsSearch-priceMax"></div>
-		<div class="common-goodSearch-optionSubBox"><div class="common-goodsSearch-optionTitle">할인율</div><input type="text" class="common-goodsSearch-option number common-goodsSearch-discountMin" maxlength="3"><span>~</span><input type="text" class="common-goodsSearch-option number common-goodsSearch-discountMax" maxlength="3"></div>
-		<button class="common-goodSearch-optionSearchButton">검 색</button>
+		<form action="<%=request.getContextPath()%>/goodssearch">
+			<h2>상세검색</h2>
+			<div class="common-goodSearch-optionSubBox"><div class="common-goodsSearch-optionTitle">제품명</div><input type="text" class="common-goodsSearch-option goodsName" name="search" value="${search.search}"></div>
+			<div class="common-goodSearch-optionSubBox"><div class="common-goodsSearch-optionTitle">가격</div><input type="text" class="common-goodsSearch-option number common-goodsSearch-priceMin" name="minPrice" value="${search.minPrice}"><span>~</span><input type="text"  class="common-goodsSearch-option number common-goodsSearch-priceMax" name="maxPrice" value="${search.maxPrice}"></div>
+			<div class="common-goodSearch-optionSubBox"><div class="common-goodsSearch-optionTitle">할인율</div><input type="text" class="common-goodsSearch-option number common-goodsSearch-discountMin" maxlength="3" name="minDisCount" value="${search.minDisCount}"><span>~</span><input type="text" class="common-goodsSearch-option number common-goodsSearch-discountMax" maxlength="3" name="maxDisCount" value="${search.maxDisCount}"></div>
+			<button class="common-goodSearch-optionSearchButton">검 색</button>
+		</form>
 	</div>
 	<div class="common-goodsSearch-goodsSearchBox">
 		<c:if test="${list.size()!=0}">

@@ -6,11 +6,12 @@ public class SearchVo {
 	private String goodsImg;
 	private int goodsPrice;
 	private String search;
-	private int minPrice;
-	private int maxPrice;
-	private int minDisCount;
-	private int maxDisCount;
+	private String minPrice;
+	private String maxPrice;
+	private String minDisCount;
+	private String maxDisCount;
 	
+
 	public int getGoodsNum() {
 		return goodsNum;
 	}
@@ -41,46 +42,31 @@ public class SearchVo {
 	public void setSearch(String search) {
 		this.search = search;
 	}
-	public int getMinPrice() {
+	public String getMinPrice() {
 		return minPrice;
 	}
 	public void setMinPrice(String minPrice) {
-		this.minPrice = Integer.parseInt(minPrice);
-	}
-	public void setMinPrice(int minPrice) {
 		this.minPrice = minPrice;
 	}
-	public int getMaxPrice() {
+	public String getMaxPrice() {
 		return maxPrice;
 	}
 	public void setMaxPrice(String maxPrice) {
-		this.maxPrice = Integer.parseInt(maxPrice);
-	}
-	public void setMaxPrice(int maxPrice) {
 		this.maxPrice = maxPrice;
 	}
-	public int getMinDisCount() {
+	public String getMinDisCount() {
 		return minDisCount;
 	}
 	public void setMinDisCount(String minDisCount) {
-		if(minDisCount=="") {
-			this.minDisCount = 0;
-		}else {
-			this.minDisCount = Integer.parseInt(minDisCount);
-		}
+		this.minDisCount = minDisCount;
 	}
-	public int getMaxDisCount() {
+	public String getMaxDisCount() {
 		return maxDisCount;
 	}
 	public void setMaxDisCount(String maxDisCount) {
-		if(maxDisCount=="") {
-			this.maxDisCount = 0;
-		}else {
-			this.maxDisCount = Integer.parseInt(maxDisCount);
-		}
+		this.maxDisCount = maxDisCount;
 	}
 
-	
 	@Override
 	public String toString() {
 		return "SearchVo [goodsNum=" + goodsNum + ", goodsName=" + goodsName + ", goodsImg=" + goodsImg + ", goodsPrice="

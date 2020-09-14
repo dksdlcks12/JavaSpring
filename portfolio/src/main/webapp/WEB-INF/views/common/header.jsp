@@ -73,10 +73,10 @@
 				<form action="<%=request.getContextPath()%>/goodssearch">
 					<div class="user-set-searchBox">
 						<input type="text" class="user-set-search" placeholder="Search" name="search">
-						<input type="number" name="minPirce" hidden>
-						<input type="number" name="maxPirce" hidden>
-						<input type="number" name="minDisCount" hidden>
-						<input type="number" name="maxDisCount" hidden>
+						<input type="text" name="minPrice" hidden>
+						<input type="text" name="maxPrice" hidden>
+						<input type="text" name="minDisCount" hidden>
+						<input type="text" name="maxDisCount" hidden>
 						<button class="user-set-searchButton" type="submit"><i class="fas fa-search"></i></button>
 					</div>
 				</form>

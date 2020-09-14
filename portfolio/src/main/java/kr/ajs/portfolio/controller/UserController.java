@@ -716,13 +716,8 @@ public class UserController {
 	public ModelAndView goodsSearchGet(ModelAndView mv, HttpServletRequest request, Criteria cri, SearchVo search) throws Exception{
 		System.out.println();
 		mv = adminService.adminCountInfo(mv);
-		System.out.println(search);
 		PageMaker pm = userService.getPageMakerSearch(search, cri);
-		System.out.println(pm);
 		ArrayList<SearchVo> list = userService.getGoodsSearch(search, cri);
-		for(SearchVo tmp:list) {
-			System.out.println(tmp);
-		}
 		mv.addObject("search", search);
 		mv.addObject("list", list);
 		mv.addObject("pm", pm);
