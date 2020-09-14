@@ -493,8 +493,17 @@
 		join portfolio.option on orderList_optionNum = optionNum
 		join goods on option_goodsNum = goodsNum
 		where orderUserId = #{user.userId}
+		and orderListIsRecall = 'N'
+		and orderListIsReview = 'N'
 		and date(orderDate) >= date(subdate(now(), INTERVAL 30 DAY)) and date(orderDate) <= date(now())
 		group by orderList_optionNum
 		order by orderListNum asc]]>
 	</select>
+	<insert id="reviewAdd">
+		insert into review (review_userId, review_orderListNum, reviewTitle, reviewContent)
+		values(#{user.userId}, #{review.review_orderListNum}, #{review.reviewTitle}, #{review.reviewContent})
+	</insert>
+	<update id="orderListIsReviewUpdate">
+		update orderlist set orderListIsReview = 'Y' where orderlistNum=#{review.review_orderListNum}
+	</update>
 </mapper>

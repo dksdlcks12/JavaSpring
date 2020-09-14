@@ -142,4 +142,6 @@ public interface UserService {
 	
 	public ArrayList<OrderListVo> getReviewOrderList(UserVo user);
 
+	public void reviewAdd(ReviewVo review, UserVo user);
+
 }

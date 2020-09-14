@@ -156,5 +156,9 @@ public interface UserDao {
 	public ArrayList<ReviewVo> getReviewList(@Param("cri")Criteria cri);
 
 	public ArrayList<OrderListVo> getReviewOrderList(@Param("user")UserVo user);
+
+	public void reviewAdd(@Param("review")ReviewVo review, @Param("user")UserVo user);
+
+	public void orderListIsReviewUpdate(@Param("review")ReviewVo review);
 	
 }

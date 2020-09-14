@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="common-boardList-box">
 	<div class="common-boardList-boardListBox">
-		<h3 class="common-boardList-title">공 지 사 항</h3>
+		<h3 class="common-boardList-title">리뷰</h3>
 		<c:if test="${list.size()!=0}">
 			<table class="common-boardList-table" border="1">
 				<thead>
@@ -16,10 +16,10 @@
 				<tbody>
 					<c:forEach var="review" items="${list}">
 					<tr>
-						<td>${notice.noticeNum}</td>
+						<td>${review.reviewNum}</td>
 						<td><a href="<%=request.getContextPath()%>/noticeview?noticeNum=${review.reviewNum}&page=${pm.criteria.page}&type=${pm.criteria.type}&search=${pm.criteria.search}"><div class="common-boardList-titleLine">${review.reviewTitle}</div></a></td>
-						<td>${notice.notice_userId}</td>
-						<td>${notice.noticeDate}</td>
+						<td>${review.review_userId}</td>
+						<td>${review.reviewDate}</td>
 					</tr>
 					</c:forEach>
 				</tbody>

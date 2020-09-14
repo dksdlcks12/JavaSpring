@@ -66,9 +66,10 @@
     	$('.sandNote').html($('.transImg').html());
     	var reviewTitle = $('.common-boardWrite-title').val();
 		var reviewContent = $('.sandNote').html();
+		var orderListNum = ${orderListNum};
     	if(reviewTitle != ""){
     		if(reviewContent != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'){
-    			arr.push({"reviewTitle":reviewTitle, "reviewContent":reviewContent})
+    			arr.push({"reviewTitle":reviewTitle, "reviewContent":reviewContent, "review_orderListNum":orderListNum})
     			$.ajax({
 					async:false,
 					type:'POST',

@@ -634,7 +634,8 @@ public class UserController {
 		return mv;
 	}
 	@RequestMapping(value= {"/reviewwrite"}, method = RequestMethod.GET)
-	public ModelAndView reviewWriteGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+	public ModelAndView reviewWriteGet(ModelAndView mv, HttpServletRequest request, int orderListNum) throws Exception{
+		mv.addObject("orderListNum", orderListNum);
 		mv.setViewName("/board/reviewWrite");
 		return mv;
 	}
@@ -651,7 +652,9 @@ public class UserController {
 	@ResponseBody
 	public Map<Object, Object> reviewAdd(@RequestBody ArrayList<ReviewVo> review, HttpServletRequest request) throws Exception{
 		Map<Object, Object> map = new HashMap<Object, Object>();
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		System.out.println(review.get(0));
+		userService.reviewAdd(review.get(0), user);
     	return map;
 	}
 }
