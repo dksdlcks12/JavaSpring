@@ -654,7 +654,6 @@ public class UserController {
 	public Map<Object, Object> reviewAdd(@RequestBody ArrayList<ReviewVo> review, HttpServletRequest request) throws Exception{
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		System.out.println(review.get(0));
 		userService.reviewAdd(review.get(0), user);
     	return map;
 	}
@@ -670,5 +669,44 @@ public class UserController {
 		mv.setViewName("/board/reviewLookUp");
 		return mv;
 	}
-	
+	@RequestMapping(value= {"/reviewmodify"}, method = RequestMethod.GET)
+	public ModelAndView reviewModifyGet(ModelAndView mv, HttpServletRequest request, int reviewNum, int page, int type, String search) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		ReviewVo review = userService.getreview(reviewNum);
+		mv.addObject("user", user);
+		mv.addObject("review", review);
+		mv.addObject("page", page);
+		mv.addObject("type", type);
+		mv.addObject("search", search);
+		mv.setViewName("/board/reviewModify");
+		return mv;
+	}
+	@RequestMapping("setreviewmodify")
+	@ResponseBody
+	public Map<Object, Object> setReviewModify(@RequestBody ArrayList<ReviewVo> review, HttpServletRequest request) throws Exception{
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		boolean check = false;
+		if(review.get(0).getReview_userId().equals(user.getUserId())) {
+			System.out.println(review.get(0));
+			userService.reviewModify(review.get(0));
+			check = true;
+		}
+		map.put("check", check);
+    	return map;
+	}
+	@RequestMapping("reviewdel")
+	@ResponseBody
+	public Map<Object, Object> reviewDel(@RequestBody ArrayList<ReviewVo> review, HttpServletRequest request) throws Exception{
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		boolean check = false;
+		if(user!=null && (review.get(0).getReview_userId().equals(user.getUserId()) || user.getUserAuth().equals("admin"))) {
+			System.out.println(review.get(0));
+			userService.reviewDel(review.get(0));
+			check = true;
+		}
+		map.put("check", check);
+    	return map;
+	}
 }

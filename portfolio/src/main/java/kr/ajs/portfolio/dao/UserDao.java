@@ -162,5 +162,11 @@ public interface UserDao {
 	public void orderListIsReviewUpdate(@Param("review")ReviewVo review);
 
 	public ReviewVo getreview(@Param("reviewNum")int reviewNum);
+
+	public void reviewModify(@Param("review")ReviewVo review);
+
+	public void reviewDel(@Param("review")ReviewVo review);
+
+	public void orderListIsReviewDel(@Param("review")ReviewVo review);
 	
 }

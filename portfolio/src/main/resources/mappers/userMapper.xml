@@ -479,7 +479,7 @@
 		select * from qa where qaNum = #{qaNum}
 	</select>
 	<select id="getReviewCount" resultType="int">
-		select count(*) from review;
+		select count(*) from review where reviewIsDel = 'N'
 	</select>
 	<select id="getReviewList" resultType="kr.ajs.portfolio.vo.ReviewVo">
 		select * from review
@@ -511,4 +511,13 @@
 		where reviewNum = ${reviewNum}
 		and reviewIsDel = 'N'
 	</select>
+	<update id="reviewModify">
+		update review set reviewTitle = #{review.reviewTitle}, reviewContent=#{review.reviewContent} where reviewNum = #{review.reviewNum}
+	</update>
+	<update id="reviewDel">
+		update review set reviewIsDel='Y', reviewDelDate=now() where reviewNum = #{review.reviewNum}
+	</update>
+	<update id="orderListIsReviewDel">
+		update orderlist set orderListIsReview = 'N' where orderlistNum=(select review_orderListNum from review where reviewNum = #{review.reviewNum})
+	</update>
 </mapper>

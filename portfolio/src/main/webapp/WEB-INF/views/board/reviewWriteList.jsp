@@ -11,13 +11,11 @@
 		</tr>
 		</table>
 		<c:forEach var="orderList" items="${list}">
-			
-				<div class="user-reviewOrderList-line">
-					<div class="user-reviewOrderList-goodsImg"><img src="<%=request.getContextPath()%>/resources/image/goodsImg/${orderList.goodsImg}"></div>
-					<a href="<%=request.getContextPath()%>/reviewwrite?orderListNum=${orderList.orderListNum}"><div class="user-reviewOrderList-goodsInfo">[제품명 : ${orderList.goodsName} / 색상 : ${orderList.optionColor}]</div></a>
-					<div class="user-reviewOrderList-address">${orderList.orderDate}</div>
-				</div>
-			
+			<div class="user-reviewOrderList-line">
+				<div class="user-reviewOrderList-goodsImg"><img src="<%=request.getContextPath()%>/resources/image/goodsImg/${orderList.goodsImg}"></div>
+				<a href="<%=request.getContextPath()%>/reviewwrite?orderListNum=${orderList.orderListNum}"><div class="user-reviewOrderList-goodsInfo">[제품명 : ${orderList.goodsName} / 색상 : ${orderList.optionColor}]</div></a>
+				<div class="user-reviewOrderList-address">${orderList.orderDate}</div>
+			</div>
 		</c:forEach>
 	</div>
 </div>

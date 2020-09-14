@@ -146,4 +146,8 @@ public interface UserService {
 
 	public ReviewVo getreview(int reviewNum);
 
+	public void reviewModify(ReviewVo review);
+
+	public void reviewDel(ReviewVo review);
+
 }

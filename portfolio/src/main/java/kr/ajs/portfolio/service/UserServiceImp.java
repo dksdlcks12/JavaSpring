@@ -437,4 +437,15 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		return userDao.getreview(reviewNum);
 	}
+	@Override
+	public void reviewModify(ReviewVo review) {
+		// TODO Auto-generated method stub
+		userDao.reviewModify(review);
+	}
+	@Override
+	public void reviewDel(ReviewVo review) {
+		// TODO Auto-generated method stub
+		userDao.reviewDel(review);
+		userDao.orderListIsReviewDel(review);
+	}
 }

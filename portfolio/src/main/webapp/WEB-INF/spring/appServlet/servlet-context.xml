@@ -53,7 +53,7 @@
        		<mapping path="/asview"/>
        		<mapping path="/reviewwritelist"/>
        		<mapping path="/reviewwrite"/>
-       		
+       		<mapping path="/reviewmodify"/>
         	<beans:ref bean="memberInterceptor"/>
     	</interceptor>
 	</interceptors>
