@@ -93,6 +93,7 @@ a:hover{
 }
 .user-set-listEarRing{
 	cursor: pointer;
+	list-style: none;
 }
 .user-set-listEarRing > *{
 	display: none;
@@ -104,6 +105,7 @@ a:hover{
 	text-align: center;
 	box-sizing: border-box;
 	border-top: black 1px solid;
+	list-style: none;
 }
 .user-set-searchBox{
 	width: 300px;
