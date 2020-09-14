@@ -44,7 +44,7 @@
 span + .common-goodsSearch-option{
 	left: 500px;
 }
-.number{
+.common-goodSearch-optionSubBox .number{
 	width: 200px;
 }
 .common-goodSearch-optionSearchButton{
