@@ -157,4 +157,6 @@ public interface UserService {
 
 	public ArrayList<SearchVo> getGoodsSearch(SearchVo search, Criteria cri);
 
+	public boolean myPagecheckPw(String pw, UserVo user);
+
 }

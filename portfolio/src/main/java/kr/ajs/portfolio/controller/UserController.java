@@ -714,7 +714,6 @@ public class UserController {
 	}
 	@RequestMapping(value= {"/goodssearch"}, method = RequestMethod.GET)
 	public ModelAndView goodsSearchGet(ModelAndView mv, HttpServletRequest request, Criteria cri, SearchVo search) throws Exception{
-		System.out.println();
 		mv = adminService.adminCountInfo(mv);
 		PageMaker pm = userService.getPageMakerSearch(search, cri);
 		ArrayList<SearchVo> list = userService.getGoodsSearch(search, cri);
@@ -723,5 +722,21 @@ public class UserController {
 		mv.addObject("pm", pm);
 		mv.setViewName("/goods/goodsSearch");
 		return mv;
+	}
+	@RequestMapping(value= {"/mypagecheck"}, method = RequestMethod.GET)
+	public ModelAndView myPageCheckGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		mv = adminService.adminCountInfo(mv);
+		mv.setViewName("/user/myPage");
+		return mv;
+	}
+	@RequestMapping("mypagecheckpw")
+	@ResponseBody
+	public Map<Object, Object> myPageCheckPw(@RequestBody String pw, HttpServletRequest request) throws Exception{
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		System.out.println(pw);
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		boolean pwCheck = userService.myPagecheckPw(pw, user);
+		map.put("pwCheck", pwCheck);
+    	return map;
 	}
 }

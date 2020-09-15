@@ -1,0 +1,81 @@
+@charset "UTF-8";
+.user-mypage-box{
+	width: 1400px;
+	height: 620px;
+	padding: 100px 0 50px 0;
+	margin: 0 auto;
+	margin-top: 100px;
+	background-color: palegoldenrod;
+	box-sizing: border-box;
+}
+.user-mypage-mypageBox{
+	width: 1000px;
+	margin: 0 auto;
+	background-color: aqua;
+	padding: 20px 50px;
+	box-sizing: border-box;
+	position: relative;
+}
+.user-mypage-title{
+	margin-bottom: 20px;
+}
+.user-mypage-table{
+	width: 900px;
+	margin-bottom: 40px;
+	border-color: black;
+}
+.user-mypage-rowTitle{
+	width: 200px;
+	height: 40px;
+	font-size: 20px;
+	text-align: center;
+	background-color: lightpink;
+}
+.user-mypage-rowContent{
+	width: 700px;
+	height: 40px;
+	background-color: ivory;
+	padding-left: 10px;
+	box-sizing: border-box;
+}
+.user-mypage-inputInfo{
+	width: 200px;
+	height: 20px;
+	font-size: 15px;
+}
+.user-mypage-lawBox, .user-mypage-personalInfoConsent{
+	width: 900px;
+	height: 220px;
+	margin-bottom: 30px;
+	padding: 20px;
+	background-color: mistyrose;
+	box-sizing: border-box;
+}
+.user-mypage-lawInfo{
+	margin-top: 10px;
+	width: 850px;
+	height: 120px;
+	resize: none;
+}
+.user-mypage-lawSpan{
+	font-size: 15px;	
+}
+.user-mypage-termsOfUse{
+	margin: 0 5px;
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+}
+.user-mypage-mypageButton{
+	width: 200px;
+	height: 50px;
+	font-size: 30px;
+	margin-left: calc(50% - 100px);
+}
+.user-mypage-memberOut{
+	width: 200px;
+	height: 50px;
+	font-size: 30px;
+	position: absolute;
+	right: 50px;
+}

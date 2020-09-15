@@ -470,4 +470,14 @@ public class UserServiceImp implements UserService {
 		cri.setPerPageNum(12);
 		return userDao.getGoodsSearch(search, cri);
 	}
+	@Override
+	public boolean myPagecheckPw(String pw, UserVo user) {
+		// TODO Auto-generated method stub
+		UserVo dbUser = userDao.getUser(user.getUserId());
+		if(dbUser!=null && passwordEncoder.matches(pw, dbUser.getUserPw())){
+			return true;
+		}else {
+			return false;
+		}
+	}
 }
