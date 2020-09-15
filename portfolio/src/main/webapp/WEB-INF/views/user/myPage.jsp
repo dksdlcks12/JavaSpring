@@ -26,7 +26,10 @@
 				</tbody>
 			</table>
 			<button class="user-mypage-mypageButton">수 정 완 료</button>
-			<button type="button" class="user-mypage-memberOut">회 원 탈 퇴</button>
+			<div class="user-mypage-userId" hidden>${user.userId}</div>
+			<c:if test="${user.userAuth ne 'admin'}">
+				<button type="button" class="user-mypage-memberOut">회 원 탈 퇴</button>
+			</c:if>
 		</form>
 	</div>
 </div>
@@ -45,6 +48,7 @@
 					$('.mypage').css('display', 'block');
 					$('.mypagecheck').css('display', 'none');
 					$('.user-mypage-mypageButton').addClass('mypageOn')
+					$('.user-mypage-userId').addClass('userOn')
 				}else{
 					alert('잘못된 비밀번호 입니다.')
 					$('.common-login-inputInfo').val('');
@@ -100,4 +104,24 @@
 	    },
 	    "Please check your input."
 	);
+	$('.user-mypage-memberOut').click(function(){
+		var userId = $('.userOn').text();
+		$.ajax({
+			async:false,
+			type:'POST',
+			data:userId,
+			url:"<%=request.getContextPath()%>/mypagedel",
+			dataType:"json",
+			contentType:"application/json; charset=UTF-8",
+			success : function(data){
+				if(data.userDel){
+					alert('성공적으로 탈퇴하였습니다.');
+					location.replace('<%=request.getContextPath()%>/'); 
+				}else{
+					alert('잘못된 접근입니다.');
+					location.replace('<%=request.getContextPath()%>/');
+				}
+			}
+		});
+	})
 </script>

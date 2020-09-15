@@ -4,15 +4,13 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.ajs.portfolio.dao.SchedulerDao">
 	<select id="getUpdateUser" resultType="kr.ajs.portfolio.vo.UserVo">
-		select (orderUserId)userId from portfolio.order group by orderUserId;
+		select (orderUserId)userId from portfolio.order where date(orderDate) = date(subdate(now(), INTERVAL 15 DAY)) group by orderUserId;
 	</select>
 	<update id="userPointUpDate">
-		update portfolio.user set userPoint = (userPoint+(select sum(goodsPoint) from portfolio.orderlist
-			join portfolio.option on orderList_optionNum = optionNum
-			join goods on option_goodsNum = goodsNum
+		update portfolio.user set userPoint = (userPoint+(select sum(orderListPoint) from portfolio.orderlist
 			join portfolio.order on orderList_orderNum = orderNum
 			where orderUserId = #{user.userId}
-			and orderDate>=(CURDATE()-INTERVAL 15 DAY)))
+			and date(orderDate) = date(subdate(now(), INTERVAL 15 DAY))))
 		where userId = #{user.userId}
 	</update>
 </mapper>

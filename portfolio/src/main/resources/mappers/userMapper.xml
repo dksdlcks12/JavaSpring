@@ -139,7 +139,10 @@
 		insert into orderList (orderList_postNum, orderList_orderNum, orderList_optionNum, orderListCount, orderListPrice, orderListUsePoint, orderListPoint)
 		values((select cart_postNum from cart where cartNum = #{order.orderNum}), #{index}, (select cart_optionNum from cart where cartNum = #{order.orderNum}), #{order.orderCount}, #{order.orderPrice}, #{order.orderUsePoint}, #{order.orderPoint})
 	</insert>
-		<insert id="addGoodsViewOrderCart" parameterType="kr.ajs.portfolio.vo.CartVo" useGeneratedKeys="true" keyProperty="cart.cartNum">
+	<update id="updateUserPoint">
+		update user set userPoint = (select (userPoint-#{order.orderUsePoint}) where userId=#{user.userId}) where userId=#{user.userId}
+	</update>
+	<insert id="addGoodsViewOrderCart" parameterType="kr.ajs.portfolio.vo.CartVo" useGeneratedKeys="true" keyProperty="cart.cartNum">
 		insert into cart (cart_postNum, cart_userId, cartCount, cart_optionNum)
 		values ((select postNum from post join goods on goodsNum=postNum where goodsName = #{option.goods}), #{user.userId}, #{option.count}, 
 		(select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{option.goods} and optionColor = #{option.color}))
@@ -558,5 +561,16 @@
 			<if test="user.userMail!=''">userMail=#{user.userMail},</if>
 		</trim>
 		where userId = #{user.userId}
+	</update>
+	<update id="userDel">
+		update user set userIsOut = 'Y', userOutDate = now() where userId = #{userId}
+	</update>
+	<select id="checkRefund" resultType="String">
+		select recallIsChange from recall where recallNum = #{recallNum}
+	</select>
+	<update id="userPointRollBack">
+		update user join portfolio.order on userId = orderUserId 
+		join orderlist on orderList_orderNum = orderNum
+		set userPoint = (userPoint+orderListUsePoint) where orderListNum = #{recall.orderListNum};
 	</update>
 </mapper>

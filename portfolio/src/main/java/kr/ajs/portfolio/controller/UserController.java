@@ -334,7 +334,7 @@ public class UserController {
 		    	index = userService.addOrder(orderInfoList.get(0), user);
 			}
 			for(AddOrderVo order : goodsList) {
-		    	userService.addOrderList(order, index);
+		    	userService.addOrderList(order, index, user);
 		    }
 		}
 		map.put("stock", stock);
@@ -439,7 +439,7 @@ public class UserController {
 			RecallAddVo recall = recallList.get(0);
 			userService.addRecall(recall);
 			for(RecallAddVo recallOrderList:recall.getGoodsList()) {
-				userService.addRecallList(recallOrderList, recall.getRecallNum());
+				userService.addRecallList(recallOrderList, recall.getRecallNum(), user);
 			}
 			check = true;
 		}
@@ -725,8 +725,10 @@ public class UserController {
 	}
 	@RequestMapping(value= {"/mypage"}, method = RequestMethod.GET)
 	public ModelAndView myPageCheckGet(ModelAndView mv, HttpServletRequest request) throws Exception{
-		mv = adminService.adminCountInfo(mv);
 		mv.setViewName("/user/myPage");
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		mv = adminService.adminCountInfo(mv);
+		mv.addObject("user", user);
 		return mv;
 	}
 	@RequestMapping("mypagecheckpw")
@@ -745,5 +747,17 @@ public class UserController {
 		userService.myPageUpdate(user, loginUser);
 		mv.setViewName("redirect:/");
 		return mv;
+	}
+	@RequestMapping("mypagedel")
+	@ResponseBody
+	public Map<Object, Object> mypageDel(@RequestBody String userId, HttpServletRequest request) throws Exception{
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		boolean userDel = userService.getuserDel(user, userId);
+		if(userDel) {
+			request.getSession().removeAttribute("user");
+		}
+		map.put("userDel", userDel);
+    	return map;
 	}
 }

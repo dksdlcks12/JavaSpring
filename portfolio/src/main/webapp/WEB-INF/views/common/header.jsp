@@ -18,7 +18,7 @@
 					</c:if>
 					<c:if test="${user!=null}">
 						<div href="<%=request.getContextPath()%>/logout" class="user-set-signUpButton">로그아웃</div>
-						<div class="user-set-logInInfo">${user.userId}님 환영합니다.</div>
+						<div class="user-set-logInInfo">${user.userId}님 환영합니다.<c:if test="${user.userAuth ne 'admin'}">(${user.userPoint}점)</c:if></div>
 						<script>
 							var logout = false;
 							$(".user-set-signUpButton").on("click",function(){

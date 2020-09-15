@@ -71,7 +71,7 @@ public interface UserService {
 
 	public int addOrder(AddOrderVo orderVo, UserVo user);
 
-	public void addOrderList(AddOrderVo order, int index);
+	public void addOrderList(AddOrderVo order, int index, UserVo user);
 
 	public int addGoodsViewOrderCart(OptionListVo option, UserVo user);
 
@@ -97,7 +97,7 @@ public interface UserService {
 
 	public void addRecall(RecallAddVo recall);
 
-	public void addRecallList(RecallAddVo recallOrderList, int recallNum);
+	public void addRecallList(RecallAddVo recallOrderList, int recallNum, UserVo user);
 
 	public ArrayList<OrderListVo> getOrderRecallList(int orderNum, UserVo user);
 
@@ -160,5 +160,7 @@ public interface UserService {
 	public boolean myPagecheckPw(String pw, UserVo user);
 
 	public void myPageUpdate(UserVo user, UserVo loginUser);
+
+	public boolean getuserDel(UserVo user, String userId);
 
 }

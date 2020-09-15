@@ -185,13 +185,14 @@ public class UserServiceImp implements UserService {
 		return orderInfo.getOrderNum();
 	}
 	@Override
-	public void addOrderList(AddOrderVo order, int index) {
+	public void addOrderList(AddOrderVo order, int index, UserVo user) {
 		// TODO Auto-generated method stub
 		int count = order.getOrderCount();
 		int stock = userDao.getStock(order);
 		stock = stock-count;
 		userDao.updateStock(order, stock);
 		userDao.addOrderList(order, index);
+		userDao.updateUserPoint(order, user);
 		userDao.deleteCart(order);
 	}
 	@Override
@@ -269,10 +270,14 @@ public class UserServiceImp implements UserService {
 		userDao.addRecall(recall);
 	}
 	@Override
-	public void addRecallList(RecallAddVo recallOrderList, int recallNum) {
+	public void addRecallList(RecallAddVo recallOrderList, int recallNum, UserVo user) {
 		// TODO Auto-generated method stub
 		userDao.addRecallList(recallOrderList, recallNum);
 		userDao.updateOrderListRecall(recallOrderList);
+		String checkRefund = userDao.checkRefund(recallNum);
+		if(checkRefund.equals("환불")) {
+			userDao.userPointRollBack(user, recallOrderList);
+		}
 	}
 	@Override
 	public ArrayList<OrderListVo> getOrderRecallList(int orderNum, UserVo user) {
@@ -473,8 +478,7 @@ public class UserServiceImp implements UserService {
 	@Override
 	public boolean myPagecheckPw(String pw, UserVo user) {
 		// TODO Auto-generated method stub
-		UserVo dbUser = userDao.getUser(user.getUserId());
-		if(dbUser!=null && passwordEncoder.matches(pw, dbUser.getUserPw())){
+		if(user!=null && passwordEncoder.matches(pw, user.getUserPw())){
 			return true;
 		}else {
 			return false;
@@ -487,6 +491,17 @@ public class UserServiceImp implements UserService {
 		if(user.getUserPw()!="") {
 			user.setUserPw(passwordEncoder.encode(user.getUserPw()));
 		}
-		userDao.myPageUpdate(user);
+		if(user.getUserPw()!="" || user.getUserMail()!="") {
+			userDao.myPageUpdate(user);
+		}
+	}
+	@Override
+	public boolean getuserDel(UserVo user, String userId) {
+		// TODO Auto-generated method stub
+		if(user!=null && user.getUserId().equals(userId) && user.getUserAuth().equals("user")) {
+			userDao.userDel(userId);
+			return true;
+		}
+		return false;
 	}
 }

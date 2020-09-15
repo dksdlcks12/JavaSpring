@@ -74,6 +74,8 @@ public interface UserDao {
 
 	public void addOrderList(@Param("order")AddOrderVo order, @Param("index")int index);
 
+	public void updateUserPoint(@Param("order")AddOrderVo order, @Param("user")UserVo user);
+	
 	public void addGoodsViewOrderCart(@Param("option")OptionListVo option, @Param("user")UserVo user, @Param("cart")CartVo cart);
 
 	public void deleteCart(@Param("order")AddOrderVo order);
@@ -177,5 +179,11 @@ public interface UserDao {
 	public ArrayList<SearchVo> getGoodsSearch(@Param("search")SearchVo search, @Param("cri")Criteria cri);
 
 	public void myPageUpdate(@Param("user")UserVo user);
+
+	public void userDel(@Param("userId")String userId);
+
+	public void userPointRollBack(@Param("user")UserVo user, @Param("recall")RecallAddVo recallOrderList);
+
+	public String checkRefund(@Param("recallNum")int recallNum);
 	
 }
