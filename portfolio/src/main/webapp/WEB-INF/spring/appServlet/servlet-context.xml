@@ -54,7 +54,7 @@
        		<mapping path="/reviewwritelist"/>
        		<mapping path="/reviewwrite"/>
        		<mapping path="/reviewmodify"/>
-       		<mapping path="/mypagecheck"/>
+       		<mapping path="/mypage"/>
         	<beans:ref bean="memberInterceptor"/>
     	</interceptor>
 	</interceptors>

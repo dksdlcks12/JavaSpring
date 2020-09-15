@@ -175,5 +175,7 @@ public interface UserDao {
 	public int getSearchCount(@Param("search")SearchVo search);
 
 	public ArrayList<SearchVo> getGoodsSearch(@Param("search")SearchVo search, @Param("cri")Criteria cri);
+
+	public void myPageUpdate(@Param("user")UserVo user);
 	
 }

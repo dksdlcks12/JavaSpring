@@ -480,4 +480,13 @@ public class UserServiceImp implements UserService {
 			return false;
 		}
 	}
+	@Override
+	public void myPageUpdate(UserVo user, UserVo loginUser) {
+		// TODO Auto-generated method stub
+		user.setUserId(loginUser.getUserId());
+		if(user.getUserPw()!="") {
+			user.setUserPw(passwordEncoder.encode(user.getUserPw()));
+		}
+		userDao.myPageUpdate(user);
+	}
 }

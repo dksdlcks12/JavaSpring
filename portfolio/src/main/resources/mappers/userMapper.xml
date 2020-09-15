@@ -551,4 +551,12 @@
 		order by goodsNum desc
 		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
+	<update id="myPageUpdate">
+		update user
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="user.userPw!=''">userPw=#{user.userPw},</if>
+			<if test="user.userMail!=''">userMail=#{user.userMail},</if>
+		</trim>
+		where userId = #{user.userId}
+	</update>
 </mapper>

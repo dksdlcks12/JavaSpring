@@ -733,10 +733,17 @@ public class UserController {
 	@ResponseBody
 	public Map<Object, Object> myPageCheckPw(@RequestBody String pw, HttpServletRequest request) throws Exception{
 		Map<Object, Object> map = new HashMap<Object, Object>();
-		System.out.println(pw);
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		boolean pwCheck = userService.myPagecheckPw(pw, user);
 		map.put("pwCheck", pwCheck);
     	return map;
+	}
+	@RequestMapping(value= {"/mypage"}, method = RequestMethod.POST)
+	public ModelAndView mypagePost(ModelAndView mv, HttpServletRequest request, UserVo user) throws Exception{
+		UserVo loginUser = (UserVo) request.getSession().getAttribute("user");
+		mv = adminService.adminCountInfo(mv);
+		userService.myPageUpdate(user, loginUser);
+		mv.setViewName("redirect:/");
+		return mv;
 	}
 }

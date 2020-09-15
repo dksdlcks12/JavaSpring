@@ -159,4 +159,6 @@ public interface UserService {
 
 	public boolean myPagecheckPw(String pw, UserVo user);
 
+	public void myPageUpdate(UserVo user, UserVo loginUser);
+
 }

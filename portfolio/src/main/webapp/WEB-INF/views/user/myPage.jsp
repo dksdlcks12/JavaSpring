@@ -8,20 +8,20 @@
 	</div>
 	<div class="user-mypage-mypageBox mypage" style="display: none;">
 		<h3 class="user-mypage-title">마 이 페 이 지</h3>
-		<form>
+		<form id="form1" action="<%=request.getContextPath()%>/mypage" method="POST">
 			<table class="user-mypage-table" border="1">
 				<tbody>
 					<tr>
 						<td class="user-mypage-rowTitle">비밀번호 수정</td>
-						<td class="user-mypage-rowContent"><input type="password" class="user-mypage-inputInfo" name=userPw> (영문자, 숫자 포함 4~8자)</td>
+						<td class="user-mypage-rowContent"><input type="password" class="user-mypage-inputInfo" name=userPw id=userPw> (영문자, 숫자 포함 4~8자) <label id='userPw-error' class='error' for='userPw'></label></td>
 					</tr>
 					<tr>
 						<td class="user-mypage-rowTitle">비밀번호 확인</td>
-						<td class="user-mypage-rowContent"><input type="password" class="user-mypage-inputInfo"></td>
+						<td class="user-mypage-rowContent"><input type="password" class="user-mypage-inputInfo" name=userPw2 id=userPw2> <label id='userPw2-error' class='error' for='userPw2'></label></td>
 					</tr>
 					<tr>
 						<td class="user-mypage-rowTitle">이메일 수정</td>
-						<td class="user-mypage-rowContent"><input type="email" class="user-mypage-inputInfo" name=userMail></td>
+						<td class="user-mypage-rowContent"><input type="email" class="user-mypage-inputInfo" name=userMail> <label id='userMail-error' class='error' for='userMail'></label></td>
 					</tr>
 				</tbody>
 			</table>
@@ -54,11 +54,50 @@
 	})
 	$('form').submit(function(){
 		if($('.mypageOn').length!=0){
-			alert('정상작동')
 			return true;
 		}else{
-			alert('오류')
 			return false;
 		}
 	})
+	$(function(){
+	    $("#form1").validate({
+	        rules: {
+	            userPw: {
+	                minlength : 8,
+	                maxlength : 16,
+	                regex: /^(?=\w{8,16}$)\w*(\d[A-z]|[A-z]\d)\w*$/
+	            },
+	            userPw2: {
+	                equalTo : userPw
+	            },
+	            userMail: {
+	                minlength : 2,
+	                email : true
+	            }
+	        },
+	        //규칙체크 실패시 출력될 메시지
+	        messages : {
+	            userPw: {
+	                minlength : "최소 {0}글자이상이어야 합니다",
+	                maxlength : "최대 {0}글자이하이어야 합니다",
+	                regex : "영문자, 숫자로 이루어져있으며 최소 하나이상 포함"
+	            },
+	            userPw2: {
+	                equalTo : "비밀번호가 일치하지 않습니다."
+	            },
+	            userMail: {
+	                minlength : "최소 {0}글자이상이어야 합니다",
+	                email : "메일규칙에 어긋납니다"
+	            }
+	        }
+	    });
+	})
+	$.validator.addMethod(
+	    "regex",
+	    function(value, element, regexp) {
+	        var re = new RegExp(regexp);
+	        return this.optional(element) || re.test(value);
+	    },
+	    "Please check your input."
+	);
 </script>
