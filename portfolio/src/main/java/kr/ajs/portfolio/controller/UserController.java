@@ -337,6 +337,7 @@ public class UserController {
 		    	userService.addOrderList(order, index, user);
 		    }
 		}
+		request.getSession().setAttribute("user", userService.getUser(user.getUserId()));
 		map.put("stock", stock);
 	    return map;
 	}
@@ -441,6 +442,7 @@ public class UserController {
 			for(RecallAddVo recallOrderList:recall.getGoodsList()) {
 				userService.addRecallList(recallOrderList, recall.getRecallNum(), user);
 			}
+			request.getSession().setAttribute("user", userService.getUser(user.getUserId()));
 			check = true;
 		}
 		map.put("check", check);
