@@ -3,7 +3,7 @@
 <div class="user-signup-box">
 	<div class="user-signup-signupBox">
 		<h3 class="user-signup-title">회 원 가 입</h3>
-		<form action="<%=request.getContextPath()%>/signup" method="POST">
+		<form id="form1" action="<%=request.getContextPath()%>/signup" method="POST">
 			<table class="user-signup-table" border="1">
 				<tbody>
 					<tr>
@@ -12,15 +12,15 @@
 					</tr>
 					<tr>
 						<td class="user-signup-rowTitle">비밀번호(필수)</td>
-						<td class="user-signup-rowContent"><input type="password" class="user-signup-inputInfo" name="userPw" id="userPw"> (영문자/숫자 조합, 8~16자) <label id='id-error' class='error' for='userPw'></label></td>
+						<td class="user-signup-rowContent"><input type="password" class="user-signup-inputInfo" name="userPw" id="userPw"> (영문자/숫자 조합, 8~16자) <label id='userPw-error' class='error' for='userPw'></label></td>
 					</tr>
 					<tr>
 						<td class="user-signup-rowTitle">비밀번호 확인(필수)</td>
-						<td class="user-signup-rowContent"><input type="password" class="user-signup-inputInfo" name="pwcheck" id="pwcheck"> <label id='id-error' class='error' for='pwcheck'></label></td>
+						<td class="user-signup-rowContent"><input type="password" class="user-signup-inputInfo" name="userPw2" id="userPw2"> <label id='userPw2-error' class='error' for='userPw2'></label></td>
 					</tr>
 					<tr>
 						<td class="user-signup-rowTitle">이메일(필수)</td>
-						<td class="user-signup-rowContent"><input type="email" class="user-signup-inputInfo" name="userMail" id="userMail"> (비밀번호를 찾을 때 필요합니다.) <label id='id-error' class='error' for='userMail'></label></td>
+						<td class="user-signup-rowContent"><input type="email" class="user-signup-inputInfo" name="userMail" id="userMail"> (비밀번호를 찾을 때 필요합니다.) <label id='userMail-error' class='error' for='userMail'></label></td>
 					</tr>
 				</tbody>
 			</table>
@@ -36,8 +36,9 @@
 			</div>
 			<button class="user-signup-signupButton">회 원 가 입</button>
 		</form>
-       </div>
+	</div>
 </div>
+
 <script>
 	var check = false;
 	$(".user-signup-id").on("keyup",function(){
@@ -73,51 +74,31 @@
 						}
 					}else{
 						$('.msgId').text('아이디는 영문자와 숫자만 사용 가능 합니다.')
-						console.log("아이디는 영문자와 숫자만 사용 가능 합니다.")
 					}
 				}else{
 					$('.msgId').text('아이디는 영문자로 시작해야 합니다.')
-					console.log("아이디는 영문자로 시작해야 합니다.");
 				}
 			}else{
 				$('.msgId').text('필수로 입력하세요.')
 			}
 		}
 	});
-	$(".user-signup-signupButton").click(function(){
-		if(check){
-			if($('.user-signup-lawBox').children('.user-signup-termsOfUse').is(':checked')){
-				if($('.user-signup-personalInfoConsent').children('.user-signup-termsOfUse').is(':checked')){
-					$("form").on("submit",function(){
-						return true;
-					});
-				}else{
-					alert("개인정보 수집및 이용에 동의 해주십시오");
-					return false;
-				}
-			}else{
-				alert("이용약관을 동의 해주십시오.");
-				return false;
-			}
-		}else{
-			alert("중복된 아이디 입니다.");
-			return false;
-		}
-	})
 	$(function(){
-	    $("form").validate({
+	    $("#form1").validate({
 	        rules: {
 	            userId: {
 	                required : true,
 	                minlength : 8,
-	                maxlength : 16
+	                maxlength : 16,
+	                regex: /^(?=\w{8,16}$)\w*(\d[A-z]|[A-z]\d)\w*$/
 	            },
 	            userPw: {
 	                required : true,
 	                minlength : 8,
-	                regex: /^(?=\w{8,20}$)\w*(\d[A-z]|[A-z]\d)\w*$/
+	                maxlength : 16,
+	                regex: /^(?=\w{8,16}$)\w*(\d[A-z]|[A-z]\d)\w*$/
 	            },
-	            pwcheck: {
+	            userPw2: {
 	                required : true,
 	                equalTo : userPw
 	            },
@@ -137,9 +118,10 @@
 	            userPw: {
 	                required : "필수로 입력하세요",
 	                minlength : "최소 {0}글자이상이어야 합니다",
+	                maxlength : "최대 {0}글자이하이어야 합니다",
 	                regex : "영문자, 숫자로 이루어져있으며 최소 하나이상 포함"
 	            },
-	            pwcheck: {
+	            userPw2: {
 	                required : "필수로 입력하세요",
 	                equalTo : "비밀번호가 일치하지 않습니다."
 	            },
@@ -159,4 +141,26 @@
 	    },
 	    "Please check your input."
 	);
+	$("#form1").submit(function(){
+		if(check){
+			if($('.user-signup-lawBox').children('.user-signup-termsOfUse').is(':checked')){
+				if($('.user-signup-personalInfoConsent').children('.user-signup-termsOfUse').is(':checked')){
+					$("#form1").on("submit",function(){
+						return true;
+					});
+				}else{
+					alert("개인정보 수집및 이용에 동의 해주십시오");
+					return false;
+				}
+			}else{
+				alert("이용약관을 동의 해주십시오.");
+				return false;
+			}
+		}else{
+			if($("#userId").val().length==0){
+				$('.msgId').text('필수로 입력하세요.')
+			}
+			return false;
+		}
+	})
 </script>

@@ -11,7 +11,7 @@
 					<a href="<%=request.getContextPath()%>/reviewlist" class="user-set-review">리뷰</a>
 					<a href="<%=request.getContextPath()%>/cart" class="user-set-cart">장바구니</a>
 					<a href="<%=request.getContextPath()%>/wishlist" class="user-set-wishList">위시리스트</a>
-					<a href="<%=request.getContextPath()%>/mypagecheck" class="user-set-myPage">마이페이지</a>
+					<a href="<%=request.getContextPath()%>/mypage" class="user-set-myPage">마이페이지</a>
 					<c:if test="${user==null}">
 						<a href="<%=request.getContextPath()%>/signup" class="user-set-signUpButton">회원가입</a>
 						<a href="<%=request.getContextPath()%>/login" class="user-set-logInButton">로그인</a>
@@ -44,7 +44,7 @@
 					<a href="<%=request.getContextPath()%>/qalist" class="admin-set-QA">Q&A</a>
 					<a href="<%=request.getContextPath()%>/reviewlist" class="admin-set-review">리뷰</a>
 					<a href="<%=request.getContextPath()%>/admin/goodsadd" class="admin-set-goodsManage">상품등록</a>
-					<a href="<%=request.getContextPath()%>/mypagecheck" class="admin-set-myPage">마이페이지</a>
+					<a href="<%=request.getContextPath()%>/mypage" class="admin-set-myPage">마이페이지</a>
 					<div class="admin-set-loginInfo">관리자님 환영합니다.</div>
 					<div class="admin-set-logout">로그아웃</div>
 					<script>

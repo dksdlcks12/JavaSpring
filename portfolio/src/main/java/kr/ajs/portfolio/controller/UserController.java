@@ -723,7 +723,7 @@ public class UserController {
 		mv.setViewName("/goods/goodsSearch");
 		return mv;
 	}
-	@RequestMapping(value= {"/mypagecheck"}, method = RequestMethod.GET)
+	@RequestMapping(value= {"/mypage"}, method = RequestMethod.GET)
 	public ModelAndView myPageCheckGet(ModelAndView mv, HttpServletRequest request) throws Exception{
 		mv = adminService.adminCountInfo(mv);
 		mv.setViewName("/user/myPage");
