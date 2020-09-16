@@ -26,7 +26,7 @@
 		order by goodsNum desc limit #{cri.pageStart}, #{cri.perPageNum};
 	</select>
 	<select id="getGoodsTotalCount" resultType="int">
-		select count(*) from goods join post on goodsNum=postnum where postIsDel = 'N'
+		select count(*) from goods join post on goodsNum=post_goodsNum where postIsDel = 'N'
 		<if test="type==1">
 			and goodsType = '1'
 		</if>
@@ -573,4 +573,7 @@
 		join orderlist on orderList_orderNum = orderNum
 		set userPoint = (userPoint+orderListUsePoint) where orderListNum = #{recall.orderListNum};
 	</update>
+	<select id="getSlideShowList" resultType="kr.ajs.portfolio.vo.GoodsVo">
+		select postNum, goodsImg from post join goods on post_goodsNum = goodsNum order by postNum desc limit 0, 4;
+	</select>
 </mapper>

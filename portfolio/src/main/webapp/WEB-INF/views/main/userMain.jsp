@@ -11,19 +11,13 @@
 				<li data-target="#slideBoxGoods" data-slide-to="3"></li>
 			</ul>  
             <!-- The slideshow -->
+            
 			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<a href="#"><img src="<%=request.getContextPath()%>/resources/image/photo6.JPG" alt="" width="800px" height="200px"></a>
-				</div>
-				<div class="carousel-item ">
-					<a href="#"><img src="<%=request.getContextPath()%>/resources/image/배경4.jpg" alt="" width="800px" height="200px"></a>
-				</div>
-				<div class="carousel-item">
-					<a href="#"><img src="<%=request.getContextPath()%>/resources/image/배경13.jpg" alt="" width="800px" height="200px"></a>
-				</div>
-				<div class="carousel-item">
-					<a href="#"><img src="<%=request.getContextPath()%>/resources/image/배경11.jpg" alt="" width="800px" height="200px"></a>
-				</div>
+				<c:forEach var="slideShow" items="${slideShowList}">
+					<div class="carousel-item">
+						<a href="<%=request.getContextPath()%>/goodsview?num=${slideShow.postNum}&type=0&page=1"><img src="<%=request.getContextPath()%>/resources/image/goodsImg${slideShow.goodsImg}" alt="" width="800px" height="200px"></a>
+					</div>
+				</c:forEach>
 			</div>     
 			<!-- Left and right controls -->
 			<a class="carousel-control-prev" href="#slideBoxGoods" data-slide="prev">
@@ -48,7 +42,7 @@
 		<c:if test = "${list.size()!=0}">
 			<c:forEach var="goods" items="${list}">
 				<div class="user-main-newGoodsBox">
-					<a href="<%=request.getContextPath()%>/goodsview?num=${goods.goodsNum}&type=0&page=1"><img src="<%=request.getContextPath()%>/resources/image/goodsImg${goods.goodsImg}" class="user-main-newGoods"></a>
+					<a href="<%=request.getContextPath()%>/goodsview?num=${goods.postNum}&type=0&page=1"><img src="<%=request.getContextPath()%>/resources/image/goodsImg${goods.goodsImg}" class="user-main-newGoods"></a>
 					<div class="user-main-newGoodsInfo">
 						<div class="user-main-newGoodsName">제품명 : ${goods.goodsName}</div>
 						<div class="user-main-newGoodsPrice">가격 : ${goods.goodsPrice}원</div>
@@ -58,3 +52,6 @@
 		</c:if>
 	</div>
 </div>
+<script>
+	$('.carousel-inner').children('.carousel-item').first().addClass('active')
+</script>

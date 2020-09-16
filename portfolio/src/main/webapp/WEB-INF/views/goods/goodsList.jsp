@@ -7,7 +7,7 @@
 			<c:if test="${pm.criteria.page<=pm.endPage&&pm.criteria.page>=1}">
 				<c:forEach var="goods" items="${list}">
 					<div class="common-goodsList-goodsBox">
-						<a href="<%=request.getContextPath()%>/goodsview?num=${goods.goodsNum}&type=${type}&page=${pm.criteria.page}"><img src="<%=request.getContextPath()%>/resources/image/goodsImg/${goods.goodsImg}" class="common-goodsList-goods"></a>
+						<a href="<%=request.getContextPath()%>/goodsview?num=${goods.postNum}&type=${type}&page=${pm.criteria.page}"><img src="<%=request.getContextPath()%>/resources/image/goodsImg/${goods.goodsImg}" class="common-goodsList-goods"></a>
 						<div class="common-goodsList-goodsInfo">
 							<div class="common-goodsList-goodsName">제품명 : ${goods.goodsName}</div>
 							<div class="common-goodsList-goodsPrice">가격 : ${goods.goodsPrice}원</div>

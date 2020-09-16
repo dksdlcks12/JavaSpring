@@ -163,4 +163,6 @@ public interface UserService {
 
 	public boolean getuserDel(UserVo user, String userId);
 
+	public ArrayList<GoodsVo> getSlideShowList();
+
 }

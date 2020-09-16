@@ -9,6 +9,7 @@ public class GoodsVo {
 	private int goodsPoint;
 	private int goodsType;
 	private String goodsImg;
+	private int postNum;
 	
 	public int getGoodsNum() {
 		return goodsNum;
@@ -46,10 +47,17 @@ public class GoodsVo {
 	public void setGoodsImg(String goodsImg) {
 		this.goodsImg = goodsImg;
 	}
-
+	public int getPostNum() {
+		return postNum;
+	}
+	public void setPostNum(int postNum) {
+		this.postNum = postNum;
+	}
+	
 	@Override
 	public String toString() {
 		return "GoodsVo [goodsNum=" + goodsNum + ", goodsName=" + goodsName + ", goodsPrice=" + goodsPrice
-				+ ", goodsPoint=" + goodsPoint + ", goodsType=" + goodsType + ", goodsImg=" + goodsImg + "]";
+				+ ", goodsPoint=" + goodsPoint + ", goodsType=" + goodsType + ", goodsImg=" + goodsImg + ", postNum="
+				+ postNum + "]";
 	}
 }

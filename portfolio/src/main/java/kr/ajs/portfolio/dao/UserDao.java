@@ -185,5 +185,7 @@ public interface UserDao {
 	public void userPointRollBack(@Param("user")UserVo user, @Param("recall")RecallAddVo recallOrderList);
 
 	public String checkRefund(@Param("recallNum")int recallNum);
+
+	public ArrayList<GoodsVo> getSlideShowList();
 	
 }

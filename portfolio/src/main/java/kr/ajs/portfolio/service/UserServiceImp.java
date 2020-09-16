@@ -504,4 +504,9 @@ public class UserServiceImp implements UserService {
 		}
 		return false;
 	}
+	@Override
+	public ArrayList<GoodsVo> getSlideShowList() {
+		// TODO Auto-generated method stub
+		return userDao.getSlideShowList();
+	}
 }

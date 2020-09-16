@@ -78,12 +78,15 @@ public class UserController {
 			mv.setViewName("/main/adminMain");
 		}else {
 			int type = 0;
+			ArrayList<GoodsVo> slideShowList;
+			slideShowList = userService.getSlideShowList();
 			ArrayList<GoodsVo> list;
 			list = userService.getGoodsList(type, cri);
 			ArrayList<NoticeVo> noticeList;
 			noticeList = userService.getNoticeMain();
 			mv.addObject("list", list);
 			mv.addObject("noticeList", noticeList);
+			mv.addObject("slideShowList", slideShowList);
 			mv.setViewName("/main/userMain");		
 		}	
 	    return mv;
