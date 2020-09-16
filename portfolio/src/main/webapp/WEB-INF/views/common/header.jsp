@@ -101,11 +101,6 @@
 						$(this).parent().remove();
 				})
 			</script>
-			<div class="user-set-goodsList-pageBox">
-				<div class="user-set-goodsList-pageButton"><i class="user-set-goodsList-pageLeft fas fa-angle-left"></i></div>
-				<span class="user-set-goodsList-page">1/2</span>
-				<div class="user-set-goodsList-pageButton"><i class="user-set-goodsList-pageRight fas fa-angle-right"></i></div>
-			</div>
 		</div>
 		<div class="user-set-goTop">T O P</div>
 	</div>

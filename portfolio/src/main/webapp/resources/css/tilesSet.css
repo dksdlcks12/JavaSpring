@@ -13,10 +13,12 @@ li{
 }
 a, a:hover{
 	text-decoration: none !important;
-	color: black;
 }
-a:hover{
-	color: white;
+.user-set-header a{
+	color: rgb(0, 0, 0) !important;
+}
+.user-set-header a:hover{
+	color: rgb(255, 255, 255) !important;
 }
 .user-set-center{
 	height: auto;
@@ -165,14 +167,14 @@ a:hover{
 .user-set-latelyViewGoodsList{
 	height: 390px;
 	background-color: rgb(255, 210, 210);
-	padding: 10px;
+	padding: 30px 10px;
 	box-sizing: border-box;
 	margin-bottom: 20px;
 	position: relative;
 }
 .user-set-goods{
 	position: relative;
-	margin-bottom: 15px;
+	margin-bottom: 25px;
 }
 .user-set-goodsImg{
 	width: 140px;
@@ -253,4 +255,10 @@ a:hover{
 }
 .admin-set-logout{
 	cursor: pointer;
+}
+.carousel-indicators li{
+	background-color: rgb(241, 146, 146) !important;
+}
+.carousel-control-next-icon, .carousel-control-prev-icon{
+	background-color: rgb(0, 0, 0) !important;
 }
