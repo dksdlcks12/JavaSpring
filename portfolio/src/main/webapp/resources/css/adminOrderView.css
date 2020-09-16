@@ -4,14 +4,14 @@
 	padding: 100px 0 50px 0;
 	margin: 0 auto;
 	margin-top: 100px;
-	background-color: palegoldenrod;
+	background-color: rgb(255, 240, 240);
 	box-sizing: border-box;
 }
 .admin-orderView-orderViewBox{
 	width: 1200px;
 	margin-left: 100px;
 	padding: 20px 0 20px 0;
-	background-color: blanchedalmond;
+	background-color: rgb(255, 220, 220);
 	box-sizing: border-box;
 }
 .admin-orderView-orderViewBox>h2{
@@ -23,21 +23,26 @@
 	width: 400px;
 	height: 50px;
 	margin-left: 100px;
-	background-color: cornsilk;
 	border: 1px solid black;
+	background-color: rgb(255, 255, 255);
 	border-right: none;
 	margin-bottom: 20px;
+}
+.admin-orderView-orderStateBox{
+	background-color: rgb(255, 240, 240);
 }
 .admin-orderView-orderNumberBox>*, .admin-orderView-orderGoodsTitleBox>*, .admin-orderView-orderGoodsBox>*, .admin-orderView-orderStateBox>*{
 	position: absolute;
 	width: 200px;
 	height: 48px;
-	background-color: honeydew;
 	font-size: 25px;
 	line-height: 50px;
 	text-align: center;
 	border-right: 1px solid black;
 	box-sizing: border-box;
+}
+.admin-orderView-orderNumberBox div:nth-child(odd), .admin-orderView-orderGoodsTitleBox{
+	background-color: rgb(255, 240, 240);
 }
 .admin-orderView-orderNumber{
 	left: 200px;
@@ -85,11 +90,11 @@
 	margin-bottom: 30px;
 }
 .admin-orderView-Info td{
-	background-color: whitesmoke;
+	background-color: rgb(255, 250, 250);
 	height: 30px;
 }
 .admin-orderView-Info td:nth-child(odd){
-	background-color: cornsilk;
+	background-color: rgb(255, 230, 230);
 	padding-left: 10px;
 	width: 25%;
 }
@@ -97,7 +102,7 @@
 	margin: 5px;
 	height: 30px;
 	border: 1px solid black;
-	background-color: white;
+	background-color: rgb(255, 255, 255);
 	position: relative;
 }
 .admin-orderView-postcodeBox{
@@ -114,7 +119,7 @@
 	font-size: 20px;
 	line-height: 30px;
 	border-right: 1px solid black;
-	background-color: antiquewhite;
+	background-color: rgb(255, 240, 240);
 	box-sizing: border-box;
 }
 .admin-orderView-postcode, .admin-orderView-detailAddress, .admin-orderView-extraAddress, .admin-orderView-address{

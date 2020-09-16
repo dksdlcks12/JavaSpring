@@ -4,22 +4,25 @@
 	padding: 100px 0 50px 0;
 	margin: 0 auto;
 	margin-top: 100px;
-	background-color: palegoldenrod;
+	background-color: rgb(255, 240, 240);
 	box-sizing: border-box;
 }
 .user-order-orderBox{
 	width: 1200px;
-	background-color: cornsilk;
+	background-color: rgb(255, 220, 220);
 	padding: 50px 0;
 	margin-left: 100px;
 }
 .user-order-goodsBox{
 	width: 1000px;
-	background-color: cyan;
 	margin-left: 100px;
 	margin-bottom: 30px;
+	background-color: rgb(255, 250, 250);
 	border-collapse: collapse;
 	border-color: black;
+}
+.user-order-goodsBox th{
+	background-color: rgb(255, 230, 230);
 }
 .user-order-goodsCheck, .user-order-goodsCheckAll{
 	cursor: pointer;
@@ -91,7 +94,7 @@
 .user-order-totalPrice{
 	width: 500px;
 	height: 40px;
-	background-color: aquamarine;
+	background-color: rgb(255, 250, 250);
 	float: right;
 	margin-right: 100px;
 	border: 1px solid black;
@@ -105,7 +108,6 @@
 	width: 1000px;
 	margin-left: 100px;
 	margin-top: 100px;
-	background-color: lightcyan;
 	padding-top: 30px;
 }
 .user-order-peopleInfo>p{
@@ -136,12 +138,12 @@
 	text-align: center;
 }
 .user-order-Info td{
-	background-color: lightgoldenrodyellow;
+	background-color: rgb(255, 250, 250);
 	height: 30px;
 	width: 75%;
 }
 .user-order-Info td:nth-child(odd){
-	background-color: blanchedalmond;
+	background-color: rgb(255, 230, 230);
 	padding-left: 10px;
 	width: 25%;
 }
@@ -170,7 +172,7 @@
 .user-order-pay{
 	width:1000px;
 	height: 200px;
-	background-color: cadetblue;
+	background-color: rgb(255, 240, 240);
 	position: relative;
 }
 .user-order-button{
@@ -179,5 +181,4 @@
 	position: absolute;
 	top: 0;
 	right: 0;
-	border: none;
 }

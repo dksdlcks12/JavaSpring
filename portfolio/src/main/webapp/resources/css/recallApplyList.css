@@ -4,23 +4,21 @@
 	padding: 100px 0 50px 0;
 	margin: 0 auto;
 	margin-top: 100px;
-	background-color: palegoldenrod;
+	background-color: rgb(255, 240, 240);
 	box-sizing: border-box;
 }
 .user-recallApplyList-recallApplyListBox{
 	width: 1200px;
-	background-color: cornsilk;
 	padding: 20px 0;
 	margin-left: 100px;
 }
 .user-recallApplyList-title{
-	margin-left: 100px;
 	margin-bottom: 10px;
 	text-align: center;
 }
 .user-recallApplyList-orderTitle{
 	width: 1000px;
-	background-color: cyan;
+	background-color: rgb(255, 210, 210);
 	margin-left: 100px;
 	border-collapse: collapse;
 	border-color: black;
@@ -53,6 +51,7 @@
 	border-right: none;
 	position: relative;
 	box-sizing: border-box;
+	background-color: rgb(255, 230, 230);
 }
 .user-recallApplyList-orderBox>a>*{
 	border-right: 1px solid black;

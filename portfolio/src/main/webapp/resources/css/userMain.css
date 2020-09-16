@@ -4,7 +4,7 @@
 	padding: 100px 0 50px 0;
 	margin: 0 auto;
 	margin-top: 100px;
-	background-color: palegoldenrod;
+	background-color: rgb(255, 240, 240);
 	box-sizing: border-box;
 }
 .user-main-slideBox{
@@ -18,7 +18,7 @@
 	width: 450px;
 	height: 200px;
 	padding: 15px;
-	background-color: paleturquoise;
+	background-color: rgb(255, 210, 210);
 	box-sizing: border-box;
 	float: left;
 }
@@ -46,34 +46,41 @@
 .user-main-newGoodsList{
 	margin: 0 auto;
 	width: 1320px;
-	background-color: cadetblue;
+	background-color: rgb(255, 220, 220)
 }
 .user-main-newGoodsBox{
 	width: 300px;
 	height: 380px;
-	background-color: chartreuse;
 	float: left;
 	margin: 15px;
+	box-sizing: border-box;
+	border: 1px solid black;
 }
 .user-main-newGoods{
 	width: 100%;
 	height: 300px;
-	background-color: cyan;
 }
 .user-main-newGoodsInfo{
 	width: 100%;
 	height: 80px;
-	background-color: darkgray;
 }
 .user-main-newGoodsName{
 	width: 100%;
-	height: 50px;
-	background-color: cornsilk;
+	height: 48px;
+	background-color: rgb(255, 200, 200);
+	line-height: 48px;
+	box-sizing: border-box;
+	padding-left: 10px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
 }
 .user-main-newGoodsPrice{
 	width: 100%;
 	height: 30px;
-	background-color: lightpink;
+	background-color: rgb(255, 210, 210);
+	line-height: 30px;
+	box-sizing: border-box;
+	padding-left: 10px;
 }
 .user-main-noticeLine::after, .user-main-newGoodsList::after{
 	clear: both;

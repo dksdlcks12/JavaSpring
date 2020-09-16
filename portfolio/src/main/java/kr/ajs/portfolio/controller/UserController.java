@@ -146,8 +146,8 @@ public class UserController {
 	@RequestMapping(value= {"/goodsview"}, method = RequestMethod.GET)
 	public ModelAndView goodsView(ModelAndView mv, HttpServletRequest request, int num, int type, int page) throws Exception{
 		mv = adminService.adminCountInfo(mv);
-		GoodsVo goods = userService.getGoods(num);
 		PostVo post = userService.getPost(num);
+		GoodsVo goods = userService.getGoods(post.getPost_goodsNum());
 		ArrayList<OptionVo> list = userService.getOptionList(num);
 		int disCountPrice = goods.getGoodsPrice()/100*(100-post.getPostDiscount());
 		mv.addObject("goods", goods);

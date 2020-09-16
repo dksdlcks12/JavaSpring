@@ -6,11 +6,13 @@
 	margin: 0 auto;
 	margin-bottom: 50px;
 	margin-top: 100px;
-	background-color: aliceblue;
+	background-color: rgb(255, 220, 220);
 	position: relative;
+	box-sizing: border-box;
+	border: 1px solid black;
 }
-.common-goodsSearch-optionBox>h2{
-	margin-left: 30px;
+.common-goodsSearch-optionBox h2{
+	margin-left: 20px;
 }
 .common-goodSearch-optionSubBox{
 	height: 50px;
@@ -20,7 +22,7 @@
 .common-goodsSearch-optionTitle{
 	width: 200px;
 	height: 50px;
-	background-color: aquamarine;
+	background-color: rgb(255, 240, 240);
 	text-align: center;
 	line-height: 50px;
 	font-size: 30px;
@@ -59,7 +61,7 @@ span + .common-goodsSearch-option{
 	width: 1400px;
 	padding: 100px 0 50px 0;
 	margin: 0 auto;
-	background-color: palegoldenrod;
+	background-color: rgb(255, 240, 240);
 	box-sizing: border-box;
 }
 .common-goodsSearch-goodsTitle{
@@ -70,34 +72,41 @@ span + .common-goodsSearch-option{
 	margin: 0 auto;
 	width: 1320px;
 	height: auto;
-	background-color: cadetblue;
+	background-color: rgb(255, 220, 220);
 }
 .common-goodsSearch-goodsBox{
 	width: 300px;
 	height: 380px;
-	background-color: chartreuse;
 	float: left;
 	margin: 15px;
+	box-sizing: border-box;
+	border: 1px solid black;
 }
 .common-goodsSearch-goods{
 	width: 100%;
 	height: 300px;
-	background-color: cyan;
 }
 .common-goodsSearch-goodsInfo{
 	width: 100%;
 	height: 80px;
-	background-color: darkgray;
 }
 .common-goodsSearch-goodsName{
 	width: 100%;
-	height: 50px;
-	background-color: cornsilk;
+	height: 48px;
+	background-color: rgb(255, 200, 200);
+	line-height: 48px;
+	box-sizing: border-box;
+	padding-left: 10px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
 }
 .common-goodsSearch-goodsPrice{
 	width: 100%;
 	height: 30px;
-	background-color: lightpink;
+	background-color: rgb(255, 210, 210);
+	line-height: 30px;
+	box-sizing: border-box;
+	padding-left: 10px;
 }
 .common-goodsSearch-pagination>*{
 	width: 50px;

@@ -4,14 +4,14 @@
 	padding: 100px 0 50px 0;
 	margin: 0 auto;
 	margin-top: 100px;
-	background-color: palegoldenrod;
+	background-color: rgb(255, 240, 240);
 	box-sizing: border-box;
 }
 .common-boardWrite-writeBox{
 	width: 1000px;
 	margin-left: 200px;
 	padding: 30px 0;
-	background-color: cadetblue;
+	background-color: rgb(255, 220, 220);
 	box-sizing: border-box;
 }
 .common-boardWrite-titleBox{
@@ -23,7 +23,7 @@
 	border-collapse: collapse;
 }
 .common-boardWrite-rowTitle{
-	background-color: blanchedalmond;
+	background-color: rgb(255, 240, 240);
 	width: 30%;
 	text-align: center;
 	font-size: 30px;

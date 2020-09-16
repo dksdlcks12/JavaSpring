@@ -14,7 +14,7 @@
 							<th><input type="checkbox" class="user-recallApply-goodsCheckAll"></th>
 							<th class="user-recallApply-goodsImgTitle">이미지</th>
 							<th class="user-recallApply-goodsInfoTitle">제품 정보</th>
-							<th class="user-recallApply-goodsPriceTitle">구매비용</th>
+							<th class="user-recallApply-goodsPriceTitle">구매한 비용</th>
 							<th class="user-recallApply-goodsCountTitle">수량</th>
 						</tr>
 						<c:forEach var="orderList" items="${list}">
@@ -23,7 +23,7 @@
 									<td><input type="checkbox" class="user-recallApply-goodsCheck"><sapn class="user-recallApply-orderListNum" hidden>${orderList.orderListNum}</td>
 									<td class="user-recallApply-goodsImg"><img src="<%=request.getContextPath()%>/resources/image/goodsImg/${orderList.goodsImg}" alt="" ></td>
 									<td class="user-recallApply-goodsInfo">제품명 : <span class="user-recallApply-goodsName">${orderList.goodsName}</span><br>색상 : <span class="user-recallApply-goodsColor">${orderList.optionColor}</span></td>
-									<td class="user-recallApply-goodsPrice">${orderList.payPrice}</td>
+									<td class="user-recallApply-goodsPrice">${orderList.payPrice} 원</td>
 									<td class="user-recallApply-goodsCount">${orderList.orderListCount}</td>
 								</tr>
 							</c:if>

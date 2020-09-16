@@ -4,18 +4,18 @@
 	padding: 100px 0 50px 0;
 	margin: 0 auto;
 	margin-top: 100px;
-	background-color: palegoldenrod;
+	background-color: rgb(255, 240, 240);
 	box-sizing: border-box;
 }
 .user-orderView-orderViewBox{
 	width: 1200px;
 	margin-left: 100px;
 	padding: 20px 0 20px 0;
-	background-color: blanchedalmond;
+	background-color: rgb(255, 220, 220);
 	box-sizing: border-box;
 }
 .user-orderView-orderViewBox>h2{
-	margin-left: calc(50% - 50px);
+	margin-left: calc(50% - 75px);
 	margin-bottom: 20px;
 }
 .user-orderView-orderNumberBox, .user-orderView-orderGoodsTitleBox, .user-orderView-orderGoodsBox, .user-orderView-orderStateBox{
@@ -23,16 +23,18 @@
 	width: 400px;
 	height: 50px;
 	margin-left: 100px;
-	background-color: cornsilk;
+	background-color: rgb(255, 255, 255);
 	border: 1px solid black;
 	border-right: none;
 	margin-bottom: 20px;
+}
+.user-orderView-orderTitleNumber, .user-orderView-orderGoodsTitleBox{
+	background-color: rgb(255, 240, 240);
 }
 .user-orderView-orderNumberBox>*, .user-orderView-orderGoodsTitleBox>*, .user-orderView-orderGoodsBox>*, .user-orderView-orderStateBox>*{
 	position: absolute;
 	width: 200px;
 	height: 48px;
-	background-color: honeydew;
 	font-size: 25px;
 	line-height: 50px;
 	text-align: center;
@@ -112,12 +114,12 @@
 	padding-left: 10px;
 }
 .user-orderView-Info td{
-	background-color: whitesmoke;
+	background-color: rgb(255, 250, 250);
 	height: 30px;
 	width: 75%;
 }
 .user-orderView-Info td:nth-child(odd){
-	background-color: cornsilk;
+	background-color: rgb(255, 230, 230);
 	text-align: center;
 	width: 25%;
 }
@@ -143,7 +145,7 @@
 	font-size: 20px;
 	line-height: 30px;
 	border-right: 1px solid black;
-	background-color: antiquewhite;
+	background-color: rgb(255, 240, 240);
 	box-sizing: border-box;
 }
 .user-orderView-postcode, .user-orderView-detailAddress, .user-orderView-extraAddress, .user-orderView-address{
@@ -181,7 +183,7 @@
 	position: relative;
 }
 .user-orderView-totalPrice{
-	width: 300px;
+	width: 400px;
 	height: 100px;
 	border: 1px solid black;
 	right: 0;
@@ -190,6 +192,7 @@
 	line-height: 50px;
 	text-align: right;
 	padding-right: 20px;
+	background-color: rgb(255, 255, 255);
 }
 .user-orderView-people{
 	padding-left: 10px;

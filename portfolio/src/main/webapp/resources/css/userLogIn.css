@@ -4,7 +4,7 @@
 	padding: 100px 0 50px 0;
 	margin: 0 auto;
 	margin-top: 100px;
-	background-color: palegoldenrod;
+	background-color: rgb(255, 240, 240);
 	box-sizing: border-box;
 }
 .common-login-loginBox{
@@ -12,13 +12,11 @@
 	height: 469px;
 	margin: 0 auto;
 	padding-top: 80px;
-	background-color: paleturquoise;
 	box-sizing: border-box;
 }
 .common-login-title{
 	height: 50px;
 	width: 150px;
-	background-color: papayawhip;
 	text-align: center;
 	font-size: 40px;
 	margin-left: calc(50% - 75px);

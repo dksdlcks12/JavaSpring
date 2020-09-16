@@ -4,22 +4,24 @@
 	padding: 100px 0 50px 0;
 	margin: 0 auto;
 	margin-top: 100px;
-	background-color: palegoldenrod;
+	background-color: rgb(255, 240, 240);
 	box-sizing: border-box;
 }
 .user-wishList-wishListBox{
 	width: 1200px;
-	background-color: cornsilk;
 	padding: 50px 0;
 	margin-left: 100px;
 }
 .user-wishList-goodsBox{
 	width: 1000px;
-	background-color: cyan;
+	background-color: rgb(255, 210, 210);
 	margin-left: 100px;
 	margin-bottom: 30px;
 	border-collapse: collapse;
 	border-color: black;
+}
+.user-wishList-goodsBox td{
+	background-color: rgb(255, 230, 230);
 }
 .user-wishList-goodsCheck, .user-wishList-goodsCheckAll{
 	margin-left: 19px;

@@ -4,14 +4,14 @@
 	padding: 100px 0 50px 0;
 	margin: 0 auto;
 	margin-top: 100px;
-	background-color: palegoldenrod;
+	background-color: rgb(255, 240, 240);
 	box-sizing: border-box;
 }
 .admin-recallView-recallViewBox{
 	width: 1200px;
 	margin-left: 100px;
 	padding: 20px 0 20px 0;
-	background-color: blanchedalmond;
+	background-color: rgb(255, 220, 220);
 	box-sizing: border-box;
 }
 .admin-recallView-recallViewBox>h2{
@@ -23,7 +23,6 @@
 	width: 800px;
 	height: 50px;
 	margin-left: 100px;
-	background-color: cornsilk;
 	border: 1px solid black;
 	border-right: none;
 	margin-bottom: 20px;
@@ -32,12 +31,15 @@
 	position: absolute;
 	width: 200px;
 	height: 48px;
-	background-color: honeydew;
+	background-color: rgb(255, 255, 255);
 	font-size: 25px;
 	line-height: 50px;
 	text-align: center;
 	border-right: 1px solid black;
 	box-sizing: border-box;
+}
+.admin-recallView-recallNumberBox div:nth-child(odd), .admin-recallView-recallGoodsTitleBox div:nth-child(odd), .admin-recallView-recallGoodsBox div:nth-child(odd), .admin-recallView-recallStateBox div:nth-child(odd){
+	background-color: rgb(255, 240, 240);
 }
 .admin-recallView-recallNumber{
 	left: 200px;
@@ -85,7 +87,10 @@
 	text-align: center;
 	font-size: 25px;
 	line-height: 50px;
-	background-color: honeydew;
+	background-color: rgb(255, 255, 255);
+}
+.admin-recallView-recallReasonBox div:nth-child(odd){
+	background-color: rgb(255, 240, 240);
 }
 .admin-recallView-recallReasonBox>div:nth-of-type(2){
 	left: 149px;

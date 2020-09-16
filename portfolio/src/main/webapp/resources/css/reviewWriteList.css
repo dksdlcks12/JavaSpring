@@ -4,12 +4,11 @@
 	padding: 100px 0 50px 0;
 	margin: 0 auto;
 	margin-top: 100px;
-	background-color: palegoldenrod;
+	background-color: rgb(255, 240, 240);
 	box-sizing: border-box;
 }
 .user-reviewOrderList-reviewOrderListBox{
 	width: 1200px;
-	background-color: cornsilk;
 	padding: 50px 0;
 	margin-left: 100px;
 }
@@ -19,7 +18,7 @@
 }
 .user-reviewOrderList-goodsBox{
 	width: 1000px;
-	background-color: cyan;
+	background-color: rgb(255, 210, 210);
 	margin-left: 100px;
 	border-collapse: collapse;
 	border-color: black;
@@ -81,7 +80,7 @@
 .user-reviewOrderList-line{
 	width: 1000px;
 	height: 100px;
-	background-color: cyan;
+	background-color: rgb(255, 230, 230);
 	margin-left: 100px;
 	border: 1px solid black;
 	border-top: none;

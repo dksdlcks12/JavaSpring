@@ -4,13 +4,12 @@
 	padding: 100px 0 50px 0;
 	margin: 0 auto;
 	margin-top: 100px;
-	background-color: palegoldenrod;
+	background-color: rgb(255, 240, 240);
 	box-sizing: border-box;
 }
 .user-asApply-asApplyBox{
 	width: 1200px;
 	margin-left: 100px;
-	background-color: lavender;
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
@@ -20,7 +19,7 @@
 .user-asApply-asApplyInfoBox{
 	width: 1000px;
 	margin-left: 100px;
-	background-color: lemonchiffon;
+	background-color: rgb(255, 220, 220);
 	padding: 10px;
 }
 .user-asApply-selectGoodsBox{
@@ -34,7 +33,7 @@
 	width: 200px;
 	height: 49px;
 	text-align: center;
-	background-color: lightcyan;
+	background-color: rgb(255, 240, 240);
 	font-size: 25px;
 	line-height: 50px;
 	box-sizing: border-box;

@@ -4,7 +4,7 @@
 	padding: 100px 0 50px 0;
 	margin: 0 auto;
 	margin-top: 100px;
-	background-color: palegoldenrod;
+	background-color: rgb(255, 240, 240);
 	box-sizing: border-box;
 }
 .admin-main-box>*{
@@ -15,7 +15,7 @@
 	height: 187px;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	background-color: cornsilk;
+	background-color: rgb(255, 255, 255);
 }
 .admin-main-leftContent{
 	width: 500px;
