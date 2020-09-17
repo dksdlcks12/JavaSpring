@@ -53,7 +53,7 @@ public class UserServiceImp implements UserService {
 			}
 		}
 	    for(Cookie cookie : cookies) {
-	    	System.out.println(cookie.getName() + " : " + cookie.getValue() + " : " + cookie.getMaxAge());
+	    	System.out.println(cookie.getName() + " : " + cookie.getValue());
 	    }
 		ArrayList<GoodsVo> list = new ArrayList<GoodsVo>();
 		
@@ -549,7 +549,7 @@ public class UserServiceImp implements UserService {
 	    }
 	    if(index==0) {
 	    	Cookie lateViewCookie = new Cookie("lateView1", postNum);
-			lateViewCookie.setMaxAge(60*60*60*24*30);
+			lateViewCookie.setMaxAge(60*60*12);
 			lateViewCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
 			response.addCookie(lateViewCookie);
 	    }else if(index==1) {
@@ -557,7 +557,7 @@ public class UserServiceImp implements UserService {
 		    	if(cookie.getName().indexOf("lateView") != -1) {
 		    		if(cookie.getValue().equals(postNum)) {
 		    			Cookie lateViewCookie = new Cookie(cookie.getName(), cookie.getValue());
-						lateViewCookie.setMaxAge(60);
+						lateViewCookie.setMaxAge(60*60*12);
 						lateViewCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
 						response.addCookie(lateViewCookie);
 		    			check=true;
@@ -566,7 +566,7 @@ public class UserServiceImp implements UserService {
 		    }
 		    if(check==false) {
 		    	Cookie lateViewCookie = new Cookie("lateView2", postNum);
-				lateViewCookie.setMaxAge(60*60*60*24*30);
+				lateViewCookie.setMaxAge(60*60*12);
 				lateViewCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
 				response.addCookie(lateViewCookie);
 		    }
@@ -574,7 +574,7 @@ public class UserServiceImp implements UserService {
 		    for(Cookie cookie : cookies) {
 		    	if(cookie.getName().indexOf("lateView") != -1) {
 		    		Cookie lateViewCookie = new Cookie(cookie.getName(), cookie.getValue());
-					lateViewCookie.setMaxAge(60);
+					lateViewCookie.setMaxAge(60*60*12);
 					lateViewCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
 					response.addCookie(lateViewCookie);
 		    		if(cookie.getValue().equals(postNum)) {
@@ -584,7 +584,7 @@ public class UserServiceImp implements UserService {
 		    }
 		    if(check==false) {
 		    	Cookie lateViewCookie = new Cookie("lateView3", postNum);
-				lateViewCookie.setMaxAge(60*60*60*24*30);
+				lateViewCookie.setMaxAge(60*60*12);
 				lateViewCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
 				response.addCookie(lateViewCookie);
 		    }
@@ -603,12 +603,12 @@ public class UserServiceImp implements UserService {
 			    	if(cookies[i].getName().indexOf("lateView") != -1) {
 			    		if(index!=3) {
 				    		Cookie lateViewCookie = new Cookie("lateView"+index, lateViewList.get(index));
-							lateViewCookie.setMaxAge(60*60*60*24*30);
+							lateViewCookie.setMaxAge(60*60*12);
 							lateViewCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
 							response.addCookie(lateViewCookie);
 			    		}else {
 					    	Cookie lateViewCookie = new Cookie("lateView"+index, postNum);
-							lateViewCookie.setMaxAge(60*60*60*24*30);
+							lateViewCookie.setMaxAge(60*60*12);
 							lateViewCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
 							response.addCookie(lateViewCookie);
 			    		}

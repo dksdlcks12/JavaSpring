@@ -14,6 +14,8 @@ public class LateViewInterceptor extends HandlerInterceptorAdapter{
 	UserService userService;
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-	    userService.getlateview(modelAndView, request);
+		if(modelAndView!=null) {
+			userService.getlateview(modelAndView, request);
+		}
 	}
 }
