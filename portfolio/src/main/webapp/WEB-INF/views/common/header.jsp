@@ -90,7 +90,7 @@
 		<a href="<%=request.getContextPath()%>/orderviewlist"><div class="user-set-orderCheck">주문 조회</div></a>
 		<a href="<%=request.getContextPath()%>/recallselect"><div class="user-set-orderCheck">반품 관련</div></a>
 		<a href="<%=request.getContextPath()%>/asselect"><div class="user-set-orderCheck">A / S 관련</div></a>
-		<a href="#"><div class="user-set-deliveryCheck">배송 조회</div></a>
+		<a href="https://www.cjlogistics.com/ko/tool/parcel/tracking"><div class="user-set-deliveryCheck">배송 조회</div></a>
 		<div class="user-set-csTel">C / S 관련<br>xxx)xxx-xxxx</div>
 		<div class="user-set-latelyViewGoodsList">
 			<c:if test="${lateViewList.size()!=0}">

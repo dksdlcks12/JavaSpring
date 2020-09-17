@@ -230,11 +230,9 @@
 	})
 	$('.user-order-goodsUsePoint').children('input').focusin(function(){
 		usePoint = usePoint - Number($(this).val());
-		console.log(usePoint);
 	})
 		$('.user-order-goodsUsePoint').children('input').focusout(function(){
 		usePoint = usePoint + Number($(this).val());
-		console.log(usePoint);
 	})
 	if($('.user-order-goodsCheck').length==0){
 		location.href='<%=request.getContextPath()%>/cart' 

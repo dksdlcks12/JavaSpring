@@ -52,9 +52,6 @@ public class UserServiceImp implements UserService {
 				lateViewList.add(tmp.getValue());
 			}
 		}
-	    for(Cookie cookie : cookies) {
-	    	System.out.println(cookie.getName() + " : " + cookie.getValue());
-	    }
 		ArrayList<GoodsVo> list = new ArrayList<GoodsVo>();
 		
 		for(int i=lateViewList.size()-1; i>=0; i--) {

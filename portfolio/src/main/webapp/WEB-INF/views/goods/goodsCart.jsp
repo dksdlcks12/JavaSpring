@@ -11,7 +11,7 @@
 						<th class="user-cart-goodsInfoTitle">제품 정보</th>
 						<th class="user-cart-goodsPriceTitle">할인 적용가</th>
 						<th class="user-cart-goodsCountTitle">수량</th>
-						<th class="user-cart-goodsPointTitle">포인트(개별)</th>
+						<th class="user-cart-goodsPointTitle">포인트(개당)</th>
 						<th class="user-cart-goodsGoodsAllPriceTitle">합계금액</th>
 					</tr>
 					<c:forEach var="cart" items="${list}">

@@ -295,7 +295,6 @@ public class AdminController {
 	@ResponseBody
 	public Map<Object, Object> qaDel(@RequestBody ArrayList<QaVo> qa, HttpServletRequest request) throws Exception{
 	    Map<Object, Object> map = new HashMap<Object, Object>();
-	    System.out.println(qa.get(0));
 	    adminService.qaDel(qa.get(0));
 	    return map;
 	}

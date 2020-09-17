@@ -216,7 +216,6 @@
 						var goods = $('.common-goodsView-goodsName').text();
 						arr.push({'color':color,'count':count,'goods':goods});
 					})
-					console.log(arr)
 					$.ajax({
 						async:false,
 						type:'POST',
@@ -249,7 +248,6 @@
 						var goods = $('.common-goodsView-goodsName').text();
 						arr.push({'color':color,'count':count,'goods':goods});
 					})
-					console.log(arr)
 					$.ajax({
 						async:false,
 						type:'POST',
