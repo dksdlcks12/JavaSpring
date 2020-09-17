@@ -187,5 +187,7 @@ public interface UserDao {
 	public String checkRefund(@Param("recallNum")int recallNum);
 
 	public ArrayList<GoodsVo> getSlideShowList();
+
+	public GoodsVo getLateView(@Param("postNum")String postNum);
 	
 }

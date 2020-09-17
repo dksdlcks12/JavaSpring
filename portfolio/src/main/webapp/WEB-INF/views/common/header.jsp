@@ -93,14 +93,11 @@
 		<a href="#"><div class="user-set-deliveryCheck">배송 조회</div></a>
 		<div class="user-set-csTel">C / S 관련<br>xxx)xxx-xxxx</div>
 		<div class="user-set-latelyViewGoodsList">
-			<div class="user-set-goods"><a href="#" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>
-			<div class="user-set-goods"><a href="#" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>
-			<div class="user-set-goods"><a href="#" ><img src="<%=request.getContextPath()%>/resources/image/상품대용.gif" alt="" class="user-set-goodsImg"></a><div class="user-set-goodsClose"><i class="user-set-goodsCloseImg far fa-times-circle"></i></div></div>
-			<script>
-				$('.user-set-goodsClose').click(function(){
-						$(this).parent().remove();
-				})
-			</script>
+			<c:if test="${lateViewList.size()!=0}">
+				<c:forEach var="lateview" items="${lateViewList}">
+					<div class="user-set-goods"><a href="<%=request.getContextPath()%>/goodsview?num=${lateview.postNum}&type=0&page=1" ><img src="<%=request.getContextPath()%>/resources/image/goodsImg${lateview.goodsImg}" class="user-set-goodsImg"></a></div>
+				</c:forEach>
+			</c:if>
 		</div>
 		<div class="user-set-goTop">T O P</div>
 	</div>

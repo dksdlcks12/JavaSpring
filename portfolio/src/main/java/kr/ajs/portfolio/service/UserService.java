@@ -2,6 +2,11 @@ package kr.ajs.portfolio.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+
 import kr.ajs.portfolio.pagination.Criteria;
 import kr.ajs.portfolio.pagination.PageMaker;
 import kr.ajs.portfolio.vo.BoardCartVo;
@@ -164,5 +169,9 @@ public interface UserService {
 	public boolean getuserDel(UserVo user, String userId);
 
 	public ArrayList<GoodsVo> getSlideShowList();
+
+	public void setLateView(int num, HttpServletRequest request, HttpServletResponse response);
+	
+	public ModelAndView getlateview(ModelAndView mv, HttpServletRequest request);
 
 }

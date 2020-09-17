@@ -2,9 +2,14 @@ package kr.ajs.portfolio.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.ajs.portfolio.dao.UserDao;
 import kr.ajs.portfolio.pagination.Criteria;
@@ -37,6 +42,27 @@ public class UserServiceImp implements UserService {
 	UserDao userDao;
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
+	ArrayList<String> lateViewList = new ArrayList<String>();
+	@Override
+	public ModelAndView getlateview(ModelAndView mv, HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+	    lateViewList.removeAll(lateViewList);
+		for(Cookie tmp : cookies) {
+			if(tmp.getName().indexOf("lateView") != -1) {
+				lateViewList.add(tmp.getValue());
+			}
+		}
+	    for(Cookie cookie : cookies) {
+	    	System.out.println(cookie.getName() + " : " + cookie.getValue() + " : " + cookie.getMaxAge());
+	    }
+		ArrayList<GoodsVo> list = new ArrayList<GoodsVo>();
+		
+		for(int i=lateViewList.size()-1; i>=0; i--) {
+			list.add(userDao.getLateView(lateViewList.get(i)));
+		}
+		mv.addObject("lateViewList", list);
+		return mv;
+	}
 	@Override
 	public UserVo getUser(String id) {
 		// TODO Auto-generated method stub
@@ -508,5 +534,89 @@ public class UserServiceImp implements UserService {
 	public ArrayList<GoodsVo> getSlideShowList() {
 		// TODO Auto-generated method stub
 		return userDao.getSlideShowList();
+	}
+	@Override
+	public void setLateView(int num, HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		int index = 0;
+		boolean check = false;
+		String postNum = Integer.toString(num);
+		Cookie[] cookies = request.getCookies();
+	    for(Cookie cookie : cookies) {
+	    	if(cookie.getName().indexOf("lateView") != -1) {
+	    		index++;
+	    	}
+	    }
+	    if(index==0) {
+	    	Cookie lateViewCookie = new Cookie("lateView1", postNum);
+			lateViewCookie.setMaxAge(60*60*60*24*30);
+			lateViewCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
+			response.addCookie(lateViewCookie);
+	    }else if(index==1) {
+		    for(Cookie cookie : cookies) {
+		    	if(cookie.getName().indexOf("lateView") != -1) {
+		    		if(cookie.getValue().equals(postNum)) {
+		    			Cookie lateViewCookie = new Cookie(cookie.getName(), cookie.getValue());
+						lateViewCookie.setMaxAge(60);
+						lateViewCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
+						response.addCookie(lateViewCookie);
+		    			check=true;
+		    		}
+		    	}
+		    }
+		    if(check==false) {
+		    	Cookie lateViewCookie = new Cookie("lateView2", postNum);
+				lateViewCookie.setMaxAge(60*60*60*24*30);
+				lateViewCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
+				response.addCookie(lateViewCookie);
+		    }
+	    }else if(index==2) {
+		    for(Cookie cookie : cookies) {
+		    	if(cookie.getName().indexOf("lateView") != -1) {
+		    		Cookie lateViewCookie = new Cookie(cookie.getName(), cookie.getValue());
+					lateViewCookie.setMaxAge(60);
+					lateViewCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
+					response.addCookie(lateViewCookie);
+		    		if(cookie.getValue().equals(postNum)) {
+		    			check=true;
+		    		}
+		    	}
+		    }
+		    if(check==false) {
+		    	Cookie lateViewCookie = new Cookie("lateView3", postNum);
+				lateViewCookie.setMaxAge(60*60*60*24*30);
+				lateViewCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
+				response.addCookie(lateViewCookie);
+		    }
+	    }
+	    else if(index==3) {
+		    for(Cookie cookie : cookies) {
+		    	if(cookie.getName().indexOf("lateView") != -1) {
+		    		if(cookie.getValue().equals(postNum)) {
+		    			check=true;
+		    		}
+		    	}
+		    }
+		    if(check==false) {
+		    	index = 1;
+	    		for(int i = 0; i < cookies.length; i++) {
+			    	if(cookies[i].getName().indexOf("lateView") != -1) {
+			    		if(index!=3) {
+				    		Cookie lateViewCookie = new Cookie("lateView"+index, lateViewList.get(index));
+							lateViewCookie.setMaxAge(60*60*60*24*30);
+							lateViewCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
+							response.addCookie(lateViewCookie);
+			    		}else {
+					    	Cookie lateViewCookie = new Cookie("lateView"+index, postNum);
+							lateViewCookie.setMaxAge(60*60*60*24*30);
+							lateViewCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
+							response.addCookie(lateViewCookie);
+			    		}
+			    		index++;
+			    	}
+			    }
+		    }
+	    }
+		cookies = request.getCookies();
 	}
 }

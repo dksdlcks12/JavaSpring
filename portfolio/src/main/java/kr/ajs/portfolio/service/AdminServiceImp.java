@@ -22,7 +22,6 @@ import kr.ajs.portfolio.vo.UserVo;
 public class AdminServiceImp implements AdminService {
 	@Autowired
 	AdminDao adminDao;
-
 	@Override
 	public ModelAndView adminCountInfo(ModelAndView mv) {
 		// TODO Auto-generated method stub

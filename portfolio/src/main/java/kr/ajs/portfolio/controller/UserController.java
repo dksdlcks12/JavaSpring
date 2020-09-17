@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -88,7 +89,7 @@ public class UserController {
 			mv.addObject("noticeList", noticeList);
 			mv.addObject("slideShowList", slideShowList);
 			mv.setViewName("/main/userMain");		
-		}	
+		}
 	    return mv;
 	}
 	@RequestMapping(value= {"/signup"}, method = RequestMethod.GET)
@@ -147,11 +148,12 @@ public class UserController {
 	    return mv;
 	}
 	@RequestMapping(value= {"/goodsview"}, method = RequestMethod.GET)
-	public ModelAndView goodsView(ModelAndView mv, HttpServletRequest request, int num, int type, int page) throws Exception{
+	public ModelAndView goodsView(ModelAndView mv, HttpServletRequest request, int num, int type, int page, HttpServletResponse response) throws Exception{
 		mv = adminService.adminCountInfo(mv);
 		PostVo post = userService.getPost(num);
 		GoodsVo goods = userService.getGoods(post.getPost_goodsNum());
 		ArrayList<OptionVo> list = userService.getOptionList(num);
+		userService.setLateView(num, request, response);
 		int disCountPrice = goods.getGoodsPrice()/100*(100-post.getPostDiscount());
 		mv.addObject("goods", goods);
 		mv.addObject("post", post);

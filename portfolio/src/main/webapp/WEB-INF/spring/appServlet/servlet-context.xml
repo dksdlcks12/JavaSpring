@@ -38,7 +38,8 @@
 	</beans:bean>
 	<beans:bean id="loginInterceptor" class="kr.ajs.portfolio.interceptor.LoginInterceptor"></beans:bean>
 	<beans:bean id="adminInterceptor" class="kr.ajs.portfolio.interceptor.AdminInterceptor"></beans:bean>
-		<beans:bean id="memberInterceptor" class="kr.ajs.portfolio.interceptor.MemberInterceptor"></beans:bean>
+	<beans:bean id="memberInterceptor" class="kr.ajs.portfolio.interceptor.MemberInterceptor"></beans:bean>
+	<beans:bean id="lateviewInterceptor" class="kr.ajs.portfolio.interceptor.LateViewInterceptor"></beans:bean>
 	<interceptors>
 		<interceptor>
 			<mapping path="/login"/>
@@ -58,6 +59,10 @@
        		<mapping path="/reviewmodify"/>
        		<mapping path="/mypage"/>
         	<beans:ref bean="memberInterceptor"/>
+    	</interceptor>
+    	<interceptor>
+    		<mapping path="/*"/>
+    		<beans:ref bean="lateviewInterceptor"/>
     	</interceptor>
 	</interceptors>
 	<!-- 파일업로드 -->
