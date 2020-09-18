@@ -178,4 +178,6 @@ public interface UserService {
 
 	public int updateCartGetCartNum(int checkCartNum, UserVo user);
 
+	public boolean orderPwCheck(OrderVo order);
+
 }

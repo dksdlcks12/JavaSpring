@@ -9,6 +9,7 @@ import java.util.UUID;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -447,7 +448,9 @@ public class UserController {
 		if(user!=null) {
 			request.getSession().setAttribute("user", userService.getUser(user.getUserId()));
 		}
+		map.put("index", index);
 		map.put("stock", stock);
+		map.put("user", user);
 	    return map;
 	}
 	@RequestMapping(value= {"/orderviewlist"}, method = RequestMethod.GET)
@@ -487,10 +490,8 @@ public class UserController {
 			mv.addObject("orderNum", orderNum);
 			mv.addObject("order", order);
 			mv.addObject("list", list);
-			mv.setViewName("/afterOrder/orderView");
-		}else {
-			System.out.println("테스트");
 		}
+		mv.setViewName("/afterOrder/orderView");
 		return mv;
 	}
 	@RequestMapping(value= {"/recallselect"}, method = RequestMethod.GET)
@@ -949,5 +950,31 @@ public class UserController {
 		    mv.setViewName("redirect:/orderviewlist");
 		}
 	    return mv;
+	}
+	@RequestMapping(value= {"/nonmemberorderview"}, method = RequestMethod.GET)
+	public ModelAndView nonMemberOrderViewGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		mv.setViewName("/user/nonMemberOrderView");
+		return mv;
+	}
+	@RequestMapping("nonmemberorderviewcheck")
+	@ResponseBody
+	public Map<Object, Object> nonMemberOrderViewCheck(@RequestBody ArrayList<OrderVo> order, HttpServletRequest request) throws Exception{
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		boolean pwCheck;
+		pwCheck = userService.orderPwCheck(order.get(0));
+		map.put("pwCheck", pwCheck);
+		HttpSession noneMemberSession = request.getSession();
+		noneMemberSession.setAttribute("orderPw", order.get(0).getOrderPw());
+    	return map;
+	}
+	@RequestMapping(value= {"/nonememberorderviewitem"}, method = RequestMethod.GET)
+	public ModelAndView nonMemberOrderViewItemGet(ModelAndView mv, int orderNum, HttpServletRequest request) throws Exception{
+		ArrayList<OrderListVo> list;
+		String orderPw = (String) request.getSession().getAttribute("orderPw");
+		System.out.println(orderPw);
+		System.out.println(orderNum);
+		request.getSession().removeAttribute("orderPw");
+		mv.setViewName("/afterOrder/orderView");
+		return mv;
 	}
 }

@@ -5,7 +5,7 @@
 		<div class="common-login-title">로 그 인</div>
 			<form action="<%=request.getContextPath()%>/loginorder" method="POST">
 				<input type="text" class="common-login-inputInfo" name="userId" placeholder="아이디를 입력하세요">
-				<input type="text" class="common-login-inputInfo" name="userPw" placeholder="비밀번호를 입력하세요">
+				<input type="password" class="common-login-inputInfo" name="userPw" placeholder="비밀번호를 입력하세요">
 				<input class="common-login-address" name="address" value="${address}" hidden>
 				<button class="common-login-loginButton">로그인</button><br>
 			</form>

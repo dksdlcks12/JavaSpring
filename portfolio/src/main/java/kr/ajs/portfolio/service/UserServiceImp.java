@@ -642,4 +642,13 @@ public class UserServiceImp implements UserService {
 			return checkCartNum;
 		}
 	}
+	@Override
+	public boolean orderPwCheck(OrderVo order) {
+		// TODO Auto-generated method stub
+		OrderVo checkOrder = userDao.getNoneMemberOrder(order);
+		if(checkOrder.getOrderPw()!=null && passwordEncoder.matches(order.getOrderPw(), checkOrder.getOrderPw())) {
+			return true;
+		}
+		return false;
+	}
 }

@@ -30,7 +30,7 @@
 									dataType:"json",
 									contentType:"application/json; charset=UTF-8",
 									success : function(data){
-										location.reload();
+										location.replace('<%=request.getContextPath()%>/login');
 									}
 								});
 							})

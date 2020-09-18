@@ -197,5 +197,7 @@ public interface UserDao {
 	public void updateCartUserId(@Param("cart")CartVo checkCart, @Param("user")UserVo user);
 
 	public void deleteCheckCart(@Param("cart")CartVo checkCart);
+
+	public OrderVo getNoneMemberOrder(@Param("order")OrderVo order);
 	
 }

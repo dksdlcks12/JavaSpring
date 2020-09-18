@@ -14,7 +14,7 @@
 	padding-top: 30px;
 	box-sizing: border-box;
 }
-.common-login-title{
+.common-login-title, .common-nonMemberOrderView-title{
 	height: 50px;
 	width: 150px;
 	text-align: center;
@@ -27,6 +27,8 @@
 	width: 300px;
 	margin-left: calc(50% - 150px);
 	margin-bottom: 20px;
+	box-sizing: border-box;
+	padding-left: 10px;
 }
 .common-login-loginButton, .common-login-nonMemberButton{
 	height: 50px;
@@ -42,4 +44,8 @@
 }
 .common-login-idFind{
 	margin-right: 10px;
+}
+.common-nonMemberOrderView-title{
+	width: 350px;
+	margin-left: calc(50% - 175px);
 }

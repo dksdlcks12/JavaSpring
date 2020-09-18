@@ -292,8 +292,13 @@
 							contentType:"application/json; charset=UTF-8",
 							success : function(data){
 								if(data.stock){
-									alert('주문이 완료되었습니다.')
-									location.replace('<%=request.getContextPath()%>/orderviewlist')
+									if(data.user==null){
+										alert('주문번호 : '+ data.index +', 비밀번호 : ' + noneMemberPassword +' 로 주문이 완료되었습니다.')
+										location.replace('<%=request.getContextPath()%>/')
+									}else{
+										alert('주문이 완료되었습니다.')
+										location.replace('<%=request.getContextPath()%>/orderviewlist')
+									}
 								}else{
 									alert('재고가 부족합니다.')
 								}

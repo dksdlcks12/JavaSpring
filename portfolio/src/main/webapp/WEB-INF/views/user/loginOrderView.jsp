@@ -5,7 +5,7 @@
 		<div class="common-login-title">로 그 인</div>
 			<form action="<%=request.getContextPath()%>/loginorderview" method="POST">
 				<input type="text" class="common-login-inputInfo" name="userId" placeholder="아이디를 입력하세요">
-				<input type="text" class="common-login-inputInfo" name="userPw" placeholder="비밀번호를 입력하세요">
+				<input type="password" class="common-login-inputInfo" name="userPw" placeholder="비밀번호를 입력하세요">
 				<button class="common-login-loginButton">로그인</button><br>
 			</form>
 		<div class="common-login-findBox">
@@ -21,7 +21,7 @@
 			alert("존재하지 않는 ID 또는 잘못된 비밀번호 입니다.")
 		}
 		$('.common-login-nonMemberButton').click(function(){
-			location.replace('<%=request.getContextPath()%>/);
+			location.replace('<%=request.getContextPath()%>/nonmemberorderview');
 		})
 	})
 </script>

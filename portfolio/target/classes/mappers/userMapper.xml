@@ -591,4 +591,7 @@
 	<delete id="deleteCheckCart">
 		delete from cart where cartNum = #{cart.cartNum}
 	</delete>
+	<select id="getNoneMemberOrder" resultType="kr.ajs.portfolio.vo.OrderVo">
+		select * from portfolio.order where orderNum = #{order.orderNum}
+	</select>
 </mapper>
