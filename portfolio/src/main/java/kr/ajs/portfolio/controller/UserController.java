@@ -32,6 +32,7 @@ import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
+import kr.ajs.portfolio.vo.LoginOrderVo;
 import kr.ajs.portfolio.vo.NoticeVo;
 import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
@@ -871,9 +872,45 @@ public class UserController {
 	@RequestMapping(value= {"/loginorder"}, method = RequestMethod.GET)
 	public ModelAndView loginOrderGet(ModelAndView mv, HttpServletRequest request, Integer[] orderList) throws Exception{
 		mv.setViewName("/user/loginOrder");
-		for(Integer tmp:orderList) {
-			System.out.println(tmp);
+		String address = "";
+		for(int i=0; i<orderList.length; i++) {
+			if(i==0) {
+				address = address + "?orderList=" + orderList[i];
+			}else {
+				address = address + "&orderList=" + orderList[i];
+			}
 		}
+		mv.addObject("address",address);
 		return mv;
 	}
+	@RequestMapping(value= {"/loginorder"}, method = RequestMethod.POST)
+	public ModelAndView logInOrderPost(ModelAndView mv, LoginOrderVo loginOrder, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		mv.setViewName("/user/loginOrder");
+		UserVo user =new UserVo();
+		user.setUserId(loginOrder.getUserId());
+		user.setUserPw(loginOrder.getUserPw());
+		boolean isLogin = userService.isLogin(user);
+		mv.addObject("isLogin", isLogin);
+		if(isLogin) {
+			mv.addObject("user", user);
+		    mv.setViewName("redirect:/loginordercheck"+loginOrder.getAddress());
+		}else {
+			mv.addObject("address", loginOrder.getAddress());
+		}
+	    return mv;
+	}
+	@RequestMapping(value= {"/loginordercheck"}, method = RequestMethod.GET)
+	public ModelAndView loginOrderCheckGet(ModelAndView mv, HttpServletRequest request, Integer[] orderList) throws Exception{
+		String address = "";
+		for(int i=0; i<orderList.length; i++) {
+			if(i==0) {
+				address = address + "?orderList=" + orderList[i];
+			}else {
+				address = address + "&orderList=" + orderList[i];
+			}
+		}
+		System.out.println("테스트!!!");
+		mv.setViewName("redirect:/"+address);
+		return mv;
+	}	
 }
