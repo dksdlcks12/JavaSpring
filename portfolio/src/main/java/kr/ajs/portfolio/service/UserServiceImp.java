@@ -204,6 +204,9 @@ public class UserServiceImp implements UserService {
 	public int addOrder(AddOrderVo order, UserVo user) {
 		// TODO Auto-generated method stub
 		OrderVo orderInfo = new OrderVo();
+		if(order.getNoneMemberPassword()!=null) {
+			order.setNoneMemberPassword(passwordEncoder.encode(order.getNoneMemberPassword()));
+		}
 		userDao.addOrder(order, user, orderInfo);
 		return orderInfo.getOrderNum();
 	}

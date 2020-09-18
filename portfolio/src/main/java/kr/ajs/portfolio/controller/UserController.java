@@ -444,7 +444,9 @@ public class UserController {
 		    	userService.addOrderList(order, index, user);
 		    }
 		}
-		request.getSession().setAttribute("user", userService.getUser(user.getUserId()));
+		if(user!=null) {
+			request.getSession().setAttribute("user", userService.getUser(user.getUserId()));
+		}
 		map.put("stock", stock);
 	    return map;
 	}
@@ -912,5 +914,24 @@ public class UserController {
 		}
 		mv.setViewName("redirect:order"+address);
 		return mv;
-	}	
+	}
+	@RequestMapping(value= {"/nonememberorder"}, method = RequestMethod.GET)
+	public ModelAndView noneMemberOrderGet(ModelAndView mv, HttpServletRequest request, Integer[] orderList) throws Exception{
+	    mv.setViewName("/goods/goodsOrder");
+	    UserVo user = new UserVo();
+	    Cookie[] cookies = request.getCookies();
+	    for(Cookie cookie : cookies) {
+	    	if(cookie.getName().indexOf("nonMemberId") != -1) {
+	    		user.setUserId(cookie.getValue());
+	    	}
+	    }
+	    if(orderList!=null) {
+		    ArrayList<BoardCartVo> list = new ArrayList<BoardCartVo>();
+		    for(Integer order : orderList) {
+		    	list.addAll(userService.getBoardOrder(user, order));
+		    }
+		    mv.addObject("list", list);
+	    }
+	    return mv;
+	}
 }

@@ -44,7 +44,6 @@
 							<input type="text" class="user-order-address" id="sendAddress" placeholder="주소" readonly><br>
 							<input type="text" class="user-order-detailAddress" id="sendDetailAddress" placeholder="상세주소">
 							<input type="text" class="user-order-extraAddress" id="sendExtraAddress" placeholder="참고항목">
-
 							<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 							<script>
 								function sendExecDaumPostcode() {
@@ -126,7 +125,6 @@
 							<input type="text" class="user-order-address" id="receiveAddress" placeholder="주소" readonly><br>
 							<input type="text" class="user-order-detailAddress" id="receiveDetailAddress" placeholder="상세주소">
 							<input type="text" class="user-order-extraAddress" id="receiveExtraAddress" placeholder="참고항목">
-
 							<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 							<script>
 								function receiveExecDaumPostcode() {
@@ -271,35 +269,47 @@
 		var receiveDetailAddress = $('#receiveDetailAddress').val();
 		var receiveExtraAddress = $('#receiveExtraAddress').val();
 		var receiveTel = $('#receiveTel').children('.tel1').val()+$('#receiveTel').children('.tel2').val()+$('#receiveTel').children('.tel3').val();
-		if(senderName!="" && sendPostcode!="" && sendAddress!="" && sendDetailAddress!="" && $('#sendTel').children('.tel1').val()!="" && $('#sendTel').children('.tel2').val()!="" && $('#sendTel').children('.tel3').val()!="" && noneMemberPassword!="" && receiverName!="" && receivePostcode!="" && receiveAddress!="" && receiveDetailAddress!="" && $('#receiveTel').children('.tel1').val()!="" && $('#receiveTel').children('.tel2').val()!="" && $('#receiveTel').children('.tel3').val()!=""){
-			$('.user-order-goodsCheck').each(function(){
-				var orderNum = $(this).val();
-				var orderCount = $(this).parent().siblings('.user-order-goodsCount').text();
-				var orderPrice = $(this).parent().siblings('.user-order-goodsPrice').children('.user-order-goodsPriceNumber').text();
-				var orderUsePoint = $(this).parent().siblings('.user-order-goodsUsePoint').children('.number').val();
-				var orderPoint = $(this).parent().siblings('.user-order-goodsGoodsPoint').text();
-				goodsList.push({'orderNum':orderNum, 'orderCount':orderCount, 'orderPrice':orderPrice, 'orderUsePoint':orderUsePoint, 'orderPoint':orderPoint});
-			})
-			orderList.push({'totalPrice':totalPrice,'senderName':senderName,  'sendPostcode':sendPostcode, 'sendAddress':sendAddress, 'sendDetailAddress':sendDetailAddress, 'sendExtraAddress':sendExtraAddress, 'sendTel':sendTel, 'noneMemberPassword':noneMemberPassword, 'receiverName':receiverName, 'receivePostcode':receivePostcode, 'receiveAddress':receiveAddress, 'receiveDetailAddress':receiveDetailAddress, 'receiveExtraAddress':receiveExtraAddress, 'receiveTel':receiveTel})
-			arr.push({'goodsList':goodsList, 'orderList':orderList});
-			$.ajax({
-				async:false,
-				type:'POST',
-				data: JSON.stringify(arr),
-				url:"<%=request.getContextPath()%>/addorder",
-				dataType:"json",
-				contentType:"application/json; charset=UTF-8",
-				success : function(data){
-					if(data.stock){
-						alert('주문이 완료되었습니다.')
-						location.replace('<%=request.getContextPath()%>/orderviewlist')
+		if($('.user-order-password').length==0 || noneMemberPassword!=""){
+			if($('.user-order-password').length==0 || $('.noneMemberPasswordCheck').val()!=""){
+				if(noneMemberPassword == $('.noneMemberPasswordCheck').val()){
+					if(senderName!="" && sendPostcode!="" && sendAddress!="" && sendDetailAddress!="" && $('#sendTel').children('.tel1').val()!="" && $('#sendTel').children('.tel2').val()!="" && $('#sendTel').children('.tel3').val()!="" && noneMemberPassword!="" && receiverName!="" && receivePostcode!="" && receiveAddress!="" && receiveDetailAddress!="" && $('#receiveTel').children('.tel1').val()!="" && $('#receiveTel').children('.tel2').val()!="" && $('#receiveTel').children('.tel3').val()!=""){
+						$('.user-order-goodsCheck').each(function(){
+							var orderNum = $(this).val();
+							var orderCount = $(this).parent().siblings('.user-order-goodsCount').text();
+							var orderPrice = $(this).parent().siblings('.user-order-goodsPrice').children('.user-order-goodsPriceNumber').text();
+							var orderUsePoint = $(this).parent().siblings('.user-order-goodsUsePoint').children('.number').val();
+							var orderPoint = $(this).parent().siblings('.user-order-goodsGoodsPoint').text();
+							goodsList.push({'orderNum':orderNum, 'orderCount':orderCount, 'orderPrice':orderPrice, 'orderUsePoint':orderUsePoint, 'orderPoint':orderPoint});
+						})
+						orderList.push({'totalPrice':totalPrice,'senderName':senderName,  'sendPostcode':sendPostcode, 'sendAddress':sendAddress, 'sendDetailAddress':sendDetailAddress, 'sendExtraAddress':sendExtraAddress, 'sendTel':sendTel, 'noneMemberPassword':noneMemberPassword, 'receiverName':receiverName, 'receivePostcode':receivePostcode, 'receiveAddress':receiveAddress, 'receiveDetailAddress':receiveDetailAddress, 'receiveExtraAddress':receiveExtraAddress, 'receiveTel':receiveTel})
+						arr.push({'goodsList':goodsList, 'orderList':orderList});
+						$.ajax({
+							async:false,
+							type:'POST',
+							data: JSON.stringify(arr),
+							url:"<%=request.getContextPath()%>/addorder",
+							dataType:"json",
+							contentType:"application/json; charset=UTF-8",
+							success : function(data){
+								if(data.stock){
+									alert('주문이 완료되었습니다.')
+									location.replace('<%=request.getContextPath()%>/orderviewlist')
+								}else{
+									alert('재고가 부족합니다.')
+								}
+							}
+						});
 					}else{
-						alert('재고가 부족합니다.')
+						alert('주문정보를 모두 입력하여 주십시오.')
 					}
+				}else{
+					alert('입력하신 비밀번호와 비밀번호 확인이 다릅니다.')
 				}
-			});
+			}else{
+				alert('비밀번호 확인을 입력하여 주십시오.')
+			}
 		}else{
-			alert('주문정보를 모두 입력하여 주십시오.')
+			alert('비회원용 비밀번호를 입력하여 주십시오.')
 		}
 	})
 </script>

@@ -13,7 +13,7 @@
 			<a href="#" class="common-login-idFind"><i class="fas fa-chevron-circle-right"></i>아이디 찾기</a>
 			<a href="#" class="common-login-passWordFind"><i class="fas fa-chevron-circle-right"></i>비밀번호 찾기</a>
 		</div>
-		<button class="common-login-nonMemberButton">비회원 구매</button><br>
+		<button class="common-login-nonMemberButton">비회원 구매</button><br></a>
 	</div>
 </div>
 <script>
@@ -21,5 +21,8 @@
 		if(${isLogin==false}){
 			alert("존재하지 않는 ID 또는 잘못된 비밀번호 입니다.")
 		}
+		$('.common-login-nonMemberButton').click(function(){
+			location.replace('<%=request.getContextPath()%>/nonememberorder'+$(".common-login-address").val());
+		})
 	})
 </script>
