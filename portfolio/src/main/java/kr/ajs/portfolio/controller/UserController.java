@@ -473,7 +473,7 @@ public class UserController {
 			mv.addObject("count", count);
 		    mv.setViewName("/afterOrder/orderViewList");
 		}else {
-			mv.setViewName("redirect:/login");
+			mv.setViewName("redirect:/loginorderview");
 		}
 	    return mv;
 	}
@@ -489,7 +489,7 @@ public class UserController {
 			mv.addObject("list", list);
 			mv.setViewName("/afterOrder/orderView");
 		}else {
-			mv.setViewName("redirect:/login");
+			System.out.println("테스트");
 		}
 		return mv;
 	}
@@ -886,7 +886,7 @@ public class UserController {
 		return mv;
 	}
 	@RequestMapping(value= {"/loginorder"}, method = RequestMethod.POST)
-	public ModelAndView logInOrderPost(ModelAndView mv, LoginOrderVo loginOrder, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView logInOrderPost(ModelAndView mv, LoginOrderVo loginOrder, HttpServletRequest request) throws Exception{
 		mv.setViewName("/user/loginOrder");
 		UserVo user =new UserVo();
 		user.setUserId(loginOrder.getUserId());
@@ -932,6 +932,22 @@ public class UserController {
 		    }
 		    mv.addObject("list", list);
 	    }
+	    return mv;
+	}
+	@RequestMapping(value= {"/loginorderview"}, method = RequestMethod.GET)
+	public ModelAndView loginOrderViewGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		mv.setViewName("/user/loginOrderView");
+		return mv;
+	}
+	@RequestMapping(value= {"/loginorderview"}, method = RequestMethod.POST)
+	public ModelAndView logInOrderViewPost(ModelAndView mv, UserVo user, HttpServletRequest request) throws Exception{
+		mv.setViewName("/user/loginOrderView");
+		boolean isLogin = userService.isLogin(user);
+		mv.addObject("isLogin", isLogin);
+		if(isLogin) {
+			mv.addObject("user", user);
+		    mv.setViewName("redirect:/orderviewlist");
+		}
 	    return mv;
 	}
 }
