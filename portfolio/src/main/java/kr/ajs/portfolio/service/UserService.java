@@ -176,4 +176,6 @@ public interface UserService {
 
 	public Integer getCartNum(OptionListVo option, UserVo user);
 
+	public int updateCartGetCartNum(int checkCartNum, UserVo user);
+
 }

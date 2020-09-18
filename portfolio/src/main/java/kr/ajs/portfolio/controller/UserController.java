@@ -901,16 +901,16 @@ public class UserController {
 	}
 	@RequestMapping(value= {"/loginordercheck"}, method = RequestMethod.GET)
 	public ModelAndView loginOrderCheckGet(ModelAndView mv, HttpServletRequest request, Integer[] orderList) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		String address = "";
 		for(int i=0; i<orderList.length; i++) {
 			if(i==0) {
-				address = address + "?orderList=" + orderList[i];
+				address = address + "?orderList=" + userService.updateCartGetCartNum(orderList[i], user);
 			}else {
-				address = address + "&orderList=" + orderList[i];
+				address = address + "&orderList=" + userService.updateCartGetCartNum(orderList[i], user);
 			}
 		}
-		System.out.println("테스트!!!");
-		mv.setViewName("redirect:/"+address);
+		mv.setViewName("redirect:order"+address);
 		return mv;
 	}	
 }

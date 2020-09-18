@@ -21,6 +21,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	    UserVo user = (UserVo)modelMap.get("user");
 	    if(user != null) {
 	    	user = userDao.getUser(user.getUserId());
+	    	user.setUserPw(null);
 	        HttpSession session = request.getSession();
 	        session.setAttribute("user", user);
 	    }

@@ -624,4 +624,19 @@ public class UserServiceImp implements UserService {
 		userDao.updateCartCount(cart);
 		return cart.getCartNum();
 	}
+	@Override
+	public int updateCartGetCartNum(int checkCartNum, UserVo user) {
+		// TODO Auto-generated method stub
+		CartVo checkCart = userDao.getCartToCartNum(checkCartNum);
+		CartVo cart = userDao.checkCart(checkCart.getCart_optionNum(), user);
+		if(cart!=null) {
+			cart.setCartCount(checkCart.getCartCount());
+			userDao.updateCartCount(cart);
+			userDao.deleteCheckCart(checkCart);
+			return cart.getCartNum();
+		}else {
+			userDao.updateCartUserId(checkCart, user);
+			return checkCartNum;
+		}
+	}
 }

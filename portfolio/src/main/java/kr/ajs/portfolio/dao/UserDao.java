@@ -189,5 +189,13 @@ public interface UserDao {
 	public ArrayList<GoodsVo> getSlideShowList();
 
 	public GoodsVo getLateView(@Param("postNum")String postNum);
+
+	public CartVo getCartToCartNum(@Param("cartNum")int checkCartNum);
+
+	public CartVo checkCart(@Param("optionNum")int optionNum, @Param("user")UserVo user);
+
+	public void updateCartUserId(@Param("cart")CartVo checkCart, @Param("user")UserVo user);
+
+	public void deleteCheckCart(@Param("cart")CartVo checkCart);
 	
 }
