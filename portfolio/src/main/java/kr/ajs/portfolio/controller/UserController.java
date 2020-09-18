@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -227,10 +229,20 @@ public class UserController {
 		if(user!=null) {
 			ArrayList<BoardCartVo> list = userService.getBoardCart(user);
 			mv.addObject("list", list);
-		    mv.setViewName("/goods/goodsCart");
 		}else {
-			mv.setViewName("redirect:/login");
+			Cookie[] cookies = request.getCookies();
+		    for(Cookie cookie : cookies) {
+		    	if(cookie.getName().indexOf("nonMemberId") != -1) {
+		    		user = new UserVo();
+		    		user.setUserId(cookie.getValue());
+		    	}
+		    }
+		    if(user!=null) {
+		    	ArrayList<BoardCartVo> list = userService.getBoardCart(user);
+				mv.addObject("list", list);
+		    }
 		}
+	    mv.setViewName("/goods/goodsCart");
 	    return mv;
 	}
 	@RequestMapping("/cartdel")
@@ -245,16 +257,52 @@ public class UserController {
 	}
 	@RequestMapping("/goodsviewcart")
 	@ResponseBody
-	public Map<Object, Object> goodsViewCart(@RequestBody ArrayList<OptionListVo> optionList, HttpServletRequest request){
+	public Map<Object, Object> goodsViewCart(@RequestBody ArrayList<OptionListVo> optionList, HttpServletRequest request, HttpServletResponse response){
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 	    boolean cartCheck=false;
-	    for(OptionListVo option : optionList) {
-	    	if(userService.getcart(option, user)) {
-	    		cartCheck=true;
-	    	}else {
-	    		userService.addGoodsViewCart(option, user);
-	    	}
+	    if(user!=null) {
+		    for(OptionListVo option : optionList) {
+		    	if(userService.getcart(option, user)) {
+		    		cartCheck=true;
+		    	}else {
+		    		userService.addGoodsViewCart(option, user);
+		    	}
+		    }
+    	}else {
+    		boolean cookiechcek = false;
+			Cookie[] cookies = request.getCookies();
+		    for(Cookie cookie : cookies) {
+		    	if(cookie.getName().indexOf("nonMemberId") != -1) {
+			    	Cookie nonMemberCookie = new Cookie("nonMemberId", cookie.getValue());
+			    	nonMemberCookie.setMaxAge(60*60*12);
+			    	nonMemberCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
+			    	response.addCookie(nonMemberCookie);
+		    		cookiechcek = true;
+		    	}
+		    }
+		    if(!cookiechcek) {
+		    	String nonMemberId = UUID.randomUUID().toString().replace("-","");
+		    	Cookie nonMemberCookie = new Cookie("nonMemberId", nonMemberId);
+		    	nonMemberCookie.setMaxAge(60*60*12);
+		    	nonMemberCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
+		    	response.addCookie(nonMemberCookie);
+		    }
+		    cookies = request.getCookies();
+		    for(Cookie cookie : cookies) {
+		    	if(cookie.getName().indexOf("nonMemberId") != -1) {
+		    		user = new UserVo();
+		    		user.setUserId(cookie.getValue());
+		    	}
+		    }
+		    
+		    for(OptionListVo option : optionList) {
+		    	if(userService.getcart(option, user)) {
+		    		cartCheck=true;
+		    	}else {
+		    		userService.addGoodsViewCart(option, user);
+		    	}
+		    }
 	    }
 	    map.put("cartCheck", cartCheck);
 	    return map;
@@ -269,7 +317,7 @@ public class UserController {
 	    return map;
 	}
 	@RequestMapping(value= {"/goodsvieworder"}, method = RequestMethod.GET)
-	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count, GoodsVo goods, HttpServletRequest request) throws Exception{
+	public ModelAndView wishListPost(ModelAndView mv, String[] color, int[] count, GoodsVo goods, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		ArrayList<Integer> cartNumList = new ArrayList<Integer>();
 		String address="";
@@ -281,6 +329,7 @@ public class UserController {
 				option.setColor(color[i]);
 				option.setCount(count[i]);
 				if(userService.getcart(option, user)) {
+					cartNumList.add(userService.getCartNum(option, user));
 		    	}else {
 		    		int cartNum = userService.addGoodsViewOrderCart(option, user);
 		    		cartNumList.add(cartNum);
@@ -295,7 +344,52 @@ public class UserController {
 			}
 			mv.setViewName("redirect:/order"+address);
 		}else {
-			mv.setViewName("redirect:/login");
+			boolean cookiechcek = false;
+			Cookie[] cookies = request.getCookies();
+		    for(Cookie cookie : cookies) {
+		    	if(cookie.getName().indexOf("nonMemberId") != -1) {
+			    	Cookie nonMemberCookie = new Cookie("nonMemberId", cookie.getValue());
+			    	nonMemberCookie.setMaxAge(60*60*12);
+			    	nonMemberCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
+			    	response.addCookie(nonMemberCookie);
+		    		cookiechcek = true;
+		    	}
+		    }
+		    if(!cookiechcek) {
+		    	String nonMemberId = UUID.randomUUID().toString().replace("-","");
+		    	Cookie nonMemberCookie = new Cookie("nonMemberId", nonMemberId);
+		    	nonMemberCookie.setMaxAge(60*60*12);
+		    	nonMemberCookie.setPath("/"); // 모든 경로에서 접근 가능 하도록 설정
+		    	response.addCookie(nonMemberCookie);
+		    }
+		    cookies = request.getCookies();
+		    for(Cookie cookie : cookies) {
+		    	if(cookie.getName().indexOf("nonMemberId") != -1) {
+		    		user = new UserVo();
+		    		user.setUserId(cookie.getValue());
+		    	}
+		    }
+		    String goodsName = goods.getGoodsName();
+			for(int i=0; i<color.length; i++) {
+				OptionListVo option = new OptionListVo();
+				option.setGoods(goodsName);
+				option.setColor(color[i]);
+				option.setCount(count[i]);
+				if(userService.getcart(option, user)) {
+					cartNumList.add(userService.getCartNum(option, user));
+		    	}else {
+		    		int cartNum = userService.addGoodsViewOrderCart(option, user);
+		    		cartNumList.add(cartNum);
+		    	}
+			}
+			for(int i=0; i<cartNumList.size(); i++) {
+				if(i==0) {
+					address = address + "?orderList=" + cartNumList.get(i);
+				}else {
+					address = address + "&orderList=" + cartNumList.get(i);
+				}
+			}
+			mv.setViewName("redirect:/loginorder"+address);
 		}
 		return mv;
 	}
@@ -314,7 +408,15 @@ public class UserController {
 			    mv.addObject("list", list);
 		    }
 		}else {
-			mv.setViewName("redirect:/login");
+			String address = "";
+			for(int i=0; i<orderList.length; i++) {
+				if(i==0) {
+					address = address + "?orderList=" + orderList[i];
+				}else {
+					address = address + "&orderList=" + orderList[i];
+				}
+			}
+			mv.setViewName("redirect:/loginorder"+address);
 		}
 	    return mv;
 	}
@@ -765,5 +867,13 @@ public class UserController {
 		}
 		map.put("userDel", userDel);
     	return map;
+	}
+	@RequestMapping(value= {"/loginorder"}, method = RequestMethod.GET)
+	public ModelAndView loginOrderGet(ModelAndView mv, HttpServletRequest request, Integer[] orderList) throws Exception{
+		mv.setViewName("/user/loginOrder");
+		for(Integer tmp:orderList) {
+			System.out.println(tmp);
+		}
+		return mv;
 	}
 }

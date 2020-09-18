@@ -616,4 +616,12 @@ public class UserServiceImp implements UserService {
 	    }
 		cookies = request.getCookies();
 	}
+	@Override
+	public Integer getCartNum(OptionListVo option, UserVo user) {
+		// TODO Auto-generated method stub
+		CartVo cart = userDao.getCart(option, user);
+		cart.setCartCount(option.getCount());
+		userDao.updateCartCount(cart);
+		return cart.getCartNum();
+	}
 }

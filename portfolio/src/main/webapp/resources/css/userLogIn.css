@@ -11,7 +11,7 @@
 	width: 800px;
 	height: 469px;
 	margin: 0 auto;
-	padding-top: 80px;
+	padding-top: 30px;
 	box-sizing: border-box;
 }
 .common-login-title{
@@ -28,7 +28,7 @@
 	margin-left: calc(50% - 150px);
 	margin-bottom: 20px;
 }
-.common-login-loginButton{
+.common-login-loginButton, .common-login-nonMemberButton{
 	height: 50px;
 	width: 300px;
 	margin-left: calc(50% - 150px);

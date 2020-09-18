@@ -174,4 +174,6 @@ public interface UserService {
 	
 	public ModelAndView getlateview(ModelAndView mv, HttpServletRequest request);
 
+	public Integer getCartNum(OptionListVo option, UserVo user);
+
 }

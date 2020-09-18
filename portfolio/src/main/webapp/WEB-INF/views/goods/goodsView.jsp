@@ -240,34 +240,30 @@
 		})
 		$('.common-goodsView-goCart').click(function(){
 			var arr = [] ;
-			if($('#user').val().length!=0){
-				if($('.common-goodsView-selectOptionBox').length!=0){
-					$('.common-goodsView-optionName').each(function(){
-						var color = $(this).text();
-						var count = $(this).siblings('.common-goodsView-optionCount').val();
-						var goods = $('.common-goodsView-goodsName').text();
-						arr.push({'color':color,'count':count,'goods':goods});
-					})
-					$.ajax({
-						async:false,
-						type:'POST',
-						data: JSON.stringify(arr),
-						url:"<%=request.getContextPath()%>/goodsviewcart",
-						dataType:"json",
-						contentType:"application/json; charset=UTF-8",
-						success : function(data){
-							if(data.cartCheck){
-								alert('장바구니에 있는 항목은 제외하고 추가됩니다.')
-							}else{
-								alert('장바구니에 추가하였습니다.')
-							}
+			if($('.common-goodsView-selectOptionBox').length!=0){
+				$('.common-goodsView-optionName').each(function(){
+					var color = $(this).text();
+					var count = $(this).siblings('.common-goodsView-optionCount').val();
+					var goods = $('.common-goodsView-goodsName').text();
+					arr.push({'color':color,'count':count,'goods':goods});
+				})
+				$.ajax({
+					async:false,
+					type:'POST',
+					data: JSON.stringify(arr),
+					url:"<%=request.getContextPath()%>/goodsviewcart",
+					dataType:"json",
+					contentType:"application/json; charset=UTF-8",
+					success : function(data){
+						if(data.cartCheck){
+							alert('장바구니에 있는 항목은 제외하고 추가됩니다.')
+						}else{
+							alert('장바구니에 추가하였습니다.')
 						}
-					});
-				}else{
-					alert('옵션을 선택하여 주십시오.')
-				}
+					}
+				});
 			}else{
-				alert('회원만 사용 가능합니다.')
+				alert('옵션을 선택하여 주십시오.')
 			}
 		})
 		$('form').on("submit", function(){
