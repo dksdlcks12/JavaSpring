@@ -594,4 +594,9 @@
 	<select id="getNoneMemberOrder" resultType="kr.ajs.portfolio.vo.OrderVo">
 		select * from portfolio.order where orderNum = #{order.orderNum}
 	</select>
+	<select id="getnonMemberOrderGoodsList" resultType="kr.ajs.portfolio.vo.OrderListVo">
+		select orderListNum, goodsName, goodsImg, optionColor, orderListPrice, orderListCount, orderListUsePoint, goodsType, orderListIsRecall
+		from orderlist join portfolio.option on orderList_optionNum = optionNum join goods on option_goodsNum = goodsNum join portfolio.order on orderList_orderNum = orderNum
+		where orderList_orderNum = #{orderNum}
+	</select>
 </mapper>

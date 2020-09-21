@@ -969,10 +969,17 @@ public class UserController {
 	}
 	@RequestMapping(value= {"/nonememberorderviewitem"}, method = RequestMethod.GET)
 	public ModelAndView nonMemberOrderViewItemGet(ModelAndView mv, int orderNum, HttpServletRequest request) throws Exception{
-		ArrayList<OrderListVo> list;
+		OrderVo order = new OrderVo();
+		ArrayList<OrderListVo> list = new ArrayList<OrderListVo>();
 		String orderPw = (String) request.getSession().getAttribute("orderPw");
-		System.out.println(orderPw);
-		System.out.println(orderNum);
+		order = userService.nonMemberOrderView(orderNum, orderPw);
+		mv.addObject("order", order);
+		if(order!=null) {
+			list = userService.nonMembergetOrderGoodsList(orderNum);
+		}
+		mv.addObject("orderNum", orderNum);
+		mv.addObject("order", order);
+		mv.addObject("list", list);
 		request.getSession().removeAttribute("orderPw");
 		mv.setViewName("/afterOrder/orderView");
 		return mv;

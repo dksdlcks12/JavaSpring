@@ -199,5 +199,7 @@ public interface UserDao {
 	public void deleteCheckCart(@Param("cart")CartVo checkCart);
 
 	public OrderVo getNoneMemberOrder(@Param("order")OrderVo order);
+
+	public ArrayList<OrderListVo> getnonMemberOrderGoodsList(@Param("orderNum")int orderNum);
 	
 }

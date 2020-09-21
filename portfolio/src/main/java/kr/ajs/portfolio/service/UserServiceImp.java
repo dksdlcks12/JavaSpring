@@ -651,4 +651,22 @@ public class UserServiceImp implements UserService {
 		}
 		return false;
 	}
+	@Override
+	public OrderVo nonMemberOrderView(int orderNum, String orderPw) {
+		// TODO Auto-generated method stub
+		OrderVo order = new OrderVo();
+		order.setOrderNum(orderNum);
+		order.setOrderPw(orderPw);
+		OrderVo dbOrder = userDao.getNoneMemberOrder(order);
+		if(order.getOrderPw()!=null && passwordEncoder.matches(order.getOrderPw(), dbOrder.getOrderPw())) {
+			return dbOrder;
+		}else {
+			return null;	
+		}
+	}
+	@Override
+	public ArrayList<OrderListVo> nonMembergetOrderGoodsList(int orderNum) {
+		// TODO Auto-generated method stub
+		return userDao.getnonMemberOrderGoodsList(orderNum);
+	}
 }

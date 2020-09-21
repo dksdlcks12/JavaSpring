@@ -180,4 +180,8 @@ public interface UserService {
 
 	public boolean orderPwCheck(OrderVo order);
 
+	public OrderVo nonMemberOrderView(int orderNum, String orderPw);
+
+	public ArrayList<OrderListVo> nonMembergetOrderGoodsList(int orderNum);
+
 }
