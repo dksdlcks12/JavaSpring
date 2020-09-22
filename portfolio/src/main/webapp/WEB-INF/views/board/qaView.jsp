@@ -10,7 +10,7 @@
 			<tr>
 				<td class="common-boardView-menu">작 성 자</td>
 				<td class="common-boardView-menu">${qa.qaWriter}</td>
-				<td class="common-boardView-menu">게 시 일</td>
+				<td class="common-boardView-menu">작 성 일</td>
 				<td class="common-boardView-menu">${qa.qaDate}</td>
 			</tr>
 		</table>

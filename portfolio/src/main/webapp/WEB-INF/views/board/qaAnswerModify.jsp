@@ -5,7 +5,7 @@
 		<table class="common-boardWrite-titleBox" border="1">
 			<tr>
 				<td class="common-boardWrite-rowTitle">제 목</td>
-				<td class="common-boardWrite-rowContent"><input type="text" class="common-boardWrite-title" maxlength="30" value="${qa.qaTitle}"></td>
+				<td class="common-boardWrite-rowContent"><input type="text" class="common-boardWrite-title" maxlength="30" value="${qa.qaTitle}" readonly></td>
 			</tr>
 		</table>
 		<div class="common-boardWrite-Content">
@@ -13,7 +13,7 @@
 		</div>
 		<div class="transImg" hidden></div>
 		<textarea class="sandNote" hidden>${qa.qaContent}</textarea>
-		<button class="common-boardWrite-button">등 록</button>
+		<button class="common-boardWrite-button">수정완료</button>
 	</div>
 </div>
 <script>

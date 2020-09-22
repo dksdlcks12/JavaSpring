@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="common-boardList-box">
 	<div class="common-boardList-boardListBox">	
-		<h3 class="common-boardList-title">게시판 타입</h3>
+		<h3 class="common-boardList-title">Q & A</h3>
 		<c:if test="${list.size()!=0}">
 			<table class="common-boardList-table" border="1">
 				<thead>
@@ -10,7 +10,7 @@
 						<th class="common-boardList-boardNum">No.</th>
 						<th class="common-boardList-boardTitle">제목</th>
 						<th class="common-boardList-boardWriter">작성자</th>
-						<th class="common-boardList-boardDate">게시일</th>
+						<th class="common-boardList-boardDate">작성일</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -39,12 +39,12 @@
 			<form action="">
 				<div class="common-boardList-searchAndButtonBox">
 					<select name="type" class="common-boardList-searchType">
-						<option value="0" selected>전체</option>
-						<option value="1">제목</option>
-						<option value="2">작성자</option>
-						<option value="3">작성일</option>
+						<option value="0" <c:if test="${pm.criteria.type==0}">selected</c:if>>전체</option>
+						<option value="1" <c:if test="${pm.criteria.type==1}">selected</c:if>>제목</option>
+						<option value="2" <c:if test="${pm.criteria.type==2}">selected</c:if>>작성자</option>
+						<option value="3" <c:if test="${pm.criteria.type==3}">selected</c:if>>작성일</option>
 					</select>
-					<input type="text" class="common-boardList-searchContent" name="search">
+					<input type="text" class="common-boardList-searchContent" name="search" value="${pm.criteria.search}">
 					<button class="common-boardList-searchButton"><i class="fas fa-search"></i></button>
 				</div>
 			</form>

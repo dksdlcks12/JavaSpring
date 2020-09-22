@@ -26,16 +26,16 @@
 		</c:if>
 		<c:if test="${user.userAuth eq 'admin'}">
 			<form action="<%=request.getContextPath()%>/recallviewlist">
-				<div class="common-boardList-searchBox">
-					<select name="type" class="common-boardList-searchType">
+				<div class="admin-orderList-searchBox">
+					<select name="type" class="admin-orderList-searchType">
 						<option value="0" <c:if test="${pm.criteria.type==0}">selected</c:if>>전체</option>
 						<option value="1" <c:if test="${pm.criteria.type==1}">selected</c:if>>반품 번호</option>
 						<option value="2" <c:if test="${pm.criteria.type==3}">selected</c:if>>반품 내용</option>
 						<option value="3" <c:if test="${pm.criteria.type==2}">selected</c:if>>반품 상태</option>
 						<option value="4" <c:if test="${pm.criteria.type==3}">selected</c:if>>반품 날짜</option>
 					</select>
-					<input type="text" class="common-boardList-searchContent" name="search">
-					<button class="common-boardList-searchButton"><i class="fas fa-search"></i></button>
+					<input type="text" class="admin-orderList-searchContent" name="search" value="${pm.criteria.search}">
+					<button class="admin-orderList-searchButton"><i class="fas fa-search"></i></button>
 				</div>
 			</form>
 		</c:if>

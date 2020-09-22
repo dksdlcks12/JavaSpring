@@ -1,7 +1,7 @@
 package kr.ajs.portfolio.vo;
 
 public class SearchVo {
-	private int goodsNum;
+	private int postNum;
 	private String goodsName;
 	private String goodsImg;
 	private int goodsPrice;
@@ -11,12 +11,11 @@ public class SearchVo {
 	private String minDisCount;
 	private String maxDisCount;
 	
-
-	public int getGoodsNum() {
-		return goodsNum;
+	public int getPostNum() {
+		return postNum;
 	}
-	public void setGoodsNum(int goodsNum) {
-		this.goodsNum = goodsNum;
+	public void setPostNum(int postNum) {
+		this.postNum = postNum;
 	}
 	public String getGoodsName() {
 		return goodsName;
@@ -66,10 +65,10 @@ public class SearchVo {
 	public void setMaxDisCount(String maxDisCount) {
 		this.maxDisCount = maxDisCount;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "SearchVo [goodsNum=" + goodsNum + ", goodsName=" + goodsName + ", goodsImg=" + goodsImg + ", goodsPrice="
+		return "SearchVo [postNum=" + postNum + ", goodsName=" + goodsName + ", goodsImg=" + goodsImg + ", goodsPrice="
 				+ goodsPrice + ", search=" + search + ", minPrice=" + minPrice + ", maxPrice=" + maxPrice
 				+ ", minDisCount=" + minDisCount + ", maxDisCount=" + maxDisCount + "]";
 	}

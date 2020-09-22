@@ -495,8 +495,13 @@ public class UserController {
 		return mv;
 	}
 	@RequestMapping(value= {"/recallselect"}, method = RequestMethod.GET)
-	public ModelAndView recallSelectGet(ModelAndView mv) throws Exception{
-		mv.setViewName("/afterOrder/recallSelect");
+	public ModelAndView recallSelectGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		if(user!=null) {
+			mv.setViewName("/afterOrder/recallSelect");
+		}else {
+			mv.setViewName("redirect:/login");
+		}
 		return mv;
 	}
 	@RequestMapping(value= {"/recallapplylist"}, method = RequestMethod.GET)
@@ -667,6 +672,7 @@ public class UserController {
 	}
 	@RequestMapping(value= {"/noticeview"}, method = RequestMethod.GET)
 	public ModelAndView noticeViewGet(ModelAndView mv, int noticeNum, int page, int type, String search) throws Exception{
+		mv = adminService.adminCountInfo(mv);
 		NoticeVo notice = userService.getNotice(noticeNum);
 		mv.addObject("notice", notice);
 		mv.addObject("page", page);
@@ -837,6 +843,7 @@ public class UserController {
 	}
 	@RequestMapping(value= {"/mypage"}, method = RequestMethod.GET)
 	public ModelAndView myPageCheckGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		mv = adminService.adminCountInfo(mv);
 		mv.setViewName("/user/myPage");
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		mv = adminService.adminCountInfo(mv);

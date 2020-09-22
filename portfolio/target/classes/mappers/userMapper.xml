@@ -487,6 +487,20 @@
 	<select id="getReviewList" resultType="kr.ajs.portfolio.vo.ReviewVo">
 		select * from review
 		where reviewIsDel = 'N'
+		<if test="cri.type == 0">
+			and (reviewTitle like concat('%',#{cri.search},'%')
+			or review_userId like concat('%',#{cri.search},'%')
+			or reviewDate like concat('%',#{cri.search},'%'))
+		</if>
+		<if test="cri.type == 1">
+			and reviewTitle like concat('%',#{cri.search},'%')
+		</if>
+		<if test="cri.type == 2">
+			and review_userId like concat('%',#{cri.search},'%')
+		</if>
+		<if test="cri.type == 3">
+			and reviewDate like concat('%',#{cri.search},'%')
+		</if>
 		order by reviewNum desc
 		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>

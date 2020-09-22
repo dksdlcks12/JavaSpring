@@ -22,7 +22,7 @@
 						<td class="user-order-goodsPrice"><span class="user-order-goodsPriceNumber">${order.goodsDiscountPrice}</span>원</td>
 						<td class="user-order-goodsCount">${order.cartCount}</td>
 						<td class="user-order-goodsGoodsPoint">${order.totalpoint}</td>
-						<td class="user-order-goodsUsePoint"><input type="text" class="number" value="0"></td>
+						<td class="user-order-goodsUsePoint"><input type="text" class="number" value="0" <c:if test="${user==null}">readonly</c:if>></td>
 						<td class="user-order-allGoodsPrice"><span class="user-order-allGoodsPriceNumber">${order.goodsAllPrice}</span>원</td>
 					</tr>
 				</c:forEach>

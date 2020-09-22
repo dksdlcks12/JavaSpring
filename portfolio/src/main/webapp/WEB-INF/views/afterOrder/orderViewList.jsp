@@ -34,7 +34,7 @@
 							<option value="2" <c:if test="${pm.criteria.type==2}">selected</c:if>>주문아이디</option>
 							<option value="3" <c:if test="${pm.criteria.type==3}">selected</c:if>>주문상태</option>
 						</select>
-						<input type="text" class="admin-orderList-searchContent" name="search">
+						<input type="text" class="admin-orderList-searchContent" name="search" value="${pm.criteria.search}">
 						<button class="admin-orderList-searchButton"><i class="fas fa-search"></i></button>
 					</div>
 				</form>

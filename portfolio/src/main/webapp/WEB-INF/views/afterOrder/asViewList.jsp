@@ -6,7 +6,7 @@
 			<h2>A/S목록</h2>
 			<div class="admin-asList-orderTitleBox">
 				<div class="admin-asList-orderTitleNumber">A/S번호</div>
-				<div class="admin-asList-orderTitleInfo">A/S내용</div>
+				<div class="admin-asList-orderTitleInfo">제목</div>
 				<div class="admin-asList-orderTitleDate">A/S 신청날짜</div>
 				<div class="admin-asList-orderTitleState">A/S상태</div>
 			</div>
@@ -26,16 +26,16 @@
 		</c:if>
 		<c:if test="${user.userAuth eq 'admin'}">
 			<form action="<%=request.getContextPath()%>/asviewlist">
-				<div class="common-boardList-searchBox">
-					<select name="type" class="common-boardList-searchType">
-						<option value="0" selected>전체</option>
-						<option value="1">A/S 번호</option>
-						<option value="2">A/S 신청날짜</option>
-						<option value="3">A/S 상태</option>
-						<option value="4">신청 아이디</option>
+				<div class="admin-orderList-searchBox">
+					<select name="type" class="admin-orderList-searchType">
+						<option value="0" <c:if test="${pm.criteria.type==0}">selected</c:if>>전체</option>
+						<option value="1" <c:if test="${pm.criteria.type==1}">selected</c:if>>A/S 번호</option>
+						<option value="2" <c:if test="${pm.criteria.type==2}">selected</c:if>>A/S 신청날짜</option>
+						<option value="3" <c:if test="${pm.criteria.type==3}">selected</c:if>>A/S 상태</option>
+						<option value="4" <c:if test="${pm.criteria.type==4}">selected</c:if>>신청 아이디</option>
 					</select>
-					<input type="text" class="common-boardList-searchContent" name="search">
-					<button class="common-boardList-searchButton"><i class="fas fa-search"></i></button>
+					<input type="text" class="admin-orderList-searchContent" name="search" value="${pm.criteria.search}">
+					<button class="admin-orderList-searchButton"><i class="fas fa-search"></i></button>
 				</div>
 			</form>
 		</c:if>

@@ -13,7 +13,7 @@
 				<tbody>
 					<tr>
 						<td class="user-mypage-rowTitle">비밀번호 수정</td>
-						<td class="user-mypage-rowContent"><input type="password" class="user-mypage-inputInfo" name=userPw id=userPw> (영문자, 숫자 포함 4~8자) <label id='userPw-error' class='error' for='userPw'></label></td>
+						<td class="user-mypage-rowContent"><input type="password" class="user-mypage-inputInfo" name=userPw id=userPw> (영문자, 숫자 포함 8~16자) <label id='userPw-error' class='error' for='userPw'></label></td>
 					</tr>
 					<tr>
 						<td class="user-mypage-rowTitle">비밀번호 확인</td>

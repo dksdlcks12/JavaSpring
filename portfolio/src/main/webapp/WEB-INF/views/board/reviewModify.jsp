@@ -15,7 +15,7 @@
 			<div class="transImg" hidden></div>
 			<textarea class="sandNote" hidden>${review.reviewContent}</textarea>
 			<div class="writer" hidden>${review.review_userId}</div>
-			<button class="common-boardWrite-button">등 록</button>
+			<button class="common-boardWrite-button">수정완료</button>
 		</c:if>
 	</div>
 </div>

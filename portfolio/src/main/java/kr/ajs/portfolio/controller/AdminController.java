@@ -211,6 +211,7 @@ public class AdminController {
 	}
 	@RequestMapping(value= {"/admin/noticemodify"}, method = RequestMethod.GET)
 	public ModelAndView noticeModifyGet(ModelAndView mv, HttpServletRequest request, int noticeNum, int page, int type, String search) throws Exception{
+		mv = adminService.adminCountInfo(mv);
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		NoticeVo notice = userService.getNotice(noticeNum);
 		mv.addObject("notice", notice);
@@ -274,6 +275,7 @@ public class AdminController {
 	}
 	@RequestMapping(value= {"/admin/qaanswermodify"}, method = RequestMethod.GET)
 	public ModelAndView qaAnswerModifyGet(ModelAndView mv, HttpServletRequest request, int qaNum, int page, int type, String search) throws Exception{
+		mv = adminService.adminCountInfo(mv);
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		QaVo qa = userService.getQa(qaNum);
 		mv.addObject("qa", qa);

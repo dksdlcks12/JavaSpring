@@ -12,7 +12,7 @@
 				<tr>
 					<td class="common-boardView-menu">작 성 자</td>
 					<td class="common-boardView-menu writer">${review.review_userId}</td>
-					<td class="common-boardView-menu">게 시 일</td>
+					<td class="common-boardView-menu">작 성 일</td>
 					<td class="common-boardView-menu">${review.reviewDate}</td>
 				</tr>
 			</table>

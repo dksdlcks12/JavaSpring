@@ -65,7 +65,7 @@
 				<div class="admin-goodsAdd-goodsPriceBox">
 					<div class="admin-goodsAdd-goodsPriceTitle">가 격</div>
 					<input type="text" class="admin-goodsAdd-goodsPrice number" name="goodsPrice" value="${goods.goodsPrice}">
-					<div class="admin-goodsAdd-goodsPayPointTitle">적립금</div>
+					<div class="admin-goodsAdd-goodsPayPointTitle">포인트</div>
 					<input type="text" class="admin-goodsAdd-goodsPayPoint number" name="goodsPoint" value="${goods.goodsPoint}">
 					<div class="admin-goodsAdd-goodsDiscountTitle">할인율(%)</div>
 					<input type="text" class="admin-goodsAdd-goodsDiscount number" name="postDiscount" value="${post.postDiscount}">

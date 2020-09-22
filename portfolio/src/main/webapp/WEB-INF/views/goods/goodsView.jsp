@@ -16,7 +16,7 @@
 				<div class="common-goodsView-goodsPriceBox">
 					<div class="common-goodsView-goodsPriceTitle">가 격</div>
 					<div class="common-goodsView-goodsPrice">${goods.goodsPrice}원</div>
-					<div class="common-goodsView-goodsPayPointTitle">적립금</div>
+					<div class="common-goodsView-goodsPayPointTitle">포인트</div>
 					<div class="common-goodsView-goodsPayPoint">${goods.goodsPoint}점</div>
 					<div class="common-goodsView-goodsDiscountTitle">할인율</div>
 					<div class="common-goodsView-goodsDiscount">${post.postDiscount}%</div>
@@ -225,7 +225,7 @@
 						contentType:"application/json; charset=UTF-8",
 						success : function(data){
 							if(data.wishListCheck){
-								alert('해당 항목이 위시리스트에 있습니다.')
+								alert('위시리스트에 있는 항목은 제외하고 추가됩니다.')
 							}else{
 								alert('위시리스트에 추가하였습니다.')
 							}

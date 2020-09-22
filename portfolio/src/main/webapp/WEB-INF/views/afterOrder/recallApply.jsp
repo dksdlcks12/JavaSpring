@@ -32,7 +32,7 @@
 				</div>
 				<div class="user-recallApply-recallOptionBox">
 					<div class="user-recallApply-selectGoodsBox">
-						<div class="user-recallApply-selectGoodsTitle">선택된 상품명</div><div class="user-recallApply-selectGoods"></div>
+						<div class="user-recallApply-selectGoodsTitle">선택된 제품명</div><div class="user-recallApply-selectGoods"></div>
 					</div>
 					<select name="" id="" class="user-recallApply-recallReason">
 						<option value="" selected>----반품사유----</option>

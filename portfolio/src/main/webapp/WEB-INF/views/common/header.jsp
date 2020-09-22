@@ -43,7 +43,7 @@
 					<a href="<%=request.getContextPath()%>/noticelist" class="admin-set-notice">공지사항</a>
 					<a href="<%=request.getContextPath()%>/qalist" class="admin-set-QA">Q&A</a>
 					<a href="<%=request.getContextPath()%>/reviewlist" class="admin-set-review">리뷰</a>
-					<a href="<%=request.getContextPath()%>/admin/goodsadd" class="admin-set-goodsManage">상품등록</a>
+					<a href="<%=request.getContextPath()%>/admin/goodsadd" class="admin-set-goodsManage">제품등록</a>
 					<a href="<%=request.getContextPath()%>/mypage" class="admin-set-myPage">마이페이지</a>
 					<div class="admin-set-loginInfo">관리자님 환영합니다.</div>
 					<div class="admin-set-logout">로그아웃</div>

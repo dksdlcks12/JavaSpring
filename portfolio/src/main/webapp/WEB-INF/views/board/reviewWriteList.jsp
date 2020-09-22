@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="user-reviewOrderList-box">
 	<div class="user-reviewOrderList-reviewOrderListBox">
-		<h2>리뷰선택</h2>
+		<h2>리뷰 물품 선택</h2>
 		<table class="user-reviewOrderList-goodsBox" border="1">
 		<tr>
 			<th class="user-reviewOrderList-goodsImgTitle">이미지</th>

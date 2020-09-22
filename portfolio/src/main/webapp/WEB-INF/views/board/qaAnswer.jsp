@@ -5,7 +5,7 @@
 		<table class="common-boardWrite-titleBox" border="1">
 			<tr>
 				<td class="common-boardWrite-rowTitle">제 목</td>
-				<td class="common-boardWrite-rowContent"><input type="text" class="common-boardWrite-title" maxlength="30" value="답변 : ${qa.qaTitle}"></td>
+				<td class="common-boardWrite-rowContent"><input type="text" class="common-boardWrite-title" maxlength="30" value="답변 : ${qa.qaTitle}" readonly></td>
 			</tr>
 		</table>
 		<div class="common-boardWrite-Content">
