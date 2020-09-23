@@ -14,6 +14,9 @@ public class MemberInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		UserVo user = (UserVo)session.getAttribute("user");
 		if(user == null) {
+			String path = (String)request.getContextPath();
+	    	String url = path + (String)request.getServletPath();
+	        session.setAttribute("url", url);
 			response.sendRedirect(request.getContextPath()+"/login");
 		}
 		return true;

@@ -117,17 +117,31 @@ public class UserController {
 	}
 	@RequestMapping(value= {"/login"}, method = RequestMethod.GET)
 	public ModelAndView logInGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+		HttpSession session = request.getSession();
+		String url = (String)session.getAttribute("url");
+		if(url==null) {
+			String referer = (String)request.getHeader("REFERER");
+			session.setAttribute("referer", referer);
+		}
 	    mv.setViewName("/user/userLogIn");
 	    return mv;
 	}
 	@RequestMapping(value= {"/login"}, method = RequestMethod.POST)
 	public ModelAndView logInPost(ModelAndView mv, UserVo user, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		mv.setViewName("/user/userLogIn");
+    	HttpSession session = request.getSession();
 		boolean isLogin = userService.isLogin(user);
 		mv.addObject("isLogin", isLogin);
 		if(isLogin) {
+	    	String url = (String)session.getAttribute("url");
+	    	if(url==null) {
+	    		url = (String)session.getAttribute("referer");
+	    		request.getSession().removeAttribute("referer");
+	    	}else {
+	    		request.getSession().removeAttribute("url");
+	    	}
 			mv.addObject("user", user);
-		    mv.setViewName("redirect:/");
+			response.sendRedirect(url);
 		}
 	    return mv;
 	}
