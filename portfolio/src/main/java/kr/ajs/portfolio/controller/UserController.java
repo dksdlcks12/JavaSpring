@@ -99,11 +99,9 @@ public class UserController {
 	public ModelAndView signUpGet(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		mv.setViewName("/user/userSignUp");
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
-		System.out.println("test");
 		if(user!=null){
 			HttpSession session = request.getSession();
 			String referer = (String)session.getAttribute("referer2");
-			System.out.println(referer);
 			response.sendRedirect(referer);
 		}
 	    return mv;
@@ -142,7 +140,6 @@ public class UserController {
 			}
 		}else{
 			referer = (String)session.getAttribute("referer2");
-			System.out.println(referer);
 			response.sendRedirect(referer);
 		}
 	    return mv;
@@ -1007,7 +1004,6 @@ public class UserController {
 		if(user!=null){
 			HttpSession session = request.getSession();
 			String referer = (String)session.getAttribute("referer2");
-			System.out.println(referer);
 			response.sendRedirect(referer);
 		}
 		return mv;
@@ -1030,7 +1026,6 @@ public class UserController {
 		if(user!=null){
 			HttpSession session = request.getSession();
 			String referer = (String)session.getAttribute("referer2");
-			System.out.println(referer);
 			response.sendRedirect(referer);
 		}
 		return mv;
@@ -1066,7 +1061,6 @@ public class UserController {
 		}else {
 			HttpSession session = request.getSession();
 			String referer = (String)session.getAttribute("referer2");
-			System.out.println(referer);
 			response.sendRedirect(referer);
 		}
 		return mv;

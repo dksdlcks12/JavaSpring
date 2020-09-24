@@ -23,7 +23,6 @@ public class LateViewInterceptor extends HandlerInterceptorAdapter{
 			String referer = (String)request.getHeader("REFERER");
 			if(url.indexOf("login")==-1 && url.indexOf("signup")==-1){
 				session.setAttribute("referer2", url);
-				System.out.println((String)session.getAttribute("referer2"));
 			}
 		}
 	}
