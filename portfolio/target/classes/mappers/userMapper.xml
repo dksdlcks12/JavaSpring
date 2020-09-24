@@ -96,7 +96,9 @@
 	</select>
 	<delete id="deleteCartList">
 		delete from cart where cart_postNum = (select postNum from post join goods on goodsNum=postNum where goodsName = #{cartList.goods})
-		and cart_userId = #{user.userId}
+		<if test="user!=null">
+			and cart_userId = #{user.userId}
+		</if>
 		and cart_optionNum = (select optionNum from portfolio.option join goods on goodsNum=option_goodsNum where goodsName = #{cartList.goods} and optionColor = #{cartList.color})
 	</delete>
 	<select id="getCart" resultType="kr.ajs.portfolio.vo.CartVo">
