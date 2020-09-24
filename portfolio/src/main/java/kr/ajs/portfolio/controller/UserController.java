@@ -96,8 +96,16 @@ public class UserController {
 	    return mv;
 	}
 	@RequestMapping(value= {"/signup"}, method = RequestMethod.GET)
-	public ModelAndView signUpGet(ModelAndView mv) throws Exception{
-	    mv.setViewName("/user/userSignUp");
+	public ModelAndView signUpGet(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		mv.setViewName("/user/userSignUp");
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		System.out.println("test");
+		if(user!=null){
+			HttpSession session = request.getSession();
+			String referer = (String)session.getAttribute("referer2");
+			System.out.println(referer);
+			response.sendRedirect(referer);
+		}
 	    return mv;
 	}
 	@RequestMapping(value= {"/signup"}, method = RequestMethod.POST)
@@ -116,14 +124,27 @@ public class UserController {
 	    return map;
 	}
 	@RequestMapping(value= {"/login"}, method = RequestMethod.GET)
-	public ModelAndView logInGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+	public ModelAndView logInGet(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		mv.setViewName("/user/userLogIn");
 		HttpSession session = request.getSession();
 		String url = (String)session.getAttribute("url");
-		if(url==null) {
-			String referer = (String)request.getHeader("REFERER");
-			session.setAttribute("referer", referer);
+		String referer = (String)session.getAttribute("referer");
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		if(user==null) {
+			if(url==null) {
+				referer = (String)request.getHeader("REFERER");
+				if(referer.indexOf("login")==-1 && referer.indexOf("signup")==-1) {
+					session.setAttribute("referer", referer);
+				}else {
+					referer = (String)session.getAttribute("referer2");
+					session.setAttribute("referer", referer);
+				}
+			}
+		}else{
+			referer = (String)session.getAttribute("referer2");
+			System.out.println(referer);
+			response.sendRedirect(referer);
 		}
-	    mv.setViewName("/user/userLogIn");
 	    return mv;
 	}
 	@RequestMapping(value= {"/login"}, method = RequestMethod.POST)
@@ -138,7 +159,7 @@ public class UserController {
 	    		url = (String)session.getAttribute("referer");
 	    		request.getSession().removeAttribute("referer");
 	    	}else {
-	    		request.getSession().removeAttribute("url");
+				request.getSession().removeAttribute("url");
 	    	}
 			mv.addObject("user", user);
 			response.sendRedirect(url);
@@ -894,17 +915,24 @@ public class UserController {
     	return map;
 	}
 	@RequestMapping(value= {"/loginorder"}, method = RequestMethod.GET)
-	public ModelAndView loginOrderGet(ModelAndView mv, HttpServletRequest request, Integer[] orderList) throws Exception{
+	public ModelAndView loginOrderGet(ModelAndView mv, HttpServletRequest request, Integer[] orderList, HttpServletResponse response) throws Exception{
 		mv.setViewName("/user/loginOrder");
-		String address = "";
-		for(int i=0; i<orderList.length; i++) {
-			if(i==0) {
-				address = address + "?orderList=" + orderList[i];
-			}else {
-				address = address + "&orderList=" + orderList[i];
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		if(user==null) {
+			String address = "";
+			for(int i=0; i<orderList.length; i++) {
+				if(i==0) {
+					address = address + "?orderList=" + orderList[i];
+				}else {
+					address = address + "&orderList=" + orderList[i];
+				}
 			}
+			mv.addObject("address",address);
+		}else {
+			HttpSession session = request.getSession();
+			String referer = (String)session.getAttribute("referer2");
+			response.sendRedirect(referer);
 		}
-		mv.addObject("address",address);
 		return mv;
 	}
 	@RequestMapping(value= {"/loginorder"}, method = RequestMethod.POST)
@@ -927,38 +955,61 @@ public class UserController {
 	public ModelAndView loginOrderCheckGet(ModelAndView mv, HttpServletRequest request, Integer[] orderList) throws Exception{
 		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		String address = "";
-		for(int i=0; i<orderList.length; i++) {
-			if(i==0) {
-				address = address + "?orderList=" + userService.updateCartGetCartNum(orderList[i], user);
-			}else {
-				address = address + "&orderList=" + userService.updateCartGetCartNum(orderList[i], user);
+		String referer = (String)request.getHeader("REFERER");
+		if(referer!=null && referer.indexOf("loginorder")!=-1) {
+			for(int i=0; i<orderList.length; i++) {
+				if(i==0) {
+					address = address + "?orderList=" + userService.updateCartGetCartNum(orderList[i], user);
+				}else {
+					address = address + "&orderList=" + userService.updateCartGetCartNum(orderList[i], user);
+				}
 			}
+			if(user!=null) {
+				mv.setViewName("redirect:order"+address);
+			}else {
+				mv.setViewName("redirect:loginorder"+address);
+			}
+		}else {
+			mv.setViewName("redirect:loginorder"+address);
 		}
-		mv.setViewName("redirect:order"+address);
 		return mv;
 	}
 	@RequestMapping(value= {"/nonememberorder"}, method = RequestMethod.GET)
-	public ModelAndView noneMemberOrderGet(ModelAndView mv, HttpServletRequest request, Integer[] orderList) throws Exception{
+	public ModelAndView noneMemberOrderGet(ModelAndView mv, HttpServletRequest request, Integer[] orderList, HttpServletResponse response) throws Exception{
 	    mv.setViewName("/goods/goodsOrder");
-	    UserVo user = new UserVo();
-	    Cookie[] cookies = request.getCookies();
-	    for(Cookie cookie : cookies) {
-	    	if(cookie.getName().indexOf("nonMemberId") != -1) {
-	    		user.setUserId(cookie.getValue());
-	    	}
-	    }
-	    if(orderList!=null) {
-		    ArrayList<BoardCartVo> list = new ArrayList<BoardCartVo>();
-		    for(Integer order : orderList) {
-		    	list.addAll(userService.getBoardOrder(user, order));
+	    UserVo user = (UserVo) request.getSession().getAttribute("user");
+	    if(user==null) {
+		    user = new UserVo();
+		    Cookie[] cookies = request.getCookies();
+		    for(Cookie cookie : cookies) {
+		    	if(cookie.getName().indexOf("nonMemberId") != -1) {
+		    		user.setUserId(cookie.getValue());
+		    	}
 		    }
-		    mv.addObject("list", list);
+		    if(orderList!=null) {
+			    ArrayList<BoardCartVo> list = new ArrayList<BoardCartVo>();
+			    for(Integer order : orderList) {
+			    	list.addAll(userService.getBoardOrder(user, order));
+			    }
+			    mv.addObject("list", list);
+		    }
+	    }else {
+			HttpSession session = request.getSession();
+			String referer = (String)session.getAttribute("referer2");
+			response.sendRedirect(referer);
 	    }
 	    return mv;
 	}
 	@RequestMapping(value= {"/loginorderview"}, method = RequestMethod.GET)
-	public ModelAndView loginOrderViewGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+	public ModelAndView loginOrderViewGet(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
 		mv.setViewName("/user/loginOrderView");
+		if(user!=null){
+			HttpSession session = request.getSession();
+			String referer = (String)session.getAttribute("referer2");
+			System.out.println(referer);
+			response.sendRedirect(referer);
+		}
 		return mv;
 	}
 	@RequestMapping(value= {"/loginorderview"}, method = RequestMethod.POST)
@@ -973,8 +1024,15 @@ public class UserController {
 	    return mv;
 	}
 	@RequestMapping(value= {"/nonmemberorderview"}, method = RequestMethod.GET)
-	public ModelAndView nonMemberOrderViewGet(ModelAndView mv, HttpServletRequest request) throws Exception{
+	public ModelAndView nonMemberOrderViewGet(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		mv.setViewName("/user/nonMemberOrderView");
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		if(user!=null){
+			HttpSession session = request.getSession();
+			String referer = (String)session.getAttribute("referer2");
+			System.out.println(referer);
+			response.sendRedirect(referer);
+		}
 		return mv;
 	}
 	@RequestMapping("nonmemberorderviewcheck")
@@ -989,20 +1047,28 @@ public class UserController {
     	return map;
 	}
 	@RequestMapping(value= {"/nonememberorderviewitem"}, method = RequestMethod.GET)
-	public ModelAndView nonMemberOrderViewItemGet(ModelAndView mv, int orderNum, HttpServletRequest request) throws Exception{
-		OrderVo order = new OrderVo();
-		ArrayList<OrderListVo> list = new ArrayList<OrderListVo>();
-		String orderPw = (String) request.getSession().getAttribute("orderPw");
-		order = userService.nonMemberOrderView(orderNum, orderPw);
-		mv.addObject("order", order);
-		if(order!=null) {
-			list = userService.nonMembergetOrderGoodsList(orderNum);
-		}
-		mv.addObject("orderNum", orderNum);
-		mv.addObject("order", order);
-		mv.addObject("list", list);
-		request.getSession().removeAttribute("orderPw");
+	public ModelAndView nonMemberOrderViewItemGet(ModelAndView mv, int orderNum, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		mv.setViewName("/afterOrder/orderView");
+		UserVo user = (UserVo) request.getSession().getAttribute("user");
+		if(user==null){
+			OrderVo order = new OrderVo();
+			ArrayList<OrderListVo> list = new ArrayList<OrderListVo>();
+			String orderPw = (String) request.getSession().getAttribute("orderPw");
+			order = userService.nonMemberOrderView(orderNum, orderPw);
+			mv.addObject("order", order);
+			if(order!=null) {
+				list = userService.nonMembergetOrderGoodsList(orderNum);
+			}
+			mv.addObject("orderNum", orderNum);
+			mv.addObject("order", order);
+			mv.addObject("list", list);
+			request.getSession().removeAttribute("orderPw");
+		}else {
+			HttpSession session = request.getSession();
+			String referer = (String)session.getAttribute("referer2");
+			System.out.println(referer);
+			response.sendRedirect(referer);
+		}
 		return mv;
 	}
 }

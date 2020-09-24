@@ -36,25 +36,30 @@
 <script>
 	$('.common-login-loginButton').click(function(){
 		var pw = $('.common-login-inputInfo').val();
-		$.ajax({
-			async:false,
-			type:'POST',
-			data:pw,
-			url:"<%=request.getContextPath()%>/mypagecheckpw",
-			dataType:"json",
-			contentType:"application/json; charset=UTF-8",
-			success : function(data){
-				if(data.pwCheck){
-					$('.mypage').css('display', 'block');
-					$('.mypagecheck').css('display', 'none');
-					$('.user-mypage-mypageButton').addClass('mypageOn')
-					$('.user-mypage-userId').addClass('userOn')
-				}else{
-					alert('잘못된 비밀번호 입니다.')
-					$('.common-login-inputInfo').val('');
+		if(pw!=''){
+			$.ajax({
+				async:false,
+				type:'POST',
+				data:pw,
+				url:"<%=request.getContextPath()%>/mypagecheckpw",
+				dataType:"json",
+				contentType:"application/json; charset=UTF-8",
+				success : function(data){
+					if(data.pwCheck){
+						$('.mypage').css('display', 'block');
+						$('.mypagecheck').css('display', 'none');
+						$('.user-mypage-mypageButton').addClass('mypageOn')
+						$('.user-mypage-userId').addClass('userOn')
+					}else{
+						alert('잘못된 비밀번호 입니다.')
+						$('.common-login-inputInfo').val('');
+					}
 				}
-			}
-		});
+			});
+		}else{
+			alert('잘못된 비밀번호 입니다.')
+			$('.common-login-inputInfo').val('');
+		}
 	})
 	$('form').submit(function(){
 		if($('.mypageOn').length!=0){

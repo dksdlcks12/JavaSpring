@@ -47,17 +47,19 @@ public class UserServiceImp implements UserService {
 	public ModelAndView getlateview(ModelAndView mv, HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
 	    lateViewList.removeAll(lateViewList);
-		for(Cookie tmp : cookies) {
-			if(tmp.getName().indexOf("lateView") != -1) {
-				lateViewList.add(tmp.getValue());
+	    if(cookies!=null) {
+			for(Cookie tmp : cookies) {
+				if(tmp.getName().indexOf("lateView") != -1) {
+					lateViewList.add(tmp.getValue());
+				}
 			}
-		}
-		ArrayList<GoodsVo> list = new ArrayList<GoodsVo>();
-		
-		for(int i=lateViewList.size()-1; i>=0; i--) {
-			list.add(userDao.getLateView(lateViewList.get(i)));
-		}
-		mv.addObject("lateViewList", list);
+			ArrayList<GoodsVo> list = new ArrayList<GoodsVo>();
+			
+			for(int i=lateViewList.size()-1; i>=0; i--) {
+				list.add(userDao.getLateView(lateViewList.get(i)));
+			}
+			mv.addObject("lateViewList", list);
+	    }
 		return mv;
 	}
 	@Override
