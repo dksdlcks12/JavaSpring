@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="user-set-center">
    	<div class="user-set-header">
-		<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/resources/image/로고대용.jpg" alt="" class="user-set-header-logo"></a>
+		<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/resources/image/logo.JPG" alt="" class="user-set-header-logo"></a>
        	<div class="user-set-header-menuBox">
        		<c:if test="${user.userAuth ne 'admin'}">
 	           	<ul class="user-set-topMenuBox">

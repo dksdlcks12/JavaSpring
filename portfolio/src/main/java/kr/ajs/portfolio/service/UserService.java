@@ -9,18 +9,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.ajs.portfolio.pagination.Criteria;
 import kr.ajs.portfolio.pagination.PageMaker;
+import kr.ajs.portfolio.vo.AddOrderVo;
+import kr.ajs.portfolio.vo.AsAddVo;
+import kr.ajs.portfolio.vo.AsVo;
 import kr.ajs.portfolio.vo.BoardCartVo;
 import kr.ajs.portfolio.vo.BoardRecallListVo;
 import kr.ajs.portfolio.vo.BoardWishListVo;
 import kr.ajs.portfolio.vo.CartVo;
 import kr.ajs.portfolio.vo.GoodsVo;
 import kr.ajs.portfolio.vo.NoticeVo;
+import kr.ajs.portfolio.vo.OptionListVo;
 import kr.ajs.portfolio.vo.OptionVo;
 import kr.ajs.portfolio.vo.OrderListVo;
 import kr.ajs.portfolio.vo.OrderVo;
-import kr.ajs.portfolio.vo.AddOrderVo;
-import kr.ajs.portfolio.vo.AsAddVo;
-import kr.ajs.portfolio.vo.AsVo;
 import kr.ajs.portfolio.vo.PostVo;
 import kr.ajs.portfolio.vo.QaVo;
 import kr.ajs.portfolio.vo.RecallAddVo;
@@ -28,8 +29,6 @@ import kr.ajs.portfolio.vo.RecallViewVo;
 import kr.ajs.portfolio.vo.ReviewVo;
 import kr.ajs.portfolio.vo.SearchVo;
 import kr.ajs.portfolio.vo.UserVo;
-import kr.ajs.portfolio.vo.WishListVo;
-import kr.ajs.portfolio.vo.OptionListVo;
 
 public interface UserService {
 	 public UserVo getUser(String id);

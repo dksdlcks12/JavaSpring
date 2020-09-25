@@ -99,7 +99,7 @@
 			return false;
 		});
 	})
-	$('.common-board-pauseColseImg').click(function(){
+	$('.common-board-pauseColse').click(function(){
 		$('.common-board-pause').off('scroll touchmove mousewheel');
 		$('.common-board-pause').css("display","none");
 	})

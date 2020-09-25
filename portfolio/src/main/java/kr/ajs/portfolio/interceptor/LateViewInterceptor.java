@@ -20,8 +20,9 @@ public class LateViewInterceptor extends HandlerInterceptorAdapter{
 			userService.getlateview(modelAndView, request);
 			String path = (String)request.getContextPath();
 			String url = path + (String)request.getServletPath();
-			if(url.indexOf("login")==-1 && url.indexOf("signup")==-1){
-				session.setAttribute("referer2", url);
+			String referer = request.getHeader("referer");
+			if(referer!=null && url.indexOf("login")==-1 && url.indexOf("signup")==-1 && referer.indexOf("login")==-1 && referer.indexOf("signup")==-1){
+				session.setAttribute("referer2", referer);
 			}
 		}
 	}
